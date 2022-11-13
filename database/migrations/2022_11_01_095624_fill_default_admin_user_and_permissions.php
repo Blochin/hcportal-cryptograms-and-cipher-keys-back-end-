@@ -70,6 +70,7 @@ class FillDefaultAdminUserAndPermissions extends Migration
 
             // ability to upload
             'admin.upload',
+            'admin.admin-user.impersonal-login'
 
         ]);
 
