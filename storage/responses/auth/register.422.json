@@ -1,0 +1,9 @@
+{
+    "status": "Success",
+    "status_code": 422,
+    "message": "Validation errors.",
+    "data": {
+        "first_name": ["The first name field is required."],
+        "last_name": ["The last name field is required."]
+    }
+}

@@ -17,6 +17,7 @@ use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property mixed first_name
@@ -28,6 +29,7 @@ class User extends Authenticatable implements CanActivateContract, HasMedia
     use CanActivate;
     use SoftDeletes;
     use HasRoles;
+    use HasApiTokens;
     use AutoProcessMediaTrait;
     use HasMediaCollectionsTrait;
     use HasMediaThumbsTrait;

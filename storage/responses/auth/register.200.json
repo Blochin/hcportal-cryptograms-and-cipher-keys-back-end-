@@ -1,0 +1,15 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "Successfully registered.",
+    "data": {
+        "first_name": "Ati",
+        "last_name": "Mucska",
+        "email": "attila.mucska@gmail.com",
+        "updated_at": "2022-11-20T13:16:26.000000Z",
+        "created_at": "2022-11-20T13:16:26.000000Z",
+        "id": 2,
+        "full_name": "Ati Mucska",
+        "resource_url": "http://dp.test/admin/users/2"
+    }
+}
