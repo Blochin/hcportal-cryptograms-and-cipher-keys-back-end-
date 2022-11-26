@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,8 @@ use App\Http\Controllers\Api\LoginController;
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [LoginController::class, 'register']);
 Route::get('/token/validation', [LoginController::class, 'tokenCheck']);
+Route::post('/password/reset/code', [ForgotPasswordController::class, 'changePassword']);
+Route::post('/password/reset', [ForgotPasswordController::class, 'sendCode']);
 
 
 Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->group(static function () {

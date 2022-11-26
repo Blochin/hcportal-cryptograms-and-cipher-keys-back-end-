@@ -1,0 +1,8 @@
+{
+    "status": "Success",
+    "status_code": 422,
+    "message": "Validation errors.",
+    "data": {
+        "email": ["The email field is required."]
+    }
+}

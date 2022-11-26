@@ -31,7 +31,7 @@ endpoints:
         name: password
         description: Password
         required: true
-        example: nesciunt
+        example: excepturi
         type: string
         custom: []
     responses:
@@ -169,14 +169,14 @@ endpoints:
         name: first_name
         description: Firstname
         required: true
-        example: voluptatem
+        example: est
         type: string
         custom: []
       last_name:
         name: last_name
         description: Lastname
         required: true
-        example: autem
+        example: quo
         type: string
         custom: []
       email:
@@ -190,7 +190,7 @@ endpoints:
         name: password
         description: Password
         required: true
-        example: quae
+        example: eveniet
         type: string
         custom: []
     responses:
@@ -224,6 +224,116 @@ endpoints:
               "data": {
                   "first_name": ["The first name field is required."],
                   "last_name": ["The last name field is required."]
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/password/reset/code
+    metadata:
+      title: 'Change password'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Login e-mail'
+        required: true
+        example: login@login.sk
+        type: string
+        custom: []
+      code:
+        name: code
+        description: 'Password reset code'
+        required: true
+        example: alias
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'New password'
+        required: true
+        example: inventore
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |
+          {
+              "status": "Success",
+              "status_code": 200,
+              "message": "Successfully reset password.",
+              "data": []
+          }
+        headers: []
+        description: '200'
+      -
+        status: 200
+        content: |
+          {
+              "status": "Success",
+              "status_code": 422,
+              "message": "Validation errors.",
+              "data": {
+                  "code": ["The code field is required."]
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/password/reset
+    metadata:
+      title: 'Send forgot password code'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Login e-mail'
+        required: true
+        example: login@login.sk
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |
+          {
+              "status": "Success",
+              "status_code": 200,
+              "message": "Successfully password reset code sent.",
+              "data": []
+          }
+        headers: []
+        description: '200'
+      -
+        status: 200
+        content: |
+          {
+              "status": "Success",
+              "status_code": 422,
+              "message": "Validation errors.",
+              "data": {
+                  "email": ["The email field is required."]
               }
           }
         headers: []

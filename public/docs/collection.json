@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "HCPortal API",
-        "_postman_id": "56f83b18-7fd2-4281-9003-353101c48ca5",
+        "_postman_id": "ab215c75-eb17-4122-aa5d-ab5cc388ad03",
         "description": "HCPortal - Ciphers and Cipher keys API documentation",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"login@login.sk\",\"password\":\"nesciunt\"}"
+                            "raw": "{\"email\":\"login@login.sk\",\"password\":\"excepturi\"}"
                         },
                         "description": "",
                         "auth": {
@@ -149,7 +149,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"voluptatem\",\"last_name\":\"autem\",\"email\":\"login@login.sk\",\"password\":\"quae\"}"
+                            "raw": "{\"first_name\":\"est\",\"last_name\":\"quo\",\"email\":\"login@login.sk\",\"password\":\"eveniet\"}"
                         },
                         "description": "",
                         "auth": {
@@ -167,6 +167,94 @@
                             "header": [],
                             "code": 200,
                             "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 422,\n    \"message\": \"Validation errors.\",\n    \"data\": {\n        \"first_name\": [\"The first name field is required.\"],\n        \"last_name\": [\"The last name field is required.\"]\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Change password",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/password\/reset\/code",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/password\/reset\/code"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"login@login.sk\",\"code\":\"alias\",\"password\":\"inventore\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Successfully reset password.\",\n    \"data\": []\n}\n",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 422,\n    \"message\": \"Validation errors.\",\n    \"data\": {\n        \"code\": [\"The code field is required.\"]\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Send forgot password code",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/password\/reset",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/password\/reset"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"login@login.sk\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Successfully password reset code sent.\",\n    \"data\": []\n}\n",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 422,\n    \"message\": \"Validation errors.\",\n    \"data\": {\n        \"email\": [\"The email field is required.\"]\n    }\n}\n",
                             "name": ""
                         }
                     ]

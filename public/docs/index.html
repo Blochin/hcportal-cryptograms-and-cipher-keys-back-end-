@@ -88,6 +88,12 @@
                                     <li class="tocify-item level-2" data-unique="authentication-POSTapi-register">
                         <a href="#authentication-POSTapi-register">Register</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-password-reset-code">
+                        <a href="#authentication-POSTapi-password-reset-code">Change password</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-password-reset">
+                        <a href="#authentication-POSTapi-password-reset">Send forgot password code</a>
+                    </li>
                                                     </ul>
                             </ul>
         
@@ -100,7 +106,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: November 20 2022</li>
+        <li>Last updated: November 26 2022</li>
     </ul>
 </div>
 
@@ -118,7 +124,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">http://dp.test</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
@@ -144,7 +150,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Accept: application/json" \
     --data "{
     \"email\": \"login@login.sk\",
-    \"password\": \"nesciunt\"
+    \"password\": \"excepturi\"
 }"
 </code></pre></div>
 
@@ -161,7 +167,7 @@ const headers = {
 
 let body = {
     "email": "login@login.sk",
-    "password": "nesciunt"
+    "password": "excepturi"
 };
 
 fetch(url, {
@@ -182,7 +188,7 @@ $response = $client-&gt;post(
         ],
         'json' =&gt; [
             'email' =&gt; 'login@login.sk',
-            'password' =&gt; 'nesciunt',
+            'password' =&gt; 'excepturi',
         ],
     ]
 );
@@ -306,7 +312,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="nesciunt"
+               value="excepturi"
                data-component="body" hidden>
     <br>
 <p>Password</p>
@@ -564,10 +570,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"first_name\": \"voluptatem\",
-    \"last_name\": \"autem\",
+    \"first_name\": \"est\",
+    \"last_name\": \"quo\",
     \"email\": \"login@login.sk\",
-    \"password\": \"quae\"
+    \"password\": \"eveniet\"
 }"
 </code></pre></div>
 
@@ -583,10 +589,10 @@ const headers = {
 };
 
 let body = {
-    "first_name": "voluptatem",
-    "last_name": "autem",
+    "first_name": "est",
+    "last_name": "quo",
     "email": "login@login.sk",
-    "password": "quae"
+    "password": "eveniet"
 };
 
 fetch(url, {
@@ -606,10 +612,10 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'first_name' =&gt; 'voluptatem',
-            'last_name' =&gt; 'autem',
+            'first_name' =&gt; 'est',
+            'last_name' =&gt; 'quo',
             'email' =&gt; 'login@login.sk',
-            'password' =&gt; 'quae',
+            'password' =&gt; 'eveniet',
         ],
     ]
 );
@@ -705,7 +711,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="first_name"
                data-endpoint="POSTapi-register"
-               value="voluptatem"
+               value="est"
                data-component="body" hidden>
     <br>
 <p>Firstname</p>
@@ -715,7 +721,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="last_name"
                data-endpoint="POSTapi-register"
-               value="autem"
+               value="quo"
                data-component="body" hidden>
     <br>
 <p>Lastname</p>
@@ -735,10 +741,324 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="quae"
+               value="eveniet"
                data-component="body" hidden>
     <br>
 <p>Password</p>
+        </p>
+        </form>
+
+            <h2 id="authentication-POSTapi-password-reset-code">Change password</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-password-reset-code">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://dp.test/api/password/reset/code" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"login@login.sk\",
+    \"code\": \"alias\",
+    \"password\": \"inventore\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/password/reset/code"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "login@login.sk",
+    "code": "alias",
+    "password": "inventore"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://dp.test/api/password/reset/code',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'email' =&gt; 'login@login.sk',
+            'code' =&gt; 'alias',
+            'password' =&gt; 'inventore',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-password-reset-code">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Successfully reset password.&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 422,
+    &quot;message&quot;: &quot;Validation errors.&quot;,
+    &quot;data&quot;: {
+        &quot;code&quot;: [
+            &quot;The code field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-password-reset-code" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-password-reset-code"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-password-reset-code"></code></pre>
+</span>
+<span id="execution-error-POSTapi-password-reset-code" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-password-reset-code"></code></pre>
+</span>
+<form id="form-POSTapi-password-reset-code" data-method="POST"
+      data-path="api/password/reset/code"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-password-reset-code', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-password-reset-code"
+                    onclick="tryItOut('POSTapi-password-reset-code');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-password-reset-code"
+                    onclick="cancelTryOut('POSTapi-password-reset-code');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-password-reset-code" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/password/reset/code</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-password-reset-code"
+               value="login@login.sk"
+               data-component="body" hidden>
+    <br>
+<p>Login e-mail</p>
+        </p>
+                <p>
+            <b><code>code</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="code"
+               data-endpoint="POSTapi-password-reset-code"
+               value="alias"
+               data-component="body" hidden>
+    <br>
+<p>Password reset code</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-password-reset-code"
+               value="inventore"
+               data-component="body" hidden>
+    <br>
+<p>New password</p>
+        </p>
+        </form>
+
+            <h2 id="authentication-POSTapi-password-reset">Send forgot password code</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-password-reset">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://dp.test/api/password/reset" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"login@login.sk\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/password/reset"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "login@login.sk"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://dp.test/api/password/reset',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'email' =&gt; 'login@login.sk',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-password-reset">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Successfully password reset code sent.&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 422,
+    &quot;message&quot;: &quot;Validation errors.&quot;,
+    &quot;data&quot;: {
+        &quot;email&quot;: [
+            &quot;The email field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-password-reset" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-password-reset"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-password-reset"></code></pre>
+</span>
+<span id="execution-error-POSTapi-password-reset" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-password-reset"></code></pre>
+</span>
+<form id="form-POSTapi-password-reset" data-method="POST"
+      data-path="api/password/reset"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-password-reset', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-password-reset"
+                    onclick="tryItOut('POSTapi-password-reset');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-password-reset"
+                    onclick="cancelTryOut('POSTapi-password-reset');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-password-reset" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/password/reset</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-password-reset"
+               value="login@login.sk"
+               data-component="body" hidden>
+    <br>
+<p>Login e-mail</p>
         </p>
         </form>
 
