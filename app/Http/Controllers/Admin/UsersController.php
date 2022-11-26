@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\User\DestroyUser;
 use App\Http\Requests\Admin\User\IndexUser;
 use App\Http\Requests\Admin\User\StoreUser;
 use App\Http\Requests\Admin\User\UpdateUser;
+use App\Mail\UserActivatedMail;
 use App\Models\User;
 use Brackets\AdminListing\Facades\AdminListing;
 use Carbon\Carbon;
@@ -19,6 +20,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 
@@ -145,6 +147,10 @@ class UsersController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+
+        if ($user->activated != $sanitized['activated'] && $sanitized['activated']) {
+            Mail::to($user->email)->send(new UserActivatedMail($user));
+        }
 
         // Update changed values User
         $user->update($sanitized);

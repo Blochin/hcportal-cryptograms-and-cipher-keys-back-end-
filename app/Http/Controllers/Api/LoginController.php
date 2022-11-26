@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\RegisterAdminMail;
+use App\Mail\RegisterMail;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\ApiResponser;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Role;
 
 /**
@@ -50,7 +53,7 @@ class LoginController extends Controller
         $client = User::where('email', $request->email)->first();
 
 
-        if (!$client || !Hash::check($request->password, $client->password)) {
+        if (!$client || !Hash::check($request->password, $client->password) || !$client->activated) {
             return $this->success(['login' => trans('auth.failed')], 'Validation errors.', JsonResponse::HTTP_UNPROCESSABLE_ENTITY,  422);
         }
 
@@ -158,6 +161,8 @@ class LoginController extends Controller
             $client->roles()->sync([$roleUser->id]);
         }
 
+        Mail::to($client->email)->send(new RegisterMail($client));
+        Mail::to(config('mail.to.email'))->send(new RegisterAdminMail($client));
 
         return $this->success($client, 'Successfully registered.', 200, 200);
     }

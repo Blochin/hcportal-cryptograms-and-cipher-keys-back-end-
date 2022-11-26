@@ -96,6 +96,10 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'to' => [
+        'email' => env('MAIL_ADMIN', 'info@hcportal.eu')
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
