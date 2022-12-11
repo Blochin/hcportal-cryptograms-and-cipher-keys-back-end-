@@ -4,3 +4,33 @@
     max-width: 20px;
     max-height: 20px;
 }
+
+.badge-new {
+    background: rgb(186, 2, 2);
+    color: #fff;
+}
+
+.badge-awaiting {
+    background: rgb(240, 177, 16);
+    color: #fff;
+}
+
+.badge-approved {
+    background: rgb(69, 206, 1);
+    color: #fff;
+}
+
+.badge-revise {
+    background: rgb(147, 39, 255);
+    color: #fff;
+}
+
+.badge-deleted {
+    background: rgb(38, 38, 38);
+    color: #fff;
+}
+
+.badge-rejected {
+    background: rgb(0, 63, 199);
+    color: #fff;
+}

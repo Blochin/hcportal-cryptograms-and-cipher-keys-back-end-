@@ -16,12 +16,13 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('type', ['cipher_key', 'cipher'])->nullable();
         });
 
         Schema::create('taggables', function (Blueprint $table) {
             $table->unsignedBigInteger('tag_id');
             $table->unsignedBigInteger('taggable_id');
-            $table->unsignedBigInteger('taggable_type');
+            $table->string('taggable_type');
 
             $table->foreign('tag_id')
                 ->references('id')
@@ -38,6 +39,6 @@ class CreateTagsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('tags');
-        Schema::dropIfExists('taggable');
+        Schema::dropIfExists('taggables');
     }
 }

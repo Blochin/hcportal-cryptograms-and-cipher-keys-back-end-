@@ -52,3 +52,20 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function () {
+        Route::prefix('cipher-keys')->name('cipher-keys/')->group(static function () {
+            Route::get('/',                                             'CipherKeysController@index')->name('index');
+            Route::get('/create',                                       'CipherKeysController@create')->name('create');
+            Route::post('/',                                            'CipherKeysController@store')->name('store');
+            Route::get('/{cipherKey}/edit',                             'CipherKeysController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'CipherKeysController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{cipherKey}',                                 'CipherKeysController@update')->name('update');
+            Route::delete('/{cipherKey}',                               'CipherKeysController@destroy')->name('destroy');
+            Route::post('/{cipherKey}/state',                               'CipherKeysController@changeState')->name('state');
+        });
+    });
+});
