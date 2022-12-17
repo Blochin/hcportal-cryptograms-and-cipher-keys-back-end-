@@ -56,3 +56,12 @@ $factory->define(App\Models\CipherKey::class, static function (Faker\Generator $
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Location::class, static function (Faker\Generator $faker) {
+    return [
+        'continent' => $faker->sentence,
+        'name' => $faker->firstName,
+        
+        
+    ];
+});

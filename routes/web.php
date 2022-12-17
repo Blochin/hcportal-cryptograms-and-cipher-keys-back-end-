@@ -69,3 +69,19 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('locations')->name('locations/')->group(static function() {
+            Route::get('/',                                             'LocationsController@index')->name('index');
+            Route::get('/create',                                       'LocationsController@create')->name('create');
+            Route::post('/',                                            'LocationsController@store')->name('store');
+            Route::get('/{location}/edit',                              'LocationsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'LocationsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{location}',                                  'LocationsController@update')->name('update');
+            Route::delete('/{location}',                                'LocationsController@destroy')->name('destroy');
+        });
+    });
+});

@@ -103,5 +103,22 @@ return [
         ],
     ],
 
+    'location' => [
+        'title' => 'Locations',
+
+        'actions' => [
+            'index' => 'Locations',
+            'create' => 'New Location',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'continent' => 'Continent',
+            'name' => 'Name',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];

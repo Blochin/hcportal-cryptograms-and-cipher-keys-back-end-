@@ -13,4 +13,20 @@ class Location extends Model
         'name',
         'continent'
     ];
+
+    public $timestamps = false;
+
+    protected $appends = ['resource_url'];
+
+    /* ************************ ACCESSOR ************************* */
+
+    /**
+     * Resource url to generate edit
+     *
+     * @return UrlGenerator|string
+     */
+    public function getResourceUrlAttribute()
+    {
+        return url('/admin/locations/' . $this->getKey());
+    }
 }
