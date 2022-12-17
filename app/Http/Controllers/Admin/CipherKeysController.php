@@ -53,7 +53,7 @@ class CipherKeysController extends Controller
             ['id', 'description', 'signature', 'complete_structure', 'used_chars', 'cipher_type', 'key_type', 'used_around'],
 
             function (Builder $query) {
-                $query->with(['state', 'language']);
+                $query->with(['state', 'language', 'state.user']);
             }
         );
 

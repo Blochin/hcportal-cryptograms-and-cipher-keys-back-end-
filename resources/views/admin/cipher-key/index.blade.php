@@ -65,6 +65,9 @@
                                         <th :column="'state'">
                                             {{ trans('admin.cipher-key.columns.state') }}</th>
 
+                                        <th :column="'user'">
+                                            {{ trans('admin.cipher-key.columns.created_by') }}</th>
+
                                         <th></th>
                                     </tr>
                                     <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
@@ -110,8 +113,8 @@
                                             @{{ item . used_from_formatted }} to
                                             @{{ item . used_to_formatted }}</td>
                                         <td v-else="item . used_around">@{{ item . used_around }}</td>
-
                                         <td v-html="item . state_badge"></td>
+                                        <td>@{{ item . state . user . full_name }}</td>
 
 
                                         <td>

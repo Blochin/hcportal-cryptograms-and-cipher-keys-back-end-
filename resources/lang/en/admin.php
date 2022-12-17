@@ -97,7 +97,8 @@ return [
             'date' => 'Date',
             'update_state' => 'Update state',
             'note' => 'Note',
-            'actual_state' => 'Actual state'
+            'actual_state' => 'Actual state',
+            'created_by' => 'Created by'
 
         ],
     ],

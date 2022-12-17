@@ -109,7 +109,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-lg-4">
+    {{-- <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
             :class="{'has-danger': errors.has('group'), 'has-success': fields.group && fields.group.valid }">
             <label for="group" class="col-form-label"
@@ -122,7 +122,7 @@
                     @{{ errors . first('group') }}</div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
             :class="{'has-danger': errors.has('location'), 'has-success': fields.location && fields.location.valid }">
@@ -134,6 +134,21 @@
                 </multiselect>
                 <div v-if="errors.has('location')" class="form-control-feedback form-text" v-cloak>
                     @{{ errors . first('location') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('tags'), 'has-success': fields.tags && fields.tags.valid }">
+            <label for="tags" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.tags') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.tags" tag-placeholder="Add this as new tag" placeholder="Search or add a tag"
+                    :multiple="true" :taggable="true" @tag="addTag" label="name" :options="filteredTags"
+                    :option-height="104" placeholder="{{ trans('admin.cipher-key.columns.tags') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('tags')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('tags') }}</div>
             </div>
         </div>
     </div>
@@ -167,21 +182,6 @@
                 </div>
                 <div v-if="errors.has('used_chars')" class="form-control-feedback form-text" v-cloak>
                     @{{ errors . first('used_chars') }}</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('tags'), 'has-success': fields.tags && fields.tags.valid }">
-            <label for="tags" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.tags') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.tags" tag-placeholder="Add this as new tag" placeholder="Search or add a tag"
-                    :multiple="true" :taggable="true" @tag="addTag" label="name" :options="filteredTags"
-                    :option-height="104" placeholder="{{ trans('admin.cipher-key.columns.tags') }}" track-by="id">
-                </multiselect>
-                <div v-if="errors.has('tags')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('tags') }}</div>
             </div>
         </div>
     </div>
