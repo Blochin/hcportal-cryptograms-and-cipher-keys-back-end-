@@ -65,3 +65,19 @@ $factory->define(App\Models\Location::class, static function (Faker\Generator $f
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\CipherType::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\KeyType::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        
+        
+    ];
+});

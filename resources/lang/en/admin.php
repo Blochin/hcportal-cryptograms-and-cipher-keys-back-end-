@@ -120,5 +120,37 @@ return [
         ],
     ],
 
+    'cipher-type' => [
+        'title' => 'Cipher Types',
+
+        'actions' => [
+            'index' => 'Cipher Types',
+            'create' => 'New Cipher Type',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            
+        ],
+    ],
+
+    'key-type' => [
+        'title' => 'Key Types',
+
+        'actions' => [
+            'index' => 'Key Types',
+            'create' => 'New Key Type',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];

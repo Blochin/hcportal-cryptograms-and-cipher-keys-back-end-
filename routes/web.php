@@ -85,3 +85,33 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('cipher-types')->name('cipher-types/')->group(static function() {
+            Route::get('/',                                             'CipherTypesController@index')->name('index');
+            Route::get('/create',                                       'CipherTypesController@create')->name('create');
+            Route::post('/',                                            'CipherTypesController@store')->name('store');
+            Route::get('/{cipherType}/edit',                            'CipherTypesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'CipherTypesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{cipherType}',                                'CipherTypesController@update')->name('update');
+            Route::delete('/{cipherType}',                              'CipherTypesController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('key-types')->name('key-types/')->group(static function() {
+            Route::get('/',                                             'KeyTypesController@index')->name('index');
+            Route::get('/create',                                       'KeyTypesController@create')->name('create');
+            Route::post('/',                                            'KeyTypesController@store')->name('store');
+            Route::get('/{keyType}/edit',                               'KeyTypesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'KeyTypesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{keyType}',                                   'KeyTypesController@update')->name('update');
+            Route::delete('/{keyType}',                                 'KeyTypesController@destroy')->name('destroy');
+        });
+    });
+});

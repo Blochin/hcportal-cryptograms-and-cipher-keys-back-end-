@@ -11,8 +11,10 @@ use App\Http\Requests\Admin\CipherKey\UpdateCipherKey;
 use App\Http\Requests\Admin\CipherKey\UpdateStateCipherKey;
 use App\Models\Archive;
 use App\Models\CipherKey;
+use App\Models\CipherType;
 use App\Models\Folder;
 use App\Models\Fond;
+use App\Models\KeyType;
 use App\Models\Language;
 use App\Models\Location;
 use App\Models\Person;
@@ -79,8 +81,8 @@ class CipherKeysController extends Controller
     {
         $this->authorize('admin.cipher-key.create');
 
-        $keyTypes = collect(CipherKey::KEY_TYPES)->toJSON();
-        $cipherTypes = collect(CipherKey::CIPHER_TYPES)->toJSON();
+        $keyTypes = KeyType::all();
+        $cipherTypes = CipherType::all();
         $locations = Location::all();
         $languages = Language::all();
         $groups = CipherKey::all();
