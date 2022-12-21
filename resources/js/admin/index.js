@@ -6,3 +6,4 @@ import './cipher-key';
 import './location';
 import './cipher-type';
 import './key-type';
+import './cipher-key-similarity';

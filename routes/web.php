@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\UpdateCipherKeyStateMail;
+use App\Models\CipherKey;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    //return new UpdateCipherKeyStateMail(CipherKey::first());
     return view('welcome');
 });
 
@@ -61,6 +65,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::get('/',                                             'CipherKeysController@index')->name('index');
             Route::get('/create',                                       'CipherKeysController@create')->name('create');
             Route::post('/',                                            'CipherKeysController@store')->name('store');
+            Route::get('/search',                                 'CipherKeysController@search')->name('search');
             Route::get('/{cipherKey}/edit',                             'CipherKeysController@edit')->name('edit');
             Route::post('/bulk-destroy',                                'CipherKeysController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{cipherKey}',                                 'CipherKeysController@update')->name('update');
@@ -73,8 +78,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
-    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
-        Route::prefix('locations')->name('locations/')->group(static function() {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function () {
+        Route::prefix('locations')->name('locations/')->group(static function () {
             Route::get('/',                                             'LocationsController@index')->name('index');
             Route::get('/create',                                       'LocationsController@create')->name('create');
             Route::post('/',                                            'LocationsController@store')->name('store');
@@ -88,8 +93,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
-    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
-        Route::prefix('cipher-types')->name('cipher-types/')->group(static function() {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function () {
+        Route::prefix('cipher-types')->name('cipher-types/')->group(static function () {
             Route::get('/',                                             'CipherTypesController@index')->name('index');
             Route::get('/create',                                       'CipherTypesController@create')->name('create');
             Route::post('/',                                            'CipherTypesController@store')->name('store');
@@ -103,8 +108,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
-    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
-        Route::prefix('key-types')->name('key-types/')->group(static function() {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function () {
+        Route::prefix('key-types')->name('key-types/')->group(static function () {
             Route::get('/',                                             'KeyTypesController@index')->name('index');
             Route::get('/create',                                       'KeyTypesController@create')->name('create');
             Route::post('/',                                            'KeyTypesController@store')->name('store');
@@ -112,6 +117,22 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/bulk-destroy',                                'KeyTypesController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{keyType}',                                   'KeyTypesController@update')->name('update');
             Route::delete('/{keyType}',                                 'KeyTypesController@destroy')->name('destroy');
+        });
+    });
+});
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function () {
+        Route::prefix('cipher-key-similarities')->name('cipher-key-similarities/')->group(static function () {
+            Route::get('/',                                             'CipherKeySimilaritiesController@index')->name('index');
+            Route::get('/create',                                       'CipherKeySimilaritiesController@create')->name('create');
+            Route::post('/',                                            'CipherKeySimilaritiesController@store')->name('store');
+            Route::get('/{cipherKeySimilarity}/edit',                   'CipherKeySimilaritiesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'CipherKeySimilaritiesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{cipherKeySimilarity}',                       'CipherKeySimilaritiesController@update')->name('update');
+            Route::delete('/{cipherKeySimilarity}',                     'CipherKeySimilaritiesController@destroy')->name('destroy');
         });
     });
 });

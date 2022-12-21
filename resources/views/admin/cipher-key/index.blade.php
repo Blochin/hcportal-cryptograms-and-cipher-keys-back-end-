@@ -114,7 +114,7 @@
                                             @{{ item . used_to_formatted }}</td>
                                         <td v-else="item . used_around">@{{ item . used_around }}</td>
                                         <td v-html="item . state_badge"></td>
-                                        <td>@{{ item . state . user . full_name }}</td>
+                                        <td>@{{ item . submitter?. full_name }}</td>
 
 
                                         <td>

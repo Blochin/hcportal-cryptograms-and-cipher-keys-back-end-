@@ -116,7 +116,7 @@ return [
             'id' => 'ID',
             'continent' => 'Continent',
             'name' => 'Name',
-            
+
         ],
     ],
 
@@ -132,7 +132,7 @@ return [
         'columns' => [
             'id' => 'ID',
             'name' => 'Name',
-            
+
         ],
     ],
 
@@ -148,9 +148,31 @@ return [
         'columns' => [
             'id' => 'ID',
             'name' => 'Name',
-            
+
         ],
     ],
+
+    'cipher-key-similarity' => [
+        'title' => 'Key Similarities',
+
+        'actions' => [
+            'index' => 'Cipher Key Similarities',
+            'create' => 'New Cipher Key Similarity',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'cipher_keys' => 'Similar Cipher keys'
+
+        ],
+    ],
+
+    'sidebar' => [
+        'cipherkeys' => 'Cipher keys',
+        'ciphers' => 'Ciphers'
+    ]
 
     // Do not delete me :) I'm used for auto-generation
 ];

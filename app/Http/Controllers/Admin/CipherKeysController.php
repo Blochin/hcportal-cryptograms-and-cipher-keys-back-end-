@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\CipherKey\IndexCipherKey;
 use App\Http\Requests\Admin\CipherKey\StoreCipherKey;
 use App\Http\Requests\Admin\CipherKey\UpdateCipherKey;
 use App\Http\Requests\Admin\CipherKey\UpdateStateCipherKey;
+use App\Mail\UpdateCipherKeyStateMail;
 use App\Models\Archive;
 use App\Models\CipherKey;
 use App\Models\CipherType;
@@ -27,9 +28,11 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class CipherKeysController extends Controller
@@ -49,13 +52,13 @@ class CipherKeysController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'cipher_type', 'complete_structure', 'signature', 'key_type', 'used_from', 'used_to', 'used_around', 'folder_id', 'location_id', 'language_id', 'group_id', 'state_id'],
+            ['id', 'cipher_type', 'complete_structure', 'signature', 'created_by', 'key_type', 'used_from', 'used_to', 'used_around', 'folder_id', 'location_id', 'language_id', 'group_id', 'state_id'],
 
             // set columns to searchIn
             ['id', 'description', 'signature', 'complete_structure', 'used_chars', 'cipher_type', 'key_type', 'used_around'],
 
             function (Builder $query) {
-                $query->with(['state', 'language', 'state.user']);
+                $query->with(['state', 'language', 'submitter']);
             }
         );
 
@@ -191,7 +194,10 @@ class CipherKeysController extends Controller
             'language',
             'location',
             'tags',
-            'folder.fond'
+            'folder.fond',
+            'submitter',
+            'cipherType',
+            'keyType'
         ]);
 
 
@@ -431,8 +437,23 @@ class CipherKeysController extends Controller
 
         $cipherKey->update(['state_id' => $state->id]);
 
-        //TODO: send email about new state
+        Mail::to($cipherKey->submitter->email)->send(new UpdateCipherKeyStateMail($cipherKey));
 
         return response()->json('Successfully status changed.', 200);
+    }
+
+    /**
+     * Search cipher keys
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function search(Request $request)
+    {
+        $results = CipherKey::latest('id')->get();
+        if ($request->search) {
+            $results  = CipherKey::where('signature', 'LIKE', "%{$request->search}%")->orWhere('complete_structure', 'LIKE', "%{$request->search}%")->orderBy('id', 'desc')->get();
+        }
+        return response()->json($results);
     }
 }

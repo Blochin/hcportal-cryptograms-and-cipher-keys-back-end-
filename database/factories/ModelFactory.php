@@ -81,3 +81,11 @@ $factory->define(App\Models\KeyType::class, static function (Faker\Generator $fa
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\CipherKeySimilarity::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        
+        
+    ];
+});

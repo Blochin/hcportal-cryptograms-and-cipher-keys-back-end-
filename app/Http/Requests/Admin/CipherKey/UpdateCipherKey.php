@@ -72,6 +72,7 @@ class UpdateCipherKey extends FormRequest
         $sanitized['fond_id'] = $sanitized['fond'] ? json_decode($sanitized['fond'])->id : null;
         $sanitized['archive_id'] = $sanitized['archive'] ? json_decode($sanitized['archive'])->id : null;
 
+
         //Add your code for manipulation with request data here
 
         return $sanitized;

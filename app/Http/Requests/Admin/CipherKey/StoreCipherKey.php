@@ -73,6 +73,7 @@ class StoreCipherKey extends FormRequest
         $sanitized['folder_id'] = $sanitized['folder'] ? json_decode($sanitized['folder'])->id : null;
         $sanitized['fond_id'] = $sanitized['fond'] ? json_decode($sanitized['fond'])->id : null;
         $sanitized['archive_id'] = $sanitized['archive'] ? json_decode($sanitized['archive'])->id : null;
+        $sanitized['created_by'] = auth()->user()->id;
 
         $state = State::create([
             'name' => $sanitized['complete_structure'] ?: $sanitized['signature'],

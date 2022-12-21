@@ -21,6 +21,7 @@ class CipherKey extends Model
         'language_id',
         'group_id',
         'state_id',
+        'created_by'
 
     ];
 
@@ -54,29 +55,20 @@ class CipherKey extends Model
     }
 
 
-    public function getCipherTypeAttribute($value)
-    {
-        return collect(self::CIPHER_TYPES)->where('id', $value)->first();
-    }
-
-
-    public function getKeyTypeAttribute($value)
-    {
-        return collect(self::KEY_TYPES)->where('id', $value)->first();
-    }
-
     public function getFondAttribute()
     {
-        return $this->folder->fond;
+        return isset($this->folder->fond) ? $this->folder->fond : null;
     }
 
     public function getArchiveAttribute()
     {
-        return $this->folder->fond->archive;
+        return isset($this->folder->fond) ? $this->folder->fond->archive : null;
     }
 
     public function getStateBadgeAttribute()
     {
+        if (!isset($this->state)) return null;
+
         $title = collect(State::STATUSES)->where('id', $this->state->state)->first();
         return '<span class="badge badge-' . $this->state->state . '">' . $title['title'] . '</span>';
     }
@@ -105,14 +97,35 @@ class CipherKey extends Model
         return $this->hasMany(CipherKeyPerson::class);
     }
 
+    public function submitter()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
     public function state()
     {
         return $this->belongsTo(State::class);
     }
 
+    public function cipherType()
+    {
+        return $this->belongsTo(CipherType::class, 'cipher_type');
+    }
+
+    public function keyType()
+    {
+        return $this->belongsTo(KeyType::class, 'key_type');
+    }
+
+
     public function group()
     {
         return $this->belongsTo(CipherKey::class);
+    }
+
+    public function keySimilarities()
+    {
+        return $this->belongsToMany(CipherKeySimilarity::class, 'cipher_key_similarity', 'cipher_key_id', 'cipher_key_similarity_id');
     }
 
     public function folder()

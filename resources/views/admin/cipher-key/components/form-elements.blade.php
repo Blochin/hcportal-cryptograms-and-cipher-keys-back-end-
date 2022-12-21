@@ -5,7 +5,7 @@
             <label for="cipher_type" class="col-form-label"
                 :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.cipher_type') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.cipher_type" label="label" :options="{{ $cipherTypes }}"
+                <multiselect v-model="form.cipher_type" label="name" :options="{{ $cipherTypes }}"
                     :option-height="104" placeholder="{{ trans('admin.cipher-key.columns.cipher_type') }}"
                     track-by="id">
                 </multiselect>
@@ -20,7 +20,7 @@
             <label for="key_type" class="col-form-label"
                 :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.key_type') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">
-                <multiselect v-model="form.key_type" label="label" :options="{{ $keyTypes }}" :option-height="104"
+                <multiselect v-model="form.key_type" label="name" :options="{{ $keyTypes }}" :option-height="104"
                     placeholder="{{ trans('admin.cipher-key.columns.key_type') }}" track-by="id">
                 </multiselect>
                 <div v-if="errors.has('key_type')" class="form-control-feedback form-text" v-cloak>
@@ -143,9 +143,10 @@
             <label for="tags" class="col-form-label"
                 :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.tags') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.tags" tag-placeholder="Add this as new tag" placeholder="Search or add a tag"
-                    :multiple="true" :taggable="true" @tag="addTag" label="name" :options="filteredTags"
-                    :option-height="104" placeholder="{{ trans('admin.cipher-key.columns.tags') }}" track-by="id">
+                <multiselect v-model="form.tags" tag-placeholder="Add this as new tag" :close-on-select="false"
+                    placeholder="Search or add a tag" :multiple="true" :taggable="true" @tag="addTag" label="name"
+                    :options="filteredTags" :option-height="104"
+                    placeholder="{{ trans('admin.cipher-key.columns.tags') }}" track-by="id">
                 </multiselect>
                 <div v-if="errors.has('tags')" class="form-control-feedback form-text" v-cloak>
                     @{{ errors . first('tags') }}</div>
