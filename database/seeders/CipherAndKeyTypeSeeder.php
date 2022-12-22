@@ -17,8 +17,10 @@ class CipherAndKeyTypeSeeder extends Seeder
     public function run()
     {
 
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('cipher_types')->truncate();
         DB::table('key_types')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $cipherTypes = [
             ['name' => 'Undefined'],

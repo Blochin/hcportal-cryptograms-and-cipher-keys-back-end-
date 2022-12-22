@@ -171,8 +171,26 @@ return [
 
     'sidebar' => [
         'cipherkeys' => 'Cipher keys',
-        'ciphers' => 'Ciphers'
-    ]
+        'ciphers' => 'Ciphers',
+        'general' => 'General'
+    ],
+
+    'tag' => [
+        'title' => 'Tags',
+
+        'actions' => [
+            'index' => 'Tags',
+            'create' => 'New Tag',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'type' => 'Type',
+
+        ],
+    ],
 
     // Do not delete me :) I'm used for auto-generation
 ];

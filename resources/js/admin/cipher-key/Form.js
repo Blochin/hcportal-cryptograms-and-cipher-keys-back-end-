@@ -138,6 +138,16 @@ Vue.component("cipher-key-form", {
                 name: newTag,
                 type: "cipher_key",
             };
+
+            axios
+                .post("/admin/tags", tag)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (errors) {
+                    console.log(errors);
+                });
+
             this.filteredTags.push(tag);
             this.form.tags.push(tag);
         },

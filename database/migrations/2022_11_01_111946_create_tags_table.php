@@ -16,7 +16,7 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', ['cipher_key', 'cipher'])->nullable();
+            $table->string('type')->nullable();
         });
 
         Schema::create('taggables', function (Blueprint $table) {
