@@ -6,6 +6,10 @@
                         class="nav-icon icon-ghost"></i> {{ trans('admin.location.title') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/tags') }}"><i
                         class="nav-icon icon-compass"></i> {{ trans('admin.tag.title') }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('admin/people') }}"><i
+                        class="nav-icon icon-ghost"></i> {{ trans('admin.person.title') }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('admin/languages') }}"><i
+                        class="nav-icon icon-book-open"></i> {{ trans('admin.language.title') }}</a></li>
             <li class="nav-title">{{ trans('admin.sidebar.cipherkeys') }}</li>
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/cipher-keys') }}"><i
                         class="nav-icon icon-book-open"></i> {{ trans('admin.cipher-key.title') }}</a></li>
@@ -18,6 +22,12 @@
             {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
             <li class="nav-title">{{ trans('admin.sidebar.ciphers') }}</li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('admin/ciphers') }}"><i
+                        class="nav-icon icon-puzzle"></i> {{ trans('admin.cipher.title') }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('admin/solutions') }}"><i
+                        class="nav-icon icon-globe"></i> {{ trans('admin.solution.title') }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('admin/categories') }}"><i
+                        class="nav-icon icon-magnet"></i> {{ trans('admin.category.title') }}</a></li>
 
             <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.settings') }}</li>
 

@@ -98,3 +98,60 @@ $factory->define(App\Models\Tag::class, static function (Faker\Generator $faker)
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Cipher::class, static function (Faker\Generator $faker) {
+    return [
+        'availability' => $faker->sentence,
+        'category_id' => $faker->sentence,
+        'day' => $faker->randomNumber(5),
+        'description' => $faker->text(),
+        'flag' => $faker->boolean(),
+        'image_url' => $faker->sentence,
+        'language_id' => $faker->sentence,
+        'location_id' => $faker->sentence,
+        'month' => $faker->randomNumber(5),
+        'name' => $faker->firstName,
+        'recipient_id' => $faker->sentence,
+        'sender_id' => $faker->sentence,
+        'solution_id' => $faker->sentence,
+        'state_id' => $faker->sentence,
+        'year' => $faker->randomNumber(5),
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Solution::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Person::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Language::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Category::class, static function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->firstName,
+        'parent_id' => $faker->sentence,
+        'created_at' => $faker->dateTime,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});

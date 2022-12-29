@@ -8,3 +8,8 @@ import './cipher-type';
 import './key-type';
 import './cipher-key-similarity';
 import './tag';
+import './cipher';
+import './solution';
+import './person';
+import './language';
+import './category';

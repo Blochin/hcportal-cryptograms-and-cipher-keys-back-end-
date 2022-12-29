@@ -192,5 +192,100 @@ return [
         ],
     ],
 
+    'cipher' => [
+        'title' => 'Ciphers',
+
+        'actions' => [
+            'index' => 'Ciphers',
+            'create' => 'New Cipher',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'availability' => 'Availability',
+            'category_id' => 'Category',
+            'day' => 'Day',
+            'description' => 'Description',
+            'flag' => 'Is BC?',
+            'image_url' => 'Image url',
+            'language_id' => 'Language',
+            'location_id' => 'Location',
+            'month' => 'Month',
+            'name' => 'Name',
+            'recipient_id' => 'Recipient',
+            'sender_id' => 'Sender',
+            'solution_id' => 'Solution',
+            'state_id' => 'State',
+            'year' => 'Year',
+
+        ],
+    ],
+
+    'solution' => [
+        'title' => 'Solutions',
+
+        'actions' => [
+            'index' => 'Solutions',
+            'create' => 'New Solution',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+
+        ],
+    ],
+
+    'person' => [
+        'title' => 'Persons',
+
+        'actions' => [
+            'index' => 'Persons',
+            'create' => 'New Person',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+
+        ],
+    ],
+
+    'language' => [
+        'title' => 'Languages',
+
+        'actions' => [
+            'index' => 'Languages',
+            'create' => 'New Language',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+
+        ],
+    ],
+
+    'category' => [
+        'title' => 'Categories',
+
+        'actions' => [
+            'index' => 'Categories',
+            'create' => 'New Category',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'parent' => 'Parent',
+
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];

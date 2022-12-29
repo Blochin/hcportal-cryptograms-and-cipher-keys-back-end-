@@ -152,3 +152,78 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('ciphers')->name('ciphers/')->group(static function() {
+            Route::get('/',                                             'CiphersController@index')->name('index');
+            Route::get('/create',                                       'CiphersController@create')->name('create');
+            Route::post('/',                                            'CiphersController@store')->name('store');
+            Route::get('/{cipher}/edit',                                'CiphersController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'CiphersController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{cipher}',                                    'CiphersController@update')->name('update');
+            Route::delete('/{cipher}',                                  'CiphersController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('solutions')->name('solutions/')->group(static function() {
+            Route::get('/',                                             'SolutionsController@index')->name('index');
+            Route::get('/create',                                       'SolutionsController@create')->name('create');
+            Route::post('/',                                            'SolutionsController@store')->name('store');
+            Route::get('/{solution}/edit',                              'SolutionsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'SolutionsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{solution}',                                  'SolutionsController@update')->name('update');
+            Route::delete('/{solution}',                                'SolutionsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('people')->name('people/')->group(static function() {
+            Route::get('/',                                             'PersonsController@index')->name('index');
+            Route::get('/create',                                       'PersonsController@create')->name('create');
+            Route::post('/',                                            'PersonsController@store')->name('store');
+            Route::get('/{person}/edit',                                'PersonsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'PersonsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{person}',                                    'PersonsController@update')->name('update');
+            Route::delete('/{person}',                                  'PersonsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('languages')->name('languages/')->group(static function() {
+            Route::get('/',                                             'LanguagesController@index')->name('index');
+            Route::get('/create',                                       'LanguagesController@create')->name('create');
+            Route::post('/',                                            'LanguagesController@store')->name('store');
+            Route::get('/{language}/edit',                              'LanguagesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'LanguagesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{language}',                                  'LanguagesController@update')->name('update');
+            Route::delete('/{language}',                                'LanguagesController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('categories')->name('categories/')->group(static function() {
+            Route::get('/',                                             'CategoriesController@index')->name('index');
+            Route::get('/create',                                       'CategoriesController@create')->name('create');
+            Route::post('/',                                            'CategoriesController@store')->name('store');
+            Route::get('/{category}/edit',                              'CategoriesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'CategoriesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{category}',                                  'CategoriesController@update')->name('update');
+            Route::delete('/{category}',                                'CategoriesController@destroy')->name('destroy');
+        });
+    });
+});
