@@ -16,11 +16,11 @@ class CreateDatagroupsTable extends Migration
         Schema::create('datagroups', function (Blueprint $table) {
             $table->id();
             $table->text('description');
-            $table->unsignedBigInteger('cipher_id');
+            $table->unsignedBigInteger('cryptogram_id');
 
-            $table->foreign('cipher_id')
+            $table->foreign('cryptogram_id')
                 ->references('id')
-                ->on('ciphers')
+                ->on('cryptograms')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

@@ -192,12 +192,12 @@ return [
         ],
     ],
 
-    'cipher' => [
-        'title' => 'Ciphers',
+    'cryptogram' => [
+        'title' => 'Cryptograms',
 
         'actions' => [
-            'index' => 'Ciphers',
-            'create' => 'New Cipher',
+            'index' => 'Cryptograms',
+            'create' => 'New Cryptogram',
             'edit' => 'Edit :name',
         ],
 

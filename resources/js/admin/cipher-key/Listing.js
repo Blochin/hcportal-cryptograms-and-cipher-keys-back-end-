@@ -1,5 +1,5 @@
-import AppListing from '../app-components/Listing/AppListing';
+import AppListing from "../app-components/Listing/AppListing";
 
-Vue.component('cipher-key-listing', {
-    mixins: [AppListing]
+Vue.component("cipher-key-listing", {
+    mixins: [AppListing],
 });

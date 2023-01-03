@@ -15,9 +15,10 @@ $factory->define(Brackets\AdminAuth\Models\AdminUser::class, function (Faker\Gen
         'password' => bcrypt($faker->password),
         'remember_token' => null,
         'updated_at' => $faker->dateTime,
-        
+
     ];
-});/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\User::class, static function (Faker\Generator $faker) {
     return [
         'first_name' => $faker->firstName,
@@ -31,8 +32,8 @@ $factory->define(App\Models\User::class, static function (Faker\Generator $faker
         'deleted_at' => null,
         'created_at' => $faker->dateTime,
         'updated_at' => $faker->dateTime,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
@@ -52,8 +53,8 @@ $factory->define(App\Models\CipherKey::class, static function (Faker\Generator $
         'language_id' => $faker->sentence,
         'group_id' => $faker->sentence,
         'state_id' => $faker->sentence,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
@@ -61,32 +62,32 @@ $factory->define(App\Models\Location::class, static function (Faker\Generator $f
     return [
         'continent' => $faker->sentence,
         'name' => $faker->firstName,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\CipherType::class, static function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\KeyType::class, static function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\CipherKeySimilarity::class, static function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
@@ -94,12 +95,12 @@ $factory->define(App\Models\Tag::class, static function (Faker\Generator $faker)
     return [
         'name' => $faker->firstName,
         'type' => $faker->sentence,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Models\Cipher::class, static function (Faker\Generator $faker) {
+$factory->define(App\Models\Cryptogram::class, static function (Faker\Generator $faker) {
     return [
         'availability' => $faker->sentence,
         'category_id' => $faker->sentence,
@@ -116,32 +117,32 @@ $factory->define(App\Models\Cipher::class, static function (Faker\Generator $fak
         'solution_id' => $faker->sentence,
         'state_id' => $faker->sentence,
         'year' => $faker->randomNumber(5),
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Solution::class, static function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Person::class, static function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Models\Language::class, static function (Faker\Generator $faker) {
     return [
         'name' => $faker->firstName,
-        
-        
+
+
     ];
 });
 /** @var  \Illuminate\Database\Eloquent\Factory $factory */
@@ -151,7 +152,7 @@ $factory->define(App\Models\Category::class, static function (Faker\Generator $f
         'parent_id' => $faker->sentence,
         'created_at' => $faker->dateTime,
         'updated_at' => $faker->dateTime,
-        
-        
+
+
     ];
 });

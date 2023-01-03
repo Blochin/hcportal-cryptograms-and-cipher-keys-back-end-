@@ -13,11 +13,11 @@ class Tag extends Model
     public $timestamps = false;
 
     public const CIPHER_KEY = 'cipher_key';
-    public const CIPHER = 'cipher';
+    public const CRYPTOGRAM = 'cryptogram';
 
     public const TYPES = [
         ['id' => self::CIPHER_KEY, 'title' => 'Cipher key'],
-        ['id' => self::CIPHER, 'title' => 'Cipher']
+        ['id' => self::CRYPTOGRAM, 'title' => 'Cryptogram']
     ];
 
     protected $appends = ['resource_url', 'formatted_type'];
