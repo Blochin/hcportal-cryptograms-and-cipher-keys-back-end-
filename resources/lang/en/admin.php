@@ -171,7 +171,7 @@ return [
 
     'sidebar' => [
         'cipherkeys' => 'Cipher keys',
-        'ciphers' => 'Ciphers',
+        'cryptograms' => 'Cryptograms',
         'general' => 'General'
     ],
 
@@ -218,6 +218,19 @@ return [
             'solution_id' => 'Solution',
             'state_id' => 'State',
             'year' => 'Year',
+            'data' => [
+                'types' => 'Data type',
+                'title' => 'Title',
+                'text' => 'Text',
+                'link' => 'Link',
+                'image' => 'Image'
+            ],
+            'group' => [
+                'name' => 'Group name'
+            ],
+            'add_datagroup' => 'Add datagroup',
+            'add_data' => 'Add data',
+            'predefined_groups' => 'Predefined groups'
 
         ],
     ],

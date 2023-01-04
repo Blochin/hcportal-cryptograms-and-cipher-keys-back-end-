@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Brackets\Media\Exceptions\FileCannotBeAdded\TooManyFiles;
 use Illuminate\Database\Eloquent\Model;
 use Brackets\Media\HasMedia\ProcessMediaTrait;
 use Brackets\Media\HasMedia\AutoProcessMediaTrait;
@@ -9,6 +10,8 @@ use Brackets\Media\HasMedia\HasMediaCollectionsTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Brackets\Media\HasMedia\HasMediaThumbsTrait;
+use Brackets\Media\HasMedia\MediaCollection;
+use Illuminate\Support\Collection;
 use Spatie\Image\Manipulations;
 
 class Cryptogram extends Model implements HasMedia
@@ -34,6 +37,7 @@ class Cryptogram extends Model implements HasMedia
         'solution_id',
         'state_id',
         'year',
+        'created_by'
 
     ];
 
@@ -41,13 +45,14 @@ class Cryptogram extends Model implements HasMedia
     protected $dates = [];
     public $timestamps = false;
 
-    protected $appends = ['resource_url'];
+
+    protected $appends = ['resource_url', 'state_badge'];
 
     /* ************************ Media ************************* */
 
     public function registerMediaCollections(Media $media = null): void
     {
-        $this->addMediaCollection('thumbnail')
+        $this->addMediaCollection('picture')
             ->accepts('image/*')
             ->maxNumberOfFiles(1)
             ->maxFilesize(10 * 1024 * 1024); // Set the file size limit
@@ -83,5 +88,99 @@ class Cryptogram extends Model implements HasMedia
     public function getResourceUrlAttribute()
     {
         return url('/admin/cryptograms/' . $this->getKey());
+    }
+
+    public function getStateBadgeAttribute()
+    {
+        if (!isset($this->state)) return null;
+
+        $title = collect(State::STATUSES)->where('id', $this->state->state)->first();
+        return '<span class="badge badge-' . $this->state->state . '">' . $title['title'] . '</span>';
+    }
+
+    /* ************************ Relationships ************************* */
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
+    public function sender()
+    {
+        return $this->belongsTo(Person::class);
+    }
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function recipient()
+    {
+        return $this->belongsTo(Person::class);
+    }
+
+    public function solution()
+    {
+        return $this->belongsTo(Solution::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function groups()
+    {
+        return $this->hasMany(Datagroup::class);
+    }
+
+    public function submitter()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function processMedia(Collection $inputMedia): void
+    {
+        //        Don't we want to use maybe some class to represent the data structure?
+        //        Maybe what we want is a MediumOperation class, which holds {collection name, operation (detach, attach, replace), metadata, filepath)} what do you think?
+
+        $inputMedia = $inputMedia->toArray();
+        if (isset($inputMedia['picture'])) {
+            $inputMedia['picture'] = collect(json_decode($inputMedia['picture']))->map(function ($item) {
+                $item = collect($item)->toArray();
+                if (isset($item['meta_data'])) {
+                    $item['meta_data'] = collect($item['meta_data'])->toArray();
+                }
+                return $item;
+            })->toArray();
+
+            $inputMedia = collect($inputMedia);
+
+
+            // //First validate input
+            // $this->getMediaCollections()->each(function ($mediaCollection) use ($inputMedia) {
+            //     $this->validate(collect($inputMedia->get($mediaCollection->getName())), $mediaCollection);
+            // });
+
+            //Then process each media
+            $this->getMediaCollections()->each(function ($mediaCollection) use ($inputMedia) {
+                collect($inputMedia->get($mediaCollection->getName()))->each(function ($inputMedium) use (
+                    $mediaCollection
+                ) {
+                    $this->processMedium($inputMedium, $mediaCollection);
+                });
+            });
+        }
     }
 }

@@ -21,7 +21,7 @@
                     <div class="card-body">
                         @include('admin.cryptogram.components.form-elements')
                         @include('brackets/admin-ui::admin.includes.media-uploader', [
-                        'mediaCollection' => app(App\Models\Cryptogram::class)->getMediaCollection('thumbnail'),
+                        'mediaCollection' => app(App\Models\Cryptogram::class)->getMediaCollection('picture'),
                         'label' => 'Thumbnail'
                         ])
                     </div>

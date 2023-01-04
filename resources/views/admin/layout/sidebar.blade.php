@@ -21,7 +21,7 @@
                         class="nav-icon icon-puzzle"></i> {{ trans('admin.key-type.title') }}</a></li>
             {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
-            <li class="nav-title">{{ trans('admin.sidebar.ciphers') }}</li>
+            <li class="nav-title">{{ trans('admin.sidebar.cryptograms') }}</li>
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/cryptograms') }}"><i
                         class="nav-icon icon-puzzle"></i> {{ trans('admin.cryptogram.title') }}</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/solutions') }}"><i

@@ -8,12 +8,18 @@ use App\Http\Requests\Admin\Cryptogram\DestroyCryptogram;
 use App\Http\Requests\Admin\Cryptogram\IndexCryptogram;
 use App\Http\Requests\Admin\Cryptogram\StoreCryptogram;
 use App\Http\Requests\Admin\Cryptogram\UpdateCryptogram;
+use App\Http\Requests\Admin\General\UpdateState;
+use App\Mail\UpdateCryptogramMail;
+use App\Mail\UpdateCryptogramStateMail;
 use App\Models\Category;
 use App\Models\Cryptogram;
+use App\Models\Data;
+use App\Models\Datagroup;
 use App\Models\Language;
 use App\Models\Location;
 use App\Models\Person;
 use App\Models\Solution;
+use App\Models\State;
 use App\Models\Tag;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
@@ -24,6 +30,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class CryptogramsController extends Controller
@@ -79,6 +86,7 @@ class CryptogramsController extends Controller
             ->get();
         $solutions = Solution::all();
         $categories = Category::orderBy('name', 'asc')->get();
+        $groups = Datagroup::all();
 
         return view('admin.cryptogram.create', compact(
             'locations',
@@ -86,7 +94,8 @@ class CryptogramsController extends Controller
             'persons',
             'tags',
             'solutions',
-            'categories'
+            'categories',
+            'groups'
         ));
     }
 
@@ -101,11 +110,18 @@ class CryptogramsController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
+
         // Store the Cryptogram
         $cryptogram = Cryptogram::create($sanitized);
 
+        //Sync datagroups
+        $this->syncDatagroups($cryptogram, $sanitized);
+
+        //Sync tags
+        $this->syncTags($cryptogram, $sanitized);
+
         if ($request->ajax()) {
-            return ['redirect' => url('admin/Cryptograms'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+            return ['redirect' => url('admin/cryptograms'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
 
         return redirect('admin/cryptograms');
@@ -144,6 +160,10 @@ class CryptogramsController extends Controller
             ->get();
         $solutions = Solution::all();
         $categories = Category::orderBy('name', 'asc')->get();
+        $states = collect(State::STATUSES)->toJSON();
+
+        $cryptogram->load(['category', 'recipient', 'sender', 'location', 'tags', 'solution', 'language', 'groups', 'groups.data']);
+
 
         return view('admin.cryptogram.edit', [
             'cryptogram' => $cryptogram,
@@ -152,7 +172,8 @@ class CryptogramsController extends Controller
             'persons' => $persons,
             'tags' => $tags,
             'solutions' => $solutions,
-            'categories' => $categories
+            'categories' => $categories,
+            'states' => $states
         ]);
     }
 
@@ -166,10 +187,19 @@ class CryptogramsController extends Controller
     public function update(UpdateCryptogram $request, Cryptogram $cryptogram)
     {
         // Sanitize input
+
         $sanitized = $request->getSanitized();
+
+        //dd($sanitized);
 
         // Update changed values Cryptogram
         $cryptogram->update($sanitized);
+
+        //Sync datagroups
+        $this->syncDatagroups($cryptogram, $sanitized);
+
+        //Sync tags
+        $this->syncTags($cryptogram, $sanitized);
 
         if ($request->ajax()) {
             return [
@@ -220,5 +250,96 @@ class CryptogramsController extends Controller
         });
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+    }
+
+    /**
+     * Sync datagroups
+     *
+     * @param Cryptogram $cryptogram
+     * @param array $sanitized
+     * @return void
+     */
+    private function syncDatagroups(Cryptogram $cryptogram, $sanitized)
+    {
+
+        // 1. Delete groups
+        $cryptogram->groups()->delete();
+
+        // 2. Sync new groups
+        foreach ($sanitized['groups'] as $keyGroup => $group) {
+            $newGroup = Datagroup::create(['description' => $group->description, 'cryptogram_id' => $cryptogram->id]);
+            $data = collect($group->data)->toArray();
+            foreach ($data as $keyData => $item) {
+
+                $item = collect($item)->toArray();
+                $type = collect($item['type'])->toArray();
+
+                $dataBlobb = $item['link'] ?: $item['text'];
+                $newData = Data::create([
+                    'blobb' => $type['id'] == 'image' ? 'image' : $dataBlobb,
+                    'description' => $item['title'],
+                    'filetype' => $type['id'],
+                    'datagroup_id' => $newGroup->id,
+                    'dl_protection' => 0
+                ]);
+
+                //Sync image to data in datagroup
+                if (isset($sanitized['images'][$keyGroup][$keyData]) && $sanitized['images'][$keyGroup][$keyData] !== 'undefined') {
+
+                    $newData
+                        ->addMedia($sanitized['images'][$keyGroup][$keyData])
+                        ->toMediaCollection('image');
+
+                    $newData->update(['blobb' => $newData->getFirstMediaPath('image')]);
+                } elseif (isset($item['image']) && $item['image']) {
+                    $newData
+                        ->addMediaFromUrl($item['image'])
+                        ->toMediaCollection('image');
+                }
+            }
+        }
+
+        // // 3. Sync predefined groups
+        // $predefinedGroups = collect($sanitized['predefined_groups'])->pluck('id')->toArray();
+        // $cryptogram->datagroups()->sync($predefinedGroups);
+    }
+
+    /**
+     * Sync tags
+     *
+     * @param Cryptogram $key
+     * @param array $sanitized
+     * @return void
+     */
+    public function syncTags(Cryptogram $cryptogram, $sanitized)
+    {
+        $tags = collect($sanitized['tags'])->pluck('name')->toArray();
+        $tags = Tag::whereIn('name', $tags)->where('type', Tag::CRYPTOGRAM)->get();
+        $cryptogram->tags()->sync($tags->pluck('id')->toArray());
+    }
+
+    /**
+     * Update cryptograms state
+     *
+     * @param UpdateStateCipherKey $request
+     * @param Cryptogram $cryptogram
+     * @return void
+     */
+    public function changeState(UpdateState $request, Cryptogram $cryptogram)
+    {
+        $sanitized = $request->getSanitized();
+
+        $state = State::create([
+            'name' => $cryptogram->name,
+            'state' => $sanitized['state'],
+            'note' => $sanitized['note'],
+            'created_by' => auth()->user()->id
+        ]);
+
+        $cryptogram->update(['state_id' => $state->id]);
+
+        Mail::to($cryptogram->submitter->email)->send(new UpdateCryptogramStateMail($cryptogram));
+
+        return response()->json('Successfully status changed.', 200);
     }
 }

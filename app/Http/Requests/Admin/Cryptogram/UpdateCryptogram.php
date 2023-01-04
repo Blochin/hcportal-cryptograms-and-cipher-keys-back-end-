@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Cryptogram;
 
+use App\Models\State;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
@@ -15,7 +16,7 @@ class UpdateCryptogram extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('admin.cryptogram.edit', $this->cipher);
+        return Gate::allows('admin.cryptogram.edit', $this->cryptogram);
     }
 
     /**
@@ -26,21 +27,25 @@ class UpdateCryptogram extends FormRequest
     public function rules(): array
     {
         return [
-            'availability' => ['sometimes', 'string'],
-            'category_id' => ['sometimes', 'string'],
-            'day' => ['sometimes', 'integer'],
-            'description' => ['sometimes', 'string'],
-            'flag' => ['sometimes', 'boolean'],
-            'image_url' => ['sometimes', 'string'],
-            'language_id' => ['sometimes', 'string'],
-            'location_id' => ['sometimes', 'string'],
-            'month' => ['sometimes', 'integer'],
-            'name' => ['sometimes', 'string'],
-            'recipient_id' => ['sometimes', 'string'],
-            'sender_id' => ['sometimes', 'string'],
-            'solution_id' => ['sometimes', 'string'],
+            'availability' => ['required', 'string'],
+            'category' => ['required', 'string'],
+            'day' => ['required', 'integer'],
+            'description' => ['required', 'string'],
+            'language' => ['required', 'string'],
+            'location' => ['required', 'string'],
+            'month' => ['required', 'integer'],
+            'name' => ['required', 'string'],
+            'recipient' => ['required', 'string'],
+            'sender' => ['required', 'string'],
+            'solution' => ['required', 'string'],
             'state_id' => ['nullable', 'string'],
-            'year' => ['sometimes', 'integer'],
+            'year' => ['required', 'integer'],
+            'flag' => ['nullable'],
+            'images' => ['nullable'],
+            'image' => ['nullable'],
+            'groups' => ['nullable'],
+            // 'predefined_groups' => ['nullable'],
+            'tags' => ['nullable']
 
         ];
     }
@@ -53,9 +58,21 @@ class UpdateCryptogram extends FormRequest
     public function getSanitized(): array
     {
         $sanitized = $this->validated();
+        $sanitized['image_url'] = 'sdsd';
+        $sanitized['category_id'] = $sanitized['category'] ? json_decode($sanitized['category'])->id : null;
+        $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
+        $sanitized['solution_id'] = $sanitized['solution'] ? json_decode($sanitized['solution'])->id : null;
+        $sanitized['location_id'] = $sanitized['location'] ? json_decode($sanitized['location'])->id : null;
+        $sanitized['recipient_id'] = $sanitized['recipient'] ? json_decode($sanitized['recipient'])->id : null;
+        // $sanitized['image'] = $sanitized['image'] ? collect(json_decode($sanitized['image']))->map(function ($item) {
+        //     return collect($item)->toArray();
+        // })->toArray() : null;
+        $sanitized['sender_id'] = $sanitized['sender'] ? json_decode($sanitized['sender'])->id : null;
+        $sanitized['groups'] = $sanitized['groups'] ? json_decode($sanitized['groups']) : null;
+        // $sanitized['predefined_groups'] = $sanitized['predefined_groups'] ? json_decode($sanitized['predefined_groups']) : null;
+        $sanitized['tags'] = $sanitized['tags'] ? json_decode($sanitized['tags']) : [];
+        $sanitized['flag'] = $sanitized['flag'] == "false" ? false : true;
 
-
-        //Add your code for manipulation with request data here
 
         return $sanitized;
     }

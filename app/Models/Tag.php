@@ -43,8 +43,13 @@ class Tag extends Model
 
     /* ************************ Relationships ************************* */
 
-    public function posts()
+    public function cipherKeys()
     {
         return $this->morphedByMany(CipherKey::class, 'taggables');
+    }
+
+    public function cryptograms()
+    {
+        return $this->morphedByMany(Cryptogram::class, 'taggables');
     }
 }

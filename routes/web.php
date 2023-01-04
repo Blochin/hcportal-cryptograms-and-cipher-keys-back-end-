@@ -160,10 +160,11 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::get('/',                                             'CryptogramsController@index')->name('index');
             Route::get('/create',                                       'CryptogramsController@create')->name('create');
             Route::post('/',                                            'CryptogramsController@store')->name('store');
-            Route::get('/{cipher}/edit',                                'CryptogramsController@edit')->name('edit');
+            Route::get('/{cryptogram}/edit',                                'CryptogramsController@edit')->name('edit');
             Route::post('/bulk-destroy',                                'CryptogramsController@bulkDestroy')->name('bulk-destroy');
-            Route::post('/{cipher}',                                    'CryptogramsController@update')->name('update');
-            Route::delete('/{cipher}',                                  'CryptogramsController@destroy')->name('destroy');
+            Route::post('/{cryptogram}',                                    'CryptogramsController@update')->name('update');
+            Route::delete('/{cryptogram}',                                  'CryptogramsController@destroy')->name('destroy');
+            Route::post('/{cryptogram}/state',                               'CryptogramsController@changeState')->name('state');
         });
     });
 });

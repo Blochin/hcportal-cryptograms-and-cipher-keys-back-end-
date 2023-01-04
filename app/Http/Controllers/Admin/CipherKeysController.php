@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\CipherKey\IndexCipherKey;
 use App\Http\Requests\Admin\CipherKey\StoreCipherKey;
 use App\Http\Requests\Admin\CipherKey\UpdateCipherKey;
 use App\Http\Requests\Admin\CipherKey\UpdateStateCipherKey;
+use App\Http\Requests\Admin\General\UpdateState;
 use App\Mail\UpdateCipherKeyStateMail;
 use App\Models\Archive;
 use App\Models\CipherKey;
@@ -424,7 +425,7 @@ class CipherKeysController extends Controller
      * @param CipherKey $cipherKey
      * @return void
      */
-    public function changeState(UpdateStateCipherKey $request, CipherKey $cipherKey)
+    public function changeState(UpdateState $request, CipherKey $cipherKey)
     {
         $sanitized = $request->getSanitized();
 

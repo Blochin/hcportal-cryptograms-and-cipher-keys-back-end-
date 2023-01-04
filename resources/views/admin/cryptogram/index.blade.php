@@ -54,34 +54,13 @@
                                             </label>
                                         </th>
 
-                                        <th is='sortable' :column="'availability'">
-                                            {{ trans('admin.cryptogram.columns.availability') }}</th>
-                                        <th is='sortable' :column="'category_id'">
-                                            {{ trans('admin.cryptogram.columns.category_id') }}</th>
-                                        <th is='sortable' :column="'day'">{{ trans('admin.cryptogram.columns.day') }}</th>
-                                        <th is='sortable' :column="'flag'">{{ trans('admin.cryptogram.columns.flag') }}
-                                        </th>
                                         <th is='sortable' :column="'id'">{{ trans('admin.cryptogram.columns.id') }}</th>
-                                        <th is='sortable' :column="'image_url'">
-                                            {{ trans('admin.cryptogram.columns.image_url') }}</th>
-                                        <th is='sortable' :column="'language_id'">
-                                            {{ trans('admin.cryptogram.columns.language_id') }}</th>
-                                        <th is='sortable' :column="'location_id'">
-                                            {{ trans('admin.cryptogram.columns.location_id') }}</th>
-                                        <th is='sortable' :column="'month'">{{ trans('admin.cryptogram.columns.month') }}
-                                        </th>
+
+
                                         <th is='sortable' :column="'name'">{{ trans('admin.cryptogram.columns.name') }}
                                         </th>
-                                        <th is='sortable' :column="'recipient_id'">
-                                            {{ trans('admin.cryptogram.columns.recipient_id') }}</th>
-                                        <th is='sortable' :column="'sender_id'">
-                                            {{ trans('admin.cryptogram.columns.sender_id') }}</th>
-                                        <th is='sortable' :column="'solution_id'">
-                                            {{ trans('admin.cryptogram.columns.solution_id') }}</th>
-                                        <th is='sortable' :column="'state_id'">
+                                        <th :column="'state_id'">
                                             {{ trans('admin.cryptogram.columns.state_id') }}</th>
-                                        <th is='sortable' :column="'year'">{{ trans('admin.cryptogram.columns.year') }}
-                                        </th>
 
                                         <th></th>
                                     </tr>
@@ -94,7 +73,8 @@
                                                     v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa"
                                                         :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i>
                                                     {{ trans('brackets/admin-ui::admin.listing.check_all_items') }}
-                                                    @{{ pagination . state . total }}</a> <span class="text-primary">|</span>
+                                                    @{{ pagination . state . total }}</a> <span
+                                                    class="text-primary">|</span>
                                                 <a href="#" class="text-primary"
                                                     @click="onBulkItemsClickedAllUncheck()">{{ trans('brackets/admin-ui::admin.listing.uncheck_all_items') }}</a>
                                             </span>
@@ -120,21 +100,9 @@
                                             </label>
                                         </td>
 
-                                        <td>@{{ item . availability }}</td>
-                                        <td>@{{ item . category_id }}</td>
-                                        <td>@{{ item . day }}</td>
-                                        <td>@{{ item . flag }}</td>
                                         <td>@{{ item . id }}</td>
-                                        <td>@{{ item . image_url }}</td>
-                                        <td>@{{ item . language_id }}</td>
-                                        <td>@{{ item . location_id }}</td>
-                                        <td>@{{ item . month }}</td>
                                         <td>@{{ item . name }}</td>
-                                        <td>@{{ item . recipient_id }}</td>
-                                        <td>@{{ item . sender_id }}</td>
-                                        <td>@{{ item . solution_id }}</td>
-                                        <td>@{{ item . state_id }}</td>
-                                        <td>@{{ item . year }}</td>
+                                        <td v-html="item . state_badge"></td>
 
                                         <td>
                                             <div class="row no-gutters">
