@@ -198,7 +198,8 @@ class CipherKeysController extends Controller
             'folder.fond',
             'submitter',
             'cipherType',
-            'keyType'
+            'keyType',
+            'cryptograms'
         ]);
 
 
@@ -241,6 +242,9 @@ class CipherKeysController extends Controller
 
         //Sync tags
         $this->syncTags($cipherKey, $sanitized);
+
+        //Sync cryptograms
+        $this->syncCryptograms($cipherKey, $sanitized);
 
         if ($request->ajax()) {
             return [
@@ -345,6 +349,19 @@ class CipherKeysController extends Controller
             }
         }
         return true;
+    }
+
+    /**
+     * Sync cryptograms
+     *
+     * @param CipherKey $key
+     * @param array $sanitized
+     * @return void
+     */
+    public function syncCryptograms($key, $sanitized)
+    {
+        $cryptograms = collect($sanitized['cryptograms'])->pluck('id')->toArray();
+        $key->cryptograms()->sync($cryptograms);
     }
 
 

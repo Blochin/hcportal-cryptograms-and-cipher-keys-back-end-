@@ -48,6 +48,7 @@ class UpdateCipherKey extends FormRequest
             'images' => ['nullable',],
             'files' => ['nullable',],
             'tags' => ['nullable',],
+            'cryptograms' => ['nullable'],
 
         ];
     }
@@ -71,6 +72,7 @@ class UpdateCipherKey extends FormRequest
         $sanitized['folder_id'] = $sanitized['folder'] ? json_decode($sanitized['folder'])->id : null;
         $sanitized['fond_id'] = $sanitized['fond'] ? json_decode($sanitized['fond'])->id : null;
         $sanitized['archive_id'] = $sanitized['archive'] ? json_decode($sanitized['archive'])->id : null;
+        $sanitized['cryptograms'] = $sanitized['cryptograms'] ? json_decode($sanitized['cryptograms']) : [];
 
 
         //Add your code for manipulation with request data here

@@ -11,9 +11,14 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.cryptogram.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0"
+                        <a class="btn btn-primary btn-sm pull-right m-b-0 ml-2"
                             href="{{ url('admin/cryptograms/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp;
                             {{ trans('admin.cryptogram.actions.create') }}</a>
+
+                        <a class="btn btn-primary btn-sm pull-right m-b-0" href="{{ url('admin/pair-keys-cryptograms') }}"
+                            role="button"><i class="fa fa-plus"></i>&nbsp;
+                            {{ trans('admin.cryptogram.actions.bulk-pair') }}</a>
+
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">

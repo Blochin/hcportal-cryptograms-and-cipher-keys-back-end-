@@ -143,6 +143,11 @@ class CipherKey extends Model
         return $this->belongsTo(Location::class);
     }
 
+    public function cryptograms()
+    {
+        return $this->belongsToMany(Cryptogram::class, 'cipher_key_cryptogram', 'cipher_key_id', 'cryptogram_id',);
+    }
+
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');

@@ -38,6 +38,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         Route::post('/profile',                                     'ProfileController@updateProfile')->name('update-profile');
         Route::get('/password',                                     'ProfileController@editPassword')->name('edit-password');
         Route::post('/password',                                    'ProfileController@updatePassword')->name('update-password');
+        Route::get('/pair-keys-cryptograms',                       'CryptogramsController@bulkPairKeysAndCryptograms')->name('pair-keys-cryptograms');
+        Route::post('/pair-keys-cryptograms',                       'CryptogramsController@saveBulkPairKeysAndCryptograms')->name('save-pair-keys-cryptograms');
     });
 });
 
@@ -165,6 +167,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/{cryptogram}',                                    'CryptogramsController@update')->name('update');
             Route::delete('/{cryptogram}',                                  'CryptogramsController@destroy')->name('destroy');
             Route::post('/{cryptogram}/state',                               'CryptogramsController@changeState')->name('state');
+            Route::get('/search',                                 'CryptogramsController@search')->name('search');
         });
     });
 });

@@ -45,7 +45,8 @@ class UpdateCryptogram extends FormRequest
             'image' => ['nullable'],
             'groups' => ['nullable'],
             // 'predefined_groups' => ['nullable'],
-            'tags' => ['nullable']
+            'tags' => ['nullable'],
+            'cipher_keys' => ['nullable'],
 
         ];
     }
@@ -72,6 +73,7 @@ class UpdateCryptogram extends FormRequest
         // $sanitized['predefined_groups'] = $sanitized['predefined_groups'] ? json_decode($sanitized['predefined_groups']) : null;
         $sanitized['tags'] = $sanitized['tags'] ? json_decode($sanitized['tags']) : [];
         $sanitized['flag'] = $sanitized['flag'] == "false" ? false : true;
+        $sanitized['cipher_keys'] = $sanitized['cipher_keys'] ? json_decode($sanitized['cipher_keys']) : null;
 
 
         return $sanitized;

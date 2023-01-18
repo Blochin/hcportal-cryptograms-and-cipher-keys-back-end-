@@ -98,7 +98,8 @@ return [
             'update_state' => 'Update state',
             'note' => 'Note',
             'actual_state' => 'Actual state',
-            'created_by' => 'Created by'
+            'created_by' => 'Created by',
+            'similar-cryptograms' => 'Paired cryptograms'
 
         ],
     ],
@@ -199,6 +200,7 @@ return [
             'index' => 'Cryptograms',
             'create' => 'New Cryptogram',
             'edit' => 'Edit :name',
+            'bulk-pair' => 'Bulk cryptograms and cipher keys pairing'
         ],
 
         'columns' => [
@@ -230,7 +232,8 @@ return [
             ],
             'add_datagroup' => 'Add datagroup',
             'add_data' => 'Add data',
-            'predefined_groups' => 'Predefined groups'
+            'predefined_groups' => 'Predefined groups',
+            'paired-keys' => 'Paired cipher keys'
 
         ],
     ],

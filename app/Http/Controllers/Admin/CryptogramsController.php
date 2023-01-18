@@ -27,6 +27,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
@@ -120,6 +121,9 @@ class CryptogramsController extends Controller
         //Sync tags
         $this->syncTags($cryptogram, $sanitized);
 
+        //Sync cipher keys
+        $this->syncCipherKeys($cryptogram, $sanitized);
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/cryptograms'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
@@ -162,7 +166,7 @@ class CryptogramsController extends Controller
         $categories = Category::orderBy('name', 'asc')->get();
         $states = collect(State::STATUSES)->toJSON();
 
-        $cryptogram->load(['category', 'recipient', 'sender', 'location', 'tags', 'solution', 'language', 'groups', 'groups.data']);
+        $cryptogram->load(['category', 'recipient', 'sender', 'location', 'tags', 'solution', 'language', 'groups', 'groups.data', 'cipherKeys']);
 
 
         return view('admin.cryptogram.edit', [
@@ -200,6 +204,9 @@ class CryptogramsController extends Controller
 
         //Sync tags
         $this->syncTags($cryptogram, $sanitized);
+
+        //Sync cipher keys
+        $this->syncCipherKeys($cryptogram, $sanitized);
 
         if ($request->ajax()) {
             return [
@@ -319,6 +326,19 @@ class CryptogramsController extends Controller
     }
 
     /**
+     * Sync cipher keys
+     *
+     * @param Cryotogram $cryptogram
+     * @param array $sanitized
+     * @return void
+     */
+    public function syncCipherKeys($cryptogram, $sanitized)
+    {
+        $keys = collect($sanitized['cipher_keys'])->pluck('id')->toArray();
+        $cryptogram->cipherKeys()->sync($keys);
+    }
+
+    /**
      * Update cryptograms state
      *
      * @param UpdateStateCipherKey $request
@@ -341,5 +361,59 @@ class CryptogramsController extends Controller
         Mail::to($cryptogram->submitter->email)->send(new UpdateCryptogramStateMail($cryptogram));
 
         return response()->json('Successfully status changed.', 200);
+    }
+
+    /**
+     * Search cryptograms
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function search(Request $request)
+    {
+        $results = Cryptogram::latest('id')->get();
+        if ($request->search) {
+            $results  = Cryptogram::where('name', 'LIKE', "%{$request->search}%")->orderBy('id', 'desc')->get();
+        }
+        return response()->json($results);
+    }
+
+    /**
+     * Pair keys and cryptograms
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function bulkPairKeysAndCryptograms()
+    {
+        return view('admin.cryptogram.pairing.create');
+    }
+
+
+    /**
+     * Save pair keys and cryptograms
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function saveBulkPairKeysAndCryptograms(Request $request)
+    {
+        $keys = collect($request->keys)->pluck('id')->toArray();
+        $cryptograms = collect($request->cryptograms)->pluck('id')->toArray();
+
+        $cryptograms = Cryptogram::whereIn('id', $cryptograms)->get();
+
+        foreach ($cryptograms as $cryptogram) {
+            $cryptogram->cipherKeys()->sync($keys);
+        }
+
+        if ($request->ajax()) {
+            return [
+                'redirect' => url('admin/cryptograms'),
+                'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
+            ];
+        }
+
+        return redirect('admin/cryptograms');
     }
 }

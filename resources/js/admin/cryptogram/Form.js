@@ -25,8 +25,10 @@ Vue.component("cryptogram-form", {
                 predefined_groups: [],
                 files: [],
                 tags: [],
+                cipher_keys: [],
             },
             filteredTags: [],
+            filteredKeys: [],
 
             state: "",
             note: "",
@@ -61,8 +63,6 @@ Vue.component("cryptogram-form", {
                     }
                 });
             }
-
-            console.log(_this3.form);
 
             let formData = new FormData();
 
@@ -138,6 +138,8 @@ Vue.component("cryptogram-form", {
             });
         },
         addTag(newTag) {
+            let th = this;
+
             let tag = {
                 name: newTag,
                 type: "cryptogram",
@@ -146,14 +148,13 @@ Vue.component("cryptogram-form", {
             axios
                 .post("/admin/tags", tag)
                 .then(function (response) {
-                    console.log(response);
+                    tag = response.data.tag;
+                    th.filteredTags.push(tag);
+                    th.form.tags.push(tag);
                 })
                 .catch(function (errors) {
                     console.log(errors);
                 });
-
-            this.filteredTags.push(tag);
-            this.form.tags.push(tag);
         },
         addDatagroup: function (event) {
             const index = this.form.groups.push({
@@ -208,6 +209,28 @@ Vue.component("cryptogram-form", {
                 .catch(function (errors) {
                     return th.onFail(errors.response.data);
                 });
+        },
+
+        filterKeys(query) {
+            let th = this;
+            this.isLoading = true;
+            axios
+                .get("/admin/cipher-keys/search", {
+                    params: {
+                        search: query,
+                    },
+                })
+                .then(
+                    (response) => {
+                        console.log(response.data);
+                        th.filteredKeys = response.data;
+                        th.isLoading = false;
+                    },
+                    (error) => {
+                        console.log(error);
+                        this.isLoading = false;
+                    }
+                );
         },
     },
 });

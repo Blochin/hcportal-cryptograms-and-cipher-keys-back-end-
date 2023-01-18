@@ -26,6 +26,6 @@ class CipherKeySimilarity extends Model
 
     public function cipherKeys()
     {
-        return $this->belongsToMany(CipherKey::class, 'cipher_key_similarity', 'cipher_key_similarity_id', 'cipher_key_id');
+        return $this->belongsToMany(CipherKey::class, 'cipher_key_similarity', 'cipher_key_id', 'cipher_key_similarity_id');
     }
 }

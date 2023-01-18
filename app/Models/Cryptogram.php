@@ -150,6 +150,12 @@ class Cryptogram extends Model implements HasMedia
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
+
+    public function cipherKeys()
+    {
+        return $this->belongsToMany(CipherKey::class, 'cipher_key_cryptogram', 'cryptogram_id', 'cipher_key_id');
+    }
+
     public function processMedia(Collection $inputMedia): void
     {
         //        Don't we want to use maybe some class to represent the data structure?

@@ -201,6 +201,24 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('cipher_keys'), 'has-success': fields.cipher_keys && fields.cipher_keys.valid }">
+            <label for="cipher_keys" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-12' : 'col-md-12'">{{ trans('admin.cryptogram.columns.paired-keys') }}</label>
+            <div :class="isFormLocalized ? 'col-md-12' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.cipher_keys" :close-on-select="false" placeholder="Search cipher key"
+                    :multiple="true" label="signature" :loading="isLoading" :internal-search="false"
+                    @search-change="filterKeys" :options="filteredKeys" :option-height="280"
+                    placeholder="{{ trans('admin.cryptogram.columns.paired-keys') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('cipher_keys')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('cipher_keys') }}</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="form-group row align-items-center"
     :class="{'has-danger': errors.has('description'), 'has-success': fields.description && fields.description.valid }">

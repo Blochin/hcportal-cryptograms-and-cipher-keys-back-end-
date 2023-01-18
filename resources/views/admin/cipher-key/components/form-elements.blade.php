@@ -186,6 +186,22 @@
             </div>
         </div>
     </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('cryptograms'), 'has-success': fields.cryptograms && fields.cryptograms.valid }">
+            <label for="cryptograms" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-12' : 'col-md-12'">{{ trans('admin.cipher-key.columns.similar-cryptograms') }}</label>
+            <div :class="isFormLocalized ? 'col-md-12' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.cryptograms" :close-on-select="false" placeholder="Search cryptograms"
+                    :multiple="true" label="name" :loading="isLoading" :internal-search="false"
+                    @search-change="filterCryptograms" :options="filteredCryptograms" :option-height="280"
+                    placeholder="{{ trans('admin.cipher-key.columns.similar-cryptograms') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('cryptograms')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('cryptograms') }}</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="form-group row align-items-center"

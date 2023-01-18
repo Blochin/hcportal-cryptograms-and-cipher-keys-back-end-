@@ -49,6 +49,7 @@ class StoreCipherKey extends FormRequest
             'images' => ['nullable',],
             'files' => ['nullable',],
             'tags' => ['nullable',],
+            'cryptograms' => ['nullable'],
 
         ];
     }
@@ -74,6 +75,7 @@ class StoreCipherKey extends FormRequest
         $sanitized['fond_id'] = $sanitized['fond'] ? json_decode($sanitized['fond'])->id : null;
         $sanitized['archive_id'] = $sanitized['archive'] ? json_decode($sanitized['archive'])->id : null;
         $sanitized['created_by'] = auth()->user()->id;
+        $sanitized['cryptograms'] = $sanitized['cryptograms'] ? json_decode($sanitized['cryptograms']) : [];
 
         $state = State::create([
             'name' => $sanitized['complete_structure'] ?: $sanitized['signature'],

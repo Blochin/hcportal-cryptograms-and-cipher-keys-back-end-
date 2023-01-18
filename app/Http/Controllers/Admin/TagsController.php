@@ -87,7 +87,7 @@ class TagsController extends Controller
         $tag = Tag::create($sanitized);
 
         if ($request->ajax()) {
-            return ['redirect' => url('admin/tags'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+            return ['tag' => $tag, 'redirect' => url('admin/tags'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
 
         return redirect('admin/tags');

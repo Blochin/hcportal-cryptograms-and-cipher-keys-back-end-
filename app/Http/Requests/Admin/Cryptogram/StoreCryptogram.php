@@ -44,7 +44,8 @@ class StoreCryptogram extends FormRequest
             'images' => ['nullable'],
             'groups' => ['nullable'],
             'predefined_groups' => ['nullable'],
-            'tags' => ['nullable']
+            'tags' => ['nullable'],
+            'cipher_keys' => ['nullable'],
 
         ];
     }
@@ -69,6 +70,7 @@ class StoreCryptogram extends FormRequest
         $sanitized['tags'] = $sanitized['tags'] ? json_decode($sanitized['tags']) : [];
         $sanitized['flag'] = $sanitized['flag'] == "false" ? false : true;
         $sanitized['created_by'] = auth()->user()->id;
+        $sanitized['cipher_keys'] = $sanitized['cipher_keys'] ? json_decode($sanitized['cipher_keys']) : null;
 
         $state = State::create([
             'name' => $sanitized['name'],
