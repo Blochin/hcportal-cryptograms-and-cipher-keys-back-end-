@@ -65,7 +65,11 @@ class LocationsController extends Controller
     {
         $this->authorize('admin.location.create');
 
-        return view('admin.location.create');
+        $continents = collect(Location::CONTINENTS)->toJSON();
+
+        return view('admin.location.create', [
+            'continents' => $continents,
+        ]);
     }
 
     /**
@@ -114,9 +118,13 @@ class LocationsController extends Controller
     {
         $this->authorize('admin.location.edit', $location);
 
+        $continents = collect(Location::CONTINENTS)->toJSON();
+
+
 
         return view('admin.location.edit', [
             'location' => $location,
+            'continents' => $continents
         ]);
     }
 
@@ -171,7 +179,7 @@ class LocationsController extends Controller
      * @throws Exception
      * @return Response|bool
      */
-    public function bulkDestroy(BulkDestroyLocation $request) : Response
+    public function bulkDestroy(BulkDestroyLocation $request): Response
     {
         DB::transaction(static function () use ($request) {
             collect($request->data['ids'])

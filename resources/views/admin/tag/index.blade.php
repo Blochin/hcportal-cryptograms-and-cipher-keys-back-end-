@@ -3,7 +3,7 @@
 @section('title', trans('admin.tag.actions.index'))
 
 @section('body')
-
+    @include('sweetalert::alert')
     <tag-listing :data="{{ $data->toJson() }}" :url="'{{ url('admin/tags') }}'" inline-template>
 
         <div class="row">

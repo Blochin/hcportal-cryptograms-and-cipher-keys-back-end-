@@ -3,7 +3,7 @@
 @section('title', trans('admin.cipher-key.actions.index'))
 
 @section('body')
-
+@include('sweetalert::alert')
     <cipher-key-listing :data="{{ $data->toJson() }}" :url="'{{ url('admin/cipher-keys') }}'" inline-template>
 
         <div class="row">

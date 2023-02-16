@@ -9,9 +9,9 @@ use App\Http\Requests\Admin\Cryptogram\IndexCryptogram;
 use App\Http\Requests\Admin\Cryptogram\StoreCryptogram;
 use App\Http\Requests\Admin\Cryptogram\UpdateCryptogram;
 use App\Http\Requests\Admin\General\UpdateState;
-use App\Mail\UpdateCryptogramMail;
 use App\Mail\UpdateCryptogramStateMail;
 use App\Models\Category;
+use App\Models\CipherKey;
 use App\Models\Cryptogram;
 use App\Models\Data;
 use App\Models\Datagroup;
@@ -51,7 +51,7 @@ class CryptogramsController extends Controller
             $request,
 
             // set columns to query
-            ['availability', 'category_id', 'day', 'flag', 'id', 'image_url', 'language_id', 'location_id', 'month', 'name', 'recipient_id', 'sender_id', 'solution_id', 'state_id', 'year'],
+            ['availability', 'category_id', 'day', 'flag', 'id', 'image_url', 'language_id', 'location_id', 'month', 'name', 'recipient_id', 'sender_id', 'solution_id', 'state', 'year'],
 
             // set columns to searchIn
             ['availability', 'description', 'id', 'image_url', 'name']
@@ -86,8 +86,10 @@ class CryptogramsController extends Controller
             ->orWhereNull('type')
             ->get();
         $solutions = Solution::all();
-        $categories = Category::orderBy('name', 'asc')->get();
+        $categories = Category::with('children')->whereNull('parent_id')->orderBy('name', 'asc')->get();
         $groups = Datagroup::all();
+        $continents = collect(Location::CONTINENTS)->toJSON();
+        $states = collect(CipherKey::STATUSES)->toJSON();
 
         return view('admin.cryptogram.create', compact(
             'locations',
@@ -96,7 +98,9 @@ class CryptogramsController extends Controller
             'tags',
             'solutions',
             'categories',
-            'groups'
+            'groups',
+            'states',
+            'continents'
         ));
     }
 
@@ -115,6 +119,13 @@ class CryptogramsController extends Controller
         // Store the Cryptogram
         $cryptogram = Cryptogram::create($sanitized);
 
+        //Sync thumbnail
+        if (isset($sanitized['thumbnail']) && $sanitized['thumbnail']) {
+            $cryptogram
+                ->addMediaFromBase64($sanitized['thumbnail']) //starting method
+                ->toMediaCollection('picture'); //finishing method
+        }
+
         //Sync datagroups
         $this->syncDatagroups($cryptogram, $sanitized);
 
@@ -123,6 +134,8 @@ class CryptogramsController extends Controller
 
         //Sync cipher keys
         $this->syncCipherKeys($cryptogram, $sanitized);
+
+        alert()->success('Success', 'Sucessfully added cryptogram.');
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/cryptograms'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
@@ -163,10 +176,23 @@ class CryptogramsController extends Controller
             ->orWhereNull('type')
             ->get();
         $solutions = Solution::all();
-        $categories = Category::orderBy('name', 'asc')->get();
-        $states = collect(State::STATUSES)->toJSON();
+        $categories = Category::with('children')->whereNull('parent_id')->orderBy('name', 'asc')->get();
+        $states = collect(CipherKey::STATUSES)->toJSON();
+        $continents = collect(Location::CONTINENTS)->toJSON();
 
-        $cryptogram->load(['category', 'recipient', 'sender', 'location', 'tags', 'solution', 'language', 'groups', 'groups.data', 'cipherKeys']);
+        $cryptogram->load(['category', 'recipient', 'sender', 'tags', 'solution', 'language', 'groups', 'groups.data', 'cipherKeys']);
+
+        //Category transformation
+        if ($cryptogram->category->parent) {
+            $categoryParent = $cryptogram->category->parent()->with('children')->first();
+            $cryptogram->subcategory = $cryptogram->category;
+            $cryptogram->category = $categoryParent;
+        } else {
+            $cryptogram->category = $cryptogram->category;
+            $cryptogram->subcategory = "";
+        }
+
+        $cryptogram->unsetRelation('category');
 
 
         return view('admin.cryptogram.edit', [
@@ -177,7 +203,8 @@ class CryptogramsController extends Controller
             'tags' => $tags,
             'solutions' => $solutions,
             'categories' => $categories,
-            'states' => $states
+            'states' => $states,
+            'continents' => $continents
         ]);
     }
 
@@ -194,10 +221,20 @@ class CryptogramsController extends Controller
 
         $sanitized = $request->getSanitized();
 
-        //dd($sanitized);
+        //Send mail to submitter if state changed
+        if ($sanitized['state'] !== $cryptogram->state['id']) {
+            Mail::to($cryptogram->submitter->email)->send(new UpdateCryptogramStateMail($cryptogram));
+        }
 
         // Update changed values Cryptogram
         $cryptogram->update($sanitized);
+
+        //Sync thumbnail
+        if (isset($sanitized['thumbnail']) && $sanitized['thumbnail']) {
+            $cryptogram
+                ->addMediaFromBase64($sanitized['thumbnail']) //starting method
+                ->toMediaCollection('picture'); //finishing method
+        }
 
         //Sync datagroups
         $this->syncDatagroups($cryptogram, $sanitized);
@@ -207,6 +244,9 @@ class CryptogramsController extends Controller
 
         //Sync cipher keys
         $this->syncCipherKeys($cryptogram, $sanitized);
+
+
+        alert()->success('Success', 'Sucessfully updated cryptogram.');
 
         if ($request->ajax()) {
             return [
@@ -229,6 +269,8 @@ class CryptogramsController extends Controller
     public function destroy(DestroyCryptogram $request, Cryptogram $cryptogram)
     {
         $cryptogram->delete();
+
+        alert()->success('Success', 'Sucessfully deleted cryptogram.');
 
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
@@ -255,6 +297,8 @@ class CryptogramsController extends Controller
                     // TODO your code goes here
                 });
         });
+
+        alert()->success('Success', 'Sucessfully deleted selected cryptograms.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }
@@ -360,6 +404,8 @@ class CryptogramsController extends Controller
 
         Mail::to($cryptogram->submitter->email)->send(new UpdateCryptogramStateMail($cryptogram));
 
+        alert()->success('Success', 'Sucessfully changed state of cryptogram.');
+
         return response()->json('Successfully status changed.', 200);
     }
 
@@ -406,6 +452,8 @@ class CryptogramsController extends Controller
         foreach ($cryptograms as $cryptogram) {
             $cryptogram->cipherKeys()->sync($keys);
         }
+
+        alert()->success('Success', 'Sucessfully paired keys and cryptograms.');
 
         if ($request->ajax()) {
             return [

@@ -4,6 +4,7 @@
 
 @section('body')
 
+    @include('sweetalert::alert')
     <cryptogram-listing :data="{{ $data->toJson() }}" :url="'{{ url('admin/cryptograms') }}'" inline-template>
 
         <div class="row">

@@ -15,9 +15,9 @@ class CreateCipherKeysTable extends Migration
     {
         Schema::create('cipher_keys', function (Blueprint $table) {
             $table->id();
-            $table->text('description')->nullable();;
-            $table->text('signature');
-            $table->text('complete_structure')->nullable();
+            $table->text('description')->nullable();
+            $table->string('signature')->unique()->nullable();
+            $table->text('complete_structure');
             $table->text('used_chars')->nullable();
             $table->string('cipher_type')->nullable();
             $table->string('key_type')->nullable();
@@ -29,7 +29,9 @@ class CreateCipherKeysTable extends Migration
             $table->unsignedBigInteger('location_id')->index()->nullable();
             $table->unsignedBigInteger('language_id')->index();
             $table->unsignedBigInteger('group_id')->index()->nullable();
-            $table->unsignedBigInteger('state_id')->index();
+            $table->string('state');
+            $table->text('note')->nullable();
+            $table->timestamps();
 
             $table->foreign('folder_id')
                 ->references('id')
@@ -43,10 +45,6 @@ class CreateCipherKeysTable extends Migration
             $table->foreign('language_id')
                 ->references('id')
                 ->on('languages');
-
-            $table->foreign('state_id')
-                ->references('id')
-                ->on('states');
 
             $table->foreign('group_id')
                 ->references('id')

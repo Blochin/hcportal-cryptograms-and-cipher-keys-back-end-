@@ -82,6 +82,8 @@ class CipherTypesController extends Controller
         // Store the CipherType
         $cipherType = CipherType::create($sanitized);
 
+        alert()->success('Success', 'Sucessfully added cipher type.');
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/cipher-types'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
@@ -135,6 +137,8 @@ class CipherTypesController extends Controller
         // Update changed values CipherType
         $cipherType->update($sanitized);
 
+        alert()->success('Success', 'Sucessfully updated cipher type.');
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/cipher-types'),
@@ -157,6 +161,8 @@ class CipherTypesController extends Controller
     {
         $cipherType->delete();
 
+        alert()->success('Success', 'Sucessfully deleted cipher type.');
+
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
         }
@@ -171,7 +177,7 @@ class CipherTypesController extends Controller
      * @throws Exception
      * @return Response|bool
      */
-    public function bulkDestroy(BulkDestroyCipherType $request) : Response
+    public function bulkDestroy(BulkDestroyCipherType $request): Response
     {
         DB::transaction(static function () use ($request) {
             collect($request->data['ids'])
@@ -182,6 +188,8 @@ class CipherTypesController extends Controller
                     // TODO your code goes here
                 });
         });
+
+        alert()->success('Success', 'Sucessfully deleted selected cipher types.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }

@@ -82,6 +82,8 @@ class KeyTypesController extends Controller
         // Store the KeyType
         $keyType = KeyType::create($sanitized);
 
+        alert()->success('Success', 'Sucessfully added key type.');
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/key-types'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
@@ -135,6 +137,8 @@ class KeyTypesController extends Controller
         // Update changed values KeyType
         $keyType->update($sanitized);
 
+        alert()->success('Success', 'Sucessfully updated key type.');
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/key-types'),
@@ -157,6 +161,8 @@ class KeyTypesController extends Controller
     {
         $keyType->delete();
 
+        alert()->success('Success', 'Sucessfully deleted key type.');
+
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
         }
@@ -171,7 +177,7 @@ class KeyTypesController extends Controller
      * @throws Exception
      * @return Response|bool
      */
-    public function bulkDestroy(BulkDestroyKeyType $request) : Response
+    public function bulkDestroy(BulkDestroyKeyType $request): Response
     {
         DB::transaction(static function () use ($request) {
             collect($request->data['ids'])
@@ -182,6 +188,8 @@ class KeyTypesController extends Controller
                     // TODO your code goes here
                 });
         });
+
+        alert()->success('Success', 'Sucessfully deleted selected key type.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }

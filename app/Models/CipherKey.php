@@ -20,7 +20,8 @@ class CipherKey extends Model
         'location_id',
         'language_id',
         'group_id',
-        'state_id',
+        'state',
+        'note',
         'created_by'
 
     ];
@@ -31,7 +32,7 @@ class CipherKey extends Model
         'used_to',
 
     ];
-    public $timestamps = false;
+    public $timestamps = true;
 
     public const CIPHER_TYPES = [
         ['id' => 'undefined', 'label' => 'Undefined'],
@@ -45,7 +46,19 @@ class CipherKey extends Model
         ['id' => 'ed', 'label' => 'ed'],
     ];
 
-    protected $appends = ['resource_url', 'fond', 'archive', 'state_badge', 'used_to_formatted', 'used_from_formatted'];
+    public const STATUS_AWAITING = 'awaiting';
+    public const STATUS_REVISE = 'revise';
+    public const STATUS_APPROVED = 'approved';
+    public const STATUS_REJECTED = 'rejected';
+
+    public const STATUSES = [
+        ['id' => self::STATUS_AWAITING, 'title' => 'Awaiting', 'show' => true],
+        ['id' => self::STATUS_REVISE, 'title' => 'Revise', 'show' => true],
+        ['id' => self::STATUS_APPROVED, 'title' => 'Approved', 'show' => true],
+        ['id' => self::STATUS_REJECTED, 'title' => 'Rejected', 'show' => true],
+    ];
+
+    protected $appends = ['resource_url', 'fond', 'archive', 'state_badge', 'used_to_formatted', 'used_from_formatted', 'continent', 'location_name'];
 
     /* ************************ ACCESSOR ************************* */
 
@@ -69,8 +82,8 @@ class CipherKey extends Model
     {
         if (!isset($this->state)) return null;
 
-        $title = collect(State::STATUSES)->where('id', $this->state->state)->first();
-        return '<span class="badge badge-' . $this->state->state . '">' . $title['title'] . '</span>';
+        $title = collect(CipherKey::STATUSES)->where('id', $this->state['id'])->first();
+        return '<span class="badge badge-' . $this->state['id'] . '">' . $title['title'] . '</span>';
     }
 
     public function getUsedToFormattedAttribute()
@@ -83,6 +96,25 @@ class CipherKey extends Model
         return ($this->used_from) ? $this->used_from->format('d. m. Y') : '';
     }
 
+    public function getStateAttribute($value)
+    {
+        return collect(CipherKey::STATUSES)->firstWhere('id', $value);
+    }
+
+
+    public function getContinentAttribute()
+    {
+        $continent = collect(Location::CONTINENTS)->firstWhere('continent', 'Unknown');
+        if ($this->location) {
+            $continent = collect(Location::CONTINENTS)->firstWhere('name', $this->location->continent) ?: $continent;
+        }
+        return $continent;
+    }
+
+    public function getLocationNameAttribute()
+    {
+        return ($this->location) ? $this->location->name : null;
+    }
 
 
     /* ************************ Relationships ************************* */
@@ -100,11 +132,6 @@ class CipherKey extends Model
     public function submitter()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
-    }
-
-    public function state()
-    {
-        return $this->belongsTo(State::class);
     }
 
     public function cipherType()

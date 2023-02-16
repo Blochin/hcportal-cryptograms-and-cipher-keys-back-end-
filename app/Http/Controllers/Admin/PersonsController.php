@@ -82,8 +82,10 @@ class PersonsController extends Controller
         // Store the Person
         $person = Person::create($sanitized);
 
+        alert()->success('Success', 'Sucessfully added person.');
+
         if ($request->ajax()) {
-            return ['redirect' => url('admin/people'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+            return ['person' => $person, 'redirect' => url('admin/people'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
 
         return redirect('admin/people');
@@ -135,6 +137,8 @@ class PersonsController extends Controller
         // Update changed values Person
         $person->update($sanitized);
 
+        alert()->success('Success', 'Sucessfully updated person.');
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/people'),
@@ -157,6 +161,8 @@ class PersonsController extends Controller
     {
         $person->delete();
 
+        alert()->success('Success', 'Sucessfully deleted person.');
+
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
         }
@@ -171,7 +177,7 @@ class PersonsController extends Controller
      * @throws Exception
      * @return Response|bool
      */
-    public function bulkDestroy(BulkDestroyPerson $request) : Response
+    public function bulkDestroy(BulkDestroyPerson $request): Response
     {
         DB::transaction(static function () use ($request) {
             collect($request->data['ids'])
@@ -182,6 +188,9 @@ class PersonsController extends Controller
                     // TODO your code goes here
                 });
         });
+
+
+        alert()->success('Success', 'Sucessfully deleted selected persons.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }

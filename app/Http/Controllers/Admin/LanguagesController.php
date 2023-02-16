@@ -82,6 +82,8 @@ class LanguagesController extends Controller
         // Store the Language
         $language = Language::create($sanitized);
 
+        alert()->success('Success', 'Sucessfully added language.');
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/languages'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
@@ -135,6 +137,8 @@ class LanguagesController extends Controller
         // Update changed values Language
         $language->update($sanitized);
 
+        alert()->success('Success', 'Sucessfully updated language.');
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/languages'),
@@ -157,6 +161,8 @@ class LanguagesController extends Controller
     {
         $language->delete();
 
+        alert()->success('Success', 'Sucessfully deleted language.');
+
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
         }
@@ -171,7 +177,7 @@ class LanguagesController extends Controller
      * @throws Exception
      * @return Response|bool
      */
-    public function bulkDestroy(BulkDestroyLanguage $request) : Response
+    public function bulkDestroy(BulkDestroyLanguage $request): Response
     {
         DB::transaction(static function () use ($request) {
             collect($request->data['ids'])
@@ -182,6 +188,9 @@ class LanguagesController extends Controller
                     // TODO your code goes here
                 });
         });
+
+
+        alert()->success('Success', 'Sucessfully deleted selected languages.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }

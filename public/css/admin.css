@@ -5,6 +5,352 @@
  * Copyright (c) 2018 creativeLabs Łukasz Holeczek
  * Licensed under MIT (https://coreui.io/icons/license)
  */@font-face{font-family:CoreUI-Icons-Linear-Free;src:url(/fonts/vendor/@coreui/icons/CoreUI-Icons-Linear-Free.eot?b5c93177864186615ed5c7090d5a934a);src:url(/fonts/vendor/@coreui/icons/CoreUI-Icons-Linear-Free.eot?b5c93177864186615ed5c7090d5a934a#iefix) format("embedded-opentype"),url(/fonts/vendor/@coreui/icons/CoreUI-Icons-Linear-Free.ttf?49a8e66ae5644253b2bf811d96e0d0da) format("truetype"),url(/fonts/vendor/@coreui/icons/CoreUI-Icons-Linear-Free.woff?6779cfb19973abd1449d93e9eb09b32e) format("woff"),url(/fonts/vendor/@coreui/icons/CoreUI-Icons-Linear-Free.svg?a141262bd3f1f2e2a026c22e42dfd712#CoreUI-Icons-Linear) format("svg");font-weight:400;font-style:normal}[class*=" cui-"],[class^=cui-]{font-family:CoreUI-Icons-Linear-Free!important;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.cui-account-logout:before{content:"\e900"}.cui-action-redo:before{content:"\e901"}.cui-action-undo:before{content:"\e902"}.cui-align-center:before{content:"\e903"}.cui-align-left:before{content:"\e904"}.cui-align-right:before{content:"\e905"}.cui-arrow-bottom:before{content:"\e906"}.cui-arrow-left:before{content:"\e907"}.cui-arrow-right:before{content:"\e908"}.cui-arrow-top:before{content:"\e909"}.cui-ban:before{content:"\e90a"}.cui-basket-loaded:before{content:"\e90b"}.cui-bell:before{content:"\e90c"}.cui-bold:before{content:"\e90d"}.cui-bookmark:before{content:"\e90e"}.cui-briefcase:before{content:"\e960"}.cui-british-pound:before{content:"\e961"}.cui-brush:before{content:"\e90f"}.cui-calculator:before{content:"\e910"}.cui-calendar:before{content:"\e911"}.cui-cart:before{content:"\e912"}.cui-chart:before{content:"\e913"}.cui-check:before{content:"\e914"}.cui-chevron-bottom:before{content:"\e915"}.cui-chevron-left:before{content:"\e916"}.cui-chevron-right:before{content:"\e917"}.cui-chevron-top:before{content:"\e918"}.cui-circle-check:before{content:"\e919"}.cui-circle-x:before{content:"\e91a"}.cui-cloud:before{content:"\e91b"}.cui-cloud-download:before{content:"\e91c"}.cui-cloud-upload:before{content:"\e91d"}.cui-code:before{content:"\e91e"}.cui-cog:before{content:"\e91f"}.cui-comment-square:before{content:"\e920"}.cui-credit-card:before{content:"\e921"}.cui-cursor:before{content:"\e922"}.cui-dashboard:before{content:"\e923"}.cui-delete:before{content:"\e924"}.cui-dollar:before{content:"\e925"}.cui-drop:before{content:"\e926"}.cui-envelope-closed:before{content:"\e927"}.cui-envelope-letter:before{content:"\e928"}.cui-envelope-open:before{content:"\e929"}.cui-euro:before{content:"\e92a"}.cui-file:before{content:"\e92b"}.cui-globe:before{content:"\e92c"}.cui-graph:before{content:"\e92d"}.cui-home:before{content:"\e92e"}.cui-inbox:before{content:"\e92f"}.cui-info:before{content:"\e930"}.cui-italic:before{content:"\e931"}.cui-justify-center:before{content:"\e932"}.cui-justify-left:before{content:"\e933"}.cui-justify-right:before{content:"\e934"}.cui-laptop:before{content:"\e935"}.cui-layers:before{content:"\e936"}.cui-lightbulb:before{content:"\e937"}.cui-list:before{content:"\e938"}.cui-location-pin:before{content:"\e939"}.cui-lock-locked:before{content:"\e93a"}.cui-lock-unlocked:before{content:"\e93b"}.cui-magnifying-glass:before{content:"\e93c"}.cui-map:before{content:"\e93d"}.cui-monitor:before{content:"\e962"}.cui-moon:before{content:"\e93e"}.cui-note:before{content:"\e93f"}.cui-options:before{content:"\e940"}.cui-paperclip:before{content:"\e941"}.cui-pencil:before{content:"\e942"}.cui-people:before{content:"\e943"}.cui-phone:before{content:"\e944"}.cui-pie-chart:before{content:"\e945"}.cui-print:before{content:"\e946"}.cui-puzzle:before{content:"\e947"}.cui-rss:before{content:"\e963"}.cui-screen-desktop:before{content:"\e948"}.cui-screen-smartphone:before{content:"\e949"}.cui-settings:before{content:"\e94a"}.cui-share:before{content:"\e94b"}.cui-shield:before{content:"\e94c"}.cui-sort-ascending:before{content:"\e94d"}.cui-sort-descending:before{content:"\e94e"}.cui-speech:before{content:"\e94f"}.cui-speedometer:before{content:"\e950"}.cui-star:before{content:"\e951"}.cui-sun:before{content:"\e952"}.cui-tablet:before{content:"\e953"}.cui-tags:before{content:"\e954"}.cui-task:before{content:"\e955"}.cui-thumb-down:before{content:"\e956"}.cui-thumb-up:before{content:"\e957"}.cui-trash:before{content:"\e958"}.cui-underline:before{content:"\e959"}.cui-user:before{content:"\e95a"}.cui-user-female:before{content:"\e95b"}.cui-user-follow:before{content:"\e95c"}.cui-user-unfollow:before{content:"\e95d"}.cui-wrench:before{content:"\e95e"}.cui-yen:before{content:"\e95f "}
+.vue-advanced-cropper {
+  text-align: center;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  max-height: 100%;
+  max-width: 100%;
+  direction: ltr;
+}
+
+.vue-advanced-cropper__stretcher {
+  pointer-events: none;
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.vue-advanced-cropper__image {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  position: absolute;
+  transform-origin: center;
+  max-width: none !important;
+}
+
+.vue-advanced-cropper__background, .vue-advanced-cropper__foreground {
+  opacity: 1;
+  background: #000;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.vue-advanced-cropper__foreground {
+  opacity: 0.5;
+}
+
+.vue-advanced-cropper__boundaries {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.vue-advanced-cropper__cropper-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.vue-advanced-cropper__image-wrapper {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.vue-advanced-cropper__stencil-wrapper {
+  position: absolute;
+}
+
+.vue-rectangle-stencil {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.vue-rectangle-stencil__preview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.vue-rectangle-stencil--movable {
+  cursor: move;
+}
+
+.vue-preview {
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.vue-preview--fill {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.vue-preview__wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.vue-preview__image {
+  pointer-events: none;
+  position: absolute;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  transform-origin: center;
+  max-width: none !important;
+}
+
+.vue-circle-stencil {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  box-sizing: content-box;
+  cursor: move;
+}
+
+.vue-circle-stencil__preview {
+  border-radius: 50%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.vue-circle-stencil--movable {
+  cursor: move;
+}
+
+.vue-simple-handler {
+  display: block;
+  background: #fff;
+  height: 10px;
+  width: 10px;
+}
+
+.vue-line-wrapper {
+  background: 0 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vue-line-wrapper--north, .vue-line-wrapper--south {
+  height: 12px;
+  width: 100%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.vue-line-wrapper--north {
+  top: 0;
+  cursor: n-resize;
+}
+
+.vue-line-wrapper--south {
+  top: 100%;
+  cursor: s-resize;
+}
+
+.vue-line-wrapper--east, .vue-line-wrapper--west {
+  width: 12px;
+  height: 100%;
+  transform: translateX(-50%);
+  top: 0;
+}
+
+.vue-line-wrapper--east {
+  left: 100%;
+  cursor: e-resize;
+}
+
+.vue-line-wrapper--west {
+  left: 0;
+  cursor: w-resize;
+}
+
+.vue-line-wrapper--disabled {
+  cursor: auto;
+}
+
+.vue-handler-wrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+}
+
+.vue-handler-wrapper__draggable {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vue-handler-wrapper--west-north {
+  cursor: nw-resize;
+}
+
+.vue-handler-wrapper--north {
+  cursor: n-resize;
+}
+
+.vue-handler-wrapper--east-north {
+  cursor: ne-resize;
+}
+
+.vue-handler-wrapper--east {
+  cursor: e-resize;
+}
+
+.vue-handler-wrapper--east-south {
+  cursor: se-resize;
+}
+
+.vue-handler-wrapper--south {
+  cursor: s-resize;
+}
+
+.vue-handler-wrapper--west-south {
+  cursor: sw-resize;
+}
+
+.vue-handler-wrapper--west {
+  cursor: w-resize;
+}
+
+.vue-handler-wrapper--disabled {
+  cursor: auto;
+}
+
+.vue-draggable-area {
+  position: relative;
+}
+
+.vue-bounding-box {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.vue-bounding-box__handler {
+  position: absolute;
+}
+
+.vue-bounding-box__handler--west-north {
+  left: 0;
+  top: 0;
+}
+
+.vue-bounding-box__handler--north {
+  left: 50%;
+  top: 0;
+}
+
+.vue-bounding-box__handler--east-north {
+  left: 100%;
+  top: 0;
+}
+
+.vue-bounding-box__handler--east {
+  left: 100%;
+  top: 50%;
+}
+
+.vue-bounding-box__handler--east-south {
+  left: 100%;
+  top: 100%;
+}
+
+.vue-bounding-box__handler--south {
+  left: 50%;
+  top: 100%;
+}
+
+.vue-bounding-box__handler--west-south {
+  left: 0;
+  top: 100%;
+}
+
+.vue-bounding-box__handler--west {
+  left: 0;
+  top: 50%;
+}
+
+.vue-preview-result {
+  overflow: hidden;
+  box-sizing: border-box;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.vue-preview-result__wrapper {
+  position: absolute;
+}
+
+.vue-preview-result__image {
+  pointer-events: none;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  transform-origin: center;
+  max-width: none !important;
+}
+
+.vue-simple-line {
+  background: 0 0;
+  transition: border 0.5s;
+  border-color: rgba(255, 255, 255, 0.3);
+  border-width: 0;
+  border-style: solid;
+}
+
+.vue-simple-line--north, .vue-simple-line--south {
+  height: 0;
+  width: 100%;
+}
+
+.vue-simple-line--east, .vue-simple-line--west {
+  height: 100%;
+  width: 0;
+}
+
+.vue-simple-line--east {
+  border-right-width: 1px;
+}
+
+.vue-simple-line--west {
+  border-left-width: 1px;
+}
+
+.vue-simple-line--south {
+  border-bottom-width: 1px;
+}
+
+.vue-simple-line--north {
+  border-top-width: 1px;
+}
+
+.vue-simple-line--hover {
+  opacity: 1;
+  border-color: #fff;
+}
 @charset "UTF-8"; /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -20141,4 +20487,10 @@ div.trumbowyg-dropdown-table table td.active {
 .badge-rejected {
   background: rgb(0, 63, 199);
   color: #fff;
+}
+
+.cropper {
+  height: 600px;
+  width: auto;
+  background: #ddd;
 }

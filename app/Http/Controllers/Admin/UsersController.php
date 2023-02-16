@@ -94,6 +94,9 @@ class UsersController extends Controller
 
         $user->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
 
+
+        alert()->success('Success', 'Sucessfully added user.');
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/users'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
@@ -155,6 +158,9 @@ class UsersController extends Controller
         // Update changed values User
         $user->update($sanitized);
 
+
+        alert()->success('Success', 'Sucessfully updated user.');
+
         // But we do have a roles, so we need to attach the roles to the adminUser
         if ($request->input('roles')) {
             $user->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
@@ -181,6 +187,8 @@ class UsersController extends Controller
     public function destroy(DestroyUser $request, User $user)
     {
         $user->delete();
+
+        alert()->success('Success', 'Sucessfully deleted user.');
 
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
@@ -210,6 +218,9 @@ class UsersController extends Controller
                     // TODO your code goes here
                 });
         });
+
+
+        alert()->success('Success', 'Sucessfully deleted selected users.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }

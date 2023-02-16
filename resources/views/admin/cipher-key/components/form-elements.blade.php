@@ -125,18 +125,78 @@
     </div> --}}
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('location'), 'has-success': fields.location && fields.location.valid }">
-            <label for="location" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.location') }}</label>
+            :class="{'has-danger': errors.has('continent'), 'has-success': fields.continent && fields.continent.valid }">
+            <label for="continent" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.continent') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.location" label="name" :options="{{ $locations }}" :option-height="104"
-                    placeholder="{{ trans('admin.cipher-key.columns.location') }}" track-by="id">
+                <multiselect v-model="form.continent" label="name" :options="{{ $continents }}" :option-height="104"
+                    placeholder="{{ trans('admin.cipher-key.columns.continent') }}" track-by="name">
                 </multiselect>
-                <div v-if="errors.has('location')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('location') }}</div>
+                <div v-if="errors.has('continent')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('continent') }}</div>
             </div>
         </div>
     </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('location_name'), 'has-success': fields.location_name && fields.location_name.valid }">
+            <label for="location_name" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.location') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <input type="text" v-model="form.location_name" v-validate="''" @input="validate($event)"
+                    class="form-control"
+                    :class="{'form-control-danger': errors.has('location_name'), 'form-control-success': fields.location_name && fields.location_name.valid}"
+                    id="location_name" name="location_name"
+                    placeholder="{{ trans('admin.cipher-key.columns.location') }}">
+                <div v-if="errors.has('location_name')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('location_name') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('complete_structure'), 'has-success': fields.complete_structure && fields.complete_structure.valid }">
+            <label for="complete_structure" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.complete_structure') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <div>
+                    <textarea class="form-control" v-model="form.complete_structure" v-validate="'required'"
+                        id="complete_structure" name="complete_structure"></textarea>
+                </div>
+                <div v-if="errors.has('complete_structure')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('complete_structure') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('state'), 'has-success': fields.state && fields.state.valid }">
+            <label for="state" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.state') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.state" placeholder="State" label="title" :options="{{ $states }}"
+                    :option-height="104" placeholder="{{ trans('admin.cipher-key.columns.state') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('state')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('state') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('note'), 'has-success': fields.note && fields.note.valid }">
+            <label for="note" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.note') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <textarea class="form-control" v-model="form.note" v-validate="''" id="note" name="note"></textarea>
+                <div v-if="errors.has('note')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('note') }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
             :class="{'has-danger': errors.has('tags'), 'has-success': fields.tags && fields.tags.valid }">
@@ -150,24 +210,6 @@
                 </multiselect>
                 <div v-if="errors.has('tags')" class="form-control-feedback form-text" v-cloak>
                     @{{ errors . first('tags') }}</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('complete_structure'), 'has-success': fields.complete_structure && fields.complete_structure.valid }">
-            <label for="complete_structure" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.complete_structure') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <div>
-                    <textarea class="form-control" v-model="form.complete_structure" v-validate="''"
-                        id="complete_structure" name="complete_structure"></textarea>
-                </div>
-                <div v-if="errors.has('complete_structure')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('complete_structure') }}</div>
             </div>
         </div>
     </div>
@@ -308,22 +350,14 @@
     <div :class="form.users.length > 0 ? 'col-md-12' : 'col-md-4'">
         <div v-for="(input, index) in form.users" :key="index">
             <div class="form-group row align-items-end">
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <label for="users" class="col-form-label">{{ trans('admin.cipher-key.columns.user') }}
                     </label>
-                    <multiselect v-model="form.users[index].user" @input="" :data-vv-name="'user-' + index" label="name"
-                        :select-label="''" :deselect-label="''" :options="{{ $users }}" track-by="id"
-                        :multiple="false" :option-height="104"
-                        placeholder="{{ trans('admin.cipher-key.columns.user') }}">
+                    <multiselect v-model="form.users[index].user" tag-placeholder="Add this as new user"
+                        placeholder="Search or add a user" :multiple="false" :taggable="true"
+                        @tag="addUserPost($event, index)" label="name" :options="filteredUsers" :option-height="104"
+                        placeholder="{{ trans('admin.cipher-key.columns.user') }}" track-by="id">
                     </multiselect>
-                </div>
-                <div class="col-md-4">
-                    <label for="new_user" class="col-form-label">{{ trans('admin.cipher-key.columns.new_user') }}
-                    </label>
-                    <input type="text" v-model="form.users[index].new_user" v-validate="''" @input="validate($event)"
-                        class="form-control"
-                        :class="{'form-control-danger': errors.has('new_user'), 'form-control-success': fields.new_user && fields.new_user.valid}"
-                        id="new_user" name="new_user" placeholder="{{ trans('admin.cipher-key.columns.new_user') }}">
                 </div>
                 <div class="col-md-3">
                     <div class="form-check row"

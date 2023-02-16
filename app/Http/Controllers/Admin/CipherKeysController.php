@@ -53,13 +53,13 @@ class CipherKeysController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'cipher_type', 'complete_structure', 'signature', 'created_by', 'key_type', 'used_from', 'used_to', 'used_around', 'folder_id', 'location_id', 'language_id', 'group_id', 'state_id'],
+            ['id', 'cipher_type', 'complete_structure', 'signature', 'created_by', 'key_type', 'used_from', 'used_to', 'used_around', 'folder_id', 'location_id', 'language_id', 'group_id', 'state'],
 
             // set columns to searchIn
             ['id', 'description', 'signature', 'complete_structure', 'used_chars', 'cipher_type', 'key_type', 'used_around'],
 
             function (Builder $query) {
-                $query->with(['state', 'language', 'submitter']);
+                $query->with(['language', 'submitter']);
             }
         );
 
@@ -97,6 +97,8 @@ class CipherKeysController extends Controller
         $tags = Tag::where('type', Tag::CIPHER_KEY)
             ->orWhereNull('type')
             ->get();
+        $continents = collect(Location::CONTINENTS)->toJSON();
+        $states = collect(CipherKey::STATUSES)->toJSON();
 
 
         return view('admin.cipher-key.create', compact(
@@ -110,6 +112,8 @@ class CipherKeysController extends Controller
             'fonds',
             'users',
             'tags',
+            'continents',
+            'states'
         ));
     }
 
@@ -139,9 +143,12 @@ class CipherKeysController extends Controller
         //Sync tags
         $this->syncTags($cipherKey, $sanitized);
 
+        alert()->success('Success', 'Sucessfully added cipher key.');
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/cipher-keys'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
+
 
         return redirect('admin/cipher-keys');
     }
@@ -184,7 +191,11 @@ class CipherKeysController extends Controller
         $tags = Tag::where('type', Tag::CIPHER_KEY)
             ->orWhereNull('type')
             ->get();
-        $states = collect(State::STATUSES)->toJSON();
+        $states = collect(CipherKey::STATUSES)->toJSON();
+
+        $continents = collect(Location::CONTINENTS)->toJSON();
+
+
 
         //Load relationships
         $cipherKey->load([
@@ -199,9 +210,8 @@ class CipherKeysController extends Controller
             'submitter',
             'cipherType',
             'keyType',
-            'cryptograms'
+            'cryptograms',
         ]);
-
 
         return view('admin.cipher-key.edit', compact(
             'keyTypes',
@@ -215,7 +225,8 @@ class CipherKeysController extends Controller
             'users',
             'tags',
             'cipherKey',
-            'states'
+            'states',
+            'continents'
         ));
     }
 
@@ -230,6 +241,11 @@ class CipherKeysController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+
+        //Send mail to submitter if state changed
+        if ($sanitized['state'] !== $cipherKey->state['id']) {
+            Mail::to($cipherKey->submitter->email)->send(new UpdateCipherKeyStateMail($cipherKey));
+        }
 
         // Update changed values CipherKey
         $cipherKey->update($sanitized);
@@ -246,12 +262,16 @@ class CipherKeysController extends Controller
         //Sync cryptograms
         $this->syncCryptograms($cipherKey, $sanitized);
 
+
+        alert()->success('Success', 'Sucessfully updated cipher key.');
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/cipher-keys'),
                 'message' => trans('brackets/admin-ui::admin.operation.succeeded'),
             ];
         }
+
 
         return redirect('admin/cipher-keys');
     }
@@ -268,9 +288,12 @@ class CipherKeysController extends Controller
     {
         $cipherKey->delete();
 
+        alert()->success('Success', 'Sucessfully deleted cipher key.');
+
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
         }
+
 
         return redirect()->back();
     }
@@ -293,6 +316,8 @@ class CipherKeysController extends Controller
                     // TODO your code goes here
                 });
         });
+
+        alert()->success('Success', 'Sucessfully deleted selected cipher keys.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }
@@ -336,6 +361,7 @@ class CipherKeysController extends Controller
         //Syn ingredients to model
         if (count($sanitized['users']) > 0 || $mode == 'update') {
             $model->users()->delete();
+
 
             foreach ($sanitized['users'] as $user) {
                 $newUser = $user->user;
@@ -446,14 +472,8 @@ class CipherKeysController extends Controller
     {
         $sanitized = $request->getSanitized();
 
-        $state = State::create([
-            'name' => $cipherKey->signature,
-            'state' => $sanitized['state'],
-            'note' => $sanitized['note'],
-            'created_by' => auth()->user()->id
-        ]);
 
-        $cipherKey->update(['state_id' => $state->id]);
+        $cipherKey->update(['state' => $sanitized['state']]);
 
         Mail::to($cipherKey->submitter->email)->send(new UpdateCipherKeyStateMail($cipherKey));
 

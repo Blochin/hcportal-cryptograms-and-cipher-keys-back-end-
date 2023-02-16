@@ -450,14 +450,14 @@
                                         <h2
                                             style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #000000;margin-top: 0;font-size: 28px;line-height: 1.4;">
                                             The status of the cryptogram with name {{ $cryptogram->name }} you
-                                            added has changed to <b>{{ $cryptogram->state->state }}<b>.
+                                            added has changed to <b>{{ $cryptogram->state['title'] }}<b>.
                                         </h2>
                                         <p style="color:#000;margin: 0"><b>Cryptogram Name:</b>
                                             {{ $cryptogram->name }}</p>
 
-                                        @if ($cryptogram->state->note)
+                                        @if ($cryptogram->note)
                                             <p style="color:#000;margin: 0"><b>Note:</b>
-                                                {{ $cryptogram->state->note }}</p>
+                                                {{ $cryptogram->note }}</p>
                                         @endif
 
                                     </div>

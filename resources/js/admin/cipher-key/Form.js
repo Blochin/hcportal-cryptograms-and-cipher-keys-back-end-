@@ -1,8 +1,10 @@
 import AppForm from "../app-components/Form/AppForm";
+import "trumbowyg/dist/plugins/fontfamily/trumbowyg.fontfamily.min.js";
+import "trumbowyg/dist/plugins/fontsize/trumbowyg.fontsize.min.js";
 
 Vue.component("cipher-key-form", {
     mixins: [AppForm],
-    props: ["archives", "fonds", "folders", "tags"],
+    props: ["archives", "fonds", "folders", "tags", "persons"],
     data: function () {
         return {
             form: {
@@ -18,7 +20,7 @@ Vue.component("cipher-key-form", {
                 folder: "",
                 fond: "",
                 archive: "",
-                location: "",
+                location_name: "",
                 language: "",
                 group: "",
                 new_folder: "",
@@ -29,20 +31,56 @@ Vue.component("cipher-key-form", {
                 files: [],
                 tags: [],
                 cryptograms: [],
+                continent: "",
+                note: "",
+                state: { id: "approved", title: "Approved" },
             },
             filteredFonds: [],
             filteredFolders: [],
             filteredTags: [],
+            filteredUsers: [],
             filteredCryptograms: [],
-
-            state: "",
+            isLoading: false,
             note: "",
+            mediaWysiwygConfig: {
+                autogrow: true,
+                imageWidthModalEdit: true,
+                removeformatPasted: true,
+                btnsDef: {
+                    image: {
+                        dropdown: [],
+                        ico: "insertImage",
+                    },
+                    align: {
+                        dropdown: [
+                            "justifyLeft",
+                            "justifyCenter",
+                            "justifyRight",
+                            "justifyFull",
+                        ],
+                        ico: "justifyLeft",
+                    },
+                },
+                btns: [
+                    ["fontfamily"],
+                    ["fontsize"],
+                    ["formatting"],
+                    ["strong", "em", "del"],
+                    ["align"],
+                    ["unorderedList", "orderedList", "table"],
+                    ["foreColor", "backColor"],
+                    ["link"],
+                    ["template"],
+                    ["fullscreen", "viewHTML"],
+                ],
+            },
         };
     },
 
     mounted() {
         // this.filteredFonds = this.fonds;
         this.filteredTags = this.tags;
+        this.filteredUsers = this.persons;
     },
     methods: {
         getPostData: function getPostData() {
@@ -87,7 +125,13 @@ Vue.component("cipher-key-form", {
                 if (value instanceof Object) {
                     data = JSON.stringify(value);
                 }
-                if (value != null) {
+                if (
+                    data &&
+                    (data !== null ||
+                        data !== "null" ||
+                        data == "undefined" ||
+                        data == undefined)
+                ) {
                     formData.append(key, data);
                 } else {
                     formData.append(key, "");
@@ -153,6 +197,27 @@ Vue.component("cipher-key-form", {
                     console.log(errors);
                 });
         },
+
+        addUserPost(newUser, index) {
+            let th = this;
+            let user = {
+                name: newUser,
+            };
+
+            axios
+                .post("/admin/people", user)
+                .then(function (response) {
+                    let person = response.data.person;
+                    th.filteredUsers.push(person);
+                    th.form.users[index] = {
+                        user: person,
+                        is_main_user: th.form.users[index].is_main_user,
+                    };
+                })
+                .catch(function (errors) {
+                    console.log(errors);
+                });
+        },
         addUser: function (event) {
             this.form.users.push({
                 user: "",
@@ -199,27 +264,6 @@ Vue.component("cipher-key-form", {
         },
         hideUpdateState() {
             this.$modal.hide("update-state");
-        },
-
-        updateState() {
-            let th = this;
-            axios
-                .post(this.data.resource_url + "/state", {
-                    state: this.state.id,
-                    note: this.note,
-                })
-                .then(function (response) {
-                    th.hideUpdateState();
-                    th.$notify({
-                        type: "success",
-                        title: "Success!",
-                        text: "Cipher Key state has been updated successfully.",
-                    });
-                    window.location.reload();
-                })
-                .catch(function (errors) {
-                    return th.onFail(errors.response.data);
-                });
         },
 
         filterCryptograms(query) {

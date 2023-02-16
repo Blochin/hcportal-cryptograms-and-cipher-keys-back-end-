@@ -3,7 +3,7 @@
 @section('title', trans('admin.user.actions.index'))
 
 @section('body')
-
+    @include('sweetalert::alert')
     <user-listing :data="{{ $data->toJson() }}" :url="'{{ url('admin/users') }}'" inline-template>
 
         <div class="row">

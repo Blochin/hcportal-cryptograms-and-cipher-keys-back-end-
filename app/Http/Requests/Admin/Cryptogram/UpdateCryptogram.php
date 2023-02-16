@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Cryptogram;
 
+use App\Models\Location;
 use App\Models\State;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -29,10 +30,11 @@ class UpdateCryptogram extends FormRequest
         return [
             'availability' => ['required', 'string'],
             'category' => ['required', 'string'],
+            'subcategory' => ['nullable', 'string'],
             'day' => ['required', 'integer'],
             'description' => ['required', 'string'],
             'language' => ['required', 'string'],
-            'location' => ['required', 'string'],
+            'location_name' => ['nullable', 'string'],
             'month' => ['required', 'integer'],
             'name' => ['required', 'string'],
             'recipient' => ['required', 'string'],
@@ -47,6 +49,10 @@ class UpdateCryptogram extends FormRequest
             // 'predefined_groups' => ['nullable'],
             'tags' => ['nullable'],
             'cipher_keys' => ['nullable'],
+            'continent' => ['required'],
+            'state' => ['required'],
+            'note' => ['nullable'],
+            'thumbnail' => ['nullable']
 
         ];
     }
@@ -60,21 +66,39 @@ class UpdateCryptogram extends FormRequest
     {
         $sanitized = $this->validated();
         $sanitized['image_url'] = 'sdsd';
-        $sanitized['category_id'] = $sanitized['category'] ? json_decode($sanitized['category'])->id : null;
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
         $sanitized['solution_id'] = $sanitized['solution'] ? json_decode($sanitized['solution'])->id : null;
-        $sanitized['location_id'] = $sanitized['location'] ? json_decode($sanitized['location'])->id : null;
         $sanitized['recipient_id'] = $sanitized['recipient'] ? json_decode($sanitized['recipient'])->id : null;
-        // $sanitized['image'] = $sanitized['image'] ? collect(json_decode($sanitized['image']))->map(function ($item) {
-        //     return collect($item)->toArray();
-        // })->toArray() : null;
         $sanitized['sender_id'] = $sanitized['sender'] ? json_decode($sanitized['sender'])->id : null;
         $sanitized['groups'] = $sanitized['groups'] ? json_decode($sanitized['groups']) : null;
-        // $sanitized['predefined_groups'] = $sanitized['predefined_groups'] ? json_decode($sanitized['predefined_groups']) : null;
+
         $sanitized['tags'] = $sanitized['tags'] ? json_decode($sanitized['tags']) : [];
         $sanitized['flag'] = $sanitized['flag'] == "false" ? false : true;
         $sanitized['cipher_keys'] = $sanitized['cipher_keys'] ? json_decode($sanitized['cipher_keys']) : null;
 
+        $sanitized['continent'] = $sanitized['continent'] ? json_decode($sanitized['continent'])->name : [];
+        $sanitized['state'] = $sanitized['state'] ? json_decode($sanitized['state'])->id : [];
+
+        if ($sanitized['location_name'] && $sanitized['continent']) {
+            $location = Location::firstOrCreate([
+                'name' => $sanitized['location_name'],
+                'continent' => $sanitized['continent']
+            ]);
+        } elseif ($sanitized['continent']) {
+            $location = Location::firstOrCreate([
+                'continent' => $sanitized['continent']
+            ]);
+        }
+
+        if ($sanitized['subcategory']) {
+            $sanitized['category_id'] = $sanitized['subcategory'] ? json_decode($sanitized['subcategory'])->id : null;
+        } elseif ($sanitized['category']) {
+            $sanitized['category_id'] = $sanitized['category'] ? json_decode($sanitized['category'])->id : null;
+        }
+
+        $sanitized['location_id'] = $location->id;
+
+        //dd($sanitized);
 
         return $sanitized;
     }

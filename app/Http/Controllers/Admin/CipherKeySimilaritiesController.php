@@ -95,6 +95,8 @@ class CipherKeySimilaritiesController extends Controller
         //Sync cipher keys
         $cipherKeySimilarity->cipherKeys()->sync($sanitized['cipher_keys']);
 
+        alert()->success('Success', 'Sucessfully added cipher key similarity.');
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/cipher-key-similarities'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
@@ -155,6 +157,8 @@ class CipherKeySimilaritiesController extends Controller
         //Sync cipher keys
         $cipherKeySimilarity->cipherKeys()->sync($sanitized['cipher_keys']);
 
+        alert()->success('Success', 'Sucessfully updated cipher key similarity.');
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/cipher-key-similarities'),
@@ -176,6 +180,8 @@ class CipherKeySimilaritiesController extends Controller
     public function destroy(DestroyCipherKeySimilarity $request, CipherKeySimilarity $cipherKeySimilarity)
     {
         $cipherKeySimilarity->delete();
+
+        alert()->success('Success', 'Sucessfully deleted cipher key similarity.');
 
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
@@ -202,6 +208,8 @@ class CipherKeySimilaritiesController extends Controller
                     // TODO your code goes here
                 });
         });
+
+        alert()->success('Success', 'Sucessfully deleted selected cipher key similarities.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }

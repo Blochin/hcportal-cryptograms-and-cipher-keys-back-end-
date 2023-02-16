@@ -8,8 +8,8 @@
 
         <div class="card">
 
-            <cryptogram-form :action="'{{ url('admin/cryptograms') }}'" :tags="{{ $tags->toJSON() }}" v-cloak
-                inline-template>
+            <cryptogram-form :action="'{{ url('admin/cryptograms') }}'" :persons="{{ $persons->toJSON() }}"
+                :tags="{{ $tags->toJSON() }}" v-cloak inline-template>
 
                 <form class="form-horizontal form-create" method="post" @submit.prevent="onSubmit" :action="action"
                     novalidate>
@@ -19,11 +19,9 @@
                     </div>
 
                     <div class="card-body">
+
                         @include('admin.cryptogram.components.form-elements')
-                        @include('brackets/admin-ui::admin.includes.media-uploader', [
-                        'mediaCollection' => app(App\Models\Cryptogram::class)->getMediaCollection('picture'),
-                        'label' => 'Thumbnail'
-                        ])
+
                     </div>
 
                     <div class="card-footer">

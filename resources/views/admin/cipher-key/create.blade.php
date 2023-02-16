@@ -8,9 +8,9 @@
 
         <div class="card">
 
-            <cipher-key-form :action="'{{ url('admin/cipher-keys') }}'" :archives="{{ $archives->toJSON() }}"
-                :fonds="{{ $fonds->toJSON() }}" :folders="{{ $folders->toJSON() }}" :edit="false"
-                :tags="{{ $tags->toJSON() }}" v-cloak inline-template>
+            <cipher-key-form :action="'{{ url('admin/cipher-keys') }}'" :persons="{{ $users->toJSON() }}"
+                :archives="{{ $archives->toJSON() }}" :fonds="{{ $fonds->toJSON() }}"
+                :folders="{{ $folders->toJSON() }}" :edit="false" :tags="{{ $tags->toJSON() }}" v-cloak inline-template>
 
                 <form class="form-horizontal form-create" method="post" @submit.prevent="onSubmit" :action="action"
                     novalidate>

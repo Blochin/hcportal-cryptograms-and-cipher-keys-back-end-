@@ -29,7 +29,9 @@ class CreateCryptogramsTable extends Migration
             $table->unsignedBigInteger('sender_id');
             $table->unsignedBigInteger('recipient_id');
             $table->unsignedBigInteger('solution_id');
-            $table->unsignedBigInteger('state_id')->nullable();
+            $table->string('state');
+            $table->text('note')->nullable();
+            $table->timestamps();
 
             $table->foreign('location_id')
                 ->references('id')
@@ -63,12 +65,6 @@ class CreateCryptogramsTable extends Migration
                 ->references('id')
                 ->on('solutions')
                 ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->foreign('state_id')
-                ->references('id')
-                ->on('states')
-                ->onDelete('set null')
                 ->onUpdate('cascade');
         });
     }

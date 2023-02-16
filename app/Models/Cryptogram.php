@@ -37,16 +37,16 @@ class Cryptogram extends Model implements HasMedia
         'solution_id',
         'state_id',
         'year',
-        'created_by'
-
+        'created_by',
+        'state',
+        'note'
     ];
 
 
     protected $dates = [];
-    public $timestamps = false;
 
 
-    protected $appends = ['resource_url', 'state_badge'];
+    protected $appends = ['resource_url', 'state_badge', 'continent', 'location_name', 'picture'];
 
     /* ************************ Media ************************* */
 
@@ -54,7 +54,7 @@ class Cryptogram extends Model implements HasMedia
     {
         $this->addMediaCollection('picture')
             ->accepts('image/*')
-            ->maxNumberOfFiles(1)
+            ->singleFile()
             ->maxFilesize(10 * 1024 * 1024); // Set the file size limit
 
     }
@@ -90,13 +90,38 @@ class Cryptogram extends Model implements HasMedia
         return url('/admin/cryptograms/' . $this->getKey());
     }
 
+    public function getPictureAttribute()
+    {
+        return $this->getFirstMediaUrl('picture', 'big') ?: null;
+    }
+
     public function getStateBadgeAttribute()
     {
         if (!isset($this->state)) return null;
 
-        $title = collect(State::STATUSES)->where('id', $this->state->state)->first();
-        return '<span class="badge badge-' . $this->state->state . '">' . $title['title'] . '</span>';
+        $title = collect(CipherKey::STATUSES)->where('id', $this->state['id'])->first();
+        return '<span class="badge badge-' . $this->state['id'] . '">' . $title['title'] . '</span>';
     }
+
+    public function getStateAttribute($value)
+    {
+        return collect(CipherKey::STATUSES)->firstWhere('id', $value);
+    }
+
+    public function getContinentAttribute()
+    {
+        $continent = collect(Location::CONTINENTS)->firstWhere('continent', 'Unknown');
+        if ($this->location) {
+            $continent = collect(Location::CONTINENTS)->firstWhere('name', $this->location->continent) ?: $continent;
+        }
+        return $continent;
+    }
+
+    public function getLocationNameAttribute()
+    {
+        return ($this->location) ? $this->location->name : null;
+    }
+
 
     /* ************************ Relationships ************************* */
 
@@ -132,7 +157,7 @@ class Cryptogram extends Model implements HasMedia
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class)->with('children');
     }
 
     public function tags()

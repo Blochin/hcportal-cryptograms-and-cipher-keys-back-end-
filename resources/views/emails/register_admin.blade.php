@@ -449,7 +449,7 @@
                                         </span>
                                         <h2
                                             style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #000000;margin-top: 0;font-size: 28px;line-height: 1.4;">
-                                            New registration in HCPortal.eu
+                                            New registration in HCPortal.eu. It is necessary to activate the account in the admin dashboard.
                                         </h2>
                                         <p style="color:#000;margin: 0"><b>Name:</b> {{ $user->first_name }}
                                             {{ $user->last_name }}</p>

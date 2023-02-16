@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\CipherKey;
 
+use App\Models\Location;
 use App\Models\State;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -28,7 +29,7 @@ class StoreCipherKey extends FormRequest
     {
         return [
             'description' => ['nullable', 'string'],
-            'signature' => ['nullable', 'string'],
+            'signature' => ['nullable', 'string', Rule::unique('cipher_keys', 'signature')],
             'complete_structure' => ['required', 'string'],
             'used_chars' => ['nullable', 'string'],
             'cipher_type' => ['nullable',],
@@ -42,7 +43,7 @@ class StoreCipherKey extends FormRequest
             'folder' => 'nullable|required_if:new_folder,null',
             'archive' => 'nullable|required_if:new_archive,null',
             'fond' => 'nullable|required_if:new_fond,null',
-            'location' => ['nullable',],
+            'location_name' => ['nullable'],
             'language' => ['required',],
             'group' => ['nullable',],
             'users' => ['nullable',],
@@ -50,6 +51,9 @@ class StoreCipherKey extends FormRequest
             'files' => ['nullable',],
             'tags' => ['nullable',],
             'cryptograms' => ['nullable'],
+            'continent' => ['required'],
+            'state' => ['required'],
+            'note' => ['nullable'],
 
         ];
     }
@@ -68,7 +72,6 @@ class StoreCipherKey extends FormRequest
         $sanitized['tags'] = $sanitized['tags'] ? json_decode($sanitized['tags']) : [];
         $sanitized['group_id'] = $sanitized['group'] ? json_decode($sanitized['group'])->id : null;
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
-        $sanitized['location_id'] = $sanitized['location'] ? json_decode($sanitized['location'])->id : null;
         $sanitized['cipher_type'] = $sanitized['cipher_type'] ? json_decode($sanitized['cipher_type'])->id : null;
         $sanitized['key_type'] = $sanitized['key_type'] ? json_decode($sanitized['key_type'])->id : null;
         $sanitized['folder_id'] = $sanitized['folder'] ? json_decode($sanitized['folder'])->id : null;
@@ -76,14 +79,24 @@ class StoreCipherKey extends FormRequest
         $sanitized['archive_id'] = $sanitized['archive'] ? json_decode($sanitized['archive'])->id : null;
         $sanitized['created_by'] = auth()->user()->id;
         $sanitized['cryptograms'] = $sanitized['cryptograms'] ? json_decode($sanitized['cryptograms']) : [];
+        $sanitized['continent'] = $sanitized['continent'] ? json_decode($sanitized['continent'])->name : [];
+        $sanitized['state'] = $sanitized['state'] ? json_decode($sanitized['state'])->id : [];
 
-        $state = State::create([
-            'name' => $sanitized['complete_structure'] ?: $sanitized['signature'],
-            'state' => State::STATUS_NEW,
-            'created_by' => auth()->user()->id
-        ]);
 
-        $sanitized['state_id'] = $state->id;
+        if ($sanitized['location_name'] && $sanitized['continent']) {
+            $location = Location::firstOrCreate([
+                'name' => $sanitized['location_name'],
+                'continent' => $sanitized['continent']
+            ]);
+        } elseif ($sanitized['continent']) {
+            $location = Location::firstOrCreate([
+                'continent' => $sanitized['continent']
+            ]);
+        }
+
+
+
+        $sanitized['location_id'] = $location->id;
 
         return $sanitized;
     }

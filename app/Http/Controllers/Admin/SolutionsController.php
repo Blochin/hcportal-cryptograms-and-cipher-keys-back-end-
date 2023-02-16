@@ -82,6 +82,8 @@ class SolutionsController extends Controller
         // Store the Solution
         $solution = Solution::create($sanitized);
 
+        alert()->success('Success', 'Sucessfully added solution.');
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/solutions'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
@@ -135,6 +137,8 @@ class SolutionsController extends Controller
         // Update changed values Solution
         $solution->update($sanitized);
 
+        alert()->success('Success', 'Sucessfully updated solution.');
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/solutions'),
@@ -157,6 +161,8 @@ class SolutionsController extends Controller
     {
         $solution->delete();
 
+        alert()->success('Success', 'Sucessfully deleted solution.');
+
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
         }
@@ -171,7 +177,7 @@ class SolutionsController extends Controller
      * @throws Exception
      * @return Response|bool
      */
-    public function bulkDestroy(BulkDestroySolution $request) : Response
+    public function bulkDestroy(BulkDestroySolution $request): Response
     {
         DB::transaction(static function () use ($request) {
             collect($request->data['ids'])
@@ -182,6 +188,9 @@ class SolutionsController extends Controller
                     // TODO your code goes here
                 });
         });
+
+
+        alert()->success('Success', 'Sucessfully deleted selected solutions.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }

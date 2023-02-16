@@ -86,6 +86,9 @@ class TagsController extends Controller
         // Store the Tag
         $tag = Tag::create($sanitized);
 
+
+        alert()->success('Success', 'Sucessfully added tag.');
+
         if ($request->ajax()) {
             return ['tag' => $tag, 'redirect' => url('admin/tags'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
@@ -142,6 +145,8 @@ class TagsController extends Controller
         // Update changed values Tag
         $tag->update($sanitized);
 
+        alert()->success('Success', 'Sucessfully updated tag.');
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/tags'),
@@ -163,6 +168,8 @@ class TagsController extends Controller
     public function destroy(DestroyTag $request, Tag $tag)
     {
         $tag->delete();
+
+        alert()->success('Success', 'Sucessfully deleted tag.');
 
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
@@ -189,6 +196,9 @@ class TagsController extends Controller
                     // TODO your code goes here
                 });
         });
+
+
+        alert()->success('Success', 'Sucessfully deleted selected tags.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }

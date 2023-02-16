@@ -9,6 +9,17 @@ class Location extends Model
 {
     use HasFactory;
 
+    public const CONTINENTS = [
+        ['name' => 'North America'],
+        ['name' => 'South America'],
+        ['name' => 'Europe'],
+        ['name' => 'Asia'],
+        ['name' => 'Oceania'],
+        ['name' => 'Africa'],
+        ['name' => 'Antartica'],
+        ['name' => 'Unknown']
+    ];
+
     protected $fillable = [
         'name',
         'continent'

@@ -20,7 +20,7 @@ return [
             'password' => 'Password',
             'password_repeat' => 'Password Confirmation',
             'activated' => 'Activated',
-            'forbidden' => 'Forbidden',
+            'forbidden' => 'Blocked',
             'language' => 'Language',
 
             //Belongs to many relations
@@ -45,7 +45,7 @@ return [
             'password' => 'Password',
             'password_repeat' => 'Repeat password',
             'activated' => 'Activated',
-            'forbidden' => 'Forbidden',
+            'forbidden' => 'Blocked',
             'language' => 'Language',
             'roles' => 'Roles'
 
@@ -99,7 +99,8 @@ return [
             'note' => 'Note',
             'actual_state' => 'Actual state',
             'created_by' => 'Created by',
-            'similar-cryptograms' => 'Paired cryptograms'
+            'similar-cryptograms' => 'Paired cryptograms',
+            'continent' => 'Continent'
 
         ],
     ],
@@ -207,6 +208,7 @@ return [
             'id' => 'ID',
             'availability' => 'Availability',
             'category_id' => 'Category',
+            'subcategory_id' => 'Subcategory',
             'day' => 'Day',
             'description' => 'Description',
             'flag' => 'Is BC?',
@@ -231,9 +233,11 @@ return [
                 'name' => 'Group name'
             ],
             'add_datagroup' => 'Add datagroup',
+            'add_predefined' => 'Add predefined groups',
             'add_data' => 'Add data',
             'predefined_groups' => 'Predefined groups',
-            'paired-keys' => 'Paired cipher keys'
+            'paired-keys' => 'Paired cipher keys',
+            'thumbnail' => 'Thumbnail',
 
         ],
     ],

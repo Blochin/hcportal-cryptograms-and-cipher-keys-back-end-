@@ -26,20 +26,22 @@ class StoreLocation extends FormRequest
     public function rules(): array
     {
         return [
-            'continent' => ['nullable', 'string'],
-            'name' => ['required', 'string'],
-            
+            'continent' => ['required', 'array'],
+            'name' => ['nullable', 'string'],
+
         ];
     }
 
     /**
-    * Modify input data
-    *
-    * @return array
-    */
+     * Modify input data
+     *
+     * @return array
+     */
     public function getSanitized(): array
     {
         $sanitized = $this->validated();
+
+        $sanitized['continent'] = $sanitized['continent']['name'];
 
         //Add your code for manipulation with request data here
 

@@ -4,6 +4,7 @@
 
 @section('body')
 
+    @include('sweetalert::alert')
     <category-listing :data="{{ $data->toJson() }}" :url="'{{ url('admin/categories') }}'" inline-template>
 
         <div class="row">

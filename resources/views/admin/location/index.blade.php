@@ -4,6 +4,7 @@
 
 @section('body')
 
+    @include('sweetalert::alert')
     <location-listing :data="{{ $data->toJson() }}" :url="'{{ url('admin/locations') }}'" inline-template>
 
         <div class="row">
@@ -55,9 +56,10 @@
                                         </th>
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.location.columns.id') }}</th>
-                                        <th is='sortable' :column="'name'">{{ trans('admin.location.columns.name') }}</th>
                                         <th is='sortable' :column="'continent'">
                                             {{ trans('admin.location.columns.continent') }}</th>
+                                        <th is='sortable' :column="'name'">{{ trans('admin.location.columns.name') }}</th>
+
 
 
                                         <th></th>
@@ -99,9 +101,8 @@
                                         </td>
 
                                         <td>@{{ item . id }}</td>
-                                        <td>@{{ item . name }}</td>
                                         <td>@{{ item . continent }}</td>
-
+                                        <td>@{{ item . name }}</td>
 
                                         <td>
                                             <div class="row no-gutters">

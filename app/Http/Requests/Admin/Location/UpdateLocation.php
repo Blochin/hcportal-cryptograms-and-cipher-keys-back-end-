@@ -26,9 +26,9 @@ class UpdateLocation extends FormRequest
     public function rules(): array
     {
         return [
-            'continent' => ['nullable', 'string'],
-            'name' => ['sometimes', 'string'],
-            
+            'continent' => ['required', 'array'],
+            'name' => ['nullable', 'string'],
+
         ];
     }
 
@@ -40,6 +40,7 @@ class UpdateLocation extends FormRequest
     public function getSanitized(): array
     {
         $sanitized = $this->validated();
+        $sanitized['continent'] = $sanitized['continent']['name'];
 
 
         //Add your code for manipulation with request data here

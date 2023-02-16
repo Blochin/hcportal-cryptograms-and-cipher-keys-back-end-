@@ -89,6 +89,8 @@ class CategoriesController extends Controller
         // Store the Category
         $category = Category::create($sanitized);
 
+        alert()->success('Success', 'Sucessfully added category.');
+
         if ($request->ajax()) {
             return ['redirect' => url('admin/categories'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
@@ -146,6 +148,8 @@ class CategoriesController extends Controller
         // Update changed values Category
         $category->update($sanitized);
 
+        alert()->success('Success', 'Sucessfully updated category.');
+
         if ($request->ajax()) {
             return [
                 'redirect' => url('admin/categories'),
@@ -167,6 +171,8 @@ class CategoriesController extends Controller
     public function destroy(DestroyCategory $request, Category $category)
     {
         $category->delete();
+
+        alert()->success('Success', 'Sucessfully deleted category.');
 
         if ($request->ajax()) {
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
@@ -193,6 +199,8 @@ class CategoriesController extends Controller
                     // TODO your code goes here
                 });
         });
+
+        alert()->success('Success', 'Sucessfully deleted selected categories.');
 
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }

@@ -450,13 +450,13 @@
                                         <h2
                                             style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #000000;margin-top: 0;font-size: 28px;line-height: 1.4;">
                                             The status of the cipher key with signature {{ $key->signature }} you
-                                            added has changed to <b>{{ $key->state->state }}<b>.
+                                            added has changed to <b>{{ $key->state['title'] }}<b>.
                                         </h2>
                                         <p style="color:#000;margin: 0"><b>Cipher Key Signature:</b>
                                             {{ $key->signature }}</p>
 
-                                        @if ($key->state->note)
-                                            <p style="color:#000;margin: 0"><b>Note:</b> {{ $key->state->note }}</p>
+                                        @if ($key->note)
+                                            <p style="color:#000;margin: 0"><b>Note:</b> {{ $key->note }}</p>
                                         @endif
 
                                     </div>
