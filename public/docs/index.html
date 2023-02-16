@@ -96,6 +96,68 @@
                     </li>
                                                     </ul>
                             </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="cipher-keys">
+                    <a href="#cipher-keys">Cipher keys</a>
+                </li>
+                                    <ul id="tocify-subheader-cipher-keys" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="cipher-keys-GETapi-cipher-keys">
+                        <a href="#cipher-keys-GETapi-cipher-keys">All approved cipher keys</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="cipher-keys-GETapi-cipher-keys-my">
+                        <a href="#cipher-keys-GETapi-cipher-keys-my">All my cipher keys</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="cipher-keys-GETapi-key-types">
+                        <a href="#cipher-keys-GETapi-key-types">Show all key types</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="cipher-keys-GETapi-cipher-keys--cipherKey_id-">
+                        <a href="#cipher-keys-GETapi-cipher-keys--cipherKey_id-">Show cipher key</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="cipher-keys-GETapi-cipher-types">
+                        <a href="#cipher-keys-GETapi-cipher-types">Show all cipher types</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="languages">
+                    <a href="#languages">Languages</a>
+                </li>
+                                    <ul id="tocify-subheader-languages" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="languages-GETapi-languages">
+                        <a href="#languages-GETapi-languages">Show all languages</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-5" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="locations">
+                    <a href="#locations">Locations</a>
+                </li>
+                                    <ul id="tocify-subheader-locations" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="locations-GETapi-locations">
+                        <a href="#locations-GETapi-locations">Show all locations</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-6" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="persons">
+                    <a href="#persons">Persons</a>
+                </li>
+                                    <ul id="tocify-subheader-persons" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="persons-GETapi-persons">
+                        <a href="#persons-GETapi-persons">Show all persons</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-7" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="tags">
+                    <a href="#tags">Tags</a>
+                </li>
+                                    <ul id="tocify-subheader-tags" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="tags-GETapi-tags">
+                        <a href="#tags-GETapi-tags">Show all tags</a>
+                    </li>
+                                                    </ul>
+                            </ul>
         
                         
             </div>
@@ -106,7 +168,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: November 26 2022</li>
+        <li>Last updated: February 16 2023</li>
     </ul>
 </div>
 
@@ -124,7 +186,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">http://dp.test</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
@@ -150,7 +212,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Accept: application/json" \
     --data "{
     \"email\": \"login@login.sk\",
-    \"password\": \"excepturi\"
+    \"password\": \"nobis\"
 }"
 </code></pre></div>
 
@@ -167,7 +229,7 @@ const headers = {
 
 let body = {
     "email": "login@login.sk",
-    "password": "excepturi"
+    "password": "nobis"
 };
 
 fetch(url, {
@@ -188,7 +250,7 @@ $response = $client-&gt;post(
         ],
         'json' =&gt; [
             'email' =&gt; 'login@login.sk',
-            'password' =&gt; 'excepturi',
+            'password' =&gt; 'nobis',
         ],
     ]
 );
@@ -312,7 +374,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="excepturi"
+               value="nobis"
                data-component="body" hidden>
     <br>
 <p>Password</p>
@@ -570,10 +632,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"first_name\": \"est\",
-    \"last_name\": \"quo\",
+    \"first_name\": \"sit\",
+    \"last_name\": \"incidunt\",
     \"email\": \"login@login.sk\",
-    \"password\": \"eveniet\"
+    \"password\": \"quas\"
 }"
 </code></pre></div>
 
@@ -589,10 +651,10 @@ const headers = {
 };
 
 let body = {
-    "first_name": "est",
-    "last_name": "quo",
+    "first_name": "sit",
+    "last_name": "incidunt",
     "email": "login@login.sk",
-    "password": "eveniet"
+    "password": "quas"
 };
 
 fetch(url, {
@@ -612,10 +674,10 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'first_name' =&gt; 'est',
-            'last_name' =&gt; 'quo',
+            'first_name' =&gt; 'sit',
+            'last_name' =&gt; 'incidunt',
             'email' =&gt; 'login@login.sk',
-            'password' =&gt; 'eveniet',
+            'password' =&gt; 'quas',
         ],
     ]
 );
@@ -711,7 +773,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="first_name"
                data-endpoint="POSTapi-register"
-               value="est"
+               value="sit"
                data-component="body" hidden>
     <br>
 <p>Firstname</p>
@@ -721,7 +783,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="last_name"
                data-endpoint="POSTapi-register"
-               value="quo"
+               value="incidunt"
                data-component="body" hidden>
     <br>
 <p>Lastname</p>
@@ -741,7 +803,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="eveniet"
+               value="quas"
                data-component="body" hidden>
     <br>
 <p>Password</p>
@@ -766,8 +828,8 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --data "{
     \"email\": \"login@login.sk\",
-    \"code\": \"alias\",
-    \"password\": \"inventore\"
+    \"code\": \"occaecati\",
+    \"password\": \"iste\"
 }"
 </code></pre></div>
 
@@ -784,8 +846,8 @@ const headers = {
 
 let body = {
     "email": "login@login.sk",
-    "code": "alias",
-    "password": "inventore"
+    "code": "occaecati",
+    "password": "iste"
 };
 
 fetch(url, {
@@ -806,8 +868,8 @@ $response = $client-&gt;post(
         ],
         'json' =&gt; [
             'email' =&gt; 'login@login.sk',
-            'code' =&gt; 'alias',
-            'password' =&gt; 'inventore',
+            'code' =&gt; 'occaecati',
+            'password' =&gt; 'iste',
         ],
     ]
 );
@@ -901,7 +963,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="code"
                data-endpoint="POSTapi-password-reset-code"
-               value="alias"
+               value="occaecati"
                data-component="body" hidden>
     <br>
 <p>Password reset code</p>
@@ -911,7 +973,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-password-reset-code"
-               value="inventore"
+               value="iste"
                data-component="body" hidden>
     <br>
 <p>New password</p>
@@ -1059,6 +1121,1861 @@ print_r(json_decode((string) $body));</code></pre></div>
                data-component="body" hidden>
     <br>
 <p>Login e-mail</p>
+        </p>
+        </form>
+
+        <h1 id="cipher-keys">Cipher keys</h1>
+
+    <p>APIs for Cipher keys</p>
+
+            <h2 id="cipher-keys-GETapi-cipher-keys">All approved cipher keys</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-cipher-keys">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/cipher-keys" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"orderBy\": \"id\",
+    \"orderDirection\": \"asc\",
+    \"page\": 8,
+    \"per_page\": 10,
+    \"detailed\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/cipher-keys"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "orderBy": "id",
+    "orderDirection": "asc",
+    "page": 8,
+    "per_page": 10,
+    "detailed": true
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/cipher-keys',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'orderBy' =&gt; 'id',
+            'orderDirection' =&gt; 'asc',
+            'page' =&gt; 8,
+            'per_page' =&gt; 10,
+            'detailed' =&gt; true,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cipher-keys">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all approved cipher keys.&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 8,
+            &quot;signature&quot;: &quot;cahac&quot;
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;signature&quot;: &quot;dsfsdfsdfsdf&quot;
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;signature&quot;: &quot;dsfsdfsdfsdf222222&quot;
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;signature&quot;: &quot;dsfsdfsdfsdf222222333333&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;signature&quot;: &quot;sdf sdfsdfsdf sdfsdf&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;signature&quot;: &quot;sdfsdfsdf&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all approved cipher keys with details.&quot;,
+    &quot;data&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: 2,
+                &quot;signature&quot;: &quot;sdf sdfsdfsdf sdfsdf&quot;,
+                &quot;description&quot;: &quot;&lt;p&gt;sdf sd fsd fs df sdf sdf sdf sdf sdfsdf sdfsdf sdfsdf&lt;/p&gt;&quot;,
+                &quot;complete_structure&quot;: &quot;sxcvxc v xcvxcv xcvxcv&quot;,
+                &quot;used_chars&quot;: &quot;sdfsd fsdf&quot;,
+                &quot;cipher_type&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Nomenclator&quot;
+                },
+                &quot;key_type&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;e&quot;
+                },
+                &quot;used_from&quot;: &quot;2023-01-31T12:00:00.000000Z&quot;,
+                &quot;used_to&quot;: &quot;2023-02-04T12:00:00.000000Z&quot;,
+                &quot;used_around&quot;: null,
+                &quot;folder&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;lala&quot;,
+                    &quot;fond_id&quot;: 2,
+                    &quot;start_date&quot;: null,
+                    &quot;end_date&quot;: null,
+                    &quot;fond&quot;: {
+                        &quot;id&quot;: 2,
+                        &quot;name&quot;: &quot;fafafa&quot;,
+                        &quot;archive_id&quot;: 1,
+                        &quot;archive&quot;: {
+                            &quot;id&quot;: 1,
+                            &quot;short_name&quot;: &quot;archive 1&quot;,
+                            &quot;name&quot;: &quot;archive 1&quot;,
+                            &quot;country&quot;: null
+                        }
+                    }
+                },
+                &quot;location&quot;: {
+                    &quot;id&quot;: 12,
+                    &quot;name&quot;: &quot;Jahtakistan&quot;,
+                    &quot;continent&quot;: &quot;Europe&quot;
+                },
+                &quot;language&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;english&quot;
+                },
+                &quot;state&quot;: {
+                    &quot;id&quot;: &quot;approved&quot;,
+                    &quot;title&quot;: &quot;Approved&quot;,
+                    &quot;show&quot;: true
+                },
+                &quot;note&quot;: &quot;saaaaaa&quot;,
+                &quot;created_by&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;first_name&quot;: &quot;Administrator&quot;,
+                    &quot;last_name&quot;: &quot;Administrator&quot;
+                },
+                &quot;images&quot;: [
+                    {
+                        &quot;url&quot;: {
+                            &quot;thumb&quot;: &quot;http://dp.test/media/3/conversions/madlo-thumb.jpg&quot;,
+                            &quot;big&quot;: &quot;http://dp.test/media/3/conversions/madlo-big.jpg&quot;,
+                            &quot;large&quot;: &quot;http://dp.test/media/3/conversions/madlo-large.jpg&quot;,
+                            &quot;original&quot;: &quot;http://dp.test/media/3/madlo.png&quot;
+                        },
+                        &quot;structure&quot;: &quot;&quot;,
+                        &quot;has_instructions&quot;: 0
+                    }
+                ],
+                &quot;users&quot;: [
+                    {
+                        &quot;person&quot;: {
+                            &quot;id&quot;: 1,
+                            &quot;name&quot;: &quot;user 1&quot;
+                        },
+                        &quot;is_main_user&quot;: 0
+                    }
+                ],
+                &quot;tags&quot;: [
+                    {
+                        &quot;id&quot;: 1,
+                        &quot;name&quot;: &quot;new tag&quot;,
+                        &quot;type&quot;: &quot;cipher_key&quot;
+                    },
+                    {
+                        &quot;id&quot;: 2,
+                        &quot;name&quot;: &quot;jahahaha&quot;,
+                        &quot;type&quot;: &quot;cipher_key&quot;
+                    }
+                ],
+                &quot;created_at&quot;: &quot;2023-01-31 15:07:52&quot;,
+                &quot;updated_at&quot;: &quot;2023-01-31 16:28:17&quot;
+            }
+        ],
+        &quot;first_page_url&quot;: &quot;http://dp.test/api/cipher-keys/approved?detailed=1&amp;orderBy=id&amp;orderDirection=desc&amp;page=1&quot;,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;last_page_url&quot;: &quot;http://dp.test/api/cipher-keys/approved?detailed=1&amp;orderBy=id&amp;orderDirection=desc&amp;page=1&quot;,
+        &quot;next_page_url&quot;: null,
+        &quot;path&quot;: &quot;http://dp.test/api/cipher-keys/approved&quot;,
+        &quot;per_page&quot;: 10000,
+        &quot;prev_page_url&quot;: null,
+        &quot;to&quot;: 6,
+        &quot;total&quot;: 6
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cipher-keys" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cipher-keys"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cipher-keys"></code></pre>
+</span>
+<span id="execution-error-GETapi-cipher-keys" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cipher-keys"></code></pre>
+</span>
+<form id="form-GETapi-cipher-keys" data-method="GET"
+      data-path="api/cipher-keys"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cipher-keys', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cipher-keys"
+                    onclick="tryItOut('GETapi-cipher-keys');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cipher-keys"
+                    onclick="cancelTryOut('GETapi-cipher-keys');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cipher-keys" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cipher-keys</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>orderBy</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderBy"
+               data-endpoint="GETapi-cipher-keys"
+               value="id"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>id</code> or <code>signature</code>.</p>
+        </p>
+                <p>
+            <b><code>orderDirection</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderDirection"
+               data-endpoint="GETapi-cipher-keys"
+               value="asc"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>asc</code> or <code>desc</code>.</p>
+        </p>
+                <p>
+            <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETapi-cipher-keys"
+               value="8"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>per_page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="per_page"
+               data-endpoint="GETapi-cipher-keys"
+               value="10"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>detailed</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-cipher-keys" hidden>
+            <input type="radio" name="detailed"
+                   value="true"
+                   data-endpoint="GETapi-cipher-keys"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-cipher-keys" hidden>
+            <input type="radio" name="detailed"
+                   value="false"
+                   data-endpoint="GETapi-cipher-keys"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="cipher-keys-GETapi-cipher-keys-my">All my cipher keys</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-cipher-keys-my">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/cipher-keys/my" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"orderBy\": \"id\",
+    \"orderDirection\": \"asc\",
+    \"page\": 10,
+    \"per_page\": 3,
+    \"detailed\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/cipher-keys/my"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "orderBy": "id",
+    "orderDirection": "asc",
+    "page": 10,
+    "per_page": 3,
+    "detailed": true
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/cipher-keys/my',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'orderBy' =&gt; 'id',
+            'orderDirection' =&gt; 'asc',
+            'page' =&gt; 10,
+            'per_page' =&gt; 3,
+            'detailed' =&gt; true,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cipher-keys-my">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all approved cipher keys.&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 8,
+            &quot;signature&quot;: &quot;cahac&quot;
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;signature&quot;: &quot;dsfsdfsdfsdf&quot;
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;signature&quot;: &quot;dsfsdfsdfsdf222222&quot;
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;signature&quot;: &quot;dsfsdfsdfsdf222222333333&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;signature&quot;: &quot;sdf sdfsdfsdf sdfsdf&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;signature&quot;: &quot;sdfsdfsdf&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all approved cipher keys with details.&quot;,
+    &quot;data&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: 2,
+                &quot;signature&quot;: &quot;sdf sdfsdfsdf sdfsdf&quot;,
+                &quot;description&quot;: &quot;&lt;p&gt;sdf sd fsd fs df sdf sdf sdf sdf sdfsdf sdfsdf sdfsdf&lt;/p&gt;&quot;,
+                &quot;complete_structure&quot;: &quot;sxcvxc v xcvxcv xcvxcv&quot;,
+                &quot;used_chars&quot;: &quot;sdfsd fsdf&quot;,
+                &quot;cipher_type&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Nomenclator&quot;
+                },
+                &quot;key_type&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;e&quot;
+                },
+                &quot;used_from&quot;: &quot;2023-01-31T12:00:00.000000Z&quot;,
+                &quot;used_to&quot;: &quot;2023-02-04T12:00:00.000000Z&quot;,
+                &quot;used_around&quot;: null,
+                &quot;folder&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;lala&quot;,
+                    &quot;fond_id&quot;: 2,
+                    &quot;start_date&quot;: null,
+                    &quot;end_date&quot;: null,
+                    &quot;fond&quot;: {
+                        &quot;id&quot;: 2,
+                        &quot;name&quot;: &quot;fafafa&quot;,
+                        &quot;archive_id&quot;: 1,
+                        &quot;archive&quot;: {
+                            &quot;id&quot;: 1,
+                            &quot;short_name&quot;: &quot;archive 1&quot;,
+                            &quot;name&quot;: &quot;archive 1&quot;,
+                            &quot;country&quot;: null
+                        }
+                    }
+                },
+                &quot;location&quot;: {
+                    &quot;id&quot;: 12,
+                    &quot;name&quot;: &quot;Jahtakistan&quot;,
+                    &quot;continent&quot;: &quot;Europe&quot;
+                },
+                &quot;language&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;english&quot;
+                },
+                &quot;state&quot;: {
+                    &quot;id&quot;: &quot;approved&quot;,
+                    &quot;title&quot;: &quot;Approved&quot;,
+                    &quot;show&quot;: true
+                },
+                &quot;note&quot;: &quot;saaaaaa&quot;,
+                &quot;created_by&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;first_name&quot;: &quot;Administrator&quot;,
+                    &quot;last_name&quot;: &quot;Administrator&quot;
+                },
+                &quot;images&quot;: [
+                    {
+                        &quot;url&quot;: {
+                            &quot;thumb&quot;: &quot;http://dp.test/media/3/conversions/madlo-thumb.jpg&quot;,
+                            &quot;big&quot;: &quot;http://dp.test/media/3/conversions/madlo-big.jpg&quot;,
+                            &quot;large&quot;: &quot;http://dp.test/media/3/conversions/madlo-large.jpg&quot;,
+                            &quot;original&quot;: &quot;http://dp.test/media/3/madlo.png&quot;
+                        },
+                        &quot;structure&quot;: &quot;&quot;,
+                        &quot;has_instructions&quot;: 0
+                    }
+                ],
+                &quot;users&quot;: [
+                    {
+                        &quot;person&quot;: {
+                            &quot;id&quot;: 1,
+                            &quot;name&quot;: &quot;user 1&quot;
+                        },
+                        &quot;is_main_user&quot;: 0
+                    }
+                ],
+                &quot;tags&quot;: [
+                    {
+                        &quot;id&quot;: 1,
+                        &quot;name&quot;: &quot;new tag&quot;,
+                        &quot;type&quot;: &quot;cipher_key&quot;
+                    },
+                    {
+                        &quot;id&quot;: 2,
+                        &quot;name&quot;: &quot;jahahaha&quot;,
+                        &quot;type&quot;: &quot;cipher_key&quot;
+                    }
+                ],
+                &quot;created_at&quot;: &quot;2023-01-31 15:07:52&quot;,
+                &quot;updated_at&quot;: &quot;2023-01-31 16:28:17&quot;
+            }
+        ],
+        &quot;first_page_url&quot;: &quot;http://dp.test/api/cipher-keys/approved?detailed=1&amp;orderBy=id&amp;orderDirection=desc&amp;page=1&quot;,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;last_page_url&quot;: &quot;http://dp.test/api/cipher-keys/approved?detailed=1&amp;orderBy=id&amp;orderDirection=desc&amp;page=1&quot;,
+        &quot;next_page_url&quot;: null,
+        &quot;path&quot;: &quot;http://dp.test/api/cipher-keys/approved&quot;,
+        &quot;per_page&quot;: 10000,
+        &quot;prev_page_url&quot;: null,
+        &quot;to&quot;: 6,
+        &quot;total&quot;: 6
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cipher-keys-my" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cipher-keys-my"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cipher-keys-my"></code></pre>
+</span>
+<span id="execution-error-GETapi-cipher-keys-my" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cipher-keys-my"></code></pre>
+</span>
+<form id="form-GETapi-cipher-keys-my" data-method="GET"
+      data-path="api/cipher-keys/my"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cipher-keys-my', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cipher-keys-my"
+                    onclick="tryItOut('GETapi-cipher-keys-my');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cipher-keys-my"
+                    onclick="cancelTryOut('GETapi-cipher-keys-my');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cipher-keys-my" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cipher-keys/my</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-cipher-keys-my" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-cipher-keys-my"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>orderBy</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderBy"
+               data-endpoint="GETapi-cipher-keys-my"
+               value="id"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>id</code> or <code>signature</code>.</p>
+        </p>
+                <p>
+            <b><code>orderDirection</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderDirection"
+               data-endpoint="GETapi-cipher-keys-my"
+               value="asc"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>asc</code> or <code>desc</code>.</p>
+        </p>
+                <p>
+            <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETapi-cipher-keys-my"
+               value="10"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>per_page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="per_page"
+               data-endpoint="GETapi-cipher-keys-my"
+               value="3"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>detailed</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-cipher-keys-my" hidden>
+            <input type="radio" name="detailed"
+                   value="true"
+                   data-endpoint="GETapi-cipher-keys-my"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-cipher-keys-my" hidden>
+            <input type="radio" name="detailed"
+                   value="false"
+                   data-endpoint="GETapi-cipher-keys-my"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="cipher-keys-GETapi-key-types">Show all key types</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-key-types">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/key-types" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/key-types"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/key-types',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-key-types">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all key types&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;e&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;ed&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-key-types" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-key-types"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-key-types"></code></pre>
+</span>
+<span id="execution-error-GETapi-key-types" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-key-types"></code></pre>
+</span>
+<form id="form-GETapi-key-types" data-method="GET"
+      data-path="api/key-types"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-key-types', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-key-types"
+                    onclick="tryItOut('GETapi-key-types');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-key-types"
+                    onclick="cancelTryOut('GETapi-key-types');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-key-types" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/key-types</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-key-types" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-key-types"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="cipher-keys-GETapi-cipher-keys--cipherKey_id-">Show cipher key</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-cipher-keys--cipherKey_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/cipher-keys/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/cipher-keys/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/cipher-keys/1',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cipher-keys--cipherKey_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Get a cipher key.&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;signature&quot;: &quot;sdf sdf sdfsdfsdf&quot;,
+        &quot;description&quot;: null,
+        &quot;complete_structure&quot;: &quot;structure&quot;,
+        &quot;used_chars&quot;: &quot;sdf sd fsdfsdfsdf&quot;,
+        &quot;cipher_type&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Undefined&quot;
+        },
+        &quot;key_type&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;e&quot;
+        },
+        &quot;used_from&quot;: &quot;2023-01-31T12:00:00.000000Z&quot;,
+        &quot;used_to&quot;: &quot;2023-02-03T12:00:00.000000Z&quot;,
+        &quot;used_around&quot;: null,
+        &quot;folder&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;folder 1&quot;,
+            &quot;fond_id&quot;: 1,
+            &quot;start_date&quot;: null,
+            &quot;end_date&quot;: null,
+            &quot;fond&quot;: {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;fond 1&quot;,
+                &quot;archive_id&quot;: 1,
+                &quot;archive&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;short_name&quot;: &quot;archive 1&quot;,
+                    &quot;name&quot;: &quot;archive 1&quot;,
+                    &quot;country&quot;: null
+                }
+            }
+        },
+        &quot;location&quot;: {
+            &quot;id&quot;: 9,
+            &quot;name&quot;: &quot;jajaja&quot;,
+            &quot;continent&quot;: &quot;Europe&quot;
+        },
+        &quot;language&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;english&quot;
+        },
+        &quot;state&quot;: {
+            &quot;id&quot;: &quot;awaiting&quot;,
+            &quot;title&quot;: &quot;Awaiting&quot;,
+            &quot;show&quot;: true
+        },
+        &quot;note&quot;: null,
+        &quot;created_by&quot;: {
+            &quot;id&quot;: 1,
+            &quot;first_name&quot;: &quot;Administrator&quot;,
+            &quot;last_name&quot;: &quot;Administrator&quot;
+        },
+        &quot;images&quot;: [
+            {
+                &quot;url&quot;: {
+                    &quot;thumb&quot;: &quot;http://dp.test/media/2/conversions/madlo-thumb.jpg&quot;,
+                    &quot;big&quot;: &quot;http://dp.test/media/2/conversions/madlo-big.jpg&quot;,
+                    &quot;large&quot;: &quot;http://dp.test/media/2/conversions/madlo-large.jpg&quot;,
+                    &quot;original&quot;: &quot;http://dp.test/media/2/madlo.png&quot;
+                },
+                &quot;structure&quot;: &quot;&quot;,
+                &quot;has_instructions&quot;: 1
+            }
+        ],
+        &quot;users&quot;: [],
+        &quot;tags&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;new tag&quot;,
+                &quot;type&quot;: &quot;cipher_key&quot;
+            }
+        ],
+        &quot;created_at&quot;: &quot;2023-01-31 14:46:54&quot;,
+        &quot;updated_at&quot;: &quot;2023-01-31 14:46:55&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cipher-keys--cipherKey_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cipher-keys--cipherKey_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cipher-keys--cipherKey_id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-cipher-keys--cipherKey_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cipher-keys--cipherKey_id-"></code></pre>
+</span>
+<form id="form-GETapi-cipher-keys--cipherKey_id-" data-method="GET"
+      data-path="api/cipher-keys/{cipherKey_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cipher-keys--cipherKey_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cipher-keys--cipherKey_id-"
+                    onclick="tryItOut('GETapi-cipher-keys--cipherKey_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cipher-keys--cipherKey_id-"
+                    onclick="cancelTryOut('GETapi-cipher-keys--cipherKey_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cipher-keys--cipherKey_id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cipher-keys/{cipherKey_id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>cipherKey_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="cipherKey_id"
+               data-endpoint="GETapi-cipher-keys--cipherKey_id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the cipherKey.</p>
+            </p>
+                    </form>
+
+            <h2 id="cipher-keys-GETapi-cipher-types">Show all cipher types</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-cipher-types">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/cipher-types" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/cipher-types"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/cipher-types',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cipher-types">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all cipher types.&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Code&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Nomenclator&quot;
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;Simple substitution&quot;
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Undefined&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cipher-types" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cipher-types"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cipher-types"></code></pre>
+</span>
+<span id="execution-error-GETapi-cipher-types" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cipher-types"></code></pre>
+</span>
+<form id="form-GETapi-cipher-types" data-method="GET"
+      data-path="api/cipher-types"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cipher-types', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cipher-types"
+                    onclick="tryItOut('GETapi-cipher-types');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cipher-types"
+                    onclick="cancelTryOut('GETapi-cipher-types');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cipher-types" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cipher-types</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-cipher-types" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-cipher-types"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+        <h1 id="languages">Languages</h1>
+
+    <p>APIs for Languages</p>
+
+            <h2 id="languages-GETapi-languages">Show all languages</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-languages">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/languages" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"orderBy\": \"id\",
+    \"orderDirection\": \"asc\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/languages"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "orderBy": "id",
+    "orderDirection": "asc"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/languages',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'orderBy' =&gt; 'id',
+            'orderDirection' =&gt; 'asc',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-languages">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all languages&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;english&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-languages" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-languages"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-languages"></code></pre>
+</span>
+<span id="execution-error-GETapi-languages" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-languages"></code></pre>
+</span>
+<form id="form-GETapi-languages" data-method="GET"
+      data-path="api/languages"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-languages', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-languages"
+                    onclick="tryItOut('GETapi-languages');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-languages"
+                    onclick="cancelTryOut('GETapi-languages');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-languages" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/languages</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-languages" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-languages"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>orderBy</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderBy"
+               data-endpoint="GETapi-languages"
+               value="id"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>id</code> or <code>name</code>.</p>
+        </p>
+                <p>
+            <b><code>orderDirection</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderDirection"
+               data-endpoint="GETapi-languages"
+               value="asc"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>asc</code> or <code>desc</code>.</p>
+        </p>
+        </form>
+
+        <h1 id="locations">Locations</h1>
+
+    <p>APIs for Locations</p>
+
+            <h2 id="locations-GETapi-locations">Show all locations</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-locations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/locations" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/locations"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/locations',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-locations">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all locations&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 6,
+            &quot;continent&quot;: &quot;Africa&quot;,
+            &quot;name&quot;: null
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;continent&quot;: &quot;Antartica&quot;,
+            &quot;name&quot;: null
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;continent&quot;: &quot;Asia&quot;,
+            &quot;name&quot;: null
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;continent&quot;: &quot;Asia&quot;,
+            &quot;name&quot;: &quot;Jamajka&quot;
+        },
+        {
+            &quot;id&quot;: 11,
+            &quot;continent&quot;: &quot;Asia&quot;,
+            &quot;name&quot;: &quot;Jahtakistan&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;continent&quot;: &quot;Europe&quot;,
+            &quot;name&quot;: null
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;continent&quot;: &quot;Europe&quot;,
+            &quot;name&quot;: &quot;jajaja&quot;
+        },
+        {
+            &quot;id&quot;: 12,
+            &quot;continent&quot;: &quot;Europe&quot;,
+            &quot;name&quot;: &quot;Jahtakistan&quot;
+        },
+        {
+            &quot;id&quot;: 13,
+            &quot;continent&quot;: &quot;Europe&quot;,
+            &quot;name&quot;: &quot;salamandra&quot;
+        },
+        {
+            &quot;id&quot;: 14,
+            &quot;continent&quot;: &quot;Europe&quot;,
+            &quot;name&quot;: &quot;Niekda doma&quot;
+        },
+        {
+            &quot;id&quot;: 15,
+            &quot;continent&quot;: &quot;Europe&quot;,
+            &quot;name&quot;: &quot;Nikede johanesk&quot;
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;continent&quot;: &quot;North America&quot;,
+            &quot;name&quot;: null
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;continent&quot;: &quot;Oceania&quot;,
+            &quot;name&quot;: null
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;continent&quot;: &quot;South America&quot;,
+            &quot;name&quot;: null
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;continent&quot;: &quot;Unknown&quot;,
+            &quot;name&quot;: null
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-locations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-locations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-locations"></code></pre>
+</span>
+<span id="execution-error-GETapi-locations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-locations"></code></pre>
+</span>
+<form id="form-GETapi-locations" data-method="GET"
+      data-path="api/locations"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-locations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-locations"
+                    onclick="tryItOut('GETapi-locations');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-locations"
+                    onclick="cancelTryOut('GETapi-locations');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-locations" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/locations</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-locations" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-locations"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+        <h1 id="persons">Persons</h1>
+
+    <p>APIs for Persons</p>
+
+            <h2 id="persons-GETapi-persons">Show all persons</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-persons">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/persons" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"orderBy\": \"name\",
+    \"orderDirection\": \"asc\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/persons"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "orderBy": "name",
+    "orderDirection": "asc"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/persons',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'orderBy' =&gt; 'name',
+            'orderDirection' =&gt; 'asc',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-persons">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all persons&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 11,
+            &quot;name&quot;: &quot;atos&quot;
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;name&quot;: &quot;hahahahahaha&quot;
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;name&quot;: &quot;jahaha&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-persons" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-persons"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-persons"></code></pre>
+</span>
+<span id="execution-error-GETapi-persons" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-persons"></code></pre>
+</span>
+<form id="form-GETapi-persons" data-method="GET"
+      data-path="api/persons"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-persons', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-persons"
+                    onclick="tryItOut('GETapi-persons');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-persons"
+                    onclick="cancelTryOut('GETapi-persons');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-persons" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/persons</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-persons" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-persons"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>orderBy</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderBy"
+               data-endpoint="GETapi-persons"
+               value="name"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>id</code> or <code>name</code>.</p>
+        </p>
+                <p>
+            <b><code>orderDirection</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderDirection"
+               data-endpoint="GETapi-persons"
+               value="asc"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>asc</code> or <code>desc</code>.</p>
+        </p>
+        </form>
+
+        <h1 id="tags">Tags</h1>
+
+    <p>APIs for Tags</p>
+
+            <h2 id="tags-GETapi-tags">Show all tags</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-tags">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/tags" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"orderBy\": \"type\",
+    \"orderDirection\": \"desc\",
+    \"type\": \"cryptogram\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/tags"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "orderBy": "type",
+    "orderDirection": "desc",
+    "type": "cryptogram"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/tags',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'orderBy' =&gt; 'type',
+            'orderDirection' =&gt; 'desc',
+            'type' =&gt; 'cryptogram',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-tags">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all tags&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 4,
+            &quot;name&quot;: &quot;lapovica&quot;,
+            &quot;type&quot;: &quot;cryptogram&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;tagovica&quot;,
+            &quot;type&quot;: &quot;cryptogram&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;jahahaha&quot;,
+            &quot;type&quot;: &quot;cipher_key&quot;
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;new tag&quot;,
+            &quot;type&quot;: &quot;cipher_key&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-tags" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-tags"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-tags"></code></pre>
+</span>
+<span id="execution-error-GETapi-tags" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-tags"></code></pre>
+</span>
+<form id="form-GETapi-tags" data-method="GET"
+      data-path="api/tags"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-tags', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-tags"
+                    onclick="tryItOut('GETapi-tags');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-tags"
+                    onclick="cancelTryOut('GETapi-tags');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-tags" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/tags</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-tags" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-tags"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>orderBy</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderBy"
+               data-endpoint="GETapi-tags"
+               value="type"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>id</code>, <code>name</code>, or <code>type</code>.</p>
+        </p>
+                <p>
+            <b><code>orderDirection</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderDirection"
+               data-endpoint="GETapi-tags"
+               value="desc"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>asc</code> or <code>desc</code>.</p>
+        </p>
+                <p>
+            <b><code>type</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="type"
+               data-endpoint="GETapi-tags"
+               value="cryptogram"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>cipher_key</code> or <code>cryptogram</code>.</p>
         </p>
         </form>
 

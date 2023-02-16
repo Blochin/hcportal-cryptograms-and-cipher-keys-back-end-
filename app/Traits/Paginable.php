@@ -23,7 +23,7 @@ trait Paginable
 	 * Filter, order and paginate
 	 * 
 	 */
-	private function filterPagination($query, $request, $orderBy = 'id', $orderDirection = 'asc')
+	private function filterPagination($query, $request, $orderBy = 'id', $orderDirection = 'asc', $paginate = true)
 	{
 		if ($request->orderBy && $request->orderDirection) {
 			$query->reorder($request->orderBy, $request->orderDirection);
@@ -31,10 +31,12 @@ trait Paginable
 			$query->reorder($orderBy, $orderDirection);
 		}
 
-		if ($request->per_page) {
+		if ($paginate && $request->per_page) {
 			$query = $query->paginate($request->per_page)->withQueryString();
+		} elseif ($paginate) {
+			$query = $query->paginate(10000)->withQueryString();
 		} else {
-			$query = $query->paginate(12)->withQueryString();
+			$query = $query->get();
 		}
 
 		return $query;

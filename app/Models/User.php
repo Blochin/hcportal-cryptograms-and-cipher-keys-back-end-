@@ -58,6 +58,7 @@ class User extends Authenticatable implements CanActivateContract, HasMedia
         'last_login_at',
     ];
 
+
     protected $appends = ['full_name', 'resource_url'];
 
     /* ************************ ACCESSOR ************************* */

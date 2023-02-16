@@ -1,0 +1,11 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all languages",
+    "data": [
+        {
+            "id": 1,
+            "name": "english"
+        }
+    ]
+}

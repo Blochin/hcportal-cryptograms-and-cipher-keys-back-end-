@@ -1,0 +1,15 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all key types",
+    "data": [
+        {
+            "id": 1,
+            "name": "e"
+        },
+        {
+            "id": 2,
+            "name": "ed"
+        }
+    ]
+}

@@ -1,0 +1,111 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all approved cipher keys with details.",
+    "data": {
+        "current_page": 1,
+        "data": [
+            {
+                "id": 2,
+                "signature": "sdf sdfsdfsdf sdfsdf",
+                "description": "<p>sdf sd fsd fs df sdf sdf sdf sdf sdfsdf sdfsdf sdfsdf</p>",
+                "complete_structure": "sxcvxc v xcvxcv xcvxcv",
+                "used_chars": "sdfsd fsdf",
+                "cipher_type": {
+                    "id": 2,
+                    "name": "Nomenclator"
+                },
+                "key_type": {
+                    "id": 1,
+                    "name": "e"
+                },
+                "used_from": "2023-01-31T12:00:00.000000Z",
+                "used_to": "2023-02-04T12:00:00.000000Z",
+                "used_around": null,
+                "folder": {
+                    "id": 2,
+                    "name": "lala",
+                    "fond_id": 2,
+                    "start_date": null,
+                    "end_date": null,
+                    "fond": {
+                        "id": 2,
+                        "name": "fafafa",
+                        "archive_id": 1,
+                        "archive": {
+                            "id": 1,
+                            "short_name": "archive 1",
+                            "name": "archive 1",
+                            "country": null
+                        }
+                    }
+                },
+                "location": {
+                    "id": 12,
+                    "name": "Jahtakistan",
+                    "continent": "Europe"
+                },
+                "language": {
+                    "id": 1,
+                    "name": "english"
+                },
+                "state": {
+                    "id": "approved",
+                    "title": "Approved",
+                    "show": true
+                },
+                "note": "saaaaaa",
+                "created_by": {
+                    "id": 1,
+                    "first_name": "Administrator",
+                    "last_name": "Administrator"
+                },
+                "images": [
+                    {
+                        "url": {
+                            "thumb": "http://dp.test/media/3/conversions/madlo-thumb.jpg",
+                            "big": "http://dp.test/media/3/conversions/madlo-big.jpg",
+                            "large": "http://dp.test/media/3/conversions/madlo-large.jpg",
+                            "original": "http://dp.test/media/3/madlo.png"
+                        },
+                        "structure": "",
+                        "has_instructions": 0
+                    }
+                ],
+                "users": [
+                    {
+                        "person": {
+                            "id": 1,
+                            "name": "user 1"
+                        },
+                        "is_main_user": 0
+                    }
+                ],
+                "tags": [
+                    {
+                        "id": 1,
+                        "name": "new tag",
+                        "type": "cipher_key"
+                    },
+                    {
+                        "id": 2,
+                        "name": "jahahaha",
+                        "type": "cipher_key"
+                    }
+                ],
+                "created_at": "2023-01-31 15:07:52",
+                "updated_at": "2023-01-31 16:28:17"
+            }
+        ],
+        "first_page_url": "http://dp.test/api/cipher-keys/approved?detailed=1&orderBy=id&orderDirection=desc&page=1",
+        "from": 1,
+        "last_page": 1,
+        "last_page_url": "http://dp.test/api/cipher-keys/approved?detailed=1&orderBy=id&orderDirection=desc&page=1",
+        "next_page_url": null,
+        "path": "http://dp.test/api/cipher-keys/approved",
+        "per_page": 10000,
+        "prev_page_url": null,
+        "to": 6,
+        "total": 6
+    }
+}

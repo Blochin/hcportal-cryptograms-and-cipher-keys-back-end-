@@ -116,6 +116,12 @@ class CipherKey extends Model
         return ($this->location) ? $this->location->name : null;
     }
 
+    /* ************************ Scopes ************************* */
+
+    public function scopeApproved($query)
+    {
+        return $query->where('state', self::STATUS_APPROVED);
+    }
 
     /* ************************ Relationships ************************* */
 

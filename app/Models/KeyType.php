@@ -8,21 +8,21 @@ class KeyType extends Model
 {
     protected $fillable = [
         'name',
-    
+
     ];
-    
-    
-    protected $dates = [
-    
-    ];
+
+
+    protected $dates = [];
     public $timestamps = false;
-    
+
+    protected $hidden = ['resource_url'];
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */
 
     public function getResourceUrlAttribute()
     {
-        return url('/admin/key-types/'.$this->getKey());
+        return url('/admin/key-types/' . $this->getKey());
     }
 }

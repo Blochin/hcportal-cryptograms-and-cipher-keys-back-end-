@@ -1,0 +1,31 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all approved cipher keys.",
+    "data": [
+        {
+            "id": 8,
+            "signature": "cahac"
+        },
+        {
+            "id": 4,
+            "signature": "dsfsdfsdfsdf"
+        },
+        {
+            "id": 6,
+            "signature": "dsfsdfsdfsdf222222"
+        },
+        {
+            "id": 7,
+            "signature": "dsfsdfsdfsdf222222333333"
+        },
+        {
+            "id": 2,
+            "signature": "sdf sdfsdfsdf sdfsdf"
+        },
+        {
+            "id": 3,
+            "signature": "sdfsdfsdf"
+        }
+    ]
+}

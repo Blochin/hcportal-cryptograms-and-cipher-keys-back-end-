@@ -1,0 +1,27 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all tags",
+    "data": [
+        {
+            "id": 4,
+            "name": "lapovica",
+            "type": "cryptogram"
+        },
+        {
+            "id": 3,
+            "name": "tagovica",
+            "type": "cryptogram"
+        },
+        {
+            "id": 2,
+            "name": "jahahaha",
+            "type": "cipher_key"
+        },
+        {
+            "id": 1,
+            "name": "new tag",
+            "type": "cipher_key"
+        }
+    ]
+}

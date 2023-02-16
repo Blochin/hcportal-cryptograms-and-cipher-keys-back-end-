@@ -1,0 +1,83 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "Get a cipher key.",
+    "data": {
+        "id": 1,
+        "signature": "sdf sdf sdfsdfsdf",
+        "description": null,
+        "complete_structure": "structure",
+        "used_chars": "sdf sd fsdfsdfsdf",
+        "cipher_type": {
+            "id": 1,
+            "name": "Undefined"
+        },
+        "key_type": {
+            "id": 1,
+            "name": "e"
+        },
+        "used_from": "2023-01-31T12:00:00.000000Z",
+        "used_to": "2023-02-03T12:00:00.000000Z",
+        "used_around": null,
+        "folder": {
+            "id": 1,
+            "name": "folder 1",
+            "fond_id": 1,
+            "start_date": null,
+            "end_date": null,
+            "fond": {
+                "id": 1,
+                "name": "fond 1",
+                "archive_id": 1,
+                "archive": {
+                    "id": 1,
+                    "short_name": "archive 1",
+                    "name": "archive 1",
+                    "country": null
+                }
+            }
+        },
+        "location": {
+            "id": 9,
+            "name": "jajaja",
+            "continent": "Europe"
+        },
+        "language": {
+            "id": 1,
+            "name": "english"
+        },
+        "state": {
+            "id": "awaiting",
+            "title": "Awaiting",
+            "show": true
+        },
+        "note": null,
+        "created_by": {
+            "id": 1,
+            "first_name": "Administrator",
+            "last_name": "Administrator"
+        },
+        "images": [
+            {
+                "url": {
+                    "thumb": "http://dp.test/media/2/conversions/madlo-thumb.jpg",
+                    "big": "http://dp.test/media/2/conversions/madlo-big.jpg",
+                    "large": "http://dp.test/media/2/conversions/madlo-large.jpg",
+                    "original": "http://dp.test/media/2/madlo.png"
+                },
+                "structure": "",
+                "has_instructions": 1
+            }
+        ],
+        "users": [],
+        "tags": [
+            {
+                "id": 1,
+                "name": "new tag",
+                "type": "cipher_key"
+            }
+        ],
+        "created_at": "2023-01-31 14:46:54",
+        "updated_at": "2023-01-31 14:46:55"
+    }
+}

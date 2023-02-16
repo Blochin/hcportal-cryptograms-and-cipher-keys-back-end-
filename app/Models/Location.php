@@ -27,6 +27,8 @@ class Location extends Model
 
     public $timestamps = false;
 
+    protected $hidden = ['resource_url'];
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */

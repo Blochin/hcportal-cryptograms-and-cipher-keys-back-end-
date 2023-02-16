@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "HCPortal API",
-        "_postman_id": "ab215c75-eb17-4122-aa5d-ab5cc388ad03",
+        "_postman_id": "6459ae67-002e-437a-8c93-9b0833c8614d",
         "description": "HCPortal - Ciphers and Cipher keys API documentation",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"login@login.sk\",\"password\":\"excepturi\"}"
+                            "raw": "{\"email\":\"login@login.sk\",\"password\":\"nobis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -149,7 +149,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"est\",\"last_name\":\"quo\",\"email\":\"login@login.sk\",\"password\":\"eveniet\"}"
+                            "raw": "{\"first_name\":\"sit\",\"last_name\":\"incidunt\",\"email\":\"login@login.sk\",\"password\":\"quas\"}"
                         },
                         "description": "",
                         "auth": {
@@ -193,7 +193,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"login@login.sk\",\"code\":\"alias\",\"password\":\"inventore\"}"
+                            "raw": "{\"email\":\"login@login.sk\",\"code\":\"occaecati\",\"password\":\"iste\"}"
                         },
                         "description": "",
                         "auth": {
@@ -255,6 +255,365 @@
                             "header": [],
                             "code": 200,
                             "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 422,\n    \"message\": \"Validation errors.\",\n    \"data\": {\n        \"email\": [\"The email field is required.\"]\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Cipher keys",
+            "description": "\nAPIs for Cipher keys",
+            "item": [
+                {
+                    "name": "All approved cipher keys",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cipher-keys",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cipher-keys"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\",\"page\":8,\"per_page\":10,\"detailed\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all approved cipher keys.\",\n    \"data\": [\n        {\n            \"id\": 8,\n            \"signature\": \"cahac\"\n        },\n        {\n            \"id\": 4,\n            \"signature\": \"dsfsdfsdfsdf\"\n        },\n        {\n            \"id\": 6,\n            \"signature\": \"dsfsdfsdfsdf222222\"\n        },\n        {\n            \"id\": 7,\n            \"signature\": \"dsfsdfsdfsdf222222333333\"\n        },\n        {\n            \"id\": 2,\n            \"signature\": \"sdf sdfsdfsdf sdfsdf\"\n        },\n        {\n            \"id\": 3,\n            \"signature\": \"sdfsdfsdf\"\n        }\n    ]\n}\n",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all approved cipher keys with details.\",\n    \"data\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 2,\n                \"signature\": \"sdf sdfsdfsdf sdfsdf\",\n                \"description\": \"<p>sdf sd fsd fs df sdf sdf sdf sdf sdfsdf sdfsdf sdfsdf<\/p>\",\n                \"complete_structure\": \"sxcvxc v xcvxcv xcvxcv\",\n                \"used_chars\": \"sdfsd fsdf\",\n                \"cipher_type\": {\n                    \"id\": 2,\n                    \"name\": \"Nomenclator\"\n                },\n                \"key_type\": {\n                    \"id\": 1,\n                    \"name\": \"e\"\n                },\n                \"used_from\": \"2023-01-31T12:00:00.000000Z\",\n                \"used_to\": \"2023-02-04T12:00:00.000000Z\",\n                \"used_around\": null,\n                \"folder\": {\n                    \"id\": 2,\n                    \"name\": \"lala\",\n                    \"fond_id\": 2,\n                    \"start_date\": null,\n                    \"end_date\": null,\n                    \"fond\": {\n                        \"id\": 2,\n                        \"name\": \"fafafa\",\n                        \"archive_id\": 1,\n                        \"archive\": {\n                            \"id\": 1,\n                            \"short_name\": \"archive 1\",\n                            \"name\": \"archive 1\",\n                            \"country\": null\n                        }\n                    }\n                },\n                \"location\": {\n                    \"id\": 12,\n                    \"name\": \"Jahtakistan\",\n                    \"continent\": \"Europe\"\n                },\n                \"language\": {\n                    \"id\": 1,\n                    \"name\": \"english\"\n                },\n                \"state\": {\n                    \"id\": \"approved\",\n                    \"title\": \"Approved\",\n                    \"show\": true\n                },\n                \"note\": \"saaaaaa\",\n                \"created_by\": {\n                    \"id\": 1,\n                    \"first_name\": \"Administrator\",\n                    \"last_name\": \"Administrator\"\n                },\n                \"images\": [\n                    {\n                        \"url\": {\n                            \"thumb\": \"http:\/\/dp.test\/media\/3\/conversions\/madlo-thumb.jpg\",\n                            \"big\": \"http:\/\/dp.test\/media\/3\/conversions\/madlo-big.jpg\",\n                            \"large\": \"http:\/\/dp.test\/media\/3\/conversions\/madlo-large.jpg\",\n                            \"original\": \"http:\/\/dp.test\/media\/3\/madlo.png\"\n                        },\n                        \"structure\": \"\",\n                        \"has_instructions\": 0\n                    }\n                ],\n                \"users\": [\n                    {\n                        \"person\": {\n                            \"id\": 1,\n                            \"name\": \"user 1\"\n                        },\n                        \"is_main_user\": 0\n                    }\n                ],\n                \"tags\": [\n                    {\n                        \"id\": 1,\n                        \"name\": \"new tag\",\n                        \"type\": \"cipher_key\"\n                    },\n                    {\n                        \"id\": 2,\n                        \"name\": \"jahahaha\",\n                        \"type\": \"cipher_key\"\n                    }\n                ],\n                \"created_at\": \"2023-01-31 15:07:52\",\n                \"updated_at\": \"2023-01-31 16:28:17\"\n            }\n        ],\n        \"first_page_url\": \"http:\/\/dp.test\/api\/cipher-keys\/approved?detailed=1&orderBy=id&orderDirection=desc&page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http:\/\/dp.test\/api\/cipher-keys\/approved?detailed=1&orderBy=id&orderDirection=desc&page=1\",\n        \"next_page_url\": null,\n        \"path\": \"http:\/\/dp.test\/api\/cipher-keys\/approved\",\n        \"per_page\": 10000,\n        \"prev_page_url\": null,\n        \"to\": 6,\n        \"total\": 6\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "All my cipher keys",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cipher-keys\/my",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cipher-keys\/my"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\",\"page\":10,\"per_page\":3,\"detailed\":true}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all approved cipher keys.\",\n    \"data\": [\n        {\n            \"id\": 8,\n            \"signature\": \"cahac\"\n        },\n        {\n            \"id\": 4,\n            \"signature\": \"dsfsdfsdfsdf\"\n        },\n        {\n            \"id\": 6,\n            \"signature\": \"dsfsdfsdfsdf222222\"\n        },\n        {\n            \"id\": 7,\n            \"signature\": \"dsfsdfsdfsdf222222333333\"\n        },\n        {\n            \"id\": 2,\n            \"signature\": \"sdf sdfsdfsdf sdfsdf\"\n        },\n        {\n            \"id\": 3,\n            \"signature\": \"sdfsdfsdf\"\n        }\n    ]\n}\n",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all approved cipher keys with details.\",\n    \"data\": {\n        \"current_page\": 1,\n        \"data\": [\n            {\n                \"id\": 2,\n                \"signature\": \"sdf sdfsdfsdf sdfsdf\",\n                \"description\": \"<p>sdf sd fsd fs df sdf sdf sdf sdf sdfsdf sdfsdf sdfsdf<\/p>\",\n                \"complete_structure\": \"sxcvxc v xcvxcv xcvxcv\",\n                \"used_chars\": \"sdfsd fsdf\",\n                \"cipher_type\": {\n                    \"id\": 2,\n                    \"name\": \"Nomenclator\"\n                },\n                \"key_type\": {\n                    \"id\": 1,\n                    \"name\": \"e\"\n                },\n                \"used_from\": \"2023-01-31T12:00:00.000000Z\",\n                \"used_to\": \"2023-02-04T12:00:00.000000Z\",\n                \"used_around\": null,\n                \"folder\": {\n                    \"id\": 2,\n                    \"name\": \"lala\",\n                    \"fond_id\": 2,\n                    \"start_date\": null,\n                    \"end_date\": null,\n                    \"fond\": {\n                        \"id\": 2,\n                        \"name\": \"fafafa\",\n                        \"archive_id\": 1,\n                        \"archive\": {\n                            \"id\": 1,\n                            \"short_name\": \"archive 1\",\n                            \"name\": \"archive 1\",\n                            \"country\": null\n                        }\n                    }\n                },\n                \"location\": {\n                    \"id\": 12,\n                    \"name\": \"Jahtakistan\",\n                    \"continent\": \"Europe\"\n                },\n                \"language\": {\n                    \"id\": 1,\n                    \"name\": \"english\"\n                },\n                \"state\": {\n                    \"id\": \"approved\",\n                    \"title\": \"Approved\",\n                    \"show\": true\n                },\n                \"note\": \"saaaaaa\",\n                \"created_by\": {\n                    \"id\": 1,\n                    \"first_name\": \"Administrator\",\n                    \"last_name\": \"Administrator\"\n                },\n                \"images\": [\n                    {\n                        \"url\": {\n                            \"thumb\": \"http:\/\/dp.test\/media\/3\/conversions\/madlo-thumb.jpg\",\n                            \"big\": \"http:\/\/dp.test\/media\/3\/conversions\/madlo-big.jpg\",\n                            \"large\": \"http:\/\/dp.test\/media\/3\/conversions\/madlo-large.jpg\",\n                            \"original\": \"http:\/\/dp.test\/media\/3\/madlo.png\"\n                        },\n                        \"structure\": \"\",\n                        \"has_instructions\": 0\n                    }\n                ],\n                \"users\": [\n                    {\n                        \"person\": {\n                            \"id\": 1,\n                            \"name\": \"user 1\"\n                        },\n                        \"is_main_user\": 0\n                    }\n                ],\n                \"tags\": [\n                    {\n                        \"id\": 1,\n                        \"name\": \"new tag\",\n                        \"type\": \"cipher_key\"\n                    },\n                    {\n                        \"id\": 2,\n                        \"name\": \"jahahaha\",\n                        \"type\": \"cipher_key\"\n                    }\n                ],\n                \"created_at\": \"2023-01-31 15:07:52\",\n                \"updated_at\": \"2023-01-31 16:28:17\"\n            }\n        ],\n        \"first_page_url\": \"http:\/\/dp.test\/api\/cipher-keys\/approved?detailed=1&orderBy=id&orderDirection=desc&page=1\",\n        \"from\": 1,\n        \"last_page\": 1,\n        \"last_page_url\": \"http:\/\/dp.test\/api\/cipher-keys\/approved?detailed=1&orderBy=id&orderDirection=desc&page=1\",\n        \"next_page_url\": null,\n        \"path\": \"http:\/\/dp.test\/api\/cipher-keys\/approved\",\n        \"per_page\": 10000,\n        \"prev_page_url\": null,\n        \"to\": 6,\n        \"total\": 6\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show all key types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/key-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/key-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all key types\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"e\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"ed\"\n        }\n    ]\n}\n",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show cipher key",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cipher-keys\/:cipherKey_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cipher-keys\/:cipherKey_id",
+                            "variable": [
+                                {
+                                    "id": "cipherKey_id",
+                                    "key": "cipherKey_id",
+                                    "value": "1",
+                                    "description": "The ID of the cipherKey."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Get a cipher key.\",\n    \"data\": {\n        \"id\": 1,\n        \"signature\": \"sdf sdf sdfsdfsdf\",\n        \"description\": null,\n        \"complete_structure\": \"structure\",\n        \"used_chars\": \"sdf sd fsdfsdfsdf\",\n        \"cipher_type\": {\n            \"id\": 1,\n            \"name\": \"Undefined\"\n        },\n        \"key_type\": {\n            \"id\": 1,\n            \"name\": \"e\"\n        },\n        \"used_from\": \"2023-01-31T12:00:00.000000Z\",\n        \"used_to\": \"2023-02-03T12:00:00.000000Z\",\n        \"used_around\": null,\n        \"folder\": {\n            \"id\": 1,\n            \"name\": \"folder 1\",\n            \"fond_id\": 1,\n            \"start_date\": null,\n            \"end_date\": null,\n            \"fond\": {\n                \"id\": 1,\n                \"name\": \"fond 1\",\n                \"archive_id\": 1,\n                \"archive\": {\n                    \"id\": 1,\n                    \"short_name\": \"archive 1\",\n                    \"name\": \"archive 1\",\n                    \"country\": null\n                }\n            }\n        },\n        \"location\": {\n            \"id\": 9,\n            \"name\": \"jajaja\",\n            \"continent\": \"Europe\"\n        },\n        \"language\": {\n            \"id\": 1,\n            \"name\": \"english\"\n        },\n        \"state\": {\n            \"id\": \"awaiting\",\n            \"title\": \"Awaiting\",\n            \"show\": true\n        },\n        \"note\": null,\n        \"created_by\": {\n            \"id\": 1,\n            \"first_name\": \"Administrator\",\n            \"last_name\": \"Administrator\"\n        },\n        \"images\": [\n            {\n                \"url\": {\n                    \"thumb\": \"http:\/\/dp.test\/media\/2\/conversions\/madlo-thumb.jpg\",\n                    \"big\": \"http:\/\/dp.test\/media\/2\/conversions\/madlo-big.jpg\",\n                    \"large\": \"http:\/\/dp.test\/media\/2\/conversions\/madlo-large.jpg\",\n                    \"original\": \"http:\/\/dp.test\/media\/2\/madlo.png\"\n                },\n                \"structure\": \"\",\n                \"has_instructions\": 1\n            }\n        ],\n        \"users\": [],\n        \"tags\": [\n            {\n                \"id\": 1,\n                \"name\": \"new tag\",\n                \"type\": \"cipher_key\"\n            }\n        ],\n        \"created_at\": \"2023-01-31 14:46:54\",\n        \"updated_at\": \"2023-01-31 14:46:55\"\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show all cipher types",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cipher-types",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cipher-types"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all cipher types.\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"Code\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Nomenclator\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Simple substitution\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Undefined\"\n        }\n    ]\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Languages",
+            "description": "\nAPIs for Languages",
+            "item": [
+                {
+                    "name": "Show all languages",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/languages",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/languages"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all languages\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"english\"\n        }\n    ]\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Locations",
+            "description": "\nAPIs for Locations",
+            "item": [
+                {
+                    "name": "Show all locations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/locations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/locations"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all locations\",\n    \"data\": [\n        {\n            \"id\": 6,\n            \"continent\": \"Africa\",\n            \"name\": null\n        },\n        {\n            \"id\": 7,\n            \"continent\": \"Antartica\",\n            \"name\": null\n        },\n        {\n            \"id\": 4,\n            \"continent\": \"Asia\",\n            \"name\": null\n        },\n        {\n            \"id\": 10,\n            \"continent\": \"Asia\",\n            \"name\": \"Jamajka\"\n        },\n        {\n            \"id\": 11,\n            \"continent\": \"Asia\",\n            \"name\": \"Jahtakistan\"\n        },\n        {\n            \"id\": 3,\n            \"continent\": \"Europe\",\n            \"name\": null\n        },\n        {\n            \"id\": 9,\n            \"continent\": \"Europe\",\n            \"name\": \"jajaja\"\n        },\n        {\n            \"id\": 12,\n            \"continent\": \"Europe\",\n            \"name\": \"Jahtakistan\"\n        },\n        {\n            \"id\": 13,\n            \"continent\": \"Europe\",\n            \"name\": \"salamandra\"\n        },\n        {\n            \"id\": 14,\n            \"continent\": \"Europe\",\n            \"name\": \"Niekda doma\"\n        },\n        {\n            \"id\": 15,\n            \"continent\": \"Europe\",\n            \"name\": \"Nikede johanesk\"\n        },\n        {\n            \"id\": 1,\n            \"continent\": \"North America\",\n            \"name\": null\n        },\n        {\n            \"id\": 5,\n            \"continent\": \"Oceania\",\n            \"name\": null\n        },\n        {\n            \"id\": 2,\n            \"continent\": \"South America\",\n            \"name\": null\n        },\n        {\n            \"id\": 8,\n            \"continent\": \"Unknown\",\n            \"name\": null\n        }\n    ]\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Persons",
+            "description": "\nAPIs for Persons",
+            "item": [
+                {
+                    "name": "Show all persons",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/persons",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/persons"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderBy\":\"name\",\"orderDirection\":\"asc\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all persons\",\n    \"data\": [\n        {\n            \"id\": 11,\n            \"name\": \"atos\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"hahahahahaha\"\n        },\n        {\n            \"id\": 8,\n            \"name\": \"jahaha\"\n        }\n    ]\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Tags",
+            "description": "\nAPIs for Tags",
+            "item": [
+                {
+                    "name": "Show all tags",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tags",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tags"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderBy\":\"type\",\"orderDirection\":\"desc\",\"type\":\"cryptogram\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all tags\",\n    \"data\": [\n        {\n            \"id\": 4,\n            \"name\": \"lapovica\",\n            \"type\": \"cryptogram\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"tagovica\",\n            \"type\": \"cryptogram\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"jahahaha\",\n            \"type\": \"cipher_key\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"new tag\",\n            \"type\": \"cipher_key\"\n        }\n    ]\n}\n",
                             "name": ""
                         }
                     ]

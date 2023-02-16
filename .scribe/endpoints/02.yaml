@@ -1,0 +1,53 @@
+name: Languages
+description: |-
+
+  APIs for Languages
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/languages
+    metadata:
+      title: 'Show all languages'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      orderBy:
+        name: orderBy
+        description: 'Must be one of <code>id</code> or <code>name</code>.'
+        required: false
+        example: id
+        type: string
+        custom: []
+      orderDirection:
+        name: orderDirection
+        description: 'Must be one of <code>asc</code> or <code>desc</code>.'
+        required: false
+        example: asc
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |
+          {
+              "status": "Success",
+              "status_code": 200,
+              "message": "List of all languages",
+              "data": [
+                  {
+                      "id": 1,
+                      "name": "english"
+                  }
+              ]
+          }
+        headers: []
+        description: '200'
+    responseFields: []

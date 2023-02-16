@@ -1,0 +1,23 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all cipher types.",
+    "data": [
+        {
+            "id": 3,
+            "name": "Code"
+        },
+        {
+            "id": 2,
+            "name": "Nomenclator"
+        },
+        {
+            "id": 4,
+            "name": "Simple substitution"
+        },
+        {
+            "id": 1,
+            "name": "Undefined"
+        }
+    ]
+}

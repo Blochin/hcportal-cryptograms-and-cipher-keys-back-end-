@@ -1,0 +1,19 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all persons",
+    "data": [
+        {
+            "id": 11,
+            "name": "atos"
+        },
+        {
+            "id": 10,
+            "name": "hahahahahaha"
+        },
+        {
+            "id": 8,
+            "name": "jahaha"
+        }
+    ]
+}
