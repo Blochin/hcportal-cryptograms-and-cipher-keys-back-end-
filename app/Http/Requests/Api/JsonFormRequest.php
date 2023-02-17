@@ -17,7 +17,7 @@ class JsonFormRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
-            $this->error('Chyba vo validácií údajov.', 422, $validator->errors()->get('*'), 422)
+            $this->error('Validation error.', 422, $validator->errors()->get('*'), 422)
         );
     }
 }

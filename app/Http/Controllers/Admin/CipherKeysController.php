@@ -22,6 +22,7 @@ use App\Models\Location;
 use App\Models\Person;
 use App\Models\State;
 use App\Models\Tag;
+use App\Traits\CipherKey\CipherKeySyncable;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -38,6 +39,7 @@ use Illuminate\View\View;
 
 class CipherKeysController extends Controller
 {
+    use CipherKeySyncable;
 
     /**
      * Display a listing of the resource.
@@ -179,8 +181,8 @@ class CipherKeysController extends Controller
         $this->authorize('admin.cipher-key.edit', $cipherKey);
 
 
-        $keyTypes = collect(CipherKey::KEY_TYPES)->toJSON();
-        $cipherTypes = collect(CipherKey::CIPHER_TYPES)->toJSON();
+        $keyTypes = KeyType::all();
+        $cipherTypes = CipherType::all();
         $locations = Location::all();
         $languages = Language::all();
         $groups = CipherKey::all();
@@ -322,144 +324,7 @@ class CipherKeysController extends Controller
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }
 
-    /**
-     * Sync cipher key images
-     *
-     * @param CipherKey $cipherKey
-     * @param array $sanitized
-     * @return void
-     */
-    public function syncCipherKeyImages($cipherKey, $sanitized)
-    {
 
-        foreach ($sanitized['images'] as $key => $image) {
-            $img = $cipherKey->images()->create([
-                'structure' => $image->structure,
-                'has_instructions' => $image->has_instructions,
-                'is_local' => true,
-                'ordering' => 1
-            ]);
-
-            $img
-                ->addMedia($sanitized['files'][$key])
-                ->toMediaCollection('picture');
-
-            $img->update(['url' => $img->getFirstMediaPath('picture')]);
-        }
-    }
-
-    /**
-     * Sync cipher key users
-     *
-     * @param CipherKey $cipherKey
-     * @param array $sanitized
-     * @return void
-     */
-    public function syncCipherKeyUsers($model, $sanitized, $mode = 'create')
-    {
-
-        //Syn ingredients to model
-        if (count($sanitized['users']) > 0 || $mode == 'update') {
-            $model->users()->delete();
-
-
-            foreach ($sanitized['users'] as $user) {
-                $newUser = $user->user;
-                if (isset($user->new_user) && $user->new_user) {
-                    $newUser = Person::create(['name' => $user->new_user]);
-                }
-                $model->users()->create([
-                    'person_id' => $newUser->id,
-                    'is_main_user' => $user->is_main_user
-                ]);
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Sync cryptograms
-     *
-     * @param CipherKey $key
-     * @param array $sanitized
-     * @return void
-     */
-    public function syncCryptograms($key, $sanitized)
-    {
-        $cryptograms = collect($sanitized['cryptograms'])->pluck('id')->toArray();
-        $key->cryptograms()->sync($cryptograms);
-    }
-
-
-    /**
-     * Get archive ID
-     *
-     * @param CipherKey $cipherKey
-     * @param array $sanitized
-     * @return void
-     */
-    public function syncArchive(CipherKey $cipherKey, $sanitized)
-    {
-
-        $archive_id = $sanitized['archive_id'];
-
-        if (
-            isset($sanitized['new_archive']) &&
-            $sanitized['new_archive'] &&
-            $sanitized['new_archive'] !== 'null'
-        ) {
-            $archive = Archive::create([
-                'name' => $sanitized['new_archive'],
-                'short_name' => $sanitized['new_archive'],
-            ]);
-            $archive_id = $archive->id;
-        }
-
-        $fond_id = $sanitized['fond_id'];
-
-        if (
-            isset($sanitized['new_fond']) &&
-            $sanitized['new_fond'] &&
-            $sanitized['new_fond'] !== 'null'
-        ) {
-            $fond = Fond::create([
-                'name' => $sanitized['new_fond'],
-                'archive_id' => $archive_id,
-            ]);
-            $fond_id = $fond->id;
-        }
-
-        $folder_id = $sanitized['folder_id'];
-
-        if (
-            isset($sanitized['new_folder']) &&
-            $sanitized['new_folder'] &&
-            $sanitized['new_folder']  !== 'null'
-        ) {
-            $folder = Folder::create([
-                'name' => $sanitized['new_folder'],
-                'fond_id' => $fond_id,
-            ]);
-            $folder_id = $folder->id;
-        }
-
-        if ($folder_id) {
-            $cipherKey->update(['folder_id' => $folder_id]);
-        }
-    }
-
-    /**
-     * Sync tags
-     *
-     * @param CipherKey $key
-     * @param array $sanitized
-     * @return void
-     */
-    public function syncTags(CipherKey $key, $sanitized)
-    {
-        $tags = collect($sanitized['tags'])->pluck('id')->toArray();
-        $key->tags()->sync($tags);
-    }
 
     /**
      * Update cipher key's state

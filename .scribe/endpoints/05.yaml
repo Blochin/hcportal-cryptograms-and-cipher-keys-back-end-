@@ -1,14 +1,14 @@
-name: Tags
+name: Locations
 description: |-
 
-  APIs for Tags
+  APIs for Locations
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/tags
+    uri: api/locations
     metadata:
-      title: 'Show all tags'
+      title: 'Show all locations'
       description: ''
       authenticated: true
       custom: []
@@ -18,28 +18,7 @@ endpoints:
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters:
-      orderBy:
-        name: orderBy
-        description: 'Must be one of <code>id</code>, <code>name</code>, or <code>type</code>.'
-        required: false
-        example: type
-        type: string
-        custom: []
-      orderDirection:
-        name: orderDirection
-        description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-        required: false
-        example: desc
-        type: string
-        custom: []
-      type:
-        name: type
-        description: 'Must be one of <code>cipher_key</code> or <code>cryptogram</code>.'
-        required: false
-        example: cryptogram
-        type: string
-        custom: []
+    bodyParameters: []
     responses:
       -
         status: 200
@@ -47,27 +26,82 @@ endpoints:
           {
               "status": "Success",
               "status_code": 200,
-              "message": "List of all tags",
+              "message": "List of all locations",
               "data": [
                   {
+                      "id": 6,
+                      "continent": "Africa",
+                      "name": null
+                  },
+                  {
+                      "id": 7,
+                      "continent": "Antartica",
+                      "name": null
+                  },
+                  {
                       "id": 4,
-                      "name": "lapovica",
-                      "type": "cryptogram"
+                      "continent": "Asia",
+                      "name": null
+                  },
+                  {
+                      "id": 10,
+                      "continent": "Asia",
+                      "name": "Jamajka"
+                  },
+                  {
+                      "id": 11,
+                      "continent": "Asia",
+                      "name": "Jahtakistan"
                   },
                   {
                       "id": 3,
-                      "name": "tagovica",
-                      "type": "cryptogram"
+                      "continent": "Europe",
+                      "name": null
                   },
                   {
-                      "id": 2,
-                      "name": "jahahaha",
-                      "type": "cipher_key"
+                      "id": 9,
+                      "continent": "Europe",
+                      "name": "jajaja"
+                  },
+                  {
+                      "id": 12,
+                      "continent": "Europe",
+                      "name": "Jahtakistan"
+                  },
+                  {
+                      "id": 13,
+                      "continent": "Europe",
+                      "name": "salamandra"
+                  },
+                  {
+                      "id": 14,
+                      "continent": "Europe",
+                      "name": "Niekda doma"
+                  },
+                  {
+                      "id": 15,
+                      "continent": "Europe",
+                      "name": "Nikede johanesk"
                   },
                   {
                       "id": 1,
-                      "name": "new tag",
-                      "type": "cipher_key"
+                      "continent": "North America",
+                      "name": null
+                  },
+                  {
+                      "id": 5,
+                      "continent": "Oceania",
+                      "name": null
+                  },
+                  {
+                      "id": 2,
+                      "continent": "South America",
+                      "name": null
+                  },
+                  {
+                      "id": 8,
+                      "continent": "Unknown",
+                      "name": null
                   }
               ]
           }

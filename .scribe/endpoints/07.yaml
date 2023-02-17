@@ -1,0 +1,57 @@
+name: Solutions
+description: |-
+
+  APIs for Solutions
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/solutions
+    metadata:
+      title: 'Show all solutions'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      orderBy:
+        name: orderBy
+        description: 'Must be one of <code>id</code> or <code>name</code>.'
+        required: false
+        example: id
+        type: string
+        custom: []
+      orderDirection:
+        name: orderDirection
+        description: 'Must be one of <code>asc</code> or <code>desc</code>.'
+        required: false
+        example: desc
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |
+          {
+              "status": "Success",
+              "status_code": 200,
+              "message": "List of all solutions.",
+              "data": [
+                  {
+                      "id": 2,
+                      "name": "Partially solved"
+                  },
+                  {
+                      "id": 1,
+                      "name": "Solved"
+                  }
+              ]
+          }
+        headers: []
+        description: '200'
+    responseFields: []

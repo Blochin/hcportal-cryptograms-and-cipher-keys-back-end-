@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\ArchivesController;
+use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\CipherKeysController;
 use App\Http\Controllers\Api\CipherTypesController;
 use Illuminate\Http\Request;
@@ -10,6 +12,8 @@ use App\Http\Controllers\Api\KeyTypesController;
 use App\Http\Controllers\Api\LanguagesController;
 use App\Http\Controllers\Api\LocationsController;
 use App\Http\Controllers\Api\PersonsController;
+use App\Http\Controllers\Api\SolutionsController;
+use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\TagsController;
 
 /*
@@ -34,6 +38,9 @@ Route::post('/password/reset', [ForgotPasswordController::class, 'sendCode']);
 //-------------------------------------------------Cipher keys--------------------------------------------
 Route::get('/cipher-keys', [CipherKeysController::class, 'approved']);
 
+//-------------------------------------------------Statistics--------------------------------------------
+Route::get('/statistics', [StatisticsController::class, 'index']);
+
 
 Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->group(static function () {
     Route::get('/logout', [LoginController::class, 'logout']);
@@ -50,10 +57,20 @@ Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->grou
     //-------------------------------------------------Languages--------------------------------------------
     Route::get('/languages', [LanguagesController::class, 'index']);
 
+    //-------------------------------------------------Archives--------------------------------------------
+    Route::get('/archives', [ArchivesController::class, 'index']);
+
+    //-------------------------------------------------Categories--------------------------------------------
+    Route::get('/categories', [CategoriesController::class, 'index']);
+
+    //-------------------------------------------------Solutions--------------------------------------------
+    Route::get('/solutions', [SolutionsController::class, 'index']);
 
     //-------------------------------------------------Cipher keys--------------------------------------------
+    Route::post('/cipher-keys', [CipherKeysController::class, 'create']);
     Route::get('/cipher-keys/my', [CipherKeysController::class, 'myKeys']);
     Route::get('/cipher-keys/{cipherKey}', [CipherKeysController::class, 'show']);
+    Route::post('/cipher-keys/{cipherKey}', [CipherKeysController::class, 'update']);
 
     Route::get('/key-types', [KeyTypesController::class, 'index']);
     Route::get('/cipher-types', [CipherTypesController::class, 'index']);

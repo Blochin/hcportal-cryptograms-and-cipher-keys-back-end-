@@ -1,0 +1,36 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all categories.",
+    "data": [
+        {
+            "id": 4,
+            "name": "Kategoria 2",
+            "children": []
+        },
+        {
+            "id": 3,
+            "name": "Podkategoria 2",
+            "children": []
+        },
+        {
+            "id": 2,
+            "name": "Podkategoria",
+            "children": []
+        },
+        {
+            "id": 1,
+            "name": "Kategoria",
+            "children": [
+                {
+                    "id": 2,
+                    "name": "Podkategoria"
+                },
+                {
+                    "id": 3,
+                    "name": "Podkategoria 2"
+                }
+            ]
+        }
+    ]
+}

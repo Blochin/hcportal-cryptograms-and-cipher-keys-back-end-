@@ -160,7 +160,7 @@
                 :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.complete_structure') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
                 <div>
-                    <textarea class="form-control" v-model="form.complete_structure" v-validate="'required'"
+                    <textarea class="form-control" v-model="form.complete_structure" v-validate="''"
                         id="complete_structure" name="complete_structure"></textarea>
                 </div>
                 <div v-if="errors.has('complete_structure')" class="form-control-feedback form-text" v-cloak>

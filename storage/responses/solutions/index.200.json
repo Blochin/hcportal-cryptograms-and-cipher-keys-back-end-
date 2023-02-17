@@ -1,0 +1,15 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all solutions.",
+    "data": [
+        {
+            "id": 2,
+            "name": "Partially solved"
+        },
+        {
+            "id": 1,
+            "name": "Solved"
+        }
+    ]
+}

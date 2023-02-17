@@ -29,8 +29,8 @@ class StoreCipherKey extends FormRequest
     {
         return [
             'description' => ['nullable', 'string'],
-            'signature' => ['nullable', 'string', Rule::unique('cipher_keys', 'signature')],
-            'complete_structure' => ['required', 'string'],
+            'signature' => ['required', 'string', Rule::unique('cipher_keys', 'signature')],
+            'complete_structure' => ['nullable', 'string'],
             'used_chars' => ['nullable', 'string'],
             'cipher_type' => ['nullable',],
             'key_type' => ['nullable',],
@@ -81,6 +81,7 @@ class StoreCipherKey extends FormRequest
         $sanitized['cryptograms'] = $sanitized['cryptograms'] ? json_decode($sanitized['cryptograms']) : [];
         $sanitized['continent'] = $sanitized['continent'] ? json_decode($sanitized['continent'])->name : [];
         $sanitized['state'] = $sanitized['state'] ? json_decode($sanitized['state'])->id : [];
+
 
 
         if ($sanitized['location_name'] && $sanitized['continent']) {

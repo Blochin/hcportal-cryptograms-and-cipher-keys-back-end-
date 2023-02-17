@@ -1,0 +1,129 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all archives.",
+    "data": [
+        {
+            "id": 1,
+            "short_name": "archive 1",
+            "name": "archive 1",
+            "country": null,
+            "fonds": [
+                {
+                    "id": 1,
+                    "name": "fond 1",
+                    "archive_id": 1,
+                    "folders": [
+                        {
+                            "id": 1,
+                            "name": "folder 1",
+                            "fond_id": 1,
+                            "start_date": null,
+                            "end_date": null
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "fafafa",
+                    "archive_id": 1,
+                    "folders": [
+                        {
+                            "id": 2,
+                            "name": "lala",
+                            "fond_id": 2,
+                            "start_date": null,
+                            "end_date": null
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "fond 2",
+                    "archive_id": 1,
+                    "folders": []
+                },
+                {
+                    "id": 4,
+                    "name": "hahaha",
+                    "archive_id": 1,
+                    "folders": [
+                        {
+                            "id": 3,
+                            "name": "jahaha",
+                            "fond_id": 4,
+                            "start_date": null,
+                            "end_date": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "short_name": "haha3",
+            "name": "haha3",
+            "country": null,
+            "fonds": [
+                {
+                    "id": 5,
+                    "name": "hahaha2",
+                    "archive_id": 2,
+                    "folders": [
+                        {
+                            "id": 4,
+                            "name": "hahaha",
+                            "fond_id": 5,
+                            "start_date": null,
+                            "end_date": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "short_name": "haha3",
+            "name": "haha3",
+            "country": null,
+            "fonds": [
+                {
+                    "id": 6,
+                    "name": "hahaha2",
+                    "archive_id": 3,
+                    "folders": [
+                        {
+                            "id": 5,
+                            "name": "hahaha",
+                            "fond_id": 6,
+                            "start_date": null,
+                            "end_date": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "short_name": "haha3",
+            "name": "haha3",
+            "country": null,
+            "fonds": [
+                {
+                    "id": 7,
+                    "name": "hahaha2",
+                    "archive_id": 4,
+                    "folders": [
+                        {
+                            "id": 6,
+                            "name": "hahaha",
+                            "fond_id": 7,
+                            "start_date": null,
+                            "end_date": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

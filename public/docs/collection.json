@@ -10,11 +10,52 @@
     ],
     "info": {
         "name": "HCPortal API",
-        "_postman_id": "6459ae67-002e-437a-8c93-9b0833c8614d",
+        "_postman_id": "01f61568-a14f-4ea2-b351-c853945c70dc",
         "description": "HCPortal - Ciphers and Cipher keys API documentation",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
+        {
+            "name": "Archives",
+            "description": "\nAPIs for Archives",
+            "item": [
+                {
+                    "name": "Show all archives",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/archives",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/archives"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"desc\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all archives.\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"short_name\": \"archive 1\",\n            \"name\": \"archive 1\",\n            \"country\": null,\n            \"fonds\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"fond 1\",\n                    \"archive_id\": 1,\n                    \"folders\": [\n                        {\n                            \"id\": 1,\n                            \"name\": \"folder 1\",\n                            \"fond_id\": 1,\n                            \"start_date\": null,\n                            \"end_date\": null\n                        }\n                    ]\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"fafafa\",\n                    \"archive_id\": 1,\n                    \"folders\": [\n                        {\n                            \"id\": 2,\n                            \"name\": \"lala\",\n                            \"fond_id\": 2,\n                            \"start_date\": null,\n                            \"end_date\": null\n                        }\n                    ]\n                },\n                {\n                    \"id\": 3,\n                    \"name\": \"fond 2\",\n                    \"archive_id\": 1,\n                    \"folders\": []\n                },\n                {\n                    \"id\": 4,\n                    \"name\": \"hahaha\",\n                    \"archive_id\": 1,\n                    \"folders\": [\n                        {\n                            \"id\": 3,\n                            \"name\": \"jahaha\",\n                            \"fond_id\": 4,\n                            \"start_date\": null,\n                            \"end_date\": null\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"short_name\": \"haha3\",\n            \"name\": \"haha3\",\n            \"country\": null,\n            \"fonds\": [\n                {\n                    \"id\": 5,\n                    \"name\": \"hahaha2\",\n                    \"archive_id\": 2,\n                    \"folders\": [\n                        {\n                            \"id\": 4,\n                            \"name\": \"hahaha\",\n                            \"fond_id\": 5,\n                            \"start_date\": null,\n                            \"end_date\": null\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 3,\n            \"short_name\": \"haha3\",\n            \"name\": \"haha3\",\n            \"country\": null,\n            \"fonds\": [\n                {\n                    \"id\": 6,\n                    \"name\": \"hahaha2\",\n                    \"archive_id\": 3,\n                    \"folders\": [\n                        {\n                            \"id\": 5,\n                            \"name\": \"hahaha\",\n                            \"fond_id\": 6,\n                            \"start_date\": null,\n                            \"end_date\": null\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"short_name\": \"haha3\",\n            \"name\": \"haha3\",\n            \"country\": null,\n            \"fonds\": [\n                {\n                    \"id\": 7,\n                    \"name\": \"hahaha2\",\n                    \"archive_id\": 4,\n                    \"folders\": [\n                        {\n                            \"id\": 6,\n                            \"name\": \"hahaha\",\n                            \"fond_id\": 7,\n                            \"start_date\": null,\n                            \"end_date\": null\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "name": "Authentication",
             "description": "\nAPIs for Auth",
@@ -41,7 +82,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"login@login.sk\",\"password\":\"nobis\"}"
+                            "raw": "{\"email\":\"login@login.sk\",\"password\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {
@@ -149,7 +190,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"sit\",\"last_name\":\"incidunt\",\"email\":\"login@login.sk\",\"password\":\"quas\"}"
+                            "raw": "{\"first_name\":\"vero\",\"last_name\":\"facere\",\"email\":\"login@login.sk\",\"password\":\"recusandae\"}"
                         },
                         "description": "",
                         "auth": {
@@ -193,7 +234,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"login@login.sk\",\"code\":\"occaecati\",\"password\":\"iste\"}"
+                            "raw": "{\"email\":\"login@login.sk\",\"code\":\"deserunt\",\"password\":\"voluptas\"}"
                         },
                         "description": "",
                         "auth": {
@@ -262,6 +303,47 @@
             ]
         },
         {
+            "name": "Categories",
+            "description": "\nAPIs for Categories",
+            "item": [
+                {
+                    "name": "Show all categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all categories.\",\n    \"data\": [\n        {\n            \"id\": 4,\n            \"name\": \"Kategoria 2\",\n            \"children\": []\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Podkategoria 2\",\n            \"children\": []\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Podkategoria\",\n            \"children\": []\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Kategoria\",\n            \"children\": [\n                {\n                    \"id\": 2,\n                    \"name\": \"Podkategoria\"\n                },\n                {\n                    \"id\": 3,\n                    \"name\": \"Podkategoria 2\"\n                }\n            ]\n        }\n    ]\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Cipher keys",
             "description": "\nAPIs for Cipher keys",
             "item": [
@@ -287,7 +369,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\",\"page\":8,\"per_page\":10,\"detailed\":true}"
+                            "raw": "{\"orderBy\":\"signature\",\"orderDirection\":\"desc\",\"page\":5,\"per_page\":4,\"detailed\":false}"
                         },
                         "description": "",
                         "auth": {
@@ -331,7 +413,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\",\"page\":10,\"per_page\":3,\"detailed\":true}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\",\"page\":13,\"per_page\":16,\"detailed\":true}"
                         },
                         "description": ""
                     },
@@ -456,6 +538,361 @@
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "Create",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cipher-keys",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cipher-keys"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "description",
+                                    "value": "explicabo",
+                                    "type": "text",
+                                    "description": "Description."
+                                },
+                                {
+                                    "key": "signature",
+                                    "value": "iure",
+                                    "type": "text",
+                                    "description": "Date to be used as the publication date."
+                                },
+                                {
+                                    "key": "complete_structure",
+                                    "value": "molestiae",
+                                    "type": "text",
+                                    "description": "Complete structure."
+                                },
+                                {
+                                    "key": "used_chars",
+                                    "value": "repellendus",
+                                    "type": "text",
+                                    "description": "Category the post belongs to."
+                                },
+                                {
+                                    "key": "cipher_type",
+                                    "value": 12,
+                                    "type": "text",
+                                    "description": "Cipher type."
+                                },
+                                {
+                                    "key": "key_type",
+                                    "value": 20,
+                                    "type": "text",
+                                    "description": "Key type."
+                                },
+                                {
+                                    "key": "used_from",
+                                    "value": "2022-02-28",
+                                    "type": "text",
+                                    "description": "Used from. Format: Y-m-d. Must be a valid date."
+                                },
+                                {
+                                    "key": "used_to",
+                                    "value": "2022-02-28",
+                                    "type": "text",
+                                    "description": "Used to. Format: Y-m-d. Must be a valid date."
+                                },
+                                {
+                                    "key": "new_folder",
+                                    "value": "sapiente",
+                                    "type": "text",
+                                    "description": "New folder."
+                                },
+                                {
+                                    "key": "new_fond",
+                                    "value": "a",
+                                    "type": "text",
+                                    "description": "New fond."
+                                },
+                                {
+                                    "key": "new_archive",
+                                    "value": "sunt",
+                                    "type": "text",
+                                    "description": "New archive."
+                                },
+                                {
+                                    "key": "used_around",
+                                    "value": "sed",
+                                    "type": "text",
+                                    "description": "Used around."
+                                },
+                                {
+                                    "key": "folder_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "The ID of Folder. This field is required when <code>new_folder<\/code> is <code>null<\/code>."
+                                },
+                                {
+                                    "key": "archive_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "The ID of Archive. This field is required when <code>new_archive<\/code> is <code>null<\/code>."
+                                },
+                                {
+                                    "key": "fond_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "The ID of Fond. This field is required when <code>new_fond<\/code> is <code>null<\/code>."
+                                },
+                                {
+                                    "key": "location_name",
+                                    "value": "Bratislava",
+                                    "type": "text",
+                                    "description": "Specific name of the location."
+                                },
+                                {
+                                    "key": "language_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "The ID of Language."
+                                },
+                                {
+                                    "key": "users",
+                                    "value": "[{\"name\":\"new user name\",\"is_main_user\":false},{\"name\":\"new user name 2\",\"is_main_user\":true}]",
+                                    "type": "text",
+                                    "description": "List of images data."
+                                },
+                                {
+                                    "key": "images",
+                                    "value": "[{\"has_instructions\": true, \"structure\": \"example structure\"},{\"has_instructions\": false, \"structure\": \"\"}]",
+                                    "type": "text",
+                                    "description": "List of images data."
+                                },
+                                {
+                                    "key": "tags[0]",
+                                    "value": "aut",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "continent",
+                                    "value": "Europe",
+                                    "type": "text",
+                                    "description": "Continent."
+                                },
+                                {
+                                    "key": "tags[]",
+                                    "value": "officia",
+                                    "type": "text",
+                                    "description": "Tag names"
+                                },
+                                {
+                                    "key": "files[]",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Successfully added cipher key.\",\n    \"data\": {\n        \"id\": 23,\n        \"signature\": \"atosportos\",\n        \"description\": \"skuska popisuww\",\n        \"complete_structure\": null,\n        \"used_chars\": \"sasasasa\",\n        \"cipher_type\": {\n            \"id\": 2,\n            \"name\": \"Nomenclator\",\n            \"resource_url\": \"http:\/\/dp.test\/admin\/cipher-types\/2\"\n        },\n        \"key_type\": {\n            \"id\": 2,\n            \"name\": \"ed\",\n            \"resource_url\": \"http:\/\/dp.test\/admin\/key-types\/2\"\n        },\n        \"used_from\": null,\n        \"used_to\": \"2023-01-22T00:00:00.000000Z\",\n        \"used_around\": null,\n        \"folder\": {\n            \"id\": 4,\n            \"name\": \"hahaha\",\n            \"fond_id\": 5,\n            \"start_date\": null,\n            \"end_date\": null,\n            \"fond\": {\n                \"id\": 5,\n                \"name\": \"hahaha2\",\n                \"archive_id\": 2,\n                \"archive\": {\n                    \"id\": 2,\n                    \"short_name\": \"haha3\",\n                    \"name\": \"haha3\",\n                    \"country\": null\n                }\n            }\n        },\n        \"location\": {\n            \"id\": 17,\n            \"name\": \"Amazon\",\n            \"continent\": \"Europe\"\n        },\n        \"language\": {\n            \"id\": 1,\n            \"name\": \"english\"\n        },\n        \"state\": {\n            \"id\": \"awaiting\",\n            \"title\": \"Awaiting\",\n            \"show\": true\n        },\n        \"note\": null,\n        \"created_by\": {\n            \"id\": 2,\n            \"first_name\": \"Attila\",\n            \"last_name\": \"Mucska\"\n        },\n        \"images\": [\n            {\n                \"url\": {\n                    \"thumb\": \"http:\/\/dp.test\/media\/93\/conversions\/test1-thumb.jpg\",\n                    \"big\": \"http:\/\/dp.test\/media\/93\/conversions\/test1-big.jpg\",\n                    \"large\": \"http:\/\/dp.test\/media\/93\/conversions\/test1-large.jpg\",\n                    \"original\": \"http:\/\/dp.test\/media\/93\/test1.png\"\n                },\n                \"structure\": \"\",\n                \"has_instructions\": 1\n            },\n            {\n                \"url\": {\n                    \"thumb\": \"http:\/\/dp.test\/media\/94\/conversions\/schema-thumb.jpg\",\n                    \"big\": \"http:\/\/dp.test\/media\/94\/conversions\/schema-big.jpg\",\n                    \"large\": \"http:\/\/dp.test\/media\/94\/conversions\/schema-large.jpg\",\n                    \"original\": \"http:\/\/dp.test\/media\/94\/schema.png\"\n                },\n                \"structure\": \"example\",\n                \"has_instructions\": 0\n            }\n        ],\n        \"users\": [\n            {\n                \"person\": {\n                    \"id\": 17,\n                    \"name\": \"new user name\"\n                },\n                \"is_main_user\": 0\n            },\n            {\n                \"person\": {\n                    \"id\": 18,\n                    \"name\": \"new user name 2\"\n                },\n                \"is_main_user\": 1\n            }\n        ],\n        \"tags\": [\n            {\n                \"id\": 6,\n                \"name\": \"ja\",\n                \"type\": \"cipher_key\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"ko\",\n                \"type\": \"cipher_key\"\n            }\n        ],\n        \"created_at\": \"2023-02-17 18:56:22\",\n        \"updated_at\": \"2023-02-17 18:56:23\"\n    }\n}\n",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Error\",\n    \"status_code\": 422,\n    \"message\": \"Validation error.\",\n    \"data\": {\n        \"signature\": [\"The signature has already been taken.\"]\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cipher-keys\/:cipherKey_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cipher-keys\/:cipherKey_id",
+                            "variable": [
+                                {
+                                    "id": "cipherKey_id",
+                                    "key": "cipherKey_id",
+                                    "value": "1",
+                                    "description": "The ID of the cipherKey."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "description",
+                                    "value": "nihil",
+                                    "type": "text",
+                                    "description": "Description."
+                                },
+                                {
+                                    "key": "signature",
+                                    "value": "et",
+                                    "type": "text",
+                                    "description": "Date to be used as the publication date."
+                                },
+                                {
+                                    "key": "complete_structure",
+                                    "value": "id",
+                                    "type": "text",
+                                    "description": "Complete structure."
+                                },
+                                {
+                                    "key": "used_chars",
+                                    "value": "blanditiis",
+                                    "type": "text",
+                                    "description": "Category the post belongs to."
+                                },
+                                {
+                                    "key": "cipher_type",
+                                    "value": 8,
+                                    "type": "text",
+                                    "description": "Cipher type."
+                                },
+                                {
+                                    "key": "key_type",
+                                    "value": 11,
+                                    "type": "text",
+                                    "description": "Key type."
+                                },
+                                {
+                                    "key": "used_from",
+                                    "value": "2022-02-28",
+                                    "type": "text",
+                                    "description": "Used from. Format: Y-m-d. Must be a valid date."
+                                },
+                                {
+                                    "key": "used_to",
+                                    "value": "2022-02-28",
+                                    "type": "text",
+                                    "description": "Used to. Format: Y-m-d. Must be a valid date."
+                                },
+                                {
+                                    "key": "new_folder",
+                                    "value": "voluptas",
+                                    "type": "text",
+                                    "description": "New folder."
+                                },
+                                {
+                                    "key": "new_fond",
+                                    "value": "mollitia",
+                                    "type": "text",
+                                    "description": "New fond."
+                                },
+                                {
+                                    "key": "new_archive",
+                                    "value": "velit",
+                                    "type": "text",
+                                    "description": "New archive."
+                                },
+                                {
+                                    "key": "used_around",
+                                    "value": "saepe",
+                                    "type": "text",
+                                    "description": "Used around."
+                                },
+                                {
+                                    "key": "folder_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "The ID of Folder. This field is required when <code>new_folder<\/code> is <code>null<\/code>."
+                                },
+                                {
+                                    "key": "archive_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "The ID of Archive. This field is required when <code>new_archive<\/code> is <code>null<\/code>."
+                                },
+                                {
+                                    "key": "fond_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "The ID of Fond. This field is required when <code>new_fond<\/code> is <code>null<\/code>."
+                                },
+                                {
+                                    "key": "location_name",
+                                    "value": "Bratislava",
+                                    "type": "text",
+                                    "description": "Specific name of the location."
+                                },
+                                {
+                                    "key": "language_id",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": "The ID of Language."
+                                },
+                                {
+                                    "key": "users",
+                                    "value": "[{\"name\":\"new user name\",\"is_main_user\":false},{\"name\":\"new user name 2\",\"is_main_user\":true}]",
+                                    "type": "text",
+                                    "description": "List of images data."
+                                },
+                                {
+                                    "key": "tags[0]",
+                                    "value": "sint",
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "continent",
+                                    "value": "Europe",
+                                    "type": "text",
+                                    "description": "Continent."
+                                },
+                                {
+                                    "key": "tags[]",
+                                    "value": "et",
+                                    "type": "text",
+                                    "description": "Tag names"
+                                }
+                            ]
+                        },
+                        "description": "Update a cipher key is possible when the cipher key has one of the states: APPROVED, AWAITING, REVISE"
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Successfully added cipher key.\",\n    \"data\": {\n        \"id\": 23,\n        \"signature\": \"atosportos\",\n        \"description\": \"skuska popisuww\",\n        \"complete_structure\": null,\n        \"used_chars\": \"sasasasa\",\n        \"cipher_type\": {\n            \"id\": 2,\n            \"name\": \"Nomenclator\",\n            \"resource_url\": \"http:\/\/dp.test\/admin\/cipher-types\/2\"\n        },\n        \"key_type\": {\n            \"id\": 2,\n            \"name\": \"ed\",\n            \"resource_url\": \"http:\/\/dp.test\/admin\/key-types\/2\"\n        },\n        \"used_from\": null,\n        \"used_to\": \"2023-01-22T00:00:00.000000Z\",\n        \"used_around\": null,\n        \"folder\": {\n            \"id\": 4,\n            \"name\": \"hahaha\",\n            \"fond_id\": 5,\n            \"start_date\": null,\n            \"end_date\": null,\n            \"fond\": {\n                \"id\": 5,\n                \"name\": \"hahaha2\",\n                \"archive_id\": 2,\n                \"archive\": {\n                    \"id\": 2,\n                    \"short_name\": \"haha3\",\n                    \"name\": \"haha3\",\n                    \"country\": null\n                }\n            }\n        },\n        \"location\": {\n            \"id\": 17,\n            \"name\": \"Amazon\",\n            \"continent\": \"Europe\"\n        },\n        \"language\": {\n            \"id\": 1,\n            \"name\": \"english\"\n        },\n        \"state\": {\n            \"id\": \"awaiting\",\n            \"title\": \"Awaiting\",\n            \"show\": true\n        },\n        \"note\": null,\n        \"created_by\": {\n            \"id\": 2,\n            \"first_name\": \"Attila\",\n            \"last_name\": \"Mucska\"\n        },\n        \"images\": [\n            {\n                \"url\": {\n                    \"thumb\": \"http:\/\/dp.test\/media\/93\/conversions\/test1-thumb.jpg\",\n                    \"big\": \"http:\/\/dp.test\/media\/93\/conversions\/test1-big.jpg\",\n                    \"large\": \"http:\/\/dp.test\/media\/93\/conversions\/test1-large.jpg\",\n                    \"original\": \"http:\/\/dp.test\/media\/93\/test1.png\"\n                },\n                \"structure\": \"\",\n                \"has_instructions\": 1\n            },\n            {\n                \"url\": {\n                    \"thumb\": \"http:\/\/dp.test\/media\/94\/conversions\/schema-thumb.jpg\",\n                    \"big\": \"http:\/\/dp.test\/media\/94\/conversions\/schema-big.jpg\",\n                    \"large\": \"http:\/\/dp.test\/media\/94\/conversions\/schema-large.jpg\",\n                    \"original\": \"http:\/\/dp.test\/media\/94\/schema.png\"\n                },\n                \"structure\": \"example\",\n                \"has_instructions\": 0\n            }\n        ],\n        \"users\": [\n            {\n                \"person\": {\n                    \"id\": 17,\n                    \"name\": \"new user name\"\n                },\n                \"is_main_user\": 0\n            },\n            {\n                \"person\": {\n                    \"id\": 18,\n                    \"name\": \"new user name 2\"\n                },\n                \"is_main_user\": 1\n            }\n        ],\n        \"tags\": [\n            {\n                \"id\": 6,\n                \"name\": \"ja\",\n                \"type\": \"cipher_key\"\n            },\n            {\n                \"id\": 7,\n                \"name\": \"ko\",\n                \"type\": \"cipher_key\"\n            }\n        ],\n        \"created_at\": \"2023-02-17 18:56:22\",\n        \"updated_at\": \"2023-02-17 18:56:23\"\n    }\n}\n",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Error\",\n    \"status_code\": 422,\n    \"message\": \"Validation error.\",\n    \"data\": {\n        \"signature\": [\"The signature has already been taken.\"]\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -485,7 +922,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\"}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"desc\"}"
                         },
                         "description": ""
                     },
@@ -580,6 +1017,88 @@
             ]
         },
         {
+            "name": "Solutions",
+            "description": "\nAPIs for Solutions",
+            "item": [
+                {
+                    "name": "Show all solutions",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/solutions",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/solutions"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"desc\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"List of all solutions.\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"name\": \"Partially solved\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"Solved\"\n        }\n    ]\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Statistics",
+            "description": "\nAPIs for Statistics",
+            "item": [
+                {
+                    "name": "Show all solutions",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/statistics",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/statistics"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"status\": \"Success\",\n    \"status_code\": 200,\n    \"message\": \"Statsitics data.\",\n    \"data\": {\n        \"cipher_keys_count\": 20,\n        \"cryptograms\": 3\n    }\n}\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Tags",
             "description": "\nAPIs for Tags",
             "item": [
@@ -605,7 +1124,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"type\",\"orderDirection\":\"desc\",\"type\":\"cryptogram\"}"
+                            "raw": "{\"orderBy\":\"type\",\"orderDirection\":\"asc\",\"type\":\"cipher_key\"}"
                         },
                         "description": ""
                     },

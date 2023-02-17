@@ -1,0 +1,8 @@
+{
+    "status": "Error",
+    "status_code": 422,
+    "message": "Validation error.",
+    "data": {
+        "signature": ["The signature has already been taken."]
+    }
+}

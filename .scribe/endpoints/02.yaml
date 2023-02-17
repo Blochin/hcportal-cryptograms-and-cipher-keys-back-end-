@@ -1,14 +1,14 @@
-name: Languages
+name: Categories
 description: |-
 
-  APIs for Languages
+  APIs for Categories
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/languages
+    uri: api/categories
     metadata:
-      title: 'Show all languages'
+      title: 'Show all categories'
       description: ''
       authenticated: true
       custom: []
@@ -40,11 +40,36 @@ endpoints:
           {
               "status": "Success",
               "status_code": 200,
-              "message": "List of all languages",
+              "message": "List of all categories.",
               "data": [
                   {
+                      "id": 4,
+                      "name": "Kategoria 2",
+                      "children": []
+                  },
+                  {
+                      "id": 3,
+                      "name": "Podkategoria 2",
+                      "children": []
+                  },
+                  {
+                      "id": 2,
+                      "name": "Podkategoria",
+                      "children": []
+                  },
+                  {
                       "id": 1,
-                      "name": "english"
+                      "name": "Kategoria",
+                      "children": [
+                          {
+                              "id": 2,
+                              "name": "Podkategoria"
+                          },
+                          {
+                              "id": 3,
+                              "name": "Podkategoria 2"
+                          }
+                      ]
                   }
               ]
           }

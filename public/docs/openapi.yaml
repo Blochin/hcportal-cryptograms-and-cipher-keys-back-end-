@@ -7,6 +7,266 @@ servers:
   -
     url: 'http://dp.test'
 paths:
+  /api/archives:
+    get:
+      summary: 'Show all archives'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: Success
+                  status_code: 200
+                  message: 'List of all archives.'
+                  data:
+                    -
+                      id: 1
+                      short_name: 'archive 1'
+                      name: 'archive 1'
+                      country: null
+                      fonds:
+                        -
+                          id: 1
+                          name: 'fond 1'
+                          archive_id: 1
+                          folders:
+                            -
+                              id: 1
+                              name: 'folder 1'
+                              fond_id: 1
+                              start_date: null
+                              end_date: null
+                        -
+                          id: 2
+                          name: fafafa
+                          archive_id: 1
+                          folders:
+                            -
+                              id: 2
+                              name: lala
+                              fond_id: 2
+                              start_date: null
+                              end_date: null
+                        -
+                          id: 3
+                          name: 'fond 2'
+                          archive_id: 1
+                          folders: []
+                        -
+                          id: 4
+                          name: hahaha
+                          archive_id: 1
+                          folders:
+                            -
+                              id: 3
+                              name: jahaha
+                              fond_id: 4
+                              start_date: null
+                              end_date: null
+                    -
+                      id: 2
+                      short_name: haha3
+                      name: haha3
+                      country: null
+                      fonds:
+                        -
+                          id: 5
+                          name: hahaha2
+                          archive_id: 2
+                          folders:
+                            -
+                              id: 4
+                              name: hahaha
+                              fond_id: 5
+                              start_date: null
+                              end_date: null
+                    -
+                      id: 3
+                      short_name: haha3
+                      name: haha3
+                      country: null
+                      fonds:
+                        -
+                          id: 6
+                          name: hahaha2
+                          archive_id: 3
+                          folders:
+                            -
+                              id: 5
+                              name: hahaha
+                              fond_id: 6
+                              start_date: null
+                              end_date: null
+                    -
+                      id: 4
+                      short_name: haha3
+                      name: haha3
+                      country: null
+                      fonds:
+                        -
+                          id: 7
+                          name: hahaha2
+                          archive_id: 4
+                          folders:
+                            -
+                              id: 6
+                              name: hahaha
+                              fond_id: 7
+                              start_date: null
+                              end_date: null
+                properties:
+                  status:
+                    type: string
+                    example: Success
+                  status_code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'List of all archives.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        short_name: 'archive 1'
+                        name: 'archive 1'
+                        country: null
+                        fonds:
+                          -
+                            id: 1
+                            name: 'fond 1'
+                            archive_id: 1
+                            folders:
+                              -
+                                id: 1
+                                name: 'folder 1'
+                                fond_id: 1
+                                start_date: null
+                                end_date: null
+                          -
+                            id: 2
+                            name: fafafa
+                            archive_id: 1
+                            folders:
+                              -
+                                id: 2
+                                name: lala
+                                fond_id: 2
+                                start_date: null
+                                end_date: null
+                          -
+                            id: 3
+                            name: 'fond 2'
+                            archive_id: 1
+                            folders: []
+                          -
+                            id: 4
+                            name: hahaha
+                            archive_id: 1
+                            folders:
+                              -
+                                id: 3
+                                name: jahaha
+                                fond_id: 4
+                                start_date: null
+                                end_date: null
+                      -
+                        id: 2
+                        short_name: haha3
+                        name: haha3
+                        country: null
+                        fonds:
+                          -
+                            id: 5
+                            name: hahaha2
+                            archive_id: 2
+                            folders:
+                              -
+                                id: 4
+                                name: hahaha
+                                fond_id: 5
+                                start_date: null
+                                end_date: null
+                      -
+                        id: 3
+                        short_name: haha3
+                        name: haha3
+                        country: null
+                        fonds:
+                          -
+                            id: 6
+                            name: hahaha2
+                            archive_id: 3
+                            folders:
+                              -
+                                id: 5
+                                name: hahaha
+                                fond_id: 6
+                                start_date: null
+                                end_date: null
+                      -
+                        id: 4
+                        short_name: haha3
+                        name: haha3
+                        country: null
+                        fonds:
+                          -
+                            id: 7
+                            name: hahaha2
+                            archive_id: 4
+                            folders:
+                              -
+                                id: 6
+                                name: hahaha
+                                fond_id: 7
+                                start_date: null
+                                end_date: null
+                    items:
+                      type: object
+      tags:
+        - Archives
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderBy:
+                  type: string
+                  description: 'Must be one of <code>id</code>, <code>name</code>, or <code>short_name</code>.'
+                  example: id
+                orderDirection:
+                  type: string
+                  description: 'Must be one of <code>asc</code> or <code>desc</code>.'
+                  example: desc
   /api/login:
     post:
       summary: Login
@@ -69,7 +329,7 @@ paths:
                 password:
                   type: string
                   description: Password
-                  example: nobis
+                  example: qui
               required:
                 - email
                 - password
@@ -244,11 +504,11 @@ paths:
                 first_name:
                   type: string
                   description: Firstname
-                  example: sit
+                  example: vero
                 last_name:
                   type: string
                   description: Lastname
-                  example: incidunt
+                  example: facere
                 email:
                   type: string
                   description: 'Login e-mail'
@@ -256,7 +516,7 @@ paths:
                 password:
                   type: string
                   description: Password
-                  example: quas
+                  example: recusandae
               required:
                 - first_name
                 - last_name
@@ -327,11 +587,11 @@ paths:
                 code:
                   type: string
                   description: 'Password reset code'
-                  example: occaecati
+                  example: deserunt
                 password:
                   type: string
                   description: 'New password'
-                  example: iste
+                  example: voluptas
               required:
                 - email
                 - code
@@ -401,6 +661,120 @@ paths:
               required:
                 - email
       security: []
+  /api/categories:
+    get:
+      summary: 'Show all categories'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: Success
+                  status_code: 200
+                  message: 'List of all categories.'
+                  data:
+                    -
+                      id: 4
+                      name: 'Kategoria 2'
+                      children: []
+                    -
+                      id: 3
+                      name: 'Podkategoria 2'
+                      children: []
+                    -
+                      id: 2
+                      name: Podkategoria
+                      children: []
+                    -
+                      id: 1
+                      name: Kategoria
+                      children:
+                        -
+                          id: 2
+                          name: Podkategoria
+                        -
+                          id: 3
+                          name: 'Podkategoria 2'
+                properties:
+                  status:
+                    type: string
+                    example: Success
+                  status_code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'List of all categories.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 4
+                        name: 'Kategoria 2'
+                        children: []
+                      -
+                        id: 3
+                        name: 'Podkategoria 2'
+                        children: []
+                      -
+                        id: 2
+                        name: Podkategoria
+                        children: []
+                      -
+                        id: 1
+                        name: Kategoria
+                        children:
+                          -
+                            id: 2
+                            name: Podkategoria
+                          -
+                            id: 3
+                            name: 'Podkategoria 2'
+                    items:
+                      type: object
+      tags:
+        - Categories
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderBy:
+                  type: string
+                  description: 'Must be one of <code>id</code> or <code>name</code>.'
+                  example: id
+                orderDirection:
+                  type: string
+                  description: 'Must be one of <code>asc</code> or <code>desc</code>.'
+                  example: asc
   /api/cipher-keys:
     get:
       summary: 'All approved cipher keys'
@@ -625,24 +999,195 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: id
+                  example: signature
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: asc
+                  example: desc
                 page:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 5
                 per_page:
                   type: integer
                   description: ''
-                  example: 10
+                  example: 4
                 detailed:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
       security: []
+    post:
+      summary: Create
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: Error
+                  status_code: 422
+                  message: 'Validation error.'
+                  data:
+                    signature:
+                      - 'The signature has already been taken.'
+                properties:
+                  status:
+                    type: string
+                    example: Error
+                  status_code:
+                    type: integer
+                    example: 422
+                  message:
+                    type: string
+                    example: 'Validation error.'
+                  data:
+                    type: object
+                    example:
+                      signature:
+                        - 'The signature has already been taken.'
+      tags:
+        - 'Cipher keys'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: Description.
+                  example: explicabo
+                signature:
+                  type: string
+                  description: 'Date to be used as the publication date.'
+                  example: iure
+                complete_structure:
+                  type: string
+                  description: 'Complete structure.'
+                  example: molestiae
+                used_chars:
+                  type: string
+                  description: 'Category the post belongs to.'
+                  example: repellendus
+                cipher_type:
+                  type: integer
+                  description: 'Cipher type.'
+                  example: 12
+                key_type:
+                  type: integer
+                  description: 'Key type.'
+                  example: 20
+                used_from:
+                  type: string
+                  description: 'Used from. Format: Y-m-d. Must be a valid date.'
+                  example: '2022-02-28'
+                used_to:
+                  type: string
+                  description: 'Used to. Format: Y-m-d. Must be a valid date.'
+                  example: '2022-02-28'
+                new_folder:
+                  type: string
+                  description: 'New folder.'
+                  example: sapiente
+                new_fond:
+                  type: string
+                  description: 'New fond.'
+                  example: a
+                new_archive:
+                  type: string
+                  description: 'New archive.'
+                  example: sunt
+                used_around:
+                  type: string
+                  description: 'Used around.'
+                  example: sed
+                folder_id:
+                  type: integer
+                  description: 'The ID of Folder. This field is required when <code>new_folder</code> is <code>null</code>.'
+                  example: 1
+                archive_id:
+                  type: integer
+                  description: 'The ID of Archive. This field is required when <code>new_archive</code> is <code>null</code>.'
+                  example: 1
+                fond_id:
+                  type: integer
+                  description: 'The ID of Fond. This field is required when <code>new_fond</code> is <code>null</code>.'
+                  example: 1
+                location_name:
+                  type: string
+                  description: 'Specific name of the location.'
+                  example: Bratislava
+                language_id:
+                  type: integer
+                  description: 'The ID of Language.'
+                  example: 1
+                users:
+                  type: json
+                  description: 'List of images data.'
+                  example: '[{"name":"new user name","is_main_user":false},{"name":"new user name 2","is_main_user":true}]'
+                images:
+                  type: json
+                  description: 'List of images data.'
+                  example: '[{"has_instructions": true, "structure": "example structure"},{"has_instructions": false, "structure": ""}]'
+                files:
+                  type: string
+                  description: ''
+                  example: null
+                tags:
+                  type: array
+                  description: ''
+                  example:
+                    - aut
+                  items:
+                    type: string
+                continent:
+                  type: string
+                  description: Continent.
+                  example: Europe
+                'files[]':
+                  type: string
+                  format: binary
+                  description: 'Image files'
+                'tags[]':
+                  type: string
+                  description: 'Tag names'
+                  example: officia
+              required:
+                - signature
+                - cipher_type
+                - key_type
+                - language_id
+                - users
+                - images
+                - continent
+                - 'files[]'
   /api/cipher-keys/my:
     get:
       summary: 'All my cipher keys'
@@ -882,11 +1427,11 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 10
+                  example: 13
                 per_page:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 16
                 detailed:
                   type: boolean
                   description: ''
@@ -1129,6 +1674,162 @@ paths:
       tags:
         - 'Cipher keys'
       security: []
+    post:
+      summary: Update
+      description: 'Update a cipher key is possible when the cipher key has one of the states: APPROVED, AWAITING, REVISE'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: Error
+                  status_code: 422
+                  message: 'Validation error.'
+                  data:
+                    signature:
+                      - 'The signature has already been taken.'
+                properties:
+                  status:
+                    type: string
+                    example: Error
+                  status_code:
+                    type: integer
+                    example: 422
+                  message:
+                    type: string
+                    example: 'Validation error.'
+                  data:
+                    type: object
+                    example:
+                      signature:
+                        - 'The signature has already been taken.'
+      tags:
+        - 'Cipher keys'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: Description.
+                  example: nihil
+                signature:
+                  type: string
+                  description: 'Date to be used as the publication date.'
+                  example: et
+                complete_structure:
+                  type: string
+                  description: 'Complete structure.'
+                  example: id
+                used_chars:
+                  type: string
+                  description: 'Category the post belongs to.'
+                  example: blanditiis
+                cipher_type:
+                  type: integer
+                  description: 'Cipher type.'
+                  example: 8
+                key_type:
+                  type: integer
+                  description: 'Key type.'
+                  example: 11
+                used_from:
+                  type: string
+                  description: 'Used from. Format: Y-m-d. Must be a valid date.'
+                  example: '2022-02-28'
+                used_to:
+                  type: string
+                  description: 'Used to. Format: Y-m-d. Must be a valid date.'
+                  example: '2022-02-28'
+                new_folder:
+                  type: string
+                  description: 'New folder.'
+                  example: voluptas
+                new_fond:
+                  type: string
+                  description: 'New fond.'
+                  example: mollitia
+                new_archive:
+                  type: string
+                  description: 'New archive.'
+                  example: velit
+                used_around:
+                  type: string
+                  description: 'Used around.'
+                  example: saepe
+                folder_id:
+                  type: integer
+                  description: 'The ID of Folder. This field is required when <code>new_folder</code> is <code>null</code>.'
+                  example: 1
+                archive_id:
+                  type: integer
+                  description: 'The ID of Archive. This field is required when <code>new_archive</code> is <code>null</code>.'
+                  example: 1
+                fond_id:
+                  type: integer
+                  description: 'The ID of Fond. This field is required when <code>new_fond</code> is <code>null</code>.'
+                  example: 1
+                location_name:
+                  type: string
+                  description: 'Specific name of the location.'
+                  example: Bratislava
+                language_id:
+                  type: integer
+                  description: 'The ID of Language.'
+                  example: 1
+                users:
+                  type: json
+                  description: 'List of images data.'
+                  example: '[{"name":"new user name","is_main_user":false},{"name":"new user name 2","is_main_user":true}]'
+                tags:
+                  type: array
+                  description: ''
+                  example:
+                    - sint
+                  items:
+                    type: string
+                continent:
+                  type: string
+                  description: Continent.
+                  example: Europe
+                'tags[]':
+                  type: string
+                  description: 'Tag names'
+                  example: et
+              required:
+                - cipher_type
+                - key_type
+                - language_id
+                - users
+                - continent
     parameters:
       -
         in: path
@@ -1292,7 +1993,7 @@ paths:
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: asc
+                  example: desc
   /api/locations:
     get:
       summary: 'Show all locations'
@@ -1556,6 +2257,139 @@ paths:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
                   example: asc
+  /api/solutions:
+    get:
+      summary: 'Show all solutions'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: Success
+                  status_code: 200
+                  message: 'List of all solutions.'
+                  data:
+                    -
+                      id: 2
+                      name: 'Partially solved'
+                    -
+                      id: 1
+                      name: Solved
+                properties:
+                  status:
+                    type: string
+                    example: Success
+                  status_code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'List of all solutions.'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 2
+                        name: 'Partially solved'
+                      -
+                        id: 1
+                        name: Solved
+                    items:
+                      type: object
+      tags:
+        - Solutions
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderBy:
+                  type: string
+                  description: 'Must be one of <code>id</code> or <code>name</code>.'
+                  example: id
+                orderDirection:
+                  type: string
+                  description: 'Must be one of <code>asc</code> or <code>desc</code>.'
+                  example: desc
+  /api/statistics:
+    get:
+      summary: 'Show all solutions'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: Success
+                  status_code: 200
+                  message: 'Statsitics data.'
+                  data:
+                    cipher_keys_count: 20
+                    cryptograms: 3
+                properties:
+                  status:
+                    type: string
+                    example: Success
+                  status_code:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Statsitics data.'
+                  data:
+                    type: object
+                    example:
+                      cipher_keys_count: 20
+                      cryptograms: 3
+      tags:
+        - Statistics
+      security: []
   /api/tags:
     get:
       summary: 'Show all tags'
@@ -1657,15 +2491,21 @@ paths:
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: desc
+                  example: asc
                 type:
                   type: string
                   description: 'Must be one of <code>cipher_key</code> or <code>cryptogram</code>.'
-                  example: cryptogram
+                  example: cipher_key
 tags:
+  -
+    name: Archives
+    description: "\nAPIs for Archives"
   -
     name: Authentication
     description: "\nAPIs for Auth"
+  -
+    name: Categories
+    description: "\nAPIs for Categories"
   -
     name: 'Cipher keys'
     description: "\nAPIs for Cipher keys"
@@ -1678,6 +2518,12 @@ tags:
   -
     name: Persons
     description: "\nAPIs for Persons"
+  -
+    name: Solutions
+    description: "\nAPIs for Solutions"
+  -
+    name: Statistics
+    description: "\nAPIs for Statistics"
   -
     name: Tags
     description: "\nAPIs for Tags"

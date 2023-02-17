@@ -1,0 +1,9 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "Statsitics data.",
+    "data": {
+        "cipher_keys_count": 20,
+        "cryptograms": 3
+    }
+}

@@ -1,14 +1,14 @@
-name: Persons
+name: Languages
 description: |-
 
-  APIs for Persons
+  APIs for Languages
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/persons
+    uri: api/languages
     metadata:
-      title: 'Show all persons'
+      title: 'Show all languages'
       description: ''
       authenticated: true
       custom: []
@@ -23,14 +23,14 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code> or <code>name</code>.'
         required: false
-        example: name
+        example: id
         type: string
         custom: []
       orderDirection:
         name: orderDirection
         description: 'Must be one of <code>asc</code> or <code>desc</code>.'
         required: false
-        example: asc
+        example: desc
         type: string
         custom: []
     responses:
@@ -40,19 +40,11 @@ endpoints:
           {
               "status": "Success",
               "status_code": 200,
-              "message": "List of all persons",
+              "message": "List of all languages",
               "data": [
                   {
-                      "id": 11,
-                      "name": "atos"
-                  },
-                  {
-                      "id": 10,
-                      "name": "hahahahahaha"
-                  },
-                  {
-                      "id": 8,
-                      "name": "jahaha"
+                      "id": 1,
+                      "name": "english"
                   }
               ]
           }

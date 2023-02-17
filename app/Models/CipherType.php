@@ -11,11 +11,8 @@ class CipherType extends Model
 
     ];
 
-
     protected $dates = [];
     public $timestamps = false;
-
-    protected $hidden = ['resource_url'];
 
     protected $appends = ['resource_url'];
 
