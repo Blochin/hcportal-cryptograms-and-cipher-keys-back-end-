@@ -67,7 +67,8 @@
                                         </th>
                                         <th :column="'state_id'">
                                             {{ trans('admin.cryptogram.columns.state_id') }}</th>
-
+                                            <th :column="'created_by'">
+                                                {{ trans('admin.cipher-key.columns.created_by') }}</th>
                                         <th></th>
                                     </tr>
                                     <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
@@ -109,6 +110,8 @@
                                         <td>@{{ item . id }}</td>
                                         <td>@{{ item . name }}</td>
                                         <td v-html="item . state_badge"></td>
+                                        <td>@{{ item . submitter?. full_name }}</td>
+                                       
 
                                         <td>
                                             <div class="row no-gutters">

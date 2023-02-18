@@ -1,0 +1,15 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all approved cryptograms.",
+    "data": [
+        {
+            "id": 1,
+            "name": "huhuhuuu"
+        },
+        {
+            "id": 2,
+            "name": "Test 2"
+        }
+    ]
+}

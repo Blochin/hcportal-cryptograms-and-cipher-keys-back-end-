@@ -63,6 +63,7 @@ class StoreCryptogram extends FormRequest
     public function getSanitized(): array
     {
         $sanitized = $this->validated();
+
         $sanitized['image_url'] = 'sdsd';
 
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;

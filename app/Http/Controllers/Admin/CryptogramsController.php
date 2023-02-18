@@ -21,11 +21,13 @@ use App\Models\Person;
 use App\Models\Solution;
 use App\Models\State;
 use App\Models\Tag;
+use App\Traits\Cryptogram\CryptogramSyncable;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -36,6 +38,7 @@ use Illuminate\View\View;
 
 class CryptogramsController extends Controller
 {
+    use CryptogramSyncable;
 
     /**
      * Display a listing of the resource.
@@ -51,10 +54,14 @@ class CryptogramsController extends Controller
             $request,
 
             // set columns to query
-            ['availability', 'category_id', 'day', 'flag', 'id', 'image_url', 'language_id', 'location_id', 'month', 'name', 'recipient_id', 'sender_id', 'solution_id', 'state', 'year'],
+            ['availability', 'category_id', 'day', 'flag', 'id', 'image_url', 'language_id', 'location_id', 'month', 'name', 'recipient_id', 'sender_id', 'solution_id', 'state', 'year', 'created_by'],
 
             // set columns to searchIn
-            ['availability', 'description', 'id', 'image_url', 'name']
+            ['availability', 'description', 'id', 'image_url', 'name'],
+
+            function (Builder $query) {
+                $query->with(['language', 'submitter']);
+            }
         );
 
         if ($request->ajax()) {
@@ -303,84 +310,6 @@ class CryptogramsController extends Controller
         return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
     }
 
-    /**
-     * Sync datagroups
-     *
-     * @param Cryptogram $cryptogram
-     * @param array $sanitized
-     * @return void
-     */
-    private function syncDatagroups(Cryptogram $cryptogram, $sanitized)
-    {
-
-        // 1. Delete groups
-        $cryptogram->groups()->delete();
-
-        // 2. Sync new groups
-        foreach ($sanitized['groups'] as $keyGroup => $group) {
-            $newGroup = Datagroup::create(['description' => $group->description, 'cryptogram_id' => $cryptogram->id]);
-            $data = collect($group->data)->toArray();
-            foreach ($data as $keyData => $item) {
-
-                $item = collect($item)->toArray();
-                $type = collect($item['type'])->toArray();
-
-                $dataBlobb = $item['link'] ?: $item['text'];
-                $newData = Data::create([
-                    'blobb' => $type['id'] == 'image' ? 'image' : $dataBlobb,
-                    'description' => $item['title'],
-                    'filetype' => $type['id'],
-                    'datagroup_id' => $newGroup->id,
-                    'dl_protection' => 0
-                ]);
-
-                //Sync image to data in datagroup
-                if (isset($sanitized['images'][$keyGroup][$keyData]) && $sanitized['images'][$keyGroup][$keyData] !== 'undefined') {
-
-                    $newData
-                        ->addMedia($sanitized['images'][$keyGroup][$keyData])
-                        ->toMediaCollection('image');
-
-                    $newData->update(['blobb' => $newData->getFirstMediaPath('image')]);
-                } elseif (isset($item['image']) && $item['image']) {
-                    $newData
-                        ->addMediaFromUrl($item['image'])
-                        ->toMediaCollection('image');
-                }
-            }
-        }
-
-        // // 3. Sync predefined groups
-        // $predefinedGroups = collect($sanitized['predefined_groups'])->pluck('id')->toArray();
-        // $cryptogram->datagroups()->sync($predefinedGroups);
-    }
-
-    /**
-     * Sync tags
-     *
-     * @param Cryptogram $key
-     * @param array $sanitized
-     * @return void
-     */
-    public function syncTags(Cryptogram $cryptogram, $sanitized)
-    {
-        $tags = collect($sanitized['tags'])->pluck('name')->toArray();
-        $tags = Tag::whereIn('name', $tags)->where('type', Tag::CRYPTOGRAM)->get();
-        $cryptogram->tags()->sync($tags->pluck('id')->toArray());
-    }
-
-    /**
-     * Sync cipher keys
-     *
-     * @param Cryotogram $cryptogram
-     * @param array $sanitized
-     * @return void
-     */
-    public function syncCipherKeys($cryptogram, $sanitized)
-    {
-        $keys = collect($sanitized['cipher_keys'])->pluck('id')->toArray();
-        $cryptogram->cipherKeys()->sync($keys);
-    }
 
     /**
      * Update cryptograms state

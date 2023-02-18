@@ -1,0 +1,81 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "Get a cryptogram.",
+    "data": {
+        "id": 1,
+        "name": "huhuhuuu",
+        "description": "<p>ddfdgdfg</p>",
+        "availability": "avvvv",
+        "category": {
+            "id": 3,
+            "name": "Podkategoria 2",
+            "children": []
+        },
+        "day": 12,
+        "month": 1,
+        "year": 1876,
+        "before_crist": 1,
+        "thumb": "http://dp.test/media/22/conversions/media-libraryl9NdAh-large.jpg",
+        "language": {
+            "id": 1,
+            "name": "english"
+        },
+        "location": {
+            "id": 13,
+            "continent": "Europe",
+            "name": "salamandra"
+        },
+        "recipient": {
+            "id": 2,
+            "name": "lalalalala"
+        },
+        "sender": {
+            "id": 3,
+            "name": "mamamamama"
+        },
+        "solution": {
+            "id": 1,
+            "name": "Solved"
+        },
+        "state": {
+            "id": "approved",
+            "title": "Approved",
+            "show": true
+        },
+        "created_by": {
+            "id": 1,
+            "first_name": "Administrator",
+            "last_name": "Administrator"
+        },
+        "note": null,
+        "tags": [
+            {
+                "id": 3,
+                "name": "tagovica",
+                "type": "cryptogram"
+            }
+        ],
+        "datagroups": [
+            {
+                "id": 56,
+                "description": "group 1",
+                "data": [
+                    {
+                        "id": 56,
+                        "title": "grpka 1",
+                        "type": "image",
+                        "image": {
+                            "thumb": "http://dp.test/media/95/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-thumb.jpg",
+                            "big": "http://dp.test/media/95/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg",
+                            "large": "http://dp.test/media/95/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-large.jpg",
+                            "original": "http://dp.test/media/95/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg"
+                        }
+                    }
+                ]
+            }
+        ],
+        "created_at": "2023-02-01 14:34:56",
+        "updated_at": "2023-02-18 11:29:51"
+    }
+}

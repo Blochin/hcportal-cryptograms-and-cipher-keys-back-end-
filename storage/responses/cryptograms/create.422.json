@@ -1,0 +1,6 @@
+{
+    "message": "The given data was invalid.",
+    "errors": {
+        "category_id": ["The category id field is required."]
+    }
+}

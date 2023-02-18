@@ -46,7 +46,7 @@ class UpdateCipherKey extends JsonFormRequest
             'language_id' => ['required', 'integer', 'exists:languages,id'],
             'users' => ['nullable', 'json'],
             'tags' => ['nullable', 'array'],
-            'continent' => ['required', 'string'],
+            'continent' => ['required', 'string', 'exists:locations,continent'],
 
         ];
     }

@@ -4,6 +4,7 @@ namespace App\Http\Requests\Api\CipherKey;
 
 use App\Http\Requests\Api\JsonFormRequest;
 use App\Models\CipherKey;
+use App\Models\Language;
 use App\Models\Location;
 use Illuminate\Validation\Rule;
 
@@ -43,12 +44,12 @@ class StoreCipherKey extends JsonFormRequest
             'archive_id' => 'nullable|required_if:new_archive,null|integer|exists:archives,id',
             'fond_id' => 'nullable|required_if:new_fond,null|integer|exists:fonds,id',
             'location_name' => ['nullable', 'string'],
-            'language_id' => ['required', 'integer', 'exists:languages,id'],
+            'language' => ['required', 'string'],
             'users' => ['nullable', 'json'],
             'images' => ['nullable', 'json'],
             'files' => ['nullable',],
             'tags' => ['nullable', 'array'],
-            'continent' => ['required', 'string'],
+            'continent' => ['required', 'string', 'exists:locations,continent'],
 
         ];
     }
@@ -111,9 +112,9 @@ class StoreCipherKey extends JsonFormRequest
                 'description' => 'The ID of Fond',
                 'example' => 1,
             ],
-            'language_id' => [
+            'language' => [
                 'description' => 'The ID of Language',
-                'example' => 1,
+                'example' => 'German',
             ],
             'location_name' => [
                 'description' => 'Specific name of the location',
@@ -135,6 +136,7 @@ class StoreCipherKey extends JsonFormRequest
     {
         $sanitized = $this->validated();
 
+        $sanitized['language_id'] = $sanitized['language'] ? Language::firstOrCreate(['name' => $sanitized['language']])->id : null;
         $sanitized['images'] = $sanitized['images'] ? json_decode($sanitized['images']) : null;
         $sanitized['users'] = $sanitized['users'] ? json_decode($sanitized['users']) : null;
 
@@ -151,6 +153,8 @@ class StoreCipherKey extends JsonFormRequest
             $location = Location::firstOrCreate([
                 'continent' => $sanitized['continent']
             ]);
+        } else {
+            $location = Location::where('continent', 'Unknown')->first();
         }
 
         $sanitized['location_id'] = $location->id;

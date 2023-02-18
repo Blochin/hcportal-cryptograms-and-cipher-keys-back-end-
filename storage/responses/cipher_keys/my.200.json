@@ -1,7 +1,7 @@
 {
     "status": "Success",
     "status_code": 200,
-    "message": "List of all approved cipher keys.",
+    "message": "List of all my cipher keys.",
     "data": [
         {
             "id": 8,

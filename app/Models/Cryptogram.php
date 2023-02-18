@@ -122,6 +122,12 @@ class Cryptogram extends Model implements HasMedia
         return ($this->location) ? $this->location->name : null;
     }
 
+    /* ************************ Scopes ************************* */
+
+    public function scopeApproved($query)
+    {
+        return $query->where('state', CipherKey::STATUS_APPROVED);
+    }
 
     /* ************************ Relationships ************************* */
 

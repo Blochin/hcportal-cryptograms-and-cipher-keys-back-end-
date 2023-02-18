@@ -1,14 +1,14 @@
-name: Solutions
+name: Persons
 description: |-
 
-  APIs for Solutions
+  APIs for Persons
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/solutions
+    uri: api/persons
     metadata:
-      title: 'Show all solutions'
+      title: 'Show all persons'
       description: ''
       authenticated: true
       custom: []
@@ -23,7 +23,7 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code> or <code>name</code>.'
         required: false
-        example: id
+        example: name
         type: string
         custom: []
       orderDirection:
@@ -40,15 +40,19 @@ endpoints:
           {
               "status": "Success",
               "status_code": 200,
-              "message": "List of all solutions.",
+              "message": "List of all persons",
               "data": [
                   {
-                      "id": 2,
-                      "name": "Partially solved"
+                      "id": 11,
+                      "name": "atos"
                   },
                   {
-                      "id": 1,
-                      "name": "Solved"
+                      "id": 10,
+                      "name": "hahahahahaha"
+                  },
+                  {
+                      "id": 8,
+                      "name": "jahaha"
                   }
               ]
           }

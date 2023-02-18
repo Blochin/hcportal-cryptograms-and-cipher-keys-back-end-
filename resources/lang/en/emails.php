@@ -9,4 +9,6 @@ return [
     'update_cryptogram_state' => 'The status of the cryptogram you added has changed.',
     'new_cipher_key' => 'New Cipher key in HCPortal.eu',
     'edit_cipher_key' => 'Edited Cipher key in HCPortal.eu',
+    'new_cryptogram' => 'New Cryptogram in HCPortal.eu',
+    'edit_cryptogram' => 'Edited Cryptogram in HCPortal.eu',
 ];

@@ -1,45 +1,23 @@
-name: Tags
+name: Statistics
 description: |-
 
-  APIs for Tags
+  APIs for Statistics
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/tags
+    uri: api/statistics
     metadata:
-      title: 'Show all tags'
+      title: 'Show all solutions'
       description: ''
-      authenticated: true
+      authenticated: false
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters:
-      orderBy:
-        name: orderBy
-        description: 'Must be one of <code>id</code>, <code>name</code>, or <code>type</code>.'
-        required: false
-        example: type
-        type: string
-        custom: []
-      orderDirection:
-        name: orderDirection
-        description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-        required: false
-        example: asc
-        type: string
-        custom: []
-      type:
-        name: type
-        description: 'Must be one of <code>cipher_key</code> or <code>cryptogram</code>.'
-        required: false
-        example: cipher_key
-        type: string
-        custom: []
+    bodyParameters: []
     responses:
       -
         status: 200
@@ -47,29 +25,11 @@ endpoints:
           {
               "status": "Success",
               "status_code": 200,
-              "message": "List of all tags",
-              "data": [
-                  {
-                      "id": 4,
-                      "name": "lapovica",
-                      "type": "cryptogram"
-                  },
-                  {
-                      "id": 3,
-                      "name": "tagovica",
-                      "type": "cryptogram"
-                  },
-                  {
-                      "id": 2,
-                      "name": "jahahaha",
-                      "type": "cipher_key"
-                  },
-                  {
-                      "id": 1,
-                      "name": "new tag",
-                      "type": "cipher_key"
-                  }
-              ]
+              "message": "Statsitics data.",
+              "data": {
+                  "cipher_keys_count": 20,
+                  "cryptograms": 3
+              }
           }
         headers: []
         description: '200'

@@ -43,4 +43,26 @@ class LocationsController extends Controller
         return $this->success(LocationResource::collection($locations), 'List of all locations', 200);
         //return $this->success(new LocationCollection($locations), 'List of all locations', 200);
     }
+
+    /**
+     * Show all continents
+     *
+     * @authenticated
+     * 
+     * All continents <br><br>
+     * 
+     * <b>Status codes:</b><br>
+     * <b>200</b> - Successfully given data<br>
+     * 
+     * 
+     * @responseFile responses/locations/continents.200.json
+     * 
+     */
+    public function continents(Request $request)
+    {
+        $continents = collect(Location::CONTINENTS);
+
+        return $this->success($continents, 'List of all continents', 200);
+        //return $this->success(new LocationCollection($locations), 'List of all locations', 200);
+    }
 }

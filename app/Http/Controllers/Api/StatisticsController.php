@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Category\IndexRequest;
 use App\Models\CipherKey;
 use App\Models\Cryptogram;
 use App\Traits\ApiResponser;

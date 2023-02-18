@@ -71,7 +71,7 @@
                                         <th :column="'state'">
                                             {{ trans('admin.cipher-key.columns.state') }}</th>
 
-                                        <th :column="'user'">
+                                        <th :column="'created_by'">
                                             {{ trans('admin.cipher-key.columns.created_by') }}</th>
 
                                         <th></th>

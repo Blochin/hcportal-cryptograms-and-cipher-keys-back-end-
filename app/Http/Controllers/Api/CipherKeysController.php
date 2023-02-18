@@ -111,12 +111,12 @@ class CipherKeysController extends Controller
 
         if ($request->detailed) {
             $cipherKeys = $this->filterPagination($cipherKeys, $request, 'signature', 'asc', true);
-            return $this->success(new CipherKeyApprovedCollection($cipherKeys), 'List of all approved cipher keys with details.', 200);
+            return $this->success(new CipherKeyApprovedCollection($cipherKeys), 'List of all my cipher keys with details.', 200);
         }
 
         $cipherKeys = $this->filterPagination($cipherKeys, $request, 'signature', 'asc', false);
 
-        return $this->success(CipherKeyApprovedResource::collection($cipherKeys), 'List of all approved cipher keys.', 200);
+        return $this->success(CipherKeyApprovedResource::collection($cipherKeys), 'List of all my cipher keys.', 200);
         //return $this->success(new LocationCollection($locations), 'List of all locations', 200);
     }
 
@@ -158,7 +158,7 @@ class CipherKeysController extends Controller
     }
 
     /**
-     * Create
+     * Create cipher key
      *
      * @authenticated
      * 
@@ -222,7 +222,7 @@ class CipherKeysController extends Controller
     }
 
     /**
-     * Update
+     * Update cipher key
      *
      * Update a cipher key is possible when the cipher key has one of the states: APPROVED, AWAITING, REVISE
      * 
@@ -291,6 +291,22 @@ class CipherKeysController extends Controller
 
 
         Mail::to(config('mail.to.email'))->send(new UpdateCipherKeyMail($cipherKey));
+
+        $cipherKey = CipherKey::with([
+            'images',
+            'users',
+            'users.person',
+            'submitter',
+            'cipherType',
+            'keyType',
+            'group',
+            'folder',
+            'folder.fond',
+            'folder.fond.archive',
+            'language',
+            'location',
+            'tags'
+        ])->findOrFail($cipherKey->id);
 
         return $this->success(new CipherKeyApprovedDetailedResource($cipherKey), 'Successfully updated cipher key.', 200);
     }

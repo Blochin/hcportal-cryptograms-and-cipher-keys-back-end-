@@ -1,0 +1,31 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "List of all continents",
+    "data": [
+        {
+            "name": "North America"
+        },
+        {
+            "name": "South America"
+        },
+        {
+            "name": "Europe"
+        },
+        {
+            "name": "Asia"
+        },
+        {
+            "name": "Oceania"
+        },
+        {
+            "name": "Africa"
+        },
+        {
+            "name": "Antartica"
+        },
+        {
+            "name": "Unknown"
+        }
+    ]
+}

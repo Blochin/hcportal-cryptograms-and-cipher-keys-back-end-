@@ -25,7 +25,7 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code>, <code>name</code>, or <code>short_name</code>.'
         required: false
-        example: id
+        example: short_name
         type: string
         custom: []
       orderDirection:

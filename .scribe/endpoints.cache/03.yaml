@@ -31,21 +31,21 @@ endpoints:
         name: orderDirection
         description: 'Must be one of <code>asc</code> or <code>desc</code>.'
         required: false
-        example: desc
+        example: asc
         type: string
         custom: []
       page:
         name: page
         description: ''
         required: false
-        example: 5
+        example: 10
         type: integer
         custom: []
       per_page:
         name: per_page
         description: ''
         required: false
-        example: 4
+        example: 17
         type: integer
         custom: []
       detailed:
@@ -243,7 +243,7 @@ endpoints:
         name: page
         description: ''
         required: false
-        example: 13
+        example: 3
         type: integer
         custom: []
       per_page:
@@ -257,7 +257,7 @@ endpoints:
         name: detailed
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         custom: []
     responses:
@@ -267,7 +267,7 @@ endpoints:
           {
               "status": "Success",
               "status_code": 200,
-              "message": "List of all approved cipher keys.",
+              "message": "List of all my cipher keys.",
               "data": [
                   {
                       "id": 8,
@@ -303,7 +303,7 @@ endpoints:
           {
               "status": "Success",
               "status_code": 200,
-              "message": "List of all approved cipher keys with details.",
+              "message": "List of all my cipher keys with details.",
               "data": {
                   "current_page": 1,
                   "data": [
@@ -615,7 +615,7 @@ endpoints:
       - POST
     uri: api/cipher-keys
     metadata:
-      title: Create
+      title: 'Create cipher key'
       description: ''
       authenticated: true
       custom: []
@@ -630,42 +630,42 @@ endpoints:
         name: description
         description: Description.
         required: false
-        example: explicabo
+        example: tempore
         type: string
         custom: []
       signature:
         name: signature
         description: 'Date to be used as the publication date.'
         required: true
-        example: iure
+        example: tenetur
         type: string
         custom: []
       complete_structure:
         name: complete_structure
         description: 'Complete structure.'
         required: false
-        example: molestiae
+        example: a
         type: string
         custom: []
       used_chars:
         name: used_chars
         description: 'Category the post belongs to.'
         required: false
-        example: repellendus
+        example: voluptas
         type: string
         custom: []
       cipher_type:
         name: cipher_type
         description: 'Cipher type.'
         required: true
-        example: 12
+        example: 7
         type: integer
         custom: []
       key_type:
         name: key_type
         description: 'Key type.'
         required: true
-        example: 20
+        example: 19
         type: integer
         custom: []
       used_from:
@@ -686,28 +686,28 @@ endpoints:
         name: new_folder
         description: 'New folder.'
         required: false
-        example: sapiente
+        example: suscipit
         type: string
         custom: []
       new_fond:
         name: new_fond
         description: 'New fond.'
         required: false
-        example: a
+        example: et
         type: string
         custom: []
       new_archive:
         name: new_archive
         description: 'New archive.'
         required: false
-        example: sunt
+        example: rerum
         type: string
         custom: []
       used_around:
         name: used_around
         description: 'Used around.'
         required: false
-        example: sed
+        example: architecto
         type: string
         custom: []
       folder_id:
@@ -738,12 +738,12 @@ endpoints:
         example: Bratislava
         type: string
         custom: []
-      language_id:
-        name: language_id
+      language:
+        name: language
         description: 'The ID of Language.'
         required: true
-        example: 1
-        type: integer
+        example: German
+        type: string
         custom: []
       users:
         name: users
@@ -771,7 +771,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - aut
+          - vel
         type: 'string[]'
         custom: []
       continent:
@@ -820,7 +820,7 @@ endpoints:
         name: 'tags[]'
         description: 'Tag names'
         required: false
-        example: officia
+        example: error
         type: string
         custom: []
     responses:
@@ -963,7 +963,7 @@ endpoints:
       - POST
     uri: 'api/cipher-keys/{cipherKey_id}'
     metadata:
-      title: Update
+      title: 'Update cipher key'
       description: 'Update a cipher key is possible when the cipher key has one of the states: APPROVED, AWAITING, REVISE'
       authenticated: true
       custom: []
@@ -985,35 +985,35 @@ endpoints:
         name: description
         description: Description.
         required: false
-        example: nihil
+        example: dolor
         type: string
         custom: []
       signature:
         name: signature
         description: 'Date to be used as the publication date.'
         required: false
-        example: et
+        example: voluptatem
         type: string
         custom: []
       complete_structure:
         name: complete_structure
         description: 'Complete structure.'
         required: false
-        example: id
+        example: est
         type: string
         custom: []
       used_chars:
         name: used_chars
         description: 'Category the post belongs to.'
         required: false
-        example: blanditiis
+        example: occaecati
         type: string
         custom: []
       cipher_type:
         name: cipher_type
         description: 'Cipher type.'
         required: true
-        example: 8
+        example: 15
         type: integer
         custom: []
       key_type:
@@ -1041,28 +1041,28 @@ endpoints:
         name: new_folder
         description: 'New folder.'
         required: false
-        example: voluptas
+        example: consequatur
         type: string
         custom: []
       new_fond:
         name: new_fond
         description: 'New fond.'
         required: false
-        example: mollitia
+        example: non
         type: string
         custom: []
       new_archive:
         name: new_archive
         description: 'New archive.'
         required: false
-        example: velit
+        example: in
         type: string
         custom: []
       used_around:
         name: used_around
         description: 'Used around.'
         required: false
-        example: saepe
+        example: aut
         type: string
         custom: []
       folder_id:
@@ -1112,7 +1112,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - sint
+          - sed
         type: 'string[]'
         custom: []
       continent:
@@ -1140,7 +1140,7 @@ endpoints:
         name: 'tags[]'
         description: 'Tag names'
         required: false
-        example: et
+        example: qui
         type: string
         custom: []
     responses:

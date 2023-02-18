@@ -1,23 +1,38 @@
-name: Statistics
+name: Solutions
 description: |-
 
-  APIs for Statistics
+  APIs for Solutions
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/statistics
+    uri: api/solutions
     metadata:
       title: 'Show all solutions'
       description: ''
-      authenticated: false
+      authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters: []
+    bodyParameters:
+      orderBy:
+        name: orderBy
+        description: 'Must be one of <code>id</code> or <code>name</code>.'
+        required: false
+        example: name
+        type: string
+        custom: []
+      orderDirection:
+        name: orderDirection
+        description: 'Must be one of <code>asc</code> or <code>desc</code>.'
+        required: false
+        example: asc
+        type: string
+        custom: []
     responses:
       -
         status: 200
@@ -25,11 +40,17 @@ endpoints:
           {
               "status": "Success",
               "status_code": 200,
-              "message": "Statsitics data.",
-              "data": {
-                  "cipher_keys_count": 20,
-                  "cryptograms": 3
-              }
+              "message": "List of all solutions.",
+              "data": [
+                  {
+                      "id": 2,
+                      "name": "Partially solved"
+                  },
+                  {
+                      "id": 1,
+                      "name": "Solved"
+                  }
+              ]
           }
         headers: []
         description: '200'

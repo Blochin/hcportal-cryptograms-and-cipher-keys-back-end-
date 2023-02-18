@@ -137,14 +137,36 @@
                         <a href="#cipher-keys-GETapi-cipher-types">Show all cipher types</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="cipher-keys-POSTapi-cipher-keys">
-                        <a href="#cipher-keys-POSTapi-cipher-keys">Create</a>
+                        <a href="#cipher-keys-POSTapi-cipher-keys">Create cipher key</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="cipher-keys-POSTapi-cipher-keys--cipherKey_id-">
-                        <a href="#cipher-keys-POSTapi-cipher-keys--cipherKey_id-">Update</a>
+                        <a href="#cipher-keys-POSTapi-cipher-keys--cipherKey_id-">Update cipher key</a>
                     </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-6" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="cryptograms">
+                    <a href="#cryptograms">Cryptograms</a>
+                </li>
+                                    <ul id="tocify-subheader-cryptograms" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="cryptograms-GETapi-cryptograms">
+                        <a href="#cryptograms-GETapi-cryptograms">All approved cryptograms</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="cryptograms-GETapi-cryptograms--cryptogram_id-">
+                        <a href="#cryptograms-GETapi-cryptograms--cryptogram_id-">Show cryptogram</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="cryptograms-GETapi-cryptograms-my">
+                        <a href="#cryptograms-GETapi-cryptograms-my">All my cryptograms</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="cryptograms-POSTapi-cryptograms">
+                        <a href="#cryptograms-POSTapi-cryptograms">Create cryptogram</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="cryptograms-POSTapi-cryptograms--cryptogram_id-">
+                        <a href="#cryptograms-POSTapi-cryptograms--cryptogram_id-">Update cryptogram</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-7" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="languages">
                     <a href="#languages">Languages</a>
                 </li>
@@ -154,7 +176,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-7" class="tocify-header">
+                    <ul id="tocify-header-8" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="locations">
                     <a href="#locations">Locations</a>
                 </li>
@@ -162,9 +184,12 @@
                                                     <li class="tocify-item level-2" data-unique="locations-GETapi-locations">
                         <a href="#locations-GETapi-locations">Show all locations</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="locations-GETapi-locations-continents">
+                        <a href="#locations-GETapi-locations-continents">Show all continents</a>
+                    </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-8" class="tocify-header">
+                    <ul id="tocify-header-9" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="persons">
                     <a href="#persons">Persons</a>
                 </li>
@@ -174,7 +199,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-9" class="tocify-header">
+                    <ul id="tocify-header-10" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="solutions">
                     <a href="#solutions">Solutions</a>
                 </li>
@@ -184,7 +209,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-10" class="tocify-header">
+                    <ul id="tocify-header-11" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="statistics">
                     <a href="#statistics">Statistics</a>
                 </li>
@@ -194,7 +219,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-11" class="tocify-header">
+                    <ul id="tocify-header-12" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="tags">
                     <a href="#tags">Tags</a>
                 </li>
@@ -214,7 +239,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: February 17 2023</li>
+        <li>Last updated: February 18 2023</li>
     </ul>
 </div>
 
@@ -232,7 +257,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">http://dp.test</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
@@ -259,7 +284,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"orderBy\": \"id\",
+    \"orderBy\": \"short_name\",
     \"orderDirection\": \"desc\"
 }"
 </code></pre></div>
@@ -277,7 +302,7 @@ const headers = {
 };
 
 let body = {
-    "orderBy": "id",
+    "orderBy": "short_name",
     "orderDirection": "desc"
 };
 
@@ -299,7 +324,7 @@ $response = $client-&gt;get(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'orderBy' =&gt; 'id',
+            'orderBy' =&gt; 'short_name',
             'orderDirection' =&gt; 'desc',
         ],
     ]
@@ -499,7 +524,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="orderBy"
                data-endpoint="GETapi-archives"
-               value="id"
+               value="short_name"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>id</code>, <code>name</code>, or <code>short_name</code>.</p>
@@ -538,7 +563,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --data "{
     \"email\": \"login@login.sk\",
-    \"password\": \"qui\"
+    \"password\": \"veritatis\"
 }"
 </code></pre></div>
 
@@ -555,7 +580,7 @@ const headers = {
 
 let body = {
     "email": "login@login.sk",
-    "password": "qui"
+    "password": "veritatis"
 };
 
 fetch(url, {
@@ -576,7 +601,7 @@ $response = $client-&gt;post(
         ],
         'json' =&gt; [
             'email' =&gt; 'login@login.sk',
-            'password' =&gt; 'qui',
+            'password' =&gt; 'veritatis',
         ],
     ]
 );
@@ -700,7 +725,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="qui"
+               value="veritatis"
                data-component="body" hidden>
     <br>
 <p>Password</p>
@@ -958,10 +983,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"first_name\": \"vero\",
-    \"last_name\": \"facere\",
+    \"first_name\": \"dolorem\",
+    \"last_name\": \"blanditiis\",
     \"email\": \"login@login.sk\",
-    \"password\": \"recusandae\"
+    \"password\": \"illo\"
 }"
 </code></pre></div>
 
@@ -977,10 +1002,10 @@ const headers = {
 };
 
 let body = {
-    "first_name": "vero",
-    "last_name": "facere",
+    "first_name": "dolorem",
+    "last_name": "blanditiis",
     "email": "login@login.sk",
-    "password": "recusandae"
+    "password": "illo"
 };
 
 fetch(url, {
@@ -1000,10 +1025,10 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'first_name' =&gt; 'vero',
-            'last_name' =&gt; 'facere',
+            'first_name' =&gt; 'dolorem',
+            'last_name' =&gt; 'blanditiis',
             'email' =&gt; 'login@login.sk',
-            'password' =&gt; 'recusandae',
+            'password' =&gt; 'illo',
         ],
     ]
 );
@@ -1099,7 +1124,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="first_name"
                data-endpoint="POSTapi-register"
-               value="vero"
+               value="dolorem"
                data-component="body" hidden>
     <br>
 <p>Firstname</p>
@@ -1109,7 +1134,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="last_name"
                data-endpoint="POSTapi-register"
-               value="facere"
+               value="blanditiis"
                data-component="body" hidden>
     <br>
 <p>Lastname</p>
@@ -1129,7 +1154,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="recusandae"
+               value="illo"
                data-component="body" hidden>
     <br>
 <p>Password</p>
@@ -1154,8 +1179,8 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --data "{
     \"email\": \"login@login.sk\",
-    \"code\": \"deserunt\",
-    \"password\": \"voluptas\"
+    \"code\": \"eos\",
+    \"password\": \"nihil\"
 }"
 </code></pre></div>
 
@@ -1172,8 +1197,8 @@ const headers = {
 
 let body = {
     "email": "login@login.sk",
-    "code": "deserunt",
-    "password": "voluptas"
+    "code": "eos",
+    "password": "nihil"
 };
 
 fetch(url, {
@@ -1194,8 +1219,8 @@ $response = $client-&gt;post(
         ],
         'json' =&gt; [
             'email' =&gt; 'login@login.sk',
-            'code' =&gt; 'deserunt',
-            'password' =&gt; 'voluptas',
+            'code' =&gt; 'eos',
+            'password' =&gt; 'nihil',
         ],
     ]
 );
@@ -1289,7 +1314,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="code"
                data-endpoint="POSTapi-password-reset-code"
-               value="deserunt"
+               value="eos"
                data-component="body" hidden>
     <br>
 <p>Password reset code</p>
@@ -1299,7 +1324,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-password-reset-code"
-               value="voluptas"
+               value="nihil"
                data-component="body" hidden>
     <br>
 <p>New password</p>
@@ -1474,7 +1499,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --data "{
     \"orderBy\": \"id\",
-    \"orderDirection\": \"asc\"
+    \"orderDirection\": \"desc\"
 }"
 </code></pre></div>
 
@@ -1492,7 +1517,7 @@ const headers = {
 
 let body = {
     "orderBy": "id",
-    "orderDirection": "asc"
+    "orderDirection": "desc"
 };
 
 fetch(url, {
@@ -1514,7 +1539,7 @@ $response = $client-&gt;get(
         ],
         'json' =&gt; [
             'orderBy' =&gt; 'id',
-            'orderDirection' =&gt; 'asc',
+            'orderDirection' =&gt; 'desc',
         ],
     ]
 );
@@ -1630,7 +1655,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="orderDirection"
                data-endpoint="GETapi-categories"
-               value="asc"
+               value="desc"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>asc</code> or <code>desc</code>.</p>
@@ -1659,9 +1684,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --data "{
     \"orderBy\": \"signature\",
-    \"orderDirection\": \"desc\",
-    \"page\": 5,
-    \"per_page\": 4,
+    \"orderDirection\": \"asc\",
+    \"page\": 10,
+    \"per_page\": 17,
     \"detailed\": false
 }"
 </code></pre></div>
@@ -1679,9 +1704,9 @@ const headers = {
 
 let body = {
     "orderBy": "signature",
-    "orderDirection": "desc",
-    "page": 5,
-    "per_page": 4,
+    "orderDirection": "asc",
+    "page": 10,
+    "per_page": 17,
     "detailed": false
 };
 
@@ -1703,9 +1728,9 @@ $response = $client-&gt;get(
         ],
         'json' =&gt; [
             'orderBy' =&gt; 'signature',
-            'orderDirection' =&gt; 'desc',
-            'page' =&gt; 5,
-            'per_page' =&gt; 4,
+            'orderDirection' =&gt; 'asc',
+            'page' =&gt; 10,
+            'per_page' =&gt; 17,
             'detailed' =&gt; false,
         ],
     ]
@@ -1926,7 +1951,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="orderDirection"
                data-endpoint="GETapi-cipher-keys"
-               value="desc"
+               value="asc"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>asc</code> or <code>desc</code>.</p>
@@ -1936,7 +1961,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="page"
                data-endpoint="GETapi-cipher-keys"
-               value="5"
+               value="10"
                data-component="body" hidden>
     <br>
 
@@ -1946,7 +1971,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="per_page"
                data-endpoint="GETapi-cipher-keys"
-               value="4"
+               value="17"
                data-component="body" hidden>
     <br>
 
@@ -1995,9 +2020,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     --data "{
     \"orderBy\": \"id\",
     \"orderDirection\": \"asc\",
-    \"page\": 13,
+    \"page\": 3,
     \"per_page\": 16,
-    \"detailed\": true
+    \"detailed\": false
 }"
 </code></pre></div>
 
@@ -2016,9 +2041,9 @@ const headers = {
 let body = {
     "orderBy": "id",
     "orderDirection": "asc",
-    "page": 13,
+    "page": 3,
     "per_page": 16,
-    "detailed": true
+    "detailed": false
 };
 
 fetch(url, {
@@ -2041,9 +2066,9 @@ $response = $client-&gt;get(
         'json' =&gt; [
             'orderBy' =&gt; 'id',
             'orderDirection' =&gt; 'asc',
-            'page' =&gt; 13,
+            'page' =&gt; 3,
             'per_page' =&gt; 16,
-            'detailed' =&gt; true,
+            'detailed' =&gt; false,
         ],
     ]
 );
@@ -2061,7 +2086,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 <code class="language-json">{
     &quot;status&quot;: &quot;Success&quot;,
     &quot;status_code&quot;: 200,
-    &quot;message&quot;: &quot;List of all approved cipher keys.&quot;,
+    &quot;message&quot;: &quot;List of all my cipher keys.&quot;,
     &quot;data&quot;: [
         {
             &quot;id&quot;: 8,
@@ -2098,7 +2123,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 <code class="language-json">{
     &quot;status&quot;: &quot;Success&quot;,
     &quot;status_code&quot;: 200,
-    &quot;message&quot;: &quot;List of all approved cipher keys with details.&quot;,
+    &quot;message&quot;: &quot;List of all my cipher keys with details.&quot;,
     &quot;data&quot;: {
         &quot;current_page&quot;: 1,
         &quot;data&quot;: [
@@ -2281,7 +2306,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="page"
                data-endpoint="GETapi-cipher-keys-my"
-               value="13"
+               value="3"
                data-component="body" hidden>
     <br>
 
@@ -2772,7 +2797,7 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
                 </form>
 
-            <h2 id="cipher-keys-POSTapi-cipher-keys">Create</h2>
+            <h2 id="cipher-keys-POSTapi-cipher-keys">Create cipher key</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2790,29 +2815,29 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "description=explicabo" \
-    --form "signature=iure" \
-    --form "complete_structure=molestiae" \
-    --form "used_chars=repellendus" \
-    --form "cipher_type=12" \
-    --form "key_type=20" \
+    --form "description=tempore" \
+    --form "signature=tenetur" \
+    --form "complete_structure=a" \
+    --form "used_chars=voluptas" \
+    --form "cipher_type=7" \
+    --form "key_type=19" \
     --form "used_from=2022-02-28" \
     --form "used_to=2022-02-28" \
-    --form "new_folder=sapiente" \
-    --form "new_fond=a" \
-    --form "new_archive=sunt" \
-    --form "used_around=sed" \
+    --form "new_folder=suscipit" \
+    --form "new_fond=et" \
+    --form "new_archive=rerum" \
+    --form "used_around=architecto" \
     --form "folder_id=1" \
     --form "archive_id=1" \
     --form "fond_id=1" \
     --form "location_name=Bratislava" \
-    --form "language_id=1" \
+    --form "language=German" \
     --form "users=[{"name":"new user name","is_main_user":false},{"name":"new user name 2","is_main_user":true}]" \
     --form "images=[{"has_instructions": true, "structure": "example structure"},{"has_instructions": false, "structure": ""}]" \
-    --form "tags[]=aut" \
+    --form "tags[]=vel" \
     --form "continent=Europe" \
-    --form "tags[]=officia" \
-    --form "files[]=@/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phpGw84Ox" </code></pre></div>
+    --form "tags[]=error" \
+    --form "files[]=@/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phpkQNr6M" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -2827,28 +2852,28 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('description', 'explicabo');
-body.append('signature', 'iure');
-body.append('complete_structure', 'molestiae');
-body.append('used_chars', 'repellendus');
-body.append('cipher_type', '12');
-body.append('key_type', '20');
+body.append('description', 'tempore');
+body.append('signature', 'tenetur');
+body.append('complete_structure', 'a');
+body.append('used_chars', 'voluptas');
+body.append('cipher_type', '7');
+body.append('key_type', '19');
 body.append('used_from', '2022-02-28');
 body.append('used_to', '2022-02-28');
-body.append('new_folder', 'sapiente');
-body.append('new_fond', 'a');
-body.append('new_archive', 'sunt');
-body.append('used_around', 'sed');
+body.append('new_folder', 'suscipit');
+body.append('new_fond', 'et');
+body.append('new_archive', 'rerum');
+body.append('used_around', 'architecto');
 body.append('folder_id', '1');
 body.append('archive_id', '1');
 body.append('fond_id', '1');
 body.append('location_name', 'Bratislava');
-body.append('language_id', '1');
+body.append('language', 'German');
 body.append('users', '[{"name":"new user name","is_main_user":false},{"name":"new user name 2","is_main_user":true}]');
 body.append('images', '[{"has_instructions": true, "structure": "example structure"},{"has_instructions": false, "structure": ""}]');
-body.append('tags[]', 'aut');
+body.append('tags[]', 'vel');
 body.append('continent', 'Europe');
-body.append('tags[]', 'officia');
+body.append('tags[]', 'error');
 body.append('files[]', document.querySelector('input[name="files[]"]').files[0]);
 
 fetch(url, {
@@ -2871,27 +2896,27 @@ $response = $client-&gt;post(
         'multipart' =&gt; [
             [
                 'name' =&gt; 'description',
-                'contents' =&gt; 'explicabo'
+                'contents' =&gt; 'tempore'
             ],
             [
                 'name' =&gt; 'signature',
-                'contents' =&gt; 'iure'
+                'contents' =&gt; 'tenetur'
             ],
             [
                 'name' =&gt; 'complete_structure',
-                'contents' =&gt; 'molestiae'
+                'contents' =&gt; 'a'
             ],
             [
                 'name' =&gt; 'used_chars',
-                'contents' =&gt; 'repellendus'
+                'contents' =&gt; 'voluptas'
             ],
             [
                 'name' =&gt; 'cipher_type',
-                'contents' =&gt; '12'
+                'contents' =&gt; '7'
             ],
             [
                 'name' =&gt; 'key_type',
-                'contents' =&gt; '20'
+                'contents' =&gt; '19'
             ],
             [
                 'name' =&gt; 'used_from',
@@ -2903,19 +2928,19 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'new_folder',
-                'contents' =&gt; 'sapiente'
+                'contents' =&gt; 'suscipit'
             ],
             [
                 'name' =&gt; 'new_fond',
-                'contents' =&gt; 'a'
+                'contents' =&gt; 'et'
             ],
             [
                 'name' =&gt; 'new_archive',
-                'contents' =&gt; 'sunt'
+                'contents' =&gt; 'rerum'
             ],
             [
                 'name' =&gt; 'used_around',
-                'contents' =&gt; 'sed'
+                'contents' =&gt; 'architecto'
             ],
             [
                 'name' =&gt; 'folder_id',
@@ -2934,8 +2959,8 @@ $response = $client-&gt;post(
                 'contents' =&gt; 'Bratislava'
             ],
             [
-                'name' =&gt; 'language_id',
-                'contents' =&gt; '1'
+                'name' =&gt; 'language',
+                'contents' =&gt; 'German'
             ],
             [
                 'name' =&gt; 'users',
@@ -2947,7 +2972,7 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'tags[]',
-                'contents' =&gt; 'aut'
+                'contents' =&gt; 'vel'
             ],
             [
                 'name' =&gt; 'continent',
@@ -2955,11 +2980,11 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'tags[]',
-                'contents' =&gt; 'officia'
+                'contents' =&gt; 'error'
             ],
             [
                 'name' =&gt; 'files[]',
-                'contents' =&gt; fopen('/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phpGw84Ox', 'r')
+                'contents' =&gt; fopen('/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phpkQNr6M', 'r')
             ],
         ],
     ]
@@ -3161,7 +3186,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="POSTapi-cipher-keys"
-               value="explicabo"
+               value="tempore"
                data-component="body" hidden>
     <br>
 <p>Description.</p>
@@ -3171,7 +3196,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="signature"
                data-endpoint="POSTapi-cipher-keys"
-               value="iure"
+               value="tenetur"
                data-component="body" hidden>
     <br>
 <p>Date to be used as the publication date.</p>
@@ -3181,7 +3206,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="complete_structure"
                data-endpoint="POSTapi-cipher-keys"
-               value="molestiae"
+               value="a"
                data-component="body" hidden>
     <br>
 <p>Complete structure.</p>
@@ -3191,7 +3216,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="used_chars"
                data-endpoint="POSTapi-cipher-keys"
-               value="repellendus"
+               value="voluptas"
                data-component="body" hidden>
     <br>
 <p>Category the post belongs to.</p>
@@ -3201,7 +3226,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="cipher_type"
                data-endpoint="POSTapi-cipher-keys"
-               value="12"
+               value="7"
                data-component="body" hidden>
     <br>
 <p>Cipher type.</p>
@@ -3211,7 +3236,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="key_type"
                data-endpoint="POSTapi-cipher-keys"
-               value="20"
+               value="19"
                data-component="body" hidden>
     <br>
 <p>Key type.</p>
@@ -3241,7 +3266,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="new_folder"
                data-endpoint="POSTapi-cipher-keys"
-               value="sapiente"
+               value="suscipit"
                data-component="body" hidden>
     <br>
 <p>New folder.</p>
@@ -3251,7 +3276,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="new_fond"
                data-endpoint="POSTapi-cipher-keys"
-               value="a"
+               value="et"
                data-component="body" hidden>
     <br>
 <p>New fond.</p>
@@ -3261,7 +3286,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="new_archive"
                data-endpoint="POSTapi-cipher-keys"
-               value="sunt"
+               value="rerum"
                data-component="body" hidden>
     <br>
 <p>New archive.</p>
@@ -3271,7 +3296,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="used_around"
                data-endpoint="POSTapi-cipher-keys"
-               value="sed"
+               value="architecto"
                data-component="body" hidden>
     <br>
 <p>Used around.</p>
@@ -3317,11 +3342,11 @@ print_r(json_decode((string) $body));</code></pre></div>
 <p>Specific name of the location.</p>
         </p>
                 <p>
-            <b><code>language_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="language_id"
+            <b><code>language</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="language"
                data-endpoint="POSTapi-cipher-keys"
-               value="1"
+               value="German"
                data-component="body" hidden>
     <br>
 <p>The ID of Language.</p>
@@ -3454,14 +3479,14 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="tags.0"
                data-endpoint="POSTapi-cipher-keys"
-               value="officia"
+               value="error"
                data-component="body" hidden>
     <br>
 <p>Tag names</p>
         </p>
         </form>
 
-            <h2 id="cipher-keys-POSTapi-cipher-keys--cipherKey_id-">Update</h2>
+            <h2 id="cipher-keys-POSTapi-cipher-keys--cipherKey_id-">Update cipher key</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -3480,18 +3505,18 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --data "{
-    \"description\": \"nihil\",
-    \"signature\": \"et\",
-    \"complete_structure\": \"id\",
-    \"used_chars\": \"blanditiis\",
-    \"cipher_type\": 8,
+    \"description\": \"dolor\",
+    \"signature\": \"voluptatem\",
+    \"complete_structure\": \"est\",
+    \"used_chars\": \"occaecati\",
+    \"cipher_type\": 15,
     \"key_type\": 11,
     \"used_from\": \"2022-02-28\",
     \"used_to\": \"2022-02-28\",
-    \"new_folder\": \"voluptas\",
-    \"new_fond\": \"mollitia\",
-    \"new_archive\": \"velit\",
-    \"used_around\": \"saepe\",
+    \"new_folder\": \"consequatur\",
+    \"new_fond\": \"non\",
+    \"new_archive\": \"in\",
+    \"used_around\": \"aut\",
     \"folder_id\": 1,
     \"archive_id\": 1,
     \"fond_id\": 1,
@@ -3499,10 +3524,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     \"language_id\": 1,
     \"users\": \"[{\\\"name\\\":\\\"new user name\\\",\\\"is_main_user\\\":false},{\\\"name\\\":\\\"new user name 2\\\",\\\"is_main_user\\\":true}]\",
     \"tags\": [
-        \"sint\"
+        \"sed\"
     ],
     \"continent\": \"Europe\",
-    \"tags[]\": \"et\"
+    \"tags[]\": \"qui\"
 }"
 </code></pre></div>
 
@@ -3519,18 +3544,18 @@ const headers = {
 };
 
 let body = {
-    "description": "nihil",
-    "signature": "et",
-    "complete_structure": "id",
-    "used_chars": "blanditiis",
-    "cipher_type": 8,
+    "description": "dolor",
+    "signature": "voluptatem",
+    "complete_structure": "est",
+    "used_chars": "occaecati",
+    "cipher_type": 15,
     "key_type": 11,
     "used_from": "2022-02-28",
     "used_to": "2022-02-28",
-    "new_folder": "voluptas",
-    "new_fond": "mollitia",
-    "new_archive": "velit",
-    "used_around": "saepe",
+    "new_folder": "consequatur",
+    "new_fond": "non",
+    "new_archive": "in",
+    "used_around": "aut",
     "folder_id": 1,
     "archive_id": 1,
     "fond_id": 1,
@@ -3538,10 +3563,10 @@ let body = {
     "language_id": 1,
     "users": "[{\"name\":\"new user name\",\"is_main_user\":false},{\"name\":\"new user name 2\",\"is_main_user\":true}]",
     "tags": [
-        "sint"
+        "sed"
     ],
     "continent": "Europe",
-    "tags[]": "et"
+    "tags[]": "qui"
 };
 
 fetch(url, {
@@ -3562,18 +3587,18 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'description' =&gt; 'nihil',
-            'signature' =&gt; 'et',
-            'complete_structure' =&gt; 'id',
-            'used_chars' =&gt; 'blanditiis',
-            'cipher_type' =&gt; 8,
+            'description' =&gt; 'dolor',
+            'signature' =&gt; 'voluptatem',
+            'complete_structure' =&gt; 'est',
+            'used_chars' =&gt; 'occaecati',
+            'cipher_type' =&gt; 15,
             'key_type' =&gt; 11,
             'used_from' =&gt; '2022-02-28',
             'used_to' =&gt; '2022-02-28',
-            'new_folder' =&gt; 'voluptas',
-            'new_fond' =&gt; 'mollitia',
-            'new_archive' =&gt; 'velit',
-            'used_around' =&gt; 'saepe',
+            'new_folder' =&gt; 'consequatur',
+            'new_fond' =&gt; 'non',
+            'new_archive' =&gt; 'in',
+            'used_around' =&gt; 'aut',
             'folder_id' =&gt; 1,
             'archive_id' =&gt; 1,
             'fond_id' =&gt; 1,
@@ -3581,10 +3606,10 @@ $response = $client-&gt;post(
             'language_id' =&gt; 1,
             'users' =&gt; '[{"name":"new user name","is_main_user":false},{"name":"new user name 2","is_main_user":true}]',
             'tags' =&gt; [
-                'sint',
+                'sed',
             ],
             'continent' =&gt; 'Europe',
-            'tags[]' =&gt; 'et',
+            'tags[]' =&gt; 'qui',
         ],
     ]
 );
@@ -3796,7 +3821,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="nihil"
+               value="dolor"
                data-component="body" hidden>
     <br>
 <p>Description.</p>
@@ -3806,7 +3831,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="signature"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="et"
+               value="voluptatem"
                data-component="body" hidden>
     <br>
 <p>Date to be used as the publication date.</p>
@@ -3816,7 +3841,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="complete_structure"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="id"
+               value="est"
                data-component="body" hidden>
     <br>
 <p>Complete structure.</p>
@@ -3826,7 +3851,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="used_chars"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="blanditiis"
+               value="occaecati"
                data-component="body" hidden>
     <br>
 <p>Category the post belongs to.</p>
@@ -3836,7 +3861,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="cipher_type"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="8"
+               value="15"
                data-component="body" hidden>
     <br>
 <p>Cipher type.</p>
@@ -3876,7 +3901,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="new_folder"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="voluptas"
+               value="consequatur"
                data-component="body" hidden>
     <br>
 <p>New folder.</p>
@@ -3886,7 +3911,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="new_fond"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="mollitia"
+               value="non"
                data-component="body" hidden>
     <br>
 <p>New fond.</p>
@@ -3896,7 +3921,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="new_archive"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="velit"
+               value="in"
                data-component="body" hidden>
     <br>
 <p>New archive.</p>
@@ -3906,7 +3931,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="used_around"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="saepe"
+               value="aut"
                data-component="body" hidden>
     <br>
 <p>Used around.</p>
@@ -4029,10 +4054,2239 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="tags.0"
                data-endpoint="POSTapi-cipher-keys--cipherKey_id-"
-               value="et"
+               value="qui"
                data-component="body" hidden>
     <br>
 <p>Tag names</p>
+        </p>
+        </form>
+
+        <h1 id="cryptograms">Cryptograms</h1>
+
+    <p>APIs for Cryptograms</p>
+
+            <h2 id="cryptograms-GETapi-cryptograms">All approved cryptograms</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-cryptograms">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/cryptograms" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"orderBy\": \"id\",
+    \"orderDirection\": \"asc\",
+    \"page\": 11,
+    \"per_page\": 14,
+    \"detailed\": false
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/cryptograms"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "orderBy": "id",
+    "orderDirection": "asc",
+    "page": 11,
+    "per_page": 14,
+    "detailed": false
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/cryptograms',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'orderBy' =&gt; 'id',
+            'orderDirection' =&gt; 'asc',
+            'page' =&gt; 11,
+            'per_page' =&gt; 14,
+            'detailed' =&gt; false,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cryptograms">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all approved cryptograms.&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;huhuhuuu&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Test 2&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all approved cryptograms with details.&quot;,
+    &quot;data&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;huhuhuuu&quot;,
+                &quot;description&quot;: &quot;null&quot;,
+                &quot;availability&quot;: &quot;avvvv&quot;,
+                &quot;category&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;name&quot;: &quot;Podkategoria 2&quot;,
+                    &quot;children&quot;: []
+                },
+                &quot;day&quot;: 12,
+                &quot;month&quot;: 1,
+                &quot;year&quot;: 1876,
+                &quot;before_crist&quot;: 1,
+                &quot;thumb&quot;: &quot;http://dp.test/media/22/conversions/media-libraryl9NdAh-large.jpg&quot;,
+                &quot;language&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;english&quot;
+                },
+                &quot;location&quot;: {
+                    &quot;id&quot;: 13,
+                    &quot;continent&quot;: &quot;Europe&quot;,
+                    &quot;name&quot;: &quot;salamandra&quot;
+                },
+                &quot;recipient&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;lalalalala&quot;
+                },
+                &quot;sender&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;name&quot;: &quot;mamamamama&quot;
+                },
+                &quot;solution&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;Solved&quot;
+                },
+                &quot;state&quot;: {
+                    &quot;id&quot;: &quot;approved&quot;,
+                    &quot;title&quot;: &quot;Approved&quot;,
+                    &quot;show&quot;: true
+                },
+                &quot;created_by&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;first_name&quot;: &quot;Administrator&quot;,
+                    &quot;last_name&quot;: &quot;Administrator&quot;
+                },
+                &quot;note&quot;: null,
+                &quot;tags&quot;: [
+                    {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;tagovica&quot;,
+                        &quot;type&quot;: &quot;cryptogram&quot;
+                    }
+                ],
+                &quot;datagroups&quot;: [
+                    {
+                        &quot;id&quot;: 31,
+                        &quot;description&quot;: &quot;group 1&quot;,
+                        &quot;data&quot;: [
+                            {
+                                &quot;id&quot;: 31,
+                                &quot;title&quot;: &quot;grpka 1&quot;,
+                                &quot;type&quot;: &quot;image&quot;,
+                                &quot;image&quot;: {
+                                    &quot;thumb&quot;: &quot;http://dp.test/media/43/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-thumb.jpg&quot;,
+                                    &quot;big&quot;: &quot;http://dp.test/media/43/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg&quot;,
+                                    &quot;large&quot;: &quot;http://dp.test/media/43/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-large.jpg&quot;,
+                                    &quot;original&quot;: &quot;http://dp.test/media/43/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg&quot;
+                                }
+                            }
+                        ]
+                    }
+                ],
+                &quot;created_at&quot;: &quot;2023-02-01 14:34:56&quot;,
+                &quot;updated_at&quot;: &quot;2023-02-05 19:14:47&quot;
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Test 2&quot;,
+                &quot;description&quot;: &quot;&lt;p&gt;sdfdsfsdf&lt;/p&gt;&quot;,
+                &quot;availability&quot;: &quot;huhu&quot;,
+                &quot;category&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Podkategoria&quot;,
+                    &quot;children&quot;: []
+                },
+                &quot;day&quot;: 12,
+                &quot;month&quot;: 12,
+                &quot;year&quot;: 1987,
+                &quot;before_crist&quot;: 1,
+                &quot;thumb&quot;: &quot;http://dp.test/media/34/conversions/media-libraryqrWloc-large.jpg&quot;,
+                &quot;language&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;english&quot;
+                },
+                &quot;location&quot;: {
+                    &quot;id&quot;: 14,
+                    &quot;continent&quot;: &quot;Europe&quot;,
+                    &quot;name&quot;: &quot;Niekda doma&quot;
+                },
+                &quot;recipient&quot;: {
+                    &quot;id&quot;: 4,
+                    &quot;name&quot;: &quot;mamamama&quot;
+                },
+                &quot;sender&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;user 1&quot;
+                },
+                &quot;solution&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;Solved&quot;
+                },
+                &quot;state&quot;: {
+                    &quot;id&quot;: &quot;approved&quot;,
+                    &quot;title&quot;: &quot;Approved&quot;,
+                    &quot;show&quot;: true
+                },
+                &quot;created_by&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;first_name&quot;: &quot;Administrator&quot;,
+                    &quot;last_name&quot;: &quot;Administrator&quot;
+                },
+                &quot;note&quot;: &quot;null&quot;,
+                &quot;tags&quot;: [
+                    {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;tagovica&quot;,
+                        &quot;type&quot;: &quot;cryptogram&quot;
+                    },
+                    {
+                        &quot;id&quot;: 4,
+                        &quot;name&quot;: &quot;lapovica&quot;,
+                        &quot;type&quot;: &quot;cryptogram&quot;
+                    }
+                ],
+                &quot;datagroups&quot;: [
+                    {
+                        &quot;id&quot;: 23,
+                        &quot;description&quot;: &quot;test&quot;,
+                        &quot;data&quot;: [
+                            {
+                                &quot;id&quot;: 23,
+                                &quot;title&quot;: &quot;Data&quot;,
+                                &quot;type&quot;: &quot;text&quot;,
+                                &quot;text&quot;: &quot;datovica&quot;
+                            }
+                        ]
+                    },
+                    {
+                        &quot;id&quot;: 23,
+                        &quot;description&quot;: &quot;test&quot;,
+                        &quot;data&quot;: [
+                            {
+                                &quot;id&quot;: 23,
+                                &quot;title&quot;: &quot;Data&quot;,
+                                &quot;type&quot;: &quot;link&quot;,
+                                &quot;link&quot;: &quot;https://test.sk&quot;
+                            }
+                        ]
+                    }
+                ],
+                &quot;created_at&quot;: &quot;2023-02-05 17:19:50&quot;,
+                &quot;updated_at&quot;: &quot;2023-02-05 18:10:15&quot;
+            }
+        ],
+        &quot;first_page_url&quot;: &quot;http://dp.test/api/cryptograms?detailed=1&amp;page=1&quot;,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;last_page_url&quot;: &quot;http://dp.test/api/cryptograms?detailed=1&amp;page=1&quot;,
+        &quot;next_page_url&quot;: null,
+        &quot;path&quot;: &quot;http://dp.test/api/cryptograms&quot;,
+        &quot;per_page&quot;: 10000,
+        &quot;prev_page_url&quot;: null,
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cryptograms" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cryptograms"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cryptograms"></code></pre>
+</span>
+<span id="execution-error-GETapi-cryptograms" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cryptograms"></code></pre>
+</span>
+<form id="form-GETapi-cryptograms" data-method="GET"
+      data-path="api/cryptograms"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cryptograms', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cryptograms"
+                    onclick="tryItOut('GETapi-cryptograms');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cryptograms"
+                    onclick="cancelTryOut('GETapi-cryptograms');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cryptograms" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cryptograms</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>orderBy</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderBy"
+               data-endpoint="GETapi-cryptograms"
+               value="id"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>id</code> or <code>signature</code>.</p>
+        </p>
+                <p>
+            <b><code>orderDirection</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderDirection"
+               data-endpoint="GETapi-cryptograms"
+               value="asc"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>asc</code> or <code>desc</code>.</p>
+        </p>
+                <p>
+            <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETapi-cryptograms"
+               value="11"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>per_page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="per_page"
+               data-endpoint="GETapi-cryptograms"
+               value="14"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>detailed</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-cryptograms" hidden>
+            <input type="radio" name="detailed"
+                   value="true"
+                   data-endpoint="GETapi-cryptograms"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-cryptograms" hidden>
+            <input type="radio" name="detailed"
+                   value="false"
+                   data-endpoint="GETapi-cryptograms"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="cryptograms-GETapi-cryptograms--cryptogram_id-">Show cryptogram</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-cryptograms--cryptogram_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/cryptograms/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/cryptograms/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/cryptograms/1',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cryptograms--cryptogram_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Get a cryptogram.&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;huhuhuuu&quot;,
+        &quot;description&quot;: &quot;&lt;p&gt;ddfdgdfg&lt;/p&gt;&quot;,
+        &quot;availability&quot;: &quot;avvvv&quot;,
+        &quot;category&quot;: {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Podkategoria 2&quot;,
+            &quot;children&quot;: []
+        },
+        &quot;day&quot;: 12,
+        &quot;month&quot;: 1,
+        &quot;year&quot;: 1876,
+        &quot;before_crist&quot;: 1,
+        &quot;thumb&quot;: &quot;http://dp.test/media/22/conversions/media-libraryl9NdAh-large.jpg&quot;,
+        &quot;language&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;english&quot;
+        },
+        &quot;location&quot;: {
+            &quot;id&quot;: 13,
+            &quot;continent&quot;: &quot;Europe&quot;,
+            &quot;name&quot;: &quot;salamandra&quot;
+        },
+        &quot;recipient&quot;: {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;lalalalala&quot;
+        },
+        &quot;sender&quot;: {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;mamamamama&quot;
+        },
+        &quot;solution&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Solved&quot;
+        },
+        &quot;state&quot;: {
+            &quot;id&quot;: &quot;approved&quot;,
+            &quot;title&quot;: &quot;Approved&quot;,
+            &quot;show&quot;: true
+        },
+        &quot;created_by&quot;: {
+            &quot;id&quot;: 1,
+            &quot;first_name&quot;: &quot;Administrator&quot;,
+            &quot;last_name&quot;: &quot;Administrator&quot;
+        },
+        &quot;note&quot;: null,
+        &quot;tags&quot;: [
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;tagovica&quot;,
+                &quot;type&quot;: &quot;cryptogram&quot;
+            }
+        ],
+        &quot;datagroups&quot;: [
+            {
+                &quot;id&quot;: 56,
+                &quot;description&quot;: &quot;group 1&quot;,
+                &quot;data&quot;: [
+                    {
+                        &quot;id&quot;: 56,
+                        &quot;title&quot;: &quot;grpka 1&quot;,
+                        &quot;type&quot;: &quot;image&quot;,
+                        &quot;image&quot;: {
+                            &quot;thumb&quot;: &quot;http://dp.test/media/95/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-thumb.jpg&quot;,
+                            &quot;big&quot;: &quot;http://dp.test/media/95/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg&quot;,
+                            &quot;large&quot;: &quot;http://dp.test/media/95/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-large.jpg&quot;,
+                            &quot;original&quot;: &quot;http://dp.test/media/95/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg&quot;
+                        }
+                    }
+                ]
+            }
+        ],
+        &quot;created_at&quot;: &quot;2023-02-01 14:34:56&quot;,
+        &quot;updated_at&quot;: &quot;2023-02-18 11:29:51&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cryptograms--cryptogram_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cryptograms--cryptogram_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cryptograms--cryptogram_id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-cryptograms--cryptogram_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cryptograms--cryptogram_id-"></code></pre>
+</span>
+<form id="form-GETapi-cryptograms--cryptogram_id-" data-method="GET"
+      data-path="api/cryptograms/{cryptogram_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cryptograms--cryptogram_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cryptograms--cryptogram_id-"
+                    onclick="tryItOut('GETapi-cryptograms--cryptogram_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cryptograms--cryptogram_id-"
+                    onclick="cancelTryOut('GETapi-cryptograms--cryptogram_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cryptograms--cryptogram_id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cryptograms/{cryptogram_id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>cryptogram_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="cryptogram_id"
+               data-endpoint="GETapi-cryptograms--cryptogram_id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the cryptogram.</p>
+            </p>
+                    </form>
+
+            <h2 id="cryptograms-GETapi-cryptograms-my">All my cryptograms</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-cryptograms-my">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/cryptograms/my" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"orderBy\": \"id\",
+    \"orderDirection\": \"asc\",
+    \"page\": 11,
+    \"per_page\": 20,
+    \"detailed\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/cryptograms/my"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "orderBy": "id",
+    "orderDirection": "asc",
+    "page": 11,
+    "per_page": 20,
+    "detailed": true
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/cryptograms/my',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'orderBy' =&gt; 'id',
+            'orderDirection' =&gt; 'asc',
+            'page' =&gt; 11,
+            'per_page' =&gt; 20,
+            'detailed' =&gt; true,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-cryptograms-my">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all my cryptograms.&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;huhuhuuu&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Test 2&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Test 3&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all my cryptograms with details.&quot;,
+    &quot;data&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;data&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;huhuhuuu&quot;,
+                &quot;description&quot;: &quot;&lt;p&gt;ddfdgdfg&lt;/p&gt;&quot;,
+                &quot;availability&quot;: &quot;avvvv&quot;,
+                &quot;category&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;name&quot;: &quot;Podkategoria 2&quot;,
+                    &quot;children&quot;: []
+                },
+                &quot;day&quot;: 12,
+                &quot;month&quot;: 1,
+                &quot;year&quot;: 1876,
+                &quot;before_crist&quot;: 1,
+                &quot;thumb&quot;: &quot;http://dp.test/media/22/conversions/media-libraryl9NdAh-large.jpg&quot;,
+                &quot;language&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;english&quot;
+                },
+                &quot;location&quot;: {
+                    &quot;id&quot;: 13,
+                    &quot;continent&quot;: &quot;Europe&quot;,
+                    &quot;name&quot;: &quot;salamandra&quot;
+                },
+                &quot;recipient&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;lalalalala&quot;
+                },
+                &quot;sender&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;name&quot;: &quot;mamamamama&quot;
+                },
+                &quot;solution&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;Solved&quot;
+                },
+                &quot;state&quot;: {
+                    &quot;id&quot;: &quot;approved&quot;,
+                    &quot;title&quot;: &quot;Approved&quot;,
+                    &quot;show&quot;: true
+                },
+                &quot;created_by&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;first_name&quot;: &quot;Administrator&quot;,
+                    &quot;last_name&quot;: &quot;Administrator&quot;
+                },
+                &quot;note&quot;: null,
+                &quot;tags&quot;: [
+                    {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;tagovica&quot;,
+                        &quot;type&quot;: &quot;cryptogram&quot;
+                    }
+                ],
+                &quot;datagroups&quot;: [
+                    {
+                        &quot;id&quot;: 56,
+                        &quot;description&quot;: &quot;group 1&quot;,
+                        &quot;data&quot;: [
+                            {
+                                &quot;id&quot;: 56,
+                                &quot;title&quot;: &quot;grpka 1&quot;,
+                                &quot;type&quot;: &quot;image&quot;,
+                                &quot;image&quot;: {
+                                    &quot;thumb&quot;: &quot;http://dp.test/media/95/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-thumb.jpg&quot;,
+                                    &quot;big&quot;: &quot;http://dp.test/media/95/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg&quot;,
+                                    &quot;large&quot;: &quot;http://dp.test/media/95/conversions/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-large.jpg&quot;,
+                                    &quot;original&quot;: &quot;http://dp.test/media/95/madlo-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg&quot;
+                                }
+                            }
+                        ]
+                    }
+                ],
+                &quot;created_at&quot;: &quot;2023-02-01 14:34:56&quot;,
+                &quot;updated_at&quot;: &quot;2023-02-18 11:29:51&quot;
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;name&quot;: &quot;Test 2&quot;,
+                &quot;description&quot;: &quot;&lt;p&gt;sdfdsfsdf&lt;/p&gt;&quot;,
+                &quot;availability&quot;: &quot;huhu&quot;,
+                &quot;category&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Podkategoria&quot;,
+                    &quot;children&quot;: []
+                },
+                &quot;day&quot;: 12,
+                &quot;month&quot;: 12,
+                &quot;year&quot;: 1987,
+                &quot;before_crist&quot;: 1,
+                &quot;thumb&quot;: &quot;http://dp.test/media/34/conversions/media-libraryqrWloc-large.jpg&quot;,
+                &quot;language&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;english&quot;
+                },
+                &quot;location&quot;: {
+                    &quot;id&quot;: 14,
+                    &quot;continent&quot;: &quot;Europe&quot;,
+                    &quot;name&quot;: &quot;Niekda doma&quot;
+                },
+                &quot;recipient&quot;: {
+                    &quot;id&quot;: 4,
+                    &quot;name&quot;: &quot;mamamama&quot;
+                },
+                &quot;sender&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;user 1&quot;
+                },
+                &quot;solution&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;Solved&quot;
+                },
+                &quot;state&quot;: {
+                    &quot;id&quot;: &quot;approved&quot;,
+                    &quot;title&quot;: &quot;Approved&quot;,
+                    &quot;show&quot;: true
+                },
+                &quot;created_by&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;first_name&quot;: &quot;Administrator&quot;,
+                    &quot;last_name&quot;: &quot;Administrator&quot;
+                },
+                &quot;note&quot;: &quot;null&quot;,
+                &quot;tags&quot;: [
+                    {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;tagovica&quot;,
+                        &quot;type&quot;: &quot;cryptogram&quot;
+                    },
+                    {
+                        &quot;id&quot;: 4,
+                        &quot;name&quot;: &quot;lapovica&quot;,
+                        &quot;type&quot;: &quot;cryptogram&quot;
+                    }
+                ],
+                &quot;datagroups&quot;: [
+                    {
+                        &quot;id&quot;: 23,
+                        &quot;description&quot;: &quot;Attila Mucska&quot;,
+                        &quot;data&quot;: [
+                            {
+                                &quot;id&quot;: 23,
+                                &quot;title&quot;: &quot;Data&quot;,
+                                &quot;type&quot;: &quot;text&quot;,
+                                &quot;text&quot;: &quot;datovica&quot;
+                            }
+                        ]
+                    }
+                ],
+                &quot;created_at&quot;: &quot;2023-02-05 17:19:50&quot;,
+                &quot;updated_at&quot;: &quot;2023-02-05 18:10:15&quot;
+            },
+            {
+                &quot;id&quot;: 3,
+                &quot;name&quot;: &quot;Test 3&quot;,
+                &quot;description&quot;: &quot;&lt;p&gt;kokooo&lt;/p&gt;&quot;,
+                &quot;availability&quot;: &quot;available&quot;,
+                &quot;category&quot;: {
+                    &quot;id&quot;: 4,
+                    &quot;name&quot;: &quot;Kategoria 2&quot;,
+                    &quot;children&quot;: []
+                },
+                &quot;day&quot;: 12,
+                &quot;month&quot;: 1,
+                &quot;year&quot;: 1876,
+                &quot;before_crist&quot;: 1,
+                &quot;thumb&quot;: &quot;http://dp.test/media/35/conversions/media-libraryCg2UHk-large.jpg&quot;,
+                &quot;language&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;name&quot;: &quot;english&quot;
+                },
+                &quot;location&quot;: {
+                    &quot;id&quot;: 15,
+                    &quot;continent&quot;: &quot;Europe&quot;,
+                    &quot;name&quot;: &quot;Nikede johanesk&quot;
+                },
+                &quot;recipient&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;name&quot;: &quot;mamamamama&quot;
+                },
+                &quot;sender&quot;: {
+                    &quot;id&quot;: 6,
+                    &quot;name&quot;: &quot;kokokokoko&quot;
+                },
+                &quot;solution&quot;: {
+                    &quot;id&quot;: 2,
+                    &quot;name&quot;: &quot;Partially solved&quot;
+                },
+                &quot;state&quot;: {
+                    &quot;id&quot;: &quot;revise&quot;,
+                    &quot;title&quot;: &quot;Revise&quot;,
+                    &quot;show&quot;: true
+                },
+                &quot;created_by&quot;: {
+                    &quot;id&quot;: 1,
+                    &quot;first_name&quot;: &quot;Administrator&quot;,
+                    &quot;last_name&quot;: &quot;Administrator&quot;
+                },
+                &quot;note&quot;: null,
+                &quot;tags&quot;: [
+                    {
+                        &quot;id&quot;: 3,
+                        &quot;name&quot;: &quot;tagovica&quot;,
+                        &quot;type&quot;: &quot;cryptogram&quot;
+                    }
+                ],
+                &quot;datagroups&quot;: [
+                    {
+                        &quot;id&quot;: 55,
+                        &quot;description&quot;: &quot;Img &quot;,
+                        &quot;data&quot;: [
+                            {
+                                &quot;id&quot;: 55,
+                                &quot;title&quot;: &quot;mg&quot;,
+                                &quot;type&quot;: &quot;image&quot;,
+                                &quot;image&quot;: {
+                                    &quot;thumb&quot;: &quot;http://dp.test/media/67/conversions/download-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-thumb.jpg&quot;,
+                                    &quot;big&quot;: &quot;http://dp.test/media/67/conversions/download-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg&quot;,
+                                    &quot;large&quot;: &quot;http://dp.test/media/67/conversions/download-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-large.jpg&quot;,
+                                    &quot;original&quot;: &quot;http://dp.test/media/67/download-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big-big.jpg&quot;
+                                }
+                            }
+                        ]
+                    }
+                ],
+                &quot;created_at&quot;: &quot;2023-02-05 17:22:31&quot;,
+                &quot;updated_at&quot;: &quot;2023-02-05 19:56:02&quot;
+            }
+        ],
+        &quot;first_page_url&quot;: &quot;http://dp.test/api/cryptograms/my?detailed=1&amp;page=1&quot;,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;last_page_url&quot;: &quot;http://dp.test/api/cryptograms/my?detailed=1&amp;page=1&quot;,
+        &quot;next_page_url&quot;: null,
+        &quot;path&quot;: &quot;http://dp.test/api/cryptograms/my&quot;,
+        &quot;per_page&quot;: 10000,
+        &quot;prev_page_url&quot;: null,
+        &quot;to&quot;: 3,
+        &quot;total&quot;: 3
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-cryptograms-my" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-cryptograms-my"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-cryptograms-my"></code></pre>
+</span>
+<span id="execution-error-GETapi-cryptograms-my" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-cryptograms-my"></code></pre>
+</span>
+<form id="form-GETapi-cryptograms-my" data-method="GET"
+      data-path="api/cryptograms/my"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-cryptograms-my', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-cryptograms-my"
+                    onclick="tryItOut('GETapi-cryptograms-my');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-cryptograms-my"
+                    onclick="cancelTryOut('GETapi-cryptograms-my');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-cryptograms-my" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/cryptograms/my</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-cryptograms-my" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-cryptograms-my"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>orderBy</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderBy"
+               data-endpoint="GETapi-cryptograms-my"
+               value="id"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>id</code> or <code>signature</code>.</p>
+        </p>
+                <p>
+            <b><code>orderDirection</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="orderDirection"
+               data-endpoint="GETapi-cryptograms-my"
+               value="asc"
+               data-component="body" hidden>
+    <br>
+<p>Must be one of <code>asc</code> or <code>desc</code>.</p>
+        </p>
+                <p>
+            <b><code>page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="page"
+               data-endpoint="GETapi-cryptograms-my"
+               value="11"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>per_page</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="per_page"
+               data-endpoint="GETapi-cryptograms-my"
+               value="20"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>detailed</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="GETapi-cryptograms-my" hidden>
+            <input type="radio" name="detailed"
+                   value="true"
+                   data-endpoint="GETapi-cryptograms-my"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-cryptograms-my" hidden>
+            <input type="radio" name="detailed"
+                   value="false"
+                   data-endpoint="GETapi-cryptograms-my"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="cryptograms-POSTapi-cryptograms">Create cryptogram</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-cryptograms">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://dp.test/api/cryptograms" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "availability=adipisci" \
+    --form "category_id=1" \
+    --form "subcategory_id=2" \
+    --form "day=1" \
+    --form "description=eum" \
+    --form "language=German" \
+    --form "location_name=quia" \
+    --form "month=10" \
+    --form "name=sint" \
+    --form "recipient=John Dosh" \
+    --form "sender=John Sandro" \
+    --form "solution_id=18" \
+    --form "year=1998" \
+    --form "before_crist=1" \
+    --form "groups=[{"description":"Links and references","data":[{"type": "link","name":"Links and references","title":"Source","text":"","link":"https://test.sk"}]},{"description":"Transcription","data":[{"type":"text","name":"Transcription","title":"Transcription","text":"text text text","link":""}]},{"description":"Cryptogram","data":[{"type":"image","name":"Cryptogram","title":"Cryptogram image","text":"","link":""}]},{"description":"Cryptogram 2","data":[{"type":"image","name":"","title":"Cryptogram 2","text":"","link":""}]}]" \
+    --form "tags[]=voluptatem" \
+    --form "continent=Europe" \
+    --form "thumbnail_link=ad" \
+    --form "images[][]=@/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phplXmTMu" \
+    --form "thumbnail=@/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phpYwNftM" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/cryptograms"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('availability', 'adipisci');
+body.append('category_id', '1');
+body.append('subcategory_id', '2');
+body.append('day', '1');
+body.append('description', 'eum');
+body.append('language', 'German');
+body.append('location_name', 'quia');
+body.append('month', '10');
+body.append('name', 'sint');
+body.append('recipient', 'John Dosh');
+body.append('sender', 'John Sandro');
+body.append('solution_id', '18');
+body.append('year', '1998');
+body.append('before_crist', '1');
+body.append('groups', '[{"description":"Links and references","data":[{"type": "link","name":"Links and references","title":"Source","text":"","link":"https://test.sk"}]},{"description":"Transcription","data":[{"type":"text","name":"Transcription","title":"Transcription","text":"text text text","link":""}]},{"description":"Cryptogram","data":[{"type":"image","name":"Cryptogram","title":"Cryptogram image","text":"","link":""}]},{"description":"Cryptogram 2","data":[{"type":"image","name":"","title":"Cryptogram 2","text":"","link":""}]}]');
+body.append('tags[]', 'voluptatem');
+body.append('continent', 'Europe');
+body.append('thumbnail_link', 'ad');
+body.append('images[][]', document.querySelector('input[name="images[][]"]').files[0]);
+body.append('thumbnail', document.querySelector('input[name="thumbnail"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://dp.test/api/cryptograms',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'multipart/form-data',
+            'Accept' =&gt; 'application/json',
+        ],
+        'multipart' =&gt; [
+            [
+                'name' =&gt; 'availability',
+                'contents' =&gt; 'adipisci'
+            ],
+            [
+                'name' =&gt; 'category_id',
+                'contents' =&gt; '1'
+            ],
+            [
+                'name' =&gt; 'subcategory_id',
+                'contents' =&gt; '2'
+            ],
+            [
+                'name' =&gt; 'day',
+                'contents' =&gt; '1'
+            ],
+            [
+                'name' =&gt; 'description',
+                'contents' =&gt; 'eum'
+            ],
+            [
+                'name' =&gt; 'language',
+                'contents' =&gt; 'German'
+            ],
+            [
+                'name' =&gt; 'location_name',
+                'contents' =&gt; 'quia'
+            ],
+            [
+                'name' =&gt; 'month',
+                'contents' =&gt; '10'
+            ],
+            [
+                'name' =&gt; 'name',
+                'contents' =&gt; 'sint'
+            ],
+            [
+                'name' =&gt; 'recipient',
+                'contents' =&gt; 'John Dosh'
+            ],
+            [
+                'name' =&gt; 'sender',
+                'contents' =&gt; 'John Sandro'
+            ],
+            [
+                'name' =&gt; 'solution_id',
+                'contents' =&gt; '18'
+            ],
+            [
+                'name' =&gt; 'year',
+                'contents' =&gt; '1998'
+            ],
+            [
+                'name' =&gt; 'before_crist',
+                'contents' =&gt; '1'
+            ],
+            [
+                'name' =&gt; 'groups',
+                'contents' =&gt; '[{"description":"Links and references","data":[{"type": "link","name":"Links and references","title":"Source","text":"","link":"https://test.sk"}]},{"description":"Transcription","data":[{"type":"text","name":"Transcription","title":"Transcription","text":"text text text","link":""}]},{"description":"Cryptogram","data":[{"type":"image","name":"Cryptogram","title":"Cryptogram image","text":"","link":""}]},{"description":"Cryptogram 2","data":[{"type":"image","name":"","title":"Cryptogram 2","text":"","link":""}]}]'
+            ],
+            [
+                'name' =&gt; 'tags[]',
+                'contents' =&gt; 'voluptatem'
+            ],
+            [
+                'name' =&gt; 'continent',
+                'contents' =&gt; 'Europe'
+            ],
+            [
+                'name' =&gt; 'thumbnail_link',
+                'contents' =&gt; 'ad'
+            ],
+            [
+                'name' =&gt; 'images[][]',
+                'contents' =&gt; fopen('/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phplXmTMu', 'r')
+            ],
+            [
+                'name' =&gt; 'thumbnail',
+                'contents' =&gt; fopen('/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phpYwNftM', 'r')
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-cryptograms">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;Successfully added cryptogram.&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 10,
+        &quot;name&quot;: &quot;Cryptogram API 3&quot;,
+        &quot;description&quot;: &quot;sdf sdf sdf sdf sdfsd sdfsdf&quot;,
+        &quot;availability&quot;: &quot;available&quot;,
+        &quot;category&quot;: {
+            &quot;id&quot;: 3,
+            &quot;name&quot;: &quot;Podkategoria 2&quot;,
+            &quot;children&quot;: []
+        },
+        &quot;day&quot;: &quot;12&quot;,
+        &quot;month&quot;: &quot;1&quot;,
+        &quot;year&quot;: &quot;1997&quot;,
+        &quot;before_crist&quot;: false,
+        &quot;thumb&quot;: &quot;http://dp.test/media/110/conversions/1423-1_liska-large.jpg&quot;,
+        &quot;language&quot;: {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;Hahaha&quot;
+        },
+        &quot;location&quot;: {
+            &quot;id&quot;: 18,
+            &quot;continent&quot;: &quot;Europe&quot;,
+            &quot;name&quot;: &quot;lokacia meno&quot;
+        },
+        &quot;recipient&quot;: {
+            &quot;id&quot;: 21,
+            &quot;name&quot;: &quot;Johny Troska&quot;
+        },
+        &quot;sender&quot;: {
+            &quot;id&quot;: 20,
+            &quot;name&quot;: &quot;Hahaha&quot;
+        },
+        &quot;solution&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Solved&quot;
+        },
+        &quot;state&quot;: {
+            &quot;id&quot;: &quot;awaiting&quot;,
+            &quot;title&quot;: &quot;Awaiting&quot;,
+            &quot;show&quot;: true
+        },
+        &quot;created_by&quot;: {
+            &quot;id&quot;: 1,
+            &quot;first_name&quot;: &quot;Administrator&quot;,
+            &quot;last_name&quot;: &quot;Administrator&quot;
+        },
+        &quot;note&quot;: null,
+        &quot;tags&quot;: [
+            {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Tag 1 Api&quot;,
+                &quot;type&quot;: &quot;cryptogram&quot;
+            },
+            {
+                &quot;id&quot;: 11,
+                &quot;name&quot;: &quot;Tag 2 Api&quot;,
+                &quot;type&quot;: &quot;cryptogram&quot;
+            }
+        ],
+        &quot;datagroups&quot;: [],
+        &quot;created_at&quot;: &quot;2023-02-18 14:52:20&quot;,
+        &quot;updated_at&quot;: &quot;2023-02-18 14:52:20&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;category_id&quot;: [
+            &quot;The category id field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-cryptograms" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-cryptograms"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-cryptograms"></code></pre>
+</span>
+<span id="execution-error-POSTapi-cryptograms" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-cryptograms"></code></pre>
+</span>
+<form id="form-POSTapi-cryptograms" data-method="POST"
+      data-path="api/cryptograms"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-cryptograms', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-cryptograms"
+                    onclick="tryItOut('POSTapi-cryptograms');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-cryptograms"
+                    onclick="cancelTryOut('POSTapi-cryptograms');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-cryptograms" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/cryptograms</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-cryptograms" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-cryptograms"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>availability</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="availability"
+               data-endpoint="POSTapi-cryptograms"
+               value="adipisci"
+               data-component="body" hidden>
+    <br>
+<p>Availability.</p>
+        </p>
+                <p>
+            <b><code>category_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="category_id"
+               data-endpoint="POSTapi-cryptograms"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>The ID of Category.</p>
+        </p>
+                <p>
+            <b><code>subcategory_id</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="subcategory_id"
+               data-endpoint="POSTapi-cryptograms"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>The ID of Category children.</p>
+        </p>
+                <p>
+            <b><code>day</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="day"
+               data-endpoint="POSTapi-cryptograms"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>Day.</p>
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="POSTapi-cryptograms"
+               value="eum"
+               data-component="body" hidden>
+    <br>
+<p>Cryptogram description.</p>
+        </p>
+                <p>
+            <b><code>language</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="language"
+               data-endpoint="POSTapi-cryptograms"
+               value="German"
+               data-component="body" hidden>
+    <br>
+<p>Language.</p>
+        </p>
+                <p>
+            <b><code>location_name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="location_name"
+               data-endpoint="POSTapi-cryptograms"
+               value="quia"
+               data-component="body" hidden>
+    <br>
+<p>Location name.</p>
+        </p>
+                <p>
+            <b><code>month</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="month"
+               data-endpoint="POSTapi-cryptograms"
+               value="10"
+               data-component="body" hidden>
+    <br>
+<p>Month.</p>
+        </p>
+                <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-cryptograms"
+               value="sint"
+               data-component="body" hidden>
+    <br>
+<p>Cryptogram name.</p>
+        </p>
+                <p>
+            <b><code>recipient</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="recipient"
+               data-endpoint="POSTapi-cryptograms"
+               value="John Dosh"
+               data-component="body" hidden>
+    <br>
+<p>Recipient.</p>
+        </p>
+                <p>
+            <b><code>sender</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="sender"
+               data-endpoint="POSTapi-cryptograms"
+               value="John Sandro"
+               data-component="body" hidden>
+    <br>
+<p>Sender name.</p>
+        </p>
+                <p>
+            <b><code>solution_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="solution_id"
+               data-endpoint="POSTapi-cryptograms"
+               value="18"
+               data-component="body" hidden>
+    <br>
+<p>The ID of Solution.</p>
+        </p>
+                <p>
+            <b><code>year</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="year"
+               data-endpoint="POSTapi-cryptograms"
+               value="1998"
+               data-component="body" hidden>
+    <br>
+<p>Year.</p>
+        </p>
+                <p>
+            <b><code>before_crist</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-cryptograms" hidden>
+            <input type="radio" name="before_crist"
+                   value="true"
+                   data-endpoint="POSTapi-cryptograms"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-cryptograms" hidden>
+            <input type="radio" name="before_crist"
+                   value="false"
+                   data-endpoint="POSTapi-cryptograms"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>Before crist.</p>
+        </p>
+                <p>
+            <b><code>images</code></b>&nbsp;&nbsp;<small>file[][]</small>  &nbsp;
+                <input type="file"
+               name="images.0[0]"
+               data-endpoint="POSTapi-cryptograms"
+               data-component="body" hidden>
+        <input type="file"
+               name="images.0[1]"
+               data-endpoint="POSTapi-cryptograms"
+               data-component="body" hidden>
+    <br>
+<p>Data image files [datagroup_index][data_index].</p>
+        </p>
+                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>groups</code></b>&nbsp;&nbsp;<small>json</small>  &nbsp;
+<br>
+<p>List of datagroups.</p>
+            </summary>
+                                                <p>
+                        <b><code>groups[].description</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.0.description"
+               data-endpoint="POSTapi-cryptograms"
+               value="0"
+               data-component="body" hidden>
+    <br>
+<p>Group name.</p>
+                    </p>
+                                                                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>groups.data</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
+<br>
+
+            </summary>
+                                                <p>
+                        <b><code>groups.data[].type</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.data.0.type"
+               data-endpoint="POSTapi-cryptograms"
+               value="image"
+               data-component="body" hidden>
+    <br>
+<p>Group data type ['image', 'link', 'text']</p>
+                    </p>
+                                                                <p>
+                        <b><code>groups.data[].title</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.data.0.title"
+               data-endpoint="POSTapi-cryptograms"
+               value="Source"
+               data-component="body" hidden>
+    <br>
+<p>Group data name</p>
+                    </p>
+                                                                <p>
+                        <b><code>groups.data[].text</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.data.0.text"
+               data-endpoint="POSTapi-cryptograms"
+               value="Text of data"
+               data-component="body" hidden>
+    <br>
+<p>Group data text</p>
+                    </p>
+                                                                <p>
+                        <b><code>groups.data[].link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.data.0.link"
+               data-endpoint="POSTapi-cryptograms"
+               value="https://www.test.sk"
+               data-component="body" hidden>
+    <br>
+<p>Group data link</p>
+                    </p>
+                                    </details>
+        </p>
+                                        </details>
+        </p>
+                <p>
+            <b><code>tags</code></b>&nbsp;&nbsp;<small>[]</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="tags[0]"
+               data-endpoint="POSTapi-cryptograms"
+               data-component="body" hidden>
+        <input type="text"
+               name="tags[1]"
+               data-endpoint="POSTapi-cryptograms"
+               data-component="body" hidden>
+    <br>
+<p>string Tag names</p>
+        </p>
+                <p>
+            <b><code>continent</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="continent"
+               data-endpoint="POSTapi-cryptograms"
+               value="Europe"
+               data-component="body" hidden>
+    <br>
+<p>Continent.</p>
+        </p>
+                <p>
+            <b><code>note</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="note"
+               data-endpoint="POSTapi-cryptograms"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Note.</p>
+        </p>
+                <p>
+            <b><code>thumbnail</code></b>&nbsp;&nbsp;<small>file</small>     <i>optional</i> &nbsp;
+                <input type="file"
+               name="thumbnail"
+               data-endpoint="POSTapi-cryptograms"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Thumbnail. Must be an image.</p>
+        </p>
+                <p>
+            <b><code>thumbnail_link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="thumbnail_link"
+               data-endpoint="POSTapi-cryptograms"
+               value="ad"
+               data-component="body" hidden>
+    <br>
+<p>Thumbnail link. Used if thumbnail is empty.</p>
+        </p>
+                <p>
+            <b><code>thumbnail_base64</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="thumbnail_base64"
+               data-endpoint="POSTapi-cryptograms"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Thumbnail base64. Used if thumbnail and thumbnail_link are empty.</p>
+        </p>
+        </form>
+
+            <h2 id="cryptograms-POSTapi-cryptograms--cryptogram_id-">Update cryptogram</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-cryptograms--cryptogram_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://dp.test/api/cryptograms/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "availability=temporibus" \
+    --form "category_id=1" \
+    --form "subcategory_id=2" \
+    --form "day=1" \
+    --form "description=eos" \
+    --form "language=German" \
+    --form "location_name=eos" \
+    --form "month=10" \
+    --form "name=voluptas" \
+    --form "recipient=John Dosh" \
+    --form "sender=John Sandro" \
+    --form "solution_id=14" \
+    --form "year=1998" \
+    --form "before_crist=1" \
+    --form "groups=[{"description":"Links and references","data":[{"type": "link","name":"Links and references","title":"Source","text":"","link":"https://test.sk"}]},{"description":"Transcription","data":[{"type":"text","name":"Transcription","title":"Transcription","text":"text text text","link":""}]},{"description":"Cryptogram","data":[{"type":"image","name":"Cryptogram","title":"Cryptogram image","text":"","link":""}]},{"description":"Cryptogram 2","data":[{"type":"image","name":"","title":"Cryptogram 2","text":"","link":""}]}]" \
+    --form "tags[]=quis" \
+    --form "continent=Europe" \
+    --form "thumbnail_link=dolores" \
+    --form "images[][]=@/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/php5WnCEs" \
+    --form "thumbnail=@/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phpzEWx75" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/cryptograms/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('availability', 'temporibus');
+body.append('category_id', '1');
+body.append('subcategory_id', '2');
+body.append('day', '1');
+body.append('description', 'eos');
+body.append('language', 'German');
+body.append('location_name', 'eos');
+body.append('month', '10');
+body.append('name', 'voluptas');
+body.append('recipient', 'John Dosh');
+body.append('sender', 'John Sandro');
+body.append('solution_id', '14');
+body.append('year', '1998');
+body.append('before_crist', '1');
+body.append('groups', '[{"description":"Links and references","data":[{"type": "link","name":"Links and references","title":"Source","text":"","link":"https://test.sk"}]},{"description":"Transcription","data":[{"type":"text","name":"Transcription","title":"Transcription","text":"text text text","link":""}]},{"description":"Cryptogram","data":[{"type":"image","name":"Cryptogram","title":"Cryptogram image","text":"","link":""}]},{"description":"Cryptogram 2","data":[{"type":"image","name":"","title":"Cryptogram 2","text":"","link":""}]}]');
+body.append('tags[]', 'quis');
+body.append('continent', 'Europe');
+body.append('thumbnail_link', 'dolores');
+body.append('images[][]', document.querySelector('input[name="images[][]"]').files[0]);
+body.append('thumbnail', document.querySelector('input[name="thumbnail"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://dp.test/api/cryptograms/1',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'multipart/form-data',
+            'Accept' =&gt; 'application/json',
+        ],
+        'multipart' =&gt; [
+            [
+                'name' =&gt; 'availability',
+                'contents' =&gt; 'temporibus'
+            ],
+            [
+                'name' =&gt; 'category_id',
+                'contents' =&gt; '1'
+            ],
+            [
+                'name' =&gt; 'subcategory_id',
+                'contents' =&gt; '2'
+            ],
+            [
+                'name' =&gt; 'day',
+                'contents' =&gt; '1'
+            ],
+            [
+                'name' =&gt; 'description',
+                'contents' =&gt; 'eos'
+            ],
+            [
+                'name' =&gt; 'language',
+                'contents' =&gt; 'German'
+            ],
+            [
+                'name' =&gt; 'location_name',
+                'contents' =&gt; 'eos'
+            ],
+            [
+                'name' =&gt; 'month',
+                'contents' =&gt; '10'
+            ],
+            [
+                'name' =&gt; 'name',
+                'contents' =&gt; 'voluptas'
+            ],
+            [
+                'name' =&gt; 'recipient',
+                'contents' =&gt; 'John Dosh'
+            ],
+            [
+                'name' =&gt; 'sender',
+                'contents' =&gt; 'John Sandro'
+            ],
+            [
+                'name' =&gt; 'solution_id',
+                'contents' =&gt; '14'
+            ],
+            [
+                'name' =&gt; 'year',
+                'contents' =&gt; '1998'
+            ],
+            [
+                'name' =&gt; 'before_crist',
+                'contents' =&gt; '1'
+            ],
+            [
+                'name' =&gt; 'groups',
+                'contents' =&gt; '[{"description":"Links and references","data":[{"type": "link","name":"Links and references","title":"Source","text":"","link":"https://test.sk"}]},{"description":"Transcription","data":[{"type":"text","name":"Transcription","title":"Transcription","text":"text text text","link":""}]},{"description":"Cryptogram","data":[{"type":"image","name":"Cryptogram","title":"Cryptogram image","text":"","link":""}]},{"description":"Cryptogram 2","data":[{"type":"image","name":"","title":"Cryptogram 2","text":"","link":""}]}]'
+            ],
+            [
+                'name' =&gt; 'tags[]',
+                'contents' =&gt; 'quis'
+            ],
+            [
+                'name' =&gt; 'continent',
+                'contents' =&gt; 'Europe'
+            ],
+            [
+                'name' =&gt; 'thumbnail_link',
+                'contents' =&gt; 'dolores'
+            ],
+            [
+                'name' =&gt; 'images[][]',
+                'contents' =&gt; fopen('/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/php5WnCEs', 'r')
+            ],
+            [
+                'name' =&gt; 'thumbnail',
+                'contents' =&gt; fopen('/private/var/folders/rl/rl_ywcmj0gl6wq7dq9hd2td40000gn/T/phpzEWx75', 'r')
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-cryptograms--cryptogram_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json"></code>
+ </pre>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 422,
+    &quot;message&quot;: &quot;Validation error.&quot;,
+    &quot;data&quot;: {
+        &quot;submitter&quot;: [
+            &quot;You cannot edit cryptogram of another user.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-cryptograms--cryptogram_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-cryptograms--cryptogram_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-cryptograms--cryptogram_id-"></code></pre>
+</span>
+<span id="execution-error-POSTapi-cryptograms--cryptogram_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-cryptograms--cryptogram_id-"></code></pre>
+</span>
+<form id="form-POSTapi-cryptograms--cryptogram_id-" data-method="POST"
+      data-path="api/cryptograms/{cryptogram_id}"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-cryptograms--cryptogram_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-cryptograms--cryptogram_id-"
+                    onclick="tryItOut('POSTapi-cryptograms--cryptogram_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-cryptograms--cryptogram_id-"
+                    onclick="cancelTryOut('POSTapi-cryptograms--cryptogram_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-cryptograms--cryptogram_id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/cryptograms/{cryptogram_id}</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-cryptograms--cryptogram_id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>cryptogram_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="cryptogram_id"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the cryptogram.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>availability</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="availability"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="temporibus"
+               data-component="body" hidden>
+    <br>
+<p>Availability.</p>
+        </p>
+                <p>
+            <b><code>category_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="category_id"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>The ID of Category.</p>
+        </p>
+                <p>
+            <b><code>subcategory_id</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="subcategory_id"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>The ID of Category children.</p>
+        </p>
+                <p>
+            <b><code>day</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="day"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>Day.</p>
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="eos"
+               data-component="body" hidden>
+    <br>
+<p>Cryptogram description.</p>
+        </p>
+                <p>
+            <b><code>language</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="language"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="German"
+               data-component="body" hidden>
+    <br>
+<p>Language.</p>
+        </p>
+                <p>
+            <b><code>location_name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="location_name"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="eos"
+               data-component="body" hidden>
+    <br>
+<p>Location name.</p>
+        </p>
+                <p>
+            <b><code>month</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="month"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="10"
+               data-component="body" hidden>
+    <br>
+<p>Month.</p>
+        </p>
+                <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="voluptas"
+               data-component="body" hidden>
+    <br>
+<p>Cryptogram name.</p>
+        </p>
+                <p>
+            <b><code>recipient</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="recipient"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="John Dosh"
+               data-component="body" hidden>
+    <br>
+<p>Recipient name.</p>
+        </p>
+                <p>
+            <b><code>sender</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="sender"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="John Sandro"
+               data-component="body" hidden>
+    <br>
+<p>Sender name.</p>
+        </p>
+                <p>
+            <b><code>solution_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="solution_id"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="14"
+               data-component="body" hidden>
+    <br>
+<p>The ID of Solution.</p>
+        </p>
+                <p>
+            <b><code>year</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="year"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="1998"
+               data-component="body" hidden>
+    <br>
+<p>Year.</p>
+        </p>
+                <p>
+            <b><code>before_crist</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-cryptograms--cryptogram_id-" hidden>
+            <input type="radio" name="before_crist"
+                   value="true"
+                   data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-cryptograms--cryptogram_id-" hidden>
+            <input type="radio" name="before_crist"
+                   value="false"
+                   data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+<p>Before crist.</p>
+        </p>
+                <p>
+            <b><code>images</code></b>&nbsp;&nbsp;<small>file[][]</small>  &nbsp;
+                <input type="file"
+               name="images.0[0]"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               data-component="body" hidden>
+        <input type="file"
+               name="images.0[1]"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               data-component="body" hidden>
+    <br>
+<p>Data image files [datagroup_index][data_index].</p>
+        </p>
+                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>groups</code></b>&nbsp;&nbsp;<small>json</small>  &nbsp;
+<br>
+<p>List of datagroups.</p>
+            </summary>
+                                                <p>
+                        <b><code>groups[].description</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.0.description"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="0"
+               data-component="body" hidden>
+    <br>
+<p>Group name.</p>
+                    </p>
+                                                                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>groups.data</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
+<br>
+
+            </summary>
+                                                <p>
+                        <b><code>groups.data[].type</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.data.0.type"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="image"
+               data-component="body" hidden>
+    <br>
+<p>Group data type ['image', 'link', 'text']</p>
+                    </p>
+                                                                <p>
+                        <b><code>groups.data[].title</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.data.0.title"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="Source"
+               data-component="body" hidden>
+    <br>
+<p>Group data name</p>
+                    </p>
+                                                                <p>
+                        <b><code>groups.data[].text</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.data.0.text"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="Text of data"
+               data-component="body" hidden>
+    <br>
+<p>Group data text</p>
+                    </p>
+                                                                <p>
+                        <b><code>groups.data[].link</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="groups.data.0.link"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="https://www.test.sk"
+               data-component="body" hidden>
+    <br>
+<p>Group data link</p>
+                    </p>
+                                    </details>
+        </p>
+                                        </details>
+        </p>
+                <p>
+            <b><code>tags</code></b>&nbsp;&nbsp;<small>[]</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="tags[0]"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               data-component="body" hidden>
+        <input type="text"
+               name="tags[1]"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               data-component="body" hidden>
+    <br>
+<p>string Tag names</p>
+        </p>
+                <p>
+            <b><code>continent</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="continent"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="Europe"
+               data-component="body" hidden>
+    <br>
+<p>Continent.</p>
+        </p>
+                <p>
+            <b><code>note</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="note"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Note.</p>
+        </p>
+                <p>
+            <b><code>thumbnail</code></b>&nbsp;&nbsp;<small>file</small>     <i>optional</i> &nbsp;
+                <input type="file"
+               name="thumbnail"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Thumbnail. Must be an image.</p>
+        </p>
+                <p>
+            <b><code>thumbnail_link</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="thumbnail_link"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value="dolores"
+               data-component="body" hidden>
+    <br>
+<p>Thumbnail link. Used if thumbnail is empty.</p>
+        </p>
+                <p>
+            <b><code>thumbnail_base64</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="thumbnail_base64"
+               data-endpoint="POSTapi-cryptograms--cryptogram_id-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Thumbnail base64. Used if thumbnail and thumbnail_link are empty.</p>
         </p>
         </form>
 
@@ -4059,8 +6313,8 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"orderBy\": \"id\",
-    \"orderDirection\": \"desc\"
+    \"orderBy\": \"name\",
+    \"orderDirection\": \"asc\"
 }"
 </code></pre></div>
 
@@ -4077,8 +6331,8 @@ const headers = {
 };
 
 let body = {
-    "orderBy": "id",
-    "orderDirection": "desc"
+    "orderBy": "name",
+    "orderDirection": "asc"
 };
 
 fetch(url, {
@@ -4099,8 +6353,8 @@ $response = $client-&gt;get(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'orderBy' =&gt; 'id',
-            'orderDirection' =&gt; 'desc',
+            'orderBy' =&gt; 'name',
+            'orderDirection' =&gt; 'asc',
         ],
     ]
 );
@@ -4181,7 +6435,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="orderBy"
                data-endpoint="GETapi-languages"
-               value="id"
+               value="name"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>id</code> or <code>name</code>.</p>
@@ -4191,7 +6445,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="orderDirection"
                data-endpoint="GETapi-languages"
-               value="desc"
+               value="asc"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>asc</code> or <code>desc</code>.</p>
@@ -4395,6 +6649,148 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
                 </form>
 
+            <h2 id="locations-GETapi-locations-continents">Show all continents</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-locations-continents">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://dp.test/api/locations/continents" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://dp.test/api/locations/continents"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://dp.test/api/locations/continents',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-locations-continents">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: &quot;Success&quot;,
+    &quot;status_code&quot;: 200,
+    &quot;message&quot;: &quot;List of all continents&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;name&quot;: &quot;North America&quot;
+        },
+        {
+            &quot;name&quot;: &quot;South America&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Europe&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Asia&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Oceania&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Africa&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Antartica&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Unknown&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-locations-continents" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-locations-continents"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-locations-continents"></code></pre>
+</span>
+<span id="execution-error-GETapi-locations-continents" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-locations-continents"></code></pre>
+</span>
+<form id="form-GETapi-locations-continents" data-method="GET"
+      data-path="api/locations/continents"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-locations-continents', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-locations-continents"
+                    onclick="tryItOut('GETapi-locations-continents');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-locations-continents"
+                    onclick="cancelTryOut('GETapi-locations-continents');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-locations-continents" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/locations/continents</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-locations-continents" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-locations-continents"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
         <h1 id="persons">Persons</h1>
 
     <p>APIs for Persons</p>
@@ -4419,7 +6815,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --data "{
     \"orderBy\": \"name\",
-    \"orderDirection\": \"asc\"
+    \"orderDirection\": \"desc\"
 }"
 </code></pre></div>
 
@@ -4437,7 +6833,7 @@ const headers = {
 
 let body = {
     "orderBy": "name",
-    "orderDirection": "asc"
+    "orderDirection": "desc"
 };
 
 fetch(url, {
@@ -4459,7 +6855,7 @@ $response = $client-&gt;get(
         ],
         'json' =&gt; [
             'orderBy' =&gt; 'name',
-            'orderDirection' =&gt; 'asc',
+            'orderDirection' =&gt; 'desc',
         ],
     ]
 );
@@ -4558,7 +6954,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="orderDirection"
                data-endpoint="GETapi-persons"
-               value="asc"
+               value="desc"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>asc</code> or <code>desc</code>.</p>
@@ -4588,8 +6984,8 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"orderBy\": \"id\",
-    \"orderDirection\": \"desc\"
+    \"orderBy\": \"name\",
+    \"orderDirection\": \"asc\"
 }"
 </code></pre></div>
 
@@ -4606,8 +7002,8 @@ const headers = {
 };
 
 let body = {
-    "orderBy": "id",
-    "orderDirection": "desc"
+    "orderBy": "name",
+    "orderDirection": "asc"
 };
 
 fetch(url, {
@@ -4628,8 +7024,8 @@ $response = $client-&gt;get(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'orderBy' =&gt; 'id',
-            'orderDirection' =&gt; 'desc',
+            'orderBy' =&gt; 'name',
+            'orderDirection' =&gt; 'asc',
         ],
     ]
 );
@@ -4714,7 +7110,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="orderBy"
                data-endpoint="GETapi-solutions"
-               value="id"
+               value="name"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>id</code> or <code>name</code>.</p>
@@ -4724,7 +7120,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="orderDirection"
                data-endpoint="GETapi-solutions"
-               value="desc"
+               value="asc"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>asc</code> or <code>desc</code>.</p>
@@ -4868,7 +7264,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     --data "{
     \"orderBy\": \"type\",
     \"orderDirection\": \"asc\",
-    \"type\": \"cipher_key\"
+    \"type\": \"cryptogram\"
 }"
 </code></pre></div>
 
@@ -4887,7 +7283,7 @@ const headers = {
 let body = {
     "orderBy": "type",
     "orderDirection": "asc",
-    "type": "cipher_key"
+    "type": "cryptogram"
 };
 
 fetch(url, {
@@ -4910,7 +7306,7 @@ $response = $client-&gt;get(
         'json' =&gt; [
             'orderBy' =&gt; 'type',
             'orderDirection' =&gt; 'asc',
-            'type' =&gt; 'cipher_key',
+            'type' =&gt; 'cryptogram',
         ],
     ]
 );
@@ -5027,7 +7423,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="type"
                data-endpoint="GETapi-tags"
-               value="cipher_key"
+               value="cryptogram"
                data-component="body" hidden>
     <br>
 <p>Must be one of <code>cipher_key</code> or <code>cryptogram</code>.</p>

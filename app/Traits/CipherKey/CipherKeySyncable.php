@@ -88,7 +88,9 @@ trait CipherKeySyncable
 	 */
 	public function syncTags(CipherKey $key, $sanitized, $origin = 'web', $type = 'cipher_key')
 	{
-		$tags = collect($sanitized['tags'])->pluck('id')->toArray();
+		if (!isset($sanitized['tags']) && !$sanitized['tags']) return;
+
+		$tags = collect($sanitized['tags'])->pluck('id');
 
 		if ($origin == 'api') {
 			$tags = collect([]);
@@ -98,7 +100,7 @@ trait CipherKeySyncable
 			}
 		}
 
-		$key->tags()->sync($tags);
+		$key->tags()->sync($tags->toArray());
 	}
 
 	/**

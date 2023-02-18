@@ -34,7 +34,7 @@ class CategoriesController extends Controller
      */
     public function index(IndexRequest $request)
     {
-        $categories = Category::with(['children']);
+        $categories = Category::with(['children'])->where('parent_id', null);
 
         $categories = $this->filterPagination($categories, $request, 'name', 'asc', false);
 
