@@ -76,10 +76,10 @@
             <div class="col-md-6"><b>Cipher text unit</b></div>
         </div>
         <div class="row" v-for="(value, key) in form.encryption_pairs">
-            <div class="col-md-6"><input type="text" class="form-control" @change="convertTableToKeys"
+            <div class="col-md-6"><input type="text" class="form-control" @input="convertTableToKeys"
                     v-model="form.encryption_pairs[key][0]">
             </div>
-            <div class="col-md-6"><input type="text" class="form-control" @change="convertTableToKeys"
+            <div class="col-md-6"><input type="text" class="form-control" @input="convertTableToKeys"
                     v-model="form.encryption_pairs[key][1]">
             </div>
         </div>

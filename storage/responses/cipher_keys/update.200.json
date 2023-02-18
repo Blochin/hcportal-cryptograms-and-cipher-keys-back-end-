@@ -149,6 +149,26 @@
                 "type": "cipher_key"
             }
         ],
+        "digitalized_transcriptions": [
+            {
+                "id": 3,
+                "digitalized_version": null,
+                "note": null,
+                "digitalized_date": null,
+                "encryption_pairs": [
+                    {
+                        "id": 14,
+                        "plain_text_unit": "ahoj",
+                        "cipher_text_unit": "cau"
+                    },
+                    {
+                        "id": 15,
+                        "plain_text_unit": "hello",
+                        "cipher_text_unit": "bye"
+                    }
+                ]
+            }
+        ],
         "created_at": "2023-02-17 18:20:36",
         "updated_at": "2023-02-17 18:59:13"
     }

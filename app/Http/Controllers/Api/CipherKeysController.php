@@ -59,6 +59,8 @@ class CipherKeysController extends Controller
             'folder',
             'folder.fond',
             'folder.fond.archive',
+            'digitalizedTranscriptions',
+            'digitalizedTranscriptions.encryptionPairs',
             'language',
             'location',
             'tags'
@@ -104,6 +106,8 @@ class CipherKeysController extends Controller
             'folder',
             'folder.fond',
             'folder.fond.archive',
+            'digitalizedTranscriptions',
+            'digitalizedTranscriptions.encryptionPairs',
             'language',
             'location',
             'tags'
@@ -148,6 +152,8 @@ class CipherKeysController extends Controller
             'folder',
             'folder.fond',
             'folder.fond.archive',
+            'digitalizedTranscriptions',
+            'digitalizedTranscriptions.encryptionPairs',
             'language',
             'location',
             'tags'
@@ -211,6 +217,8 @@ class CipherKeysController extends Controller
             'folder',
             'folder.fond',
             'folder.fond.archive',
+            'digitalizedTranscriptions',
+            'digitalizedTranscriptions.encryptionPairs',
             'language',
             'location',
             'tags'
@@ -257,6 +265,8 @@ class CipherKeysController extends Controller
             'folder',
             'folder.fond',
             'folder.fond.archive',
+            'digitalizedTranscriptions',
+            'digitalizedTranscriptions.encryptionPairs',
             'language',
             'location',
             'tags'

@@ -266,7 +266,7 @@ paths:
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: desc
+                  example: asc
   /api/login:
     post:
       summary: Login
@@ -329,7 +329,7 @@ paths:
                 password:
                   type: string
                   description: Password
-                  example: veritatis
+                  example: aut
               required:
                 - email
                 - password
@@ -504,11 +504,11 @@ paths:
                 first_name:
                   type: string
                   description: Firstname
-                  example: dolorem
+                  example: voluptates
                 last_name:
                   type: string
                   description: Lastname
-                  example: blanditiis
+                  example: quo
                 email:
                   type: string
                   description: 'Login e-mail'
@@ -516,7 +516,7 @@ paths:
                 password:
                   type: string
                   description: Password
-                  example: illo
+                  example: quasi
               required:
                 - first_name
                 - last_name
@@ -587,11 +587,11 @@ paths:
                 code:
                   type: string
                   description: 'Password reset code'
-                  example: eos
+                  example: tempora
                 password:
                   type: string
                   description: 'New password'
-                  example: nihil
+                  example: sed
               required:
                 - email
                 - code
@@ -774,7 +774,7 @@ paths:
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: desc
+                  example: asc
   /api/cipher-keys:
     get:
       summary: 'All approved cipher keys'
@@ -878,6 +878,21 @@ paths:
                             id: 2
                             name: jahahaha
                             type: cipher_key
+                        digitalized_transcriptions:
+                          -
+                            id: 3
+                            digitalized_version: null
+                            note: null
+                            digitalized_date: null
+                            encryption_pairs:
+                              -
+                                id: 14
+                                plain_text_unit: ahoj
+                                cipher_text_unit: cau
+                              -
+                                id: 15
+                                plain_text_unit: hello
+                                cipher_text_unit: bye
                         created_at: '2023-01-31 15:07:52'
                         updated_at: '2023-01-31 16:28:17'
                     first_page_url: 'http://dp.test/api/cipher-keys/approved?detailed=1&orderBy=id&orderDirection=desc&page=1'
@@ -975,6 +990,21 @@ paths:
                               id: 2
                               name: jahahaha
                               type: cipher_key
+                          digitalized_transcriptions:
+                            -
+                              id: 3
+                              digitalized_version: null
+                              note: null
+                              digitalized_date: null
+                              encryption_pairs:
+                                -
+                                  id: 14
+                                  plain_text_unit: ahoj
+                                  cipher_text_unit: cau
+                                -
+                                  id: 15
+                                  plain_text_unit: hello
+                                  cipher_text_unit: bye
                           created_at: '2023-01-31 15:07:52'
                           updated_at: '2023-01-31 16:28:17'
                       first_page_url: 'http://dp.test/api/cipher-keys/approved?detailed=1&orderBy=id&orderDirection=desc&page=1'
@@ -1007,15 +1037,15 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 10
+                  example: 6
                 per_page:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 3
                 detailed:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
       security: []
     post:
       summary: 'Create cipher key'
@@ -1083,27 +1113,27 @@ paths:
                 description:
                   type: string
                   description: Description.
-                  example: tempore
+                  example: amet
                 signature:
                   type: string
                   description: 'Date to be used as the publication date.'
-                  example: tenetur
+                  example: dignissimos
                 complete_structure:
                   type: string
                   description: 'Complete structure.'
-                  example: a
+                  example: tempora
                 used_chars:
                   type: string
                   description: 'Category the post belongs to.'
-                  example: voluptas
+                  example: hic
                 cipher_type:
                   type: integer
                   description: 'Cipher type.'
-                  example: 7
+                  example: 4
                 key_type:
                   type: integer
                   description: 'Key type.'
-                  example: 19
+                  example: 10
                 used_from:
                   type: string
                   description: 'Used from. Format: Y-m-d. Must be a valid date.'
@@ -1115,19 +1145,19 @@ paths:
                 new_folder:
                   type: string
                   description: 'New folder.'
-                  example: suscipit
+                  example: alias
                 new_fond:
                   type: string
                   description: 'New fond.'
-                  example: et
+                  example: sint
                 new_archive:
                   type: string
                   description: 'New archive.'
-                  example: rerum
+                  example: deleniti
                 used_around:
                   type: string
                   description: 'Used around.'
-                  example: architecto
+                  example: quia
                 folder_id:
                   type: integer
                   description: 'The ID of Folder. This field is required when <code>new_folder</code> is <code>null</code>.'
@@ -1164,7 +1194,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - vel
+                    - quia
                   items:
                     type: string
                 continent:
@@ -1178,7 +1208,7 @@ paths:
                 'tags[]':
                   type: string
                   description: 'Tag names'
-                  example: error
+                  example: et
               required:
                 - signature
                 - cipher_type
@@ -1298,6 +1328,21 @@ paths:
                             id: 2
                             name: jahahaha
                             type: cipher_key
+                        digitalized_transcriptions:
+                          -
+                            id: 3
+                            digitalized_version: null
+                            note: null
+                            digitalized_date: null
+                            encryption_pairs:
+                              -
+                                id: 14
+                                plain_text_unit: ahoj
+                                cipher_text_unit: cau
+                              -
+                                id: 15
+                                plain_text_unit: hello
+                                cipher_text_unit: bye
                         created_at: '2023-01-31 15:07:52'
                         updated_at: '2023-01-31 16:28:17'
                     first_page_url: 'http://dp.test/api/cipher-keys/approved?detailed=1&orderBy=id&orderDirection=desc&page=1'
@@ -1395,6 +1440,21 @@ paths:
                               id: 2
                               name: jahahaha
                               type: cipher_key
+                          digitalized_transcriptions:
+                            -
+                              id: 3
+                              digitalized_version: null
+                              note: null
+                              digitalized_date: null
+                              encryption_pairs:
+                                -
+                                  id: 14
+                                  plain_text_unit: ahoj
+                                  cipher_text_unit: cau
+                                -
+                                  id: 15
+                                  plain_text_unit: hello
+                                  cipher_text_unit: bye
                           created_at: '2023-01-31 15:07:52'
                           updated_at: '2023-01-31 16:28:17'
                       first_page_url: 'http://dp.test/api/cipher-keys/approved?detailed=1&orderBy=id&orderDirection=desc&page=1'
@@ -1419,7 +1479,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: id
+                  example: signature
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -1427,15 +1487,15 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 6
                 per_page:
                   type: integer
                   description: ''
-                  example: 16
+                  example: 10
                 detailed:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
   /api/key-types:
     get:
       summary: 'Show all key types'
@@ -1534,38 +1594,40 @@ paths:
                   status_code: 200
                   message: 'Get a cipher key.'
                   data:
-                    id: 1
-                    signature: 'sdf sdf sdfsdfsdf'
-                    description: null
-                    complete_structure: structure
-                    used_chars: 'sdf sd fsdfsdfsdf'
+                    id: 22
+                    signature: atosportos22
+                    description: 'skuska popisuww'
+                    complete_structure: dfdfdfdfdf
+                    used_chars: sasasasa
                     cipher_type:
-                      id: 1
-                      name: Undefined
+                      id: 2
+                      name: Nomenclator
+                      resource_url: 'http://dp.test/admin/cipher-types/2'
                     key_type:
-                      id: 1
-                      name: e
-                    used_from: '2023-01-31T12:00:00.000000Z'
-                    used_to: '2023-02-03T12:00:00.000000Z'
+                      id: 2
+                      name: ed
+                      resource_url: 'http://dp.test/admin/key-types/2'
+                    used_from: '2000-01-21T00:00:00.000000Z'
+                    used_to: '2023-01-22T00:00:00.000000Z'
                     used_around: null
                     folder:
-                      id: 1
-                      name: 'folder 1'
-                      fond_id: 1
+                      id: 4
+                      name: hahaha
+                      fond_id: 5
                       start_date: null
                       end_date: null
                       fond:
-                        id: 1
-                        name: 'fond 1'
-                        archive_id: 1
+                        id: 5
+                        name: hahaha2
+                        archive_id: 2
                         archive:
-                          id: 1
-                          short_name: 'archive 1'
-                          name: 'archive 1'
+                          id: 2
+                          short_name: haha3
+                          name: haha3
                           country: null
                     location:
-                      id: 9
-                      name: jajaja
+                      id: 17
+                      name: Amazon
                       continent: Europe
                     language:
                       id: 1
@@ -1574,28 +1636,97 @@ paths:
                       id: awaiting
                       title: Awaiting
                       show: true
-                    note: null
+                    note: sdfsdfsdfsdf
                     created_by:
-                      id: 1
-                      first_name: Administrator
-                      last_name: Administrator
+                      id: 2
+                      first_name: Attila
+                      last_name: Mucska
                     images:
                       -
                         url:
-                          thumb: 'http://dp.test/media/2/conversions/madlo-thumb.jpg'
-                          big: 'http://dp.test/media/2/conversions/madlo-big.jpg'
-                          large: 'http://dp.test/media/2/conversions/madlo-large.jpg'
-                          original: 'http://dp.test/media/2/madlo.png'
+                          thumb: 'http://dp.test/media/87/conversions/test1-thumb.jpg'
+                          big: 'http://dp.test/media/87/conversions/test1-big.jpg'
+                          large: 'http://dp.test/media/87/conversions/test1-large.jpg'
+                          original: 'http://dp.test/media/87/test1.png'
                         structure: ''
                         has_instructions: 1
-                    users: []
+                      -
+                        url:
+                          thumb: 'http://dp.test/media/88/conversions/schema-thumb.jpg'
+                          big: 'http://dp.test/media/88/conversions/schema-big.jpg'
+                          large: 'http://dp.test/media/88/conversions/schema-large.jpg'
+                          original: 'http://dp.test/media/88/schema.png'
+                        structure: example
+                        has_instructions: 0
+                      -
+                        url:
+                          thumb: 'http://dp.test/media/89/conversions/test1-thumb.jpg'
+                          big: 'http://dp.test/media/89/conversions/test1-big.jpg'
+                          large: 'http://dp.test/media/89/conversions/test1-large.jpg'
+                          original: 'http://dp.test/media/89/test1.png'
+                        structure: ''
+                        has_instructions: 1
+                      -
+                        url:
+                          thumb: 'http://dp.test/media/90/conversions/schema-thumb.jpg'
+                          big: 'http://dp.test/media/90/conversions/schema-big.jpg'
+                          large: 'http://dp.test/media/90/conversions/schema-large.jpg'
+                          original: 'http://dp.test/media/90/schema.png'
+                        structure: example
+                        has_instructions: 0
+                      -
+                        url:
+                          thumb: 'http://dp.test/media/91/conversions/test1-thumb.jpg'
+                          big: 'http://dp.test/media/91/conversions/test1-big.jpg'
+                          large: 'http://dp.test/media/91/conversions/test1-large.jpg'
+                          original: 'http://dp.test/media/91/test1.png'
+                        structure: ''
+                        has_instructions: 1
+                      -
+                        url:
+                          thumb: 'http://dp.test/media/92/conversions/schema-thumb.jpg'
+                          big: 'http://dp.test/media/92/conversions/schema-big.jpg'
+                          large: 'http://dp.test/media/92/conversions/schema-large.jpg'
+                          original: 'http://dp.test/media/92/schema.png'
+                        structure: example
+                        has_instructions: 0
+                    users:
+                      -
+                        person:
+                          id: 17
+                          name: 'new user name'
+                        is_main_user: 0
+                      -
+                        person:
+                          id: 18
+                          name: 'new user name 2'
+                        is_main_user: 1
                     tags:
                       -
-                        id: 1
-                        name: 'new tag'
+                        id: 6
+                        name: ja
                         type: cipher_key
-                    created_at: '2023-01-31 14:46:54'
-                    updated_at: '2023-01-31 14:46:55'
+                      -
+                        id: 7
+                        name: ko
+                        type: cipher_key
+                    digitalized_transcriptions:
+                      -
+                        id: 3
+                        digitalized_version: null
+                        note: null
+                        digitalized_date: null
+                        encryption_pairs:
+                          -
+                            id: 14
+                            plain_text_unit: ahoj
+                            cipher_text_unit: cau
+                          -
+                            id: 15
+                            plain_text_unit: hello
+                            cipher_text_unit: bye
+                    created_at: '2023-02-17 18:20:36'
+                    updated_at: '2023-02-18 09:22:44'
                 properties:
                   status:
                     type: string
@@ -1609,38 +1740,40 @@ paths:
                   data:
                     type: object
                     example:
-                      id: 1
-                      signature: 'sdf sdf sdfsdfsdf'
-                      description: null
-                      complete_structure: structure
-                      used_chars: 'sdf sd fsdfsdfsdf'
+                      id: 22
+                      signature: atosportos22
+                      description: 'skuska popisuww'
+                      complete_structure: dfdfdfdfdf
+                      used_chars: sasasasa
                       cipher_type:
-                        id: 1
-                        name: Undefined
+                        id: 2
+                        name: Nomenclator
+                        resource_url: 'http://dp.test/admin/cipher-types/2'
                       key_type:
-                        id: 1
-                        name: e
-                      used_from: '2023-01-31T12:00:00.000000Z'
-                      used_to: '2023-02-03T12:00:00.000000Z'
+                        id: 2
+                        name: ed
+                        resource_url: 'http://dp.test/admin/key-types/2'
+                      used_from: '2000-01-21T00:00:00.000000Z'
+                      used_to: '2023-01-22T00:00:00.000000Z'
                       used_around: null
                       folder:
-                        id: 1
-                        name: 'folder 1'
-                        fond_id: 1
+                        id: 4
+                        name: hahaha
+                        fond_id: 5
                         start_date: null
                         end_date: null
                         fond:
-                          id: 1
-                          name: 'fond 1'
-                          archive_id: 1
+                          id: 5
+                          name: hahaha2
+                          archive_id: 2
                           archive:
-                            id: 1
-                            short_name: 'archive 1'
-                            name: 'archive 1'
+                            id: 2
+                            short_name: haha3
+                            name: haha3
                             country: null
                       location:
-                        id: 9
-                        name: jajaja
+                        id: 17
+                        name: Amazon
                         continent: Europe
                       language:
                         id: 1
@@ -1649,28 +1782,97 @@ paths:
                         id: awaiting
                         title: Awaiting
                         show: true
-                      note: null
+                      note: sdfsdfsdfsdf
                       created_by:
-                        id: 1
-                        first_name: Administrator
-                        last_name: Administrator
+                        id: 2
+                        first_name: Attila
+                        last_name: Mucska
                       images:
                         -
                           url:
-                            thumb: 'http://dp.test/media/2/conversions/madlo-thumb.jpg'
-                            big: 'http://dp.test/media/2/conversions/madlo-big.jpg'
-                            large: 'http://dp.test/media/2/conversions/madlo-large.jpg'
-                            original: 'http://dp.test/media/2/madlo.png'
+                            thumb: 'http://dp.test/media/87/conversions/test1-thumb.jpg'
+                            big: 'http://dp.test/media/87/conversions/test1-big.jpg'
+                            large: 'http://dp.test/media/87/conversions/test1-large.jpg'
+                            original: 'http://dp.test/media/87/test1.png'
                           structure: ''
                           has_instructions: 1
-                      users: []
+                        -
+                          url:
+                            thumb: 'http://dp.test/media/88/conversions/schema-thumb.jpg'
+                            big: 'http://dp.test/media/88/conversions/schema-big.jpg'
+                            large: 'http://dp.test/media/88/conversions/schema-large.jpg'
+                            original: 'http://dp.test/media/88/schema.png'
+                          structure: example
+                          has_instructions: 0
+                        -
+                          url:
+                            thumb: 'http://dp.test/media/89/conversions/test1-thumb.jpg'
+                            big: 'http://dp.test/media/89/conversions/test1-big.jpg'
+                            large: 'http://dp.test/media/89/conversions/test1-large.jpg'
+                            original: 'http://dp.test/media/89/test1.png'
+                          structure: ''
+                          has_instructions: 1
+                        -
+                          url:
+                            thumb: 'http://dp.test/media/90/conversions/schema-thumb.jpg'
+                            big: 'http://dp.test/media/90/conversions/schema-big.jpg'
+                            large: 'http://dp.test/media/90/conversions/schema-large.jpg'
+                            original: 'http://dp.test/media/90/schema.png'
+                          structure: example
+                          has_instructions: 0
+                        -
+                          url:
+                            thumb: 'http://dp.test/media/91/conversions/test1-thumb.jpg'
+                            big: 'http://dp.test/media/91/conversions/test1-big.jpg'
+                            large: 'http://dp.test/media/91/conversions/test1-large.jpg'
+                            original: 'http://dp.test/media/91/test1.png'
+                          structure: ''
+                          has_instructions: 1
+                        -
+                          url:
+                            thumb: 'http://dp.test/media/92/conversions/schema-thumb.jpg'
+                            big: 'http://dp.test/media/92/conversions/schema-big.jpg'
+                            large: 'http://dp.test/media/92/conversions/schema-large.jpg'
+                            original: 'http://dp.test/media/92/schema.png'
+                          structure: example
+                          has_instructions: 0
+                      users:
+                        -
+                          person:
+                            id: 17
+                            name: 'new user name'
+                          is_main_user: 0
+                        -
+                          person:
+                            id: 18
+                            name: 'new user name 2'
+                          is_main_user: 1
                       tags:
                         -
-                          id: 1
-                          name: 'new tag'
+                          id: 6
+                          name: ja
                           type: cipher_key
-                      created_at: '2023-01-31 14:46:54'
-                      updated_at: '2023-01-31 14:46:55'
+                        -
+                          id: 7
+                          name: ko
+                          type: cipher_key
+                      digitalized_transcriptions:
+                        -
+                          id: 3
+                          digitalized_version: null
+                          note: null
+                          digitalized_date: null
+                          encryption_pairs:
+                            -
+                              id: 14
+                              plain_text_unit: ahoj
+                              cipher_text_unit: cau
+                            -
+                              id: 15
+                              plain_text_unit: hello
+                              cipher_text_unit: bye
+                      created_at: '2023-02-17 18:20:36'
+                      updated_at: '2023-02-18 09:22:44'
       tags:
         - 'Cipher keys'
       security: []
@@ -1740,27 +1942,27 @@ paths:
                 description:
                   type: string
                   description: Description.
-                  example: dolor
+                  example: blanditiis
                 signature:
                   type: string
                   description: 'Date to be used as the publication date.'
-                  example: voluptatem
+                  example: tempore
                 complete_structure:
                   type: string
                   description: 'Complete structure.'
-                  example: est
+                  example: debitis
                 used_chars:
                   type: string
                   description: 'Category the post belongs to.'
-                  example: occaecati
+                  example: quis
                 cipher_type:
                   type: integer
                   description: 'Cipher type.'
-                  example: 15
+                  example: 2
                 key_type:
                   type: integer
                   description: 'Key type.'
-                  example: 11
+                  example: 7
                 used_from:
                   type: string
                   description: 'Used from. Format: Y-m-d. Must be a valid date.'
@@ -1772,19 +1974,19 @@ paths:
                 new_folder:
                   type: string
                   description: 'New folder.'
-                  example: consequatur
+                  example: laborum
                 new_fond:
                   type: string
                   description: 'New fond.'
-                  example: non
+                  example: saepe
                 new_archive:
                   type: string
                   description: 'New archive.'
-                  example: in
+                  example: iste
                 used_around:
                   type: string
                   description: 'Used around.'
-                  example: aut
+                  example: est
                 folder_id:
                   type: integer
                   description: 'The ID of Folder. This field is required when <code>new_folder</code> is <code>null</code>.'
@@ -1813,7 +2015,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - sed
+                    - rerum
                   items:
                     type: string
                 continent:
@@ -1823,7 +2025,7 @@ paths:
                 'tags[]':
                   type: string
                   description: 'Tag names'
-                  example: qui
+                  example: vel
               required:
                 - cipher_type
                 - key_type
@@ -2256,7 +2458,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: id
+                  example: signature
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -2264,11 +2466,11 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 11
+                  example: 7
                 per_page:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 17
                 detailed:
                   type: boolean
                   description: ''
@@ -2332,7 +2534,7 @@ paths:
                 availability:
                   type: string
                   description: Availability.
-                  example: adipisci
+                  example: voluptatem
                 category_id:
                   type: string
                   description: 'The ID of Category.'
@@ -2348,7 +2550,7 @@ paths:
                 description:
                   type: string
                   description: 'Cryptogram description.'
-                  example: eum
+                  example: rerum
                 language:
                   type: string
                   description: Language.
@@ -2356,7 +2558,7 @@ paths:
                 location_name:
                   type: string
                   description: 'Location name.'
-                  example: quia
+                  example: natus
                 month:
                   type: integer
                   description: Month.
@@ -2364,7 +2566,7 @@ paths:
                 name:
                   type: string
                   description: 'Cryptogram name.'
-                  example: sint
+                  example: earum
                 recipient:
                   type: string
                   description: Recipient.
@@ -2376,7 +2578,7 @@ paths:
                 solution_id:
                   type: integer
                   description: 'The ID of Solution.'
-                  example: 18
+                  example: 14
                 year:
                   type: integer
                   description: Year.
@@ -2402,7 +2604,7 @@ paths:
                   type: array
                   description: 'string Tag names'
                   example:
-                    - voluptatem
+                    - quod
                   items:
                     type: ''
                 continent:
@@ -2420,7 +2622,7 @@ paths:
                 thumbnail_link:
                   type: string
                   description: 'Thumbnail link. Used if thumbnail is empty.'
-                  example: ad
+                  example: quae
                 thumbnail_base64:
                   type: string
                   description: 'Thumbnail base64. Used if thumbnail and thumbnail_link are empty.'
@@ -2671,7 +2873,7 @@ paths:
                 availability:
                   type: string
                   description: Availability.
-                  example: temporibus
+                  example: aut
                 category_id:
                   type: string
                   description: 'The ID of Category.'
@@ -2687,7 +2889,7 @@ paths:
                 description:
                   type: string
                   description: 'Cryptogram description.'
-                  example: eos
+                  example: voluptatem
                 language:
                   type: string
                   description: Language.
@@ -2695,7 +2897,7 @@ paths:
                 location_name:
                   type: string
                   description: 'Location name.'
-                  example: eos
+                  example: dolorum
                 month:
                   type: integer
                   description: Month.
@@ -2703,7 +2905,7 @@ paths:
                 name:
                   type: string
                   description: 'Cryptogram name.'
-                  example: voluptas
+                  example: eos
                 recipient:
                   type: string
                   description: 'Recipient name.'
@@ -2715,7 +2917,7 @@ paths:
                 solution_id:
                   type: integer
                   description: 'The ID of Solution.'
-                  example: 14
+                  example: 6
                 year:
                   type: integer
                   description: Year.
@@ -2741,7 +2943,7 @@ paths:
                   type: array
                   description: 'string Tag names'
                   example:
-                    - quis
+                    - eos
                   items:
                     type: ''
                 continent:
@@ -2759,7 +2961,7 @@ paths:
                 thumbnail_link:
                   type: string
                   description: 'Thumbnail link. Used if thumbnail is empty.'
-                  example: dolores
+                  example: officiis
                 thumbnail_base64:
                   type: string
                   description: 'Thumbnail base64. Used if thumbnail and thumbnail_link are empty.'
@@ -3235,23 +3437,23 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: id
+                  example: signature
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: asc
+                  example: desc
                 page:
                   type: integer
                   description: ''
-                  example: 11
+                  example: 10
                 per_page:
                   type: integer
                   description: ''
-                  example: 20
+                  example: 4
                 detailed:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
   /api/languages:
     get:
       summary: 'Show all languages'
@@ -3755,7 +3957,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>name</code>.'
-                  example: name
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -3908,7 +4110,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code>, <code>name</code>, or <code>type</code>.'
-                  example: type
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -3916,7 +4118,7 @@ paths:
                 type:
                   type: string
                   description: 'Must be one of <code>cipher_key</code> or <code>cryptogram</code>.'
-                  example: cryptogram
+                  example: cipher_key
 tags:
   -
     name: Archives

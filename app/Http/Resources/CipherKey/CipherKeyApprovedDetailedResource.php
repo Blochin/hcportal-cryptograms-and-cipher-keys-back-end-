@@ -4,6 +4,7 @@ namespace App\Http\Resources\CipherKey;
 
 use App\Http\Resources\CipherKeyImage\CipherKeyImageResource;
 use App\Http\Resources\CipherKeyPerson\CipherKeyPersonResource;
+use App\Http\Resources\DigitalizedTranscription\DigitalizedTranscriptionResource;
 use App\Http\Resources\Language\LanguageResource;
 use App\Http\Resources\Tag\TagResource;
 use App\Http\Resources\User\UserResource;
@@ -39,6 +40,7 @@ class CipherKeyApprovedDetailedResource extends JsonResource
             'images' => CipherKeyImageResource::collection($this->whenLoaded('images')),
             'users' => CipherKeyPersonResource::collection($this->whenLoaded('users')),
             'tags' => TagResource::collection($this->whenLoaded('tags')),
+            'digitalized_transcriptions' => DigitalizedTranscriptionResource::collection($this->whenLoaded('digitalizedTranscriptions')),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
         ];

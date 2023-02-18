@@ -25,7 +25,7 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code>, <code>name</code>, or <code>type</code>.'
         required: false
-        example: type
+        example: id
         type: string
         custom: []
       orderDirection:
@@ -39,7 +39,7 @@ endpoints:
         name: type
         description: 'Must be one of <code>cipher_key</code> or <code>cryptogram</code>.'
         required: false
-        example: cryptogram
+        example: cipher_key
         type: string
         custom: []
     responses:

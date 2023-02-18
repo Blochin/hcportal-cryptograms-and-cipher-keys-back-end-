@@ -36,21 +36,21 @@ endpoints:
         name: page
         description: ''
         required: false
-        example: 10
+        example: 6
         type: integer
         custom: []
       per_page:
         name: per_page
         description: ''
         required: false
-        example: 17
+        example: 3
         type: integer
         custom: []
       detailed:
         name: detailed
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         custom: []
     responses:
@@ -188,6 +188,26 @@ endpoints:
                                   "type": "cipher_key"
                               }
                           ],
+                          "digitalized_transcriptions": [
+                              {
+                                  "id": 3,
+                                  "digitalized_version": null,
+                                  "note": null,
+                                  "digitalized_date": null,
+                                  "encryption_pairs": [
+                                      {
+                                          "id": 14,
+                                          "plain_text_unit": "ahoj",
+                                          "cipher_text_unit": "cau"
+                                      },
+                                      {
+                                          "id": 15,
+                                          "plain_text_unit": "hello",
+                                          "cipher_text_unit": "bye"
+                                      }
+                                  ]
+                              }
+                          ],
                           "created_at": "2023-01-31 15:07:52",
                           "updated_at": "2023-01-31 16:28:17"
                       }
@@ -227,7 +247,7 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code> or <code>signature</code>.'
         required: false
-        example: id
+        example: signature
         type: string
         custom: []
       orderDirection:
@@ -241,21 +261,21 @@ endpoints:
         name: page
         description: ''
         required: false
-        example: 3
+        example: 6
         type: integer
         custom: []
       per_page:
         name: per_page
         description: ''
         required: false
-        example: 16
+        example: 10
         type: integer
         custom: []
       detailed:
         name: detailed
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         custom: []
     responses:
@@ -393,6 +413,26 @@ endpoints:
                                   "type": "cipher_key"
                               }
                           ],
+                          "digitalized_transcriptions": [
+                              {
+                                  "id": 3,
+                                  "digitalized_version": null,
+                                  "note": null,
+                                  "digitalized_date": null,
+                                  "encryption_pairs": [
+                                      {
+                                          "id": 14,
+                                          "plain_text_unit": "ahoj",
+                                          "cipher_text_unit": "cau"
+                                      },
+                                      {
+                                          "id": 15,
+                                          "plain_text_unit": "hello",
+                                          "cipher_text_unit": "bye"
+                                      }
+                                  ]
+                              }
+                          ],
                           "created_at": "2023-01-31 15:07:52",
                           "updated_at": "2023-01-31 16:28:17"
                       }
@@ -481,43 +521,45 @@ endpoints:
               "status_code": 200,
               "message": "Get a cipher key.",
               "data": {
-                  "id": 1,
-                  "signature": "sdf sdf sdfsdfsdf",
-                  "description": null,
-                  "complete_structure": "structure",
-                  "used_chars": "sdf sd fsdfsdfsdf",
+                  "id": 22,
+                  "signature": "atosportos22",
+                  "description": "skuska popisuww",
+                  "complete_structure": "dfdfdfdfdf",
+                  "used_chars": "sasasasa",
                   "cipher_type": {
-                      "id": 1,
-                      "name": "Undefined"
+                      "id": 2,
+                      "name": "Nomenclator",
+                      "resource_url": "http://dp.test/admin/cipher-types/2"
                   },
                   "key_type": {
-                      "id": 1,
-                      "name": "e"
+                      "id": 2,
+                      "name": "ed",
+                      "resource_url": "http://dp.test/admin/key-types/2"
                   },
-                  "used_from": "2023-01-31T12:00:00.000000Z",
-                  "used_to": "2023-02-03T12:00:00.000000Z",
+                  "used_from": "2000-01-21T00:00:00.000000Z",
+                  "used_to": "2023-01-22T00:00:00.000000Z",
                   "used_around": null,
                   "folder": {
-                      "id": 1,
-                      "name": "folder 1",
-                      "fond_id": 1,
+                      "id": 4,
+                      "name": "hahaha",
+                      "fond_id": 5,
                       "start_date": null,
                       "end_date": null,
                       "fond": {
-                          "id": 1,
-                          "name": "fond 1",
-                          "archive_id": 1,
+                          "id": 5,
+                          "name": "hahaha2",
+                          "archive_id": 2,
                           "archive": {
-                              "id": 1,
-                              "short_name": "archive 1",
-                              "name": "archive 1",
+                              "id": 2,
+                              "short_name": "haha3",
+                              "name": "haha3",
                               "country": null
                           }
                       }
                   },
                   "location": {
-                      "id": 9,
-                      "name": "jajaja",
+                      "id": 17,
+                      "name": "Amazon",
                       "continent": "Europe"
                   },
                   "language": {
@@ -529,34 +571,124 @@ endpoints:
                       "title": "Awaiting",
                       "show": true
                   },
-                  "note": null,
+                  "note": "sdfsdfsdfsdf",
                   "created_by": {
-                      "id": 1,
-                      "first_name": "Administrator",
-                      "last_name": "Administrator"
+                      "id": 2,
+                      "first_name": "Attila",
+                      "last_name": "Mucska"
                   },
                   "images": [
                       {
                           "url": {
-                              "thumb": "http://dp.test/media/2/conversions/madlo-thumb.jpg",
-                              "big": "http://dp.test/media/2/conversions/madlo-big.jpg",
-                              "large": "http://dp.test/media/2/conversions/madlo-large.jpg",
-                              "original": "http://dp.test/media/2/madlo.png"
+                              "thumb": "http://dp.test/media/87/conversions/test1-thumb.jpg",
+                              "big": "http://dp.test/media/87/conversions/test1-big.jpg",
+                              "large": "http://dp.test/media/87/conversions/test1-large.jpg",
+                              "original": "http://dp.test/media/87/test1.png"
                           },
                           "structure": "",
                           "has_instructions": 1
+                      },
+                      {
+                          "url": {
+                              "thumb": "http://dp.test/media/88/conversions/schema-thumb.jpg",
+                              "big": "http://dp.test/media/88/conversions/schema-big.jpg",
+                              "large": "http://dp.test/media/88/conversions/schema-large.jpg",
+                              "original": "http://dp.test/media/88/schema.png"
+                          },
+                          "structure": "example",
+                          "has_instructions": 0
+                      },
+                      {
+                          "url": {
+                              "thumb": "http://dp.test/media/89/conversions/test1-thumb.jpg",
+                              "big": "http://dp.test/media/89/conversions/test1-big.jpg",
+                              "large": "http://dp.test/media/89/conversions/test1-large.jpg",
+                              "original": "http://dp.test/media/89/test1.png"
+                          },
+                          "structure": "",
+                          "has_instructions": 1
+                      },
+                      {
+                          "url": {
+                              "thumb": "http://dp.test/media/90/conversions/schema-thumb.jpg",
+                              "big": "http://dp.test/media/90/conversions/schema-big.jpg",
+                              "large": "http://dp.test/media/90/conversions/schema-large.jpg",
+                              "original": "http://dp.test/media/90/schema.png"
+                          },
+                          "structure": "example",
+                          "has_instructions": 0
+                      },
+                      {
+                          "url": {
+                              "thumb": "http://dp.test/media/91/conversions/test1-thumb.jpg",
+                              "big": "http://dp.test/media/91/conversions/test1-big.jpg",
+                              "large": "http://dp.test/media/91/conversions/test1-large.jpg",
+                              "original": "http://dp.test/media/91/test1.png"
+                          },
+                          "structure": "",
+                          "has_instructions": 1
+                      },
+                      {
+                          "url": {
+                              "thumb": "http://dp.test/media/92/conversions/schema-thumb.jpg",
+                              "big": "http://dp.test/media/92/conversions/schema-big.jpg",
+                              "large": "http://dp.test/media/92/conversions/schema-large.jpg",
+                              "original": "http://dp.test/media/92/schema.png"
+                          },
+                          "structure": "example",
+                          "has_instructions": 0
                       }
                   ],
-                  "users": [],
+                  "users": [
+                      {
+                          "person": {
+                              "id": 17,
+                              "name": "new user name"
+                          },
+                          "is_main_user": 0
+                      },
+                      {
+                          "person": {
+                              "id": 18,
+                              "name": "new user name 2"
+                          },
+                          "is_main_user": 1
+                      }
+                  ],
                   "tags": [
                       {
-                          "id": 1,
-                          "name": "new tag",
+                          "id": 6,
+                          "name": "ja",
+                          "type": "cipher_key"
+                      },
+                      {
+                          "id": 7,
+                          "name": "ko",
                           "type": "cipher_key"
                       }
                   ],
-                  "created_at": "2023-01-31 14:46:54",
-                  "updated_at": "2023-01-31 14:46:55"
+                  "digitalized_transcriptions": [
+                      {
+                          "id": 3,
+                          "digitalized_version": null,
+                          "note": null,
+                          "digitalized_date": null,
+                          "encryption_pairs": [
+                              {
+                                  "id": 14,
+                                  "plain_text_unit": "ahoj",
+                                  "cipher_text_unit": "cau"
+                              },
+                              {
+                                  "id": 15,
+                                  "plain_text_unit": "hello",
+                                  "cipher_text_unit": "bye"
+                              }
+                          ]
+                      }
+                  ],
+                  "created_at": "2023-02-17 18:20:36",
+                  "updated_at": "2023-02-18 09:22:44"
               }
           }
         headers: []
@@ -628,42 +760,42 @@ endpoints:
         name: description
         description: Description.
         required: false
-        example: tempore
+        example: amet
         type: string
         custom: []
       signature:
         name: signature
         description: 'Date to be used as the publication date.'
         required: true
-        example: tenetur
+        example: dignissimos
         type: string
         custom: []
       complete_structure:
         name: complete_structure
         description: 'Complete structure.'
         required: false
-        example: a
+        example: tempora
         type: string
         custom: []
       used_chars:
         name: used_chars
         description: 'Category the post belongs to.'
         required: false
-        example: voluptas
+        example: hic
         type: string
         custom: []
       cipher_type:
         name: cipher_type
         description: 'Cipher type.'
         required: true
-        example: 7
+        example: 4
         type: integer
         custom: []
       key_type:
         name: key_type
         description: 'Key type.'
         required: true
-        example: 19
+        example: 10
         type: integer
         custom: []
       used_from:
@@ -684,28 +816,28 @@ endpoints:
         name: new_folder
         description: 'New folder.'
         required: false
-        example: suscipit
+        example: alias
         type: string
         custom: []
       new_fond:
         name: new_fond
         description: 'New fond.'
         required: false
-        example: et
+        example: sint
         type: string
         custom: []
       new_archive:
         name: new_archive
         description: 'New archive.'
         required: false
-        example: rerum
+        example: deleniti
         type: string
         custom: []
       used_around:
         name: used_around
         description: 'Used around.'
         required: false
-        example: architecto
+        example: quia
         type: string
         custom: []
       folder_id:
@@ -769,7 +901,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - vel
+          - quia
         type: 'string[]'
         custom: []
       continent:
@@ -818,7 +950,7 @@ endpoints:
         name: 'tags[]'
         description: 'Tag names'
         required: false
-        example: error
+        example: et
         type: string
         custom: []
     responses:
@@ -934,6 +1066,26 @@ endpoints:
                           "id": 7,
                           "name": "ko",
                           "type": "cipher_key"
+                      }
+                  ],
+                  "digitalized_transcriptions": [
+                      {
+                          "id": 3,
+                          "digitalized_version": null,
+                          "note": null,
+                          "digitalized_date": null,
+                          "encryption_pairs": [
+                              {
+                                  "id": 14,
+                                  "plain_text_unit": "ahoj",
+                                  "cipher_text_unit": "cau"
+                              },
+                              {
+                                  "id": 15,
+                                  "plain_text_unit": "hello",
+                                  "cipher_text_unit": "bye"
+                              }
+                          ]
                       }
                   ],
                   "created_at": "2023-02-17 18:56:22",
@@ -983,42 +1135,42 @@ endpoints:
         name: description
         description: Description.
         required: false
-        example: dolor
+        example: blanditiis
         type: string
         custom: []
       signature:
         name: signature
         description: 'Date to be used as the publication date.'
         required: false
-        example: voluptatem
+        example: tempore
         type: string
         custom: []
       complete_structure:
         name: complete_structure
         description: 'Complete structure.'
         required: false
-        example: est
+        example: debitis
         type: string
         custom: []
       used_chars:
         name: used_chars
         description: 'Category the post belongs to.'
         required: false
-        example: occaecati
+        example: quis
         type: string
         custom: []
       cipher_type:
         name: cipher_type
         description: 'Cipher type.'
         required: true
-        example: 15
+        example: 2
         type: integer
         custom: []
       key_type:
         name: key_type
         description: 'Key type.'
         required: true
-        example: 11
+        example: 7
         type: integer
         custom: []
       used_from:
@@ -1039,28 +1191,28 @@ endpoints:
         name: new_folder
         description: 'New folder.'
         required: false
-        example: consequatur
+        example: laborum
         type: string
         custom: []
       new_fond:
         name: new_fond
         description: 'New fond.'
         required: false
-        example: non
+        example: saepe
         type: string
         custom: []
       new_archive:
         name: new_archive
         description: 'New archive.'
         required: false
-        example: in
+        example: iste
         type: string
         custom: []
       used_around:
         name: used_around
         description: 'Used around.'
         required: false
-        example: aut
+        example: est
         type: string
         custom: []
       folder_id:
@@ -1110,7 +1262,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - sed
+          - rerum
         type: 'string[]'
         custom: []
       continent:
@@ -1138,7 +1290,7 @@ endpoints:
         name: 'tags[]'
         description: 'Tag names'
         required: false
-        example: qui
+        example: vel
         type: string
         custom: []
     responses:
@@ -1254,6 +1406,26 @@ endpoints:
                           "id": 7,
                           "name": "ko",
                           "type": "cipher_key"
+                      }
+                  ],
+                  "digitalized_transcriptions": [
+                      {
+                          "id": 3,
+                          "digitalized_version": null,
+                          "note": null,
+                          "digitalized_date": null,
+                          "encryption_pairs": [
+                              {
+                                  "id": 14,
+                                  "plain_text_unit": "ahoj",
+                                  "cipher_text_unit": "cau"
+                              },
+                              {
+                                  "id": 15,
+                                  "plain_text_unit": "hello",
+                                  "cipher_text_unit": "bye"
+                              }
+                          ]
                       }
                   ],
                   "created_at": "2023-02-17 18:56:22",
