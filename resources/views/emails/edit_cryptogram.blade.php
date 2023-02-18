@@ -445,13 +445,13 @@
                                         style="text-align: center;padding: 0 30px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         <span class="subheading"
                                             style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;display: inline-block;font-size: 13px;text-transform: uppercase;letter-spacing: 2px;color: rgba(0,0,0,.4);position: relative;margin-bottom: 20px !important;">
-                                            Edit Cryptogram - {{ $cryptogram->name }}
+                                            Edited Cryptogram - {{ $cryptogram->name }}
                                         </span>
                                         <h2
                                             style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #000000;margin-top: 0;font-size: 28px;line-height: 1.4;">
                                             User <b> {{ $cryptogram->submitter->fullname }} (ID:
                                                 {{ $cryptogram->submitter->id }})
-                                            </b> edit a Cryptogram.
+                                            </b> edited a Cryptogram.
                                         </h2>
                                         <p style="color:#000;margin: 0"><b>Cryptogram name:</b>
                                             {{ $cryptogram->name }}</p>

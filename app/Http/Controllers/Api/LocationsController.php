@@ -63,6 +63,5 @@ class LocationsController extends Controller
         $continents = collect(Location::CONTINENTS);
 
         return $this->success($continents, 'List of all continents', 200);
-        //return $this->success(new LocationCollection($locations), 'List of all locations', 200);
     }
 }
