@@ -130,6 +130,11 @@ class CipherKey extends Model
         return $this->hasMany(CipherKeyImage::class);
     }
 
+    public function digitalizedTranscriptions()
+    {
+        return $this->hasMany(DigitalizedTranscription::class);
+    }
+
     public function users()
     {
         return $this->hasMany(CipherKeyPerson::class);

@@ -307,5 +307,26 @@ return [
         ],
     ],
 
+    'digitalized-transcription' => [
+        'title' => 'Digit. Transcriptions',
+
+        'actions' => [
+            'index' => 'Digitalized Transcriptions',
+            'create' => 'New Digitalized Transcription',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'digitalized_version' => 'Digitalized version',
+            'note' => 'Note',
+            'digitalization_date' => 'Digitalization date',
+            'created_by' => 'Created by',
+            'cipher-keys' => 'Cipher key',
+            'keys' => 'Encryption keys'
+
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];

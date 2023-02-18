@@ -156,3 +156,15 @@ $factory->define(App\Models\Category::class, static function (Faker\Generator $f
 
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\DigitalizedTranscription::class, static function (Faker\Generator $faker) {
+    return [
+        'cipher_key_id' => $faker->sentence,
+        'digitalized_version' => $faker->sentence,
+        'note' => $faker->text(),
+        'digitalization_date' => $faker->dateTime,
+        'created_by' => $faker->sentence,
+        
+        
+    ];
+});

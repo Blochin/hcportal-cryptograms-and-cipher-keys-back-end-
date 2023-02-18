@@ -231,3 +231,19 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('digitalized-transcriptions')->name('digitalized-transcriptions/')->group(static function() {
+            Route::get('/',                                             'DigitalizedTranscriptionsController@index')->name('index');
+            Route::get('/create',                                       'DigitalizedTranscriptionsController@create')->name('create');
+            Route::post('/',                                            'DigitalizedTranscriptionsController@store')->name('store');
+            Route::get('/{digitalizedTranscription}/edit',              'DigitalizedTranscriptionsController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'DigitalizedTranscriptionsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{digitalizedTranscription}',                  'DigitalizedTranscriptionsController@update')->name('update');
+            Route::delete('/{digitalizedTranscription}',                'DigitalizedTranscriptionsController@destroy')->name('destroy');
+        });
+    });
+});
