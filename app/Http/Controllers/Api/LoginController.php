@@ -9,6 +9,7 @@ use App\Mail\RegisterMail;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\ApiResponser;
+use App\Traits\Hashable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
@@ -21,6 +22,7 @@ use Spatie\Permission\Models\Role;
  */
 class LoginController extends Controller
 {
+    use Hashable;
     use ApiResponser;
     /**
      * Login
@@ -50,10 +52,10 @@ class LoginController extends Controller
             return $this->success($validator->messages(), 'Validation errors.', JsonResponse::HTTP_UNPROCESSABLE_ENTITY,  422);
         }
 
-        $client = User::where('email', $request->email)->first();
+        $client = User::where('email', $request->email)->where('password', $this->hash($request->password))->first();
 
 
-        if (!$client || !Hash::check($request->password, $client->password) || !$client->activated) {
+        if (!$client || !$client->activated) {
             return $this->success(['login' => trans('auth.failed')], 'Validation errors.', JsonResponse::HTTP_UNPROCESSABLE_ENTITY,  422);
         }
 
@@ -154,6 +156,8 @@ class LoginController extends Controller
         }
 
         $validated = $validator->validated();
+        $validated['password'] = $this->hash($validated['password']);
+
         $client = User::create($validated);
 
         $roleUser = Role::where('name', 'user')->first();

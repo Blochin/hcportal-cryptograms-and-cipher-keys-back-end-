@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\User;
 
+use App\Traits\Hashable;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -9,6 +10,8 @@ use Illuminate\Validation\Rule;
 
 class UpdateUser extends FormRequest
 {
+    use Hashable;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -46,7 +49,7 @@ class UpdateUser extends FormRequest
     {
         $sanitized = $this->validated();
         if (isset($sanitized['password'])) {
-            $sanitized['password'] = Hash::make($sanitized['password']);
+            $sanitized['password'] = $this->hash($sanitized['password']);
         }
 
 

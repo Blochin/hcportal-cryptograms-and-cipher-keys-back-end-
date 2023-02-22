@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
+use App\Traits\Hashable;
 use Brackets\AdminAuth\Http\Controllers\Auth\LoginController as AuthLoginController;
+use Brackets\AdminAuth\Models\AdminUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends AuthLoginController
 {
+    use Hashable;
 
     public const ADMIN_ROLE = 'admin';
     /*
@@ -78,6 +83,28 @@ class LoginController extends AuthLoginController
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * Modified login with hash 256
+     *
+     * @param Request $request
+     * @return void
+     */
+    protected function attemptLogin(Request $request)
+    {
+        $data = $this->credentials($request);
+        $email = $data['email'];
+        $password = $this->hash($data['password']);
+
+        $user = User::where('email', $email)->where('password', $password)->first();
+
+        if ($user) {
+            Auth::login($user);
+            return true;
+        }
+
+        return false;
     }
 
     /**

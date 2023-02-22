@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\User;
 
+use App\Traits\Hashable;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class StoreUser extends FormRequest
 {
+    use Hashable;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -47,7 +49,7 @@ class StoreUser extends FormRequest
         $sanitized = $this->validated();
 
         if (isset($sanitized['password'])) {
-            $sanitized['password'] = Hash::make($sanitized['password']);
+            $sanitized['password'] = $this->hash($sanitized['password']);
         }
 
         //Add your code for manipulation with request data here
