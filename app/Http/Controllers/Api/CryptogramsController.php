@@ -282,6 +282,10 @@ class CryptogramsController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
+        if (isset($sanitized['note'])) {
+            $sanitized['note'] = $cryptogram->note . "\n" . $sanitized['note'];
+        }
+
         // Update changed values the Cryptogram
         $cryptogram->update($sanitized);
 

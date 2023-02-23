@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "HCPortal API",
-        "_postman_id": "72f1df64-7a30-4562-be41-a8b55a5e4e59",
+        "_postman_id": "34b0cd15-72f3-4c9a-9496-80c88e29eb08",
         "description": "HCPortal - Ciphers and Cipher keys API documentation",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"short_name\",\"orderDirection\":\"asc\"}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"desc\"}"
                         },
                         "description": ""
                     },
@@ -82,7 +82,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"login@login.sk\",\"password\":\"aut\"}"
+                            "raw": "{\"email\":\"login@login.sk\",\"password\":\"quasi\"}"
                         },
                         "description": "",
                         "auth": {
@@ -190,7 +190,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"voluptates\",\"last_name\":\"quo\",\"email\":\"login@login.sk\",\"password\":\"quasi\"}"
+                            "raw": "{\"first_name\":\"perspiciatis\",\"last_name\":\"quo\",\"email\":\"login@login.sk\",\"password\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {
@@ -234,7 +234,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"login@login.sk\",\"code\":\"tempora\",\"password\":\"sed\"}"
+                            "raw": "{\"email\":\"login@login.sk\",\"code\":\"sit\",\"password\":\"quo\"}"
                         },
                         "description": "",
                         "auth": {
@@ -328,7 +328,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\"}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"desc\"}"
                         },
                         "description": ""
                     },
@@ -369,7 +369,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"signature\",\"orderDirection\":\"asc\",\"page\":6,\"per_page\":3,\"detailed\":true}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\",\"page\":8,\"per_page\":11,\"detailed\":true}"
                         },
                         "description": "",
                         "auth": {
@@ -413,7 +413,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"signature\",\"orderDirection\":\"asc\",\"page\":6,\"per_page\":10,\"detailed\":true}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"desc\",\"page\":13,\"per_page\":9,\"detailed\":false}"
                         },
                         "description": ""
                     },
@@ -476,7 +476,7 @@
                                 {
                                     "id": "cipherKey_id",
                                     "key": "cipherKey_id",
-                                    "value": "1",
+                                    "value": "24",
                                     "description": "The ID of the cipherKey."
                                 }
                             ]
@@ -564,37 +564,37 @@
                             "formdata": [
                                 {
                                     "key": "description",
-                                    "value": "amet",
+                                    "value": "distinctio",
                                     "type": "text",
                                     "description": "Description."
                                 },
                                 {
                                     "key": "signature",
-                                    "value": "dignissimos",
+                                    "value": "aspernatur",
                                     "type": "text",
                                     "description": "Date to be used as the publication date."
                                 },
                                 {
                                     "key": "complete_structure",
-                                    "value": "tempora",
+                                    "value": "eligendi",
                                     "type": "text",
                                     "description": "Complete structure."
                                 },
                                 {
                                     "key": "used_chars",
-                                    "value": "hic",
+                                    "value": "adipisci",
                                     "type": "text",
                                     "description": "Category the post belongs to."
                                 },
                                 {
                                     "key": "cipher_type",
-                                    "value": 4,
+                                    "value": 3,
                                     "type": "text",
                                     "description": "Cipher type."
                                 },
                                 {
                                     "key": "key_type",
-                                    "value": 10,
+                                    "value": 20,
                                     "type": "text",
                                     "description": "Key type."
                                 },
@@ -612,25 +612,25 @@
                                 },
                                 {
                                     "key": "new_folder",
-                                    "value": "alias",
+                                    "value": "sit",
                                     "type": "text",
                                     "description": "New folder."
                                 },
                                 {
                                     "key": "new_fond",
-                                    "value": "sint",
+                                    "value": "illo",
                                     "type": "text",
                                     "description": "New fond."
                                 },
                                 {
                                     "key": "new_archive",
-                                    "value": "deleniti",
+                                    "value": "ipsam",
                                     "type": "text",
                                     "description": "New archive."
                                 },
                                 {
                                     "key": "used_around",
-                                    "value": "quia",
+                                    "value": "soluta",
                                     "type": "text",
                                     "description": "Used around."
                                 },
@@ -659,8 +659,8 @@
                                     "description": "Specific name of the location."
                                 },
                                 {
-                                    "key": "language",
-                                    "value": "German",
+                                    "key": "language_id",
+                                    "value": 2,
                                     "type": "text",
                                     "description": "The ID of Language."
                                 },
@@ -678,7 +678,7 @@
                                 },
                                 {
                                     "key": "tags[0]",
-                                    "value": "quia",
+                                    "value": "deleniti",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -690,7 +690,7 @@
                                 },
                                 {
                                     "key": "tags[]",
-                                    "value": "et",
+                                    "value": "sit",
                                     "type": "text",
                                     "description": "Tag names"
                                 },
@@ -730,7 +730,7 @@
                                 {
                                     "id": "cipherKey_id",
                                     "key": "cipherKey_id",
-                                    "value": "1",
+                                    "value": "24",
                                     "description": "The ID of the cipherKey."
                                 }
                             ]
@@ -751,37 +751,37 @@
                             "formdata": [
                                 {
                                     "key": "description",
-                                    "value": "blanditiis",
+                                    "value": "eius",
                                     "type": "text",
                                     "description": "Description."
                                 },
                                 {
                                     "key": "signature",
-                                    "value": "tempore",
+                                    "value": "dicta",
                                     "type": "text",
                                     "description": "Date to be used as the publication date."
                                 },
                                 {
                                     "key": "complete_structure",
-                                    "value": "debitis",
+                                    "value": "vitae",
                                     "type": "text",
                                     "description": "Complete structure."
                                 },
                                 {
                                     "key": "used_chars",
-                                    "value": "quis",
+                                    "value": "non",
                                     "type": "text",
                                     "description": "Category the post belongs to."
                                 },
                                 {
                                     "key": "cipher_type",
-                                    "value": 2,
+                                    "value": 12,
                                     "type": "text",
                                     "description": "Cipher type."
                                 },
                                 {
                                     "key": "key_type",
-                                    "value": 7,
+                                    "value": 19,
                                     "type": "text",
                                     "description": "Key type."
                                 },
@@ -799,25 +799,25 @@
                                 },
                                 {
                                     "key": "new_folder",
-                                    "value": "laborum",
+                                    "value": "harum",
                                     "type": "text",
                                     "description": "New folder."
                                 },
                                 {
                                     "key": "new_fond",
-                                    "value": "saepe",
+                                    "value": "est",
                                     "type": "text",
                                     "description": "New fond."
                                 },
                                 {
                                     "key": "new_archive",
-                                    "value": "iste",
+                                    "value": "illo",
                                     "type": "text",
                                     "description": "New archive."
                                 },
                                 {
                                     "key": "used_around",
-                                    "value": "est",
+                                    "value": "rerum",
                                     "type": "text",
                                     "description": "Used around."
                                 },
@@ -859,7 +859,7 @@
                                 },
                                 {
                                     "key": "tags[0]",
-                                    "value": "rerum",
+                                    "value": "voluptatem",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -871,7 +871,7 @@
                                 },
                                 {
                                     "key": "tags[]",
-                                    "value": "vel",
+                                    "value": "nesciunt",
                                     "type": "text",
                                     "description": "Tag names"
                                 }
@@ -922,7 +922,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"signature\",\"orderDirection\":\"asc\",\"page\":7,\"per_page\":17,\"detailed\":false}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\",\"page\":4,\"per_page\":19,\"detailed\":true}"
                         },
                         "description": "",
                         "auth": {
@@ -1009,7 +1009,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"signature\",\"orderDirection\":\"desc\",\"page\":10,\"per_page\":4,\"detailed\":false}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"desc\",\"page\":8,\"per_page\":4,\"detailed\":false}"
                         },
                         "description": ""
                     },
@@ -1053,7 +1053,7 @@
                             "formdata": [
                                 {
                                     "key": "availability",
-                                    "value": "voluptatem",
+                                    "value": "maxime",
                                     "type": "text",
                                     "description": "Availability."
                                 },
@@ -1077,19 +1077,19 @@
                                 },
                                 {
                                     "key": "description",
-                                    "value": "rerum",
+                                    "value": "eveniet",
                                     "type": "text",
                                     "description": "Cryptogram description."
                                 },
                                 {
-                                    "key": "language",
-                                    "value": "German",
+                                    "key": "language_id",
+                                    "value": 1,
                                     "type": "text",
-                                    "description": "Language."
+                                    "description": "The ID of Language."
                                 },
                                 {
                                     "key": "location_name",
-                                    "value": "natus",
+                                    "value": "earum",
                                     "type": "text",
                                     "description": "Location name."
                                 },
@@ -1101,7 +1101,7 @@
                                 },
                                 {
                                     "key": "name",
-                                    "value": "earum",
+                                    "value": "ab",
                                     "type": "text",
                                     "description": "Cryptogram name."
                                 },
@@ -1119,7 +1119,7 @@
                                 },
                                 {
                                     "key": "solution_id",
-                                    "value": 14,
+                                    "value": 2,
                                     "type": "text",
                                     "description": "The ID of Solution."
                                 },
@@ -1143,7 +1143,7 @@
                                 },
                                 {
                                     "key": "tags[0]",
-                                    "value": "quod",
+                                    "value": "quam",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1155,7 +1155,7 @@
                                 },
                                 {
                                     "key": "thumbnail_link",
-                                    "value": "quae",
+                                    "value": "cumque",
                                     "type": "text",
                                     "description": "Thumbnail link. Used if thumbnail is empty."
                                 },
@@ -1221,7 +1221,7 @@
                             "formdata": [
                                 {
                                     "key": "availability",
-                                    "value": "aut",
+                                    "value": "dicta",
                                     "type": "text",
                                     "description": "Availability."
                                 },
@@ -1245,19 +1245,19 @@
                                 },
                                 {
                                     "key": "description",
-                                    "value": "voluptatem",
+                                    "value": "quia",
                                     "type": "text",
                                     "description": "Cryptogram description."
                                 },
                                 {
-                                    "key": "language",
-                                    "value": "German",
+                                    "key": "language_id",
+                                    "value": 1,
                                     "type": "text",
-                                    "description": "Language."
+                                    "description": "The ID of Language ."
                                 },
                                 {
                                     "key": "location_name",
-                                    "value": "dolorum",
+                                    "value": "qui",
                                     "type": "text",
                                     "description": "Location name."
                                 },
@@ -1269,7 +1269,7 @@
                                 },
                                 {
                                     "key": "name",
-                                    "value": "eos",
+                                    "value": "quos",
                                     "type": "text",
                                     "description": "Cryptogram name."
                                 },
@@ -1287,7 +1287,7 @@
                                 },
                                 {
                                     "key": "solution_id",
-                                    "value": 6,
+                                    "value": 8,
                                     "type": "text",
                                     "description": "The ID of Solution."
                                 },
@@ -1311,7 +1311,7 @@
                                 },
                                 {
                                     "key": "tags[0]",
-                                    "value": "eos",
+                                    "value": "vitae",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1323,7 +1323,7 @@
                                 },
                                 {
                                     "key": "thumbnail_link",
-                                    "value": "officiis",
+                                    "value": "dolor",
                                     "type": "text",
                                     "description": "Thumbnail link. Used if thumbnail is empty."
                                 },
@@ -1384,7 +1384,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"name\",\"orderDirection\":\"asc\"}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"desc\"}"
                         },
                         "description": ""
                     },
@@ -1495,7 +1495,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"name\",\"orderDirection\":\"desc\"}"
+                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"desc\"}"
                         },
                         "description": ""
                     },
@@ -1618,7 +1618,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"orderBy\":\"id\",\"orderDirection\":\"asc\",\"type\":\"cipher_key\"}"
+                            "raw": "{\"orderBy\":\"name\",\"orderDirection\":\"desc\",\"type\":\"cryptogram\"}"
                         },
                         "description": ""
                     },

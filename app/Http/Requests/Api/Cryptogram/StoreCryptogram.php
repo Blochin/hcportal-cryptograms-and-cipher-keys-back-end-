@@ -34,16 +34,16 @@ class StoreCryptogram extends FormRequest
             'availability' => ['required', 'string'],
             'category_id' => ['required', 'string', 'exists:categories,id'],
             'subcategory_id' => ['nullable', 'string', 'exists:categories,id'],
-            'day' => ['required', 'integer'],
+            'day' => ['nullable', 'integer'],
             'description' => ['nullable', 'string'],
-            'language' => ['required', 'string'],
+            'language_id' => ['required', 'integer', 'exists:languages,id'],
             'location_name' => ['nullable', 'string'],
-            'month' => ['required', 'integer'],
+            'month' => ['nullable', 'integer'],
             'name' => ['required', 'string'],
-            'recipient' => ['required', 'string'],
-            'sender' => ['required', 'string'],
+            'recipient' => ['nullable', 'string'],
+            'sender' => ['nullable', 'string'],
             'solution_id' => ['required', 'integer', 'exists:solutions,id'],
-            'year' => ['required', 'integer'],
+            'year' => ['nullable', 'integer'],
             'before_crist' => ['required', 'boolean'],
             'images' => ['nullable', 'array'],
             'groups' => ['nullable', 'json'],
@@ -82,9 +82,9 @@ class StoreCryptogram extends FormRequest
             'description' => [
                 'description' => 'Cryptogram description',
             ],
-            'language' => [
-                'description' => 'Language',
-                'example' => 'German',
+            'language_id' => [
+                'description' => 'The ID of Language',
+                'example' => 1,
             ],
             'location_name' => [
                 'description' => 'Location name',
@@ -145,25 +145,36 @@ class StoreCryptogram extends FormRequest
 
         $sanitized['image_url'] = 'temporary value';
 
-        $sanitized['language_id'] = $sanitized['language'] ? Language::firstOrCreate(['name' => $sanitized['language']])->id : null;
+        // $sanitized['language_id'] = $sanitized['language'] ? Language::firstOrCreate(['name' => $sanitized['language']])->id : null;
 
-        $sanitized['sender_id'] = $sanitized['sender'] ? Person::firstOrCreate(['name' => $sanitized['language']])->id : null;
-        $sanitized['recipient_id'] = $sanitized['recipient'] ? Person::firstOrCreate(['name' => $sanitized['recipient']])->id : null;
+        $sanitized['sender_id'] = $sanitized['sender'] ? Person::firstOrCreate(['name' => $sanitized['sender']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
+        $sanitized['recipient_id'] = $sanitized['recipient'] ? Person::firstOrCreate(['name' => $sanitized['recipient']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
 
         $sanitized['groups'] = isset($sanitized['groups']) && $sanitized['groups'] ? json_decode($sanitized['groups']) : null;
         $sanitized['flag'] = $sanitized['before_crist'] == "false" || $sanitized['before_crist'] == "0" ? false : true;
         $sanitized['created_by'] = auth()->user()->id;
 
+
         $sanitized['state'] = CipherKey::STATUS_AWAITING;
 
-        if ($sanitized['location_name'] && $sanitized['continent']) {
+        $sanitized['day'] = $sanitized['day'] ?: 0;
+        $sanitized['month'] = $sanitized['month'] ?: 0;
+        $sanitized['year'] = $sanitized['year'] ?: 0;
+
+        $sanitized['availability'] =  $sanitized['availability'] ?: 'Unknown';
+
+        if (isset($sanitized['location_name']) && $sanitized['location_name'] && isset($sanitized['continent']) && $sanitized['continent']) {
             $location = Location::firstOrCreate([
                 'name' => $sanitized['location_name'],
                 'continent' => $sanitized['continent']
             ]);
-        } elseif ($sanitized['continent']) {
+        } elseif (isset($sanitized['continent']) && $sanitized['continent']) {
             $location = Location::firstOrCreate([
                 'continent' => $sanitized['continent']
+            ]);
+        } else {
+            $location = Location::firstOrCreate([
+                'continent' => 'Unknown'
             ]);
         }
 

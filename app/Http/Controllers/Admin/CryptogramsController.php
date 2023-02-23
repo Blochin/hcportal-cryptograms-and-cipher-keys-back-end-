@@ -233,8 +233,13 @@ class CryptogramsController extends Controller
             Mail::to($cryptogram->submitter->email)->send(new UpdateCryptogramStateMail($cryptogram));
         }
 
+        if (isset($sanitized['note_new'])) {
+            $sanitized['note'] = $cryptogram->note . "\n" . $sanitized['note_new'];
+        }
+
         // Update changed values Cryptogram
         $cryptogram->update($sanitized);
+
 
         //Sync thumbnail
         if (isset($sanitized['thumbnail']) && $sanitized['thumbnail']) {

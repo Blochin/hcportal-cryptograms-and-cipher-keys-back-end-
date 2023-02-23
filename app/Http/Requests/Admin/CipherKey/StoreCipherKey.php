@@ -30,7 +30,7 @@ class StoreCipherKey extends FormRequest
         return [
             'description' => ['nullable', 'string'],
             'signature' => ['required', 'string', Rule::unique('cipher_keys', 'signature')],
-            'complete_structure' => ['nullable', 'string'],
+            'complete_structure' => ['required', 'string'],
             'used_chars' => ['nullable', 'string'],
             'cipher_type' => ['nullable',],
             'key_type' => ['nullable',],

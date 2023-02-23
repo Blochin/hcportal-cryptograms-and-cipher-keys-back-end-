@@ -287,6 +287,10 @@ class CipherKeysController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
+        if (isset($sanitized['note'])) {
+            $sanitized['note'] = $cipherKey->note . "\n" . $sanitized['note'];
+        }
+
         // Update changed values CipherKey
         $cipherKey->update($sanitized);
 

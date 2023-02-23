@@ -249,6 +249,10 @@ class CipherKeysController extends Controller
             Mail::to($cipherKey->submitter->email)->send(new UpdateCipherKeyStateMail($cipherKey));
         }
 
+        if (isset($sanitized['note_new'])) {
+            $sanitized['note'] = $cipherKey->note . "\n" . $sanitized['note_new'];
+        }
+
         // Update changed values CipherKey
         $cipherKey->update($sanitized);
 

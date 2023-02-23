@@ -84,7 +84,7 @@ class LocationsController extends Controller
         $sanitized = $request->getSanitized();
 
         // Store the Location
-        $location = Location::create($sanitized);
+        $location = Location::firstOrCreate($sanitized);
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/locations'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];

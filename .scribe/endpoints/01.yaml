@@ -29,7 +29,7 @@ endpoints:
         name: password
         description: Password
         required: true
-        example: aut
+        example: quasi
         type: string
         custom: []
     responses:
@@ -167,7 +167,7 @@ endpoints:
         name: first_name
         description: Firstname
         required: true
-        example: voluptates
+        example: perspiciatis
         type: string
         custom: []
       last_name:
@@ -188,7 +188,7 @@ endpoints:
         name: password
         description: Password
         required: true
-        example: quasi
+        example: qui
         type: string
         custom: []
     responses:
@@ -253,14 +253,14 @@ endpoints:
         name: code
         description: 'Password reset code'
         required: true
-        example: tempora
+        example: sit
         type: string
         custom: []
       password:
         name: password
         description: 'New password'
         required: true
-        example: sed
+        example: quo
         type: string
         custom: []
     responses:

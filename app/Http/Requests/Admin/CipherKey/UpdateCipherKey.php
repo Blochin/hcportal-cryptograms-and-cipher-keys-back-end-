@@ -53,6 +53,7 @@ class UpdateCipherKey extends FormRequest
             'continent' => ['required'],
             'state' => ['required'],
             'note' => ['nullable'],
+            'note_new' => ['nullable'],
 
         ];
     }

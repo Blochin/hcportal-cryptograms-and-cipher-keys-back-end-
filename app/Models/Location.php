@@ -10,6 +10,7 @@ class Location extends Model
     use HasFactory;
 
     public const CONTINENTS = [
+        ['name' => 'Unknown'],
         ['name' => 'North America'],
         ['name' => 'South America'],
         ['name' => 'Europe'],
@@ -17,7 +18,6 @@ class Location extends Model
         ['name' => 'Oceania'],
         ['name' => 'Africa'],
         ['name' => 'Antartica'],
-        ['name' => 'Unknown']
     ];
 
     protected $fillable = [

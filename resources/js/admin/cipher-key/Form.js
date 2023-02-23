@@ -33,6 +33,7 @@ Vue.component("cipher-key-form", {
                 cryptograms: [],
                 continent: "",
                 note: "",
+                note_new: "",
                 state: { id: "approved", title: "Approved" },
             },
             filteredFonds: [],

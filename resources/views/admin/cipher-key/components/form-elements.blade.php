@@ -101,7 +101,7 @@
                 :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.signature') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
                 <div>
-                    <textarea class="form-control" v-model="form.signature" v-validate="''" id="signature"
+                    <textarea class="form-control" v-model="form.signature" v-validate="'required'" id="signature"
                         name="signature"></textarea>
                 </div>
                 <div v-if="errors.has('signature')" class="form-control-feedback form-text" v-cloak>
@@ -160,7 +160,7 @@
                 :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.complete_structure') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
                 <div>
-                    <textarea class="form-control" v-model="form.complete_structure" v-validate="''"
+                    <textarea class="form-control" v-model="form.complete_structure" v-validate="'required'"
                         id="complete_structure" name="complete_structure"></textarea>
                 </div>
                 <div v-if="errors.has('complete_structure')" class="form-control-feedback form-text" v-cloak>
@@ -184,13 +184,14 @@
     </div>
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('note'), 'has-success': fields.note && fields.note.valid }">
+            :class="{'has-danger': errors.has('note_new'), 'has-success': fields.note && fields.note.valid }">
             <label for="note" class="col-form-label"
                 :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.note') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <textarea class="form-control" v-model="form.note" v-validate="''" id="note" name="note"></textarea>
-                <div v-if="errors.has('note')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('note') }}</div>
+                <textarea class="form-control" v-model="form.note" disabled id="note" name="note"></textarea>
+                <textarea class="form-control" v-model="form.note_new" v-validate="''" id="note" name="note"></textarea>
+                <div v-if="errors.has('note_new')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('note_new') }}</div>
             </div>
         </div>
     </div>

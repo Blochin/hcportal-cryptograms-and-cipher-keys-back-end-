@@ -50,7 +50,8 @@
             <label for="name" class="col-form-label"
                 :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.name') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-12'">
-                <input type="text" v-model="form.name" v-validate="''" @input="validate($event)" class="form-control"
+                <input type="text" v-model="form.name" v-validate="'required'" @input="validate($event)"
+                    class="form-control"
                     :class="{'form-control-danger': errors.has('name'), 'form-control-success': fields.name && fields.name.valid}"
                     id="name" name="name" placeholder="{{ trans('admin.cryptogram.columns.name') }}">
                 <div v-if="errors.has('name')" class="form-control-feedback form-text" v-cloak>
@@ -282,7 +283,9 @@
             <label for="note" class="col-form-label"
                 :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.note') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <textarea class="form-control" v-model="form.note" v-validate="''" id="note" name="note"></textarea>
+                <textarea class="form-control" v-model="form.note" disabled v-validate="''" id="note"
+                    name="note"></textarea>
+                <textarea class="form-control" v-model="form.note_new" v-validate="''" id="note" name="note"></textarea>
                 <div v-if="errors.has('note')" class="form-control-feedback form-text" v-cloak>
                     @{{ errors . first('note') }}</div>
             </div>

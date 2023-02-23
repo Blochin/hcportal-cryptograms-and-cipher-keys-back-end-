@@ -28,8 +28,8 @@ class UpdateCipherKey extends JsonFormRequest
     {
         return [
             'description' => ['nullable', 'string'],
-            'signature' => ['nullable', 'string', Rule::unique('cipher_keys', 'signature')->ignore($this->signature, 'signature')],
-            'complete_structure' => ['nullable', 'string'],
+            'signature' => ['required', 'string', Rule::unique('cipher_keys', 'signature')->ignore($this->signature, 'signature')],
+            'complete_structure' => ['required', 'string'],
             'used_chars' => ['nullable', 'string'],
             'cipher_type' => ['required', 'integer', 'exists:cipher_types,id'],
             'key_type' => ['required', 'integer', 'exists:key_types,id'],
@@ -46,7 +46,8 @@ class UpdateCipherKey extends JsonFormRequest
             'language_id' => ['required', 'integer', 'exists:languages,id'],
             'users' => ['nullable', 'json'],
             'tags' => ['nullable', 'array'],
-            'continent' => ['required', 'string', 'exists:locations,continent'],
+            'continent' => ['nullable', 'string', 'exists:locations,continent'],
+            'note' => ['nullable']
 
         ];
     }
@@ -146,6 +147,10 @@ class UpdateCipherKey extends JsonFormRequest
         } elseif (isset($sanitized['continent']) && $sanitized['continent']) {
             $location = Location::firstOrCreate([
                 'continent' => $sanitized['continent']
+            ]);
+        } else {
+            $location = Location::firstOrCreate([
+                'continent' => 'Unknown'
             ]);
         }
 

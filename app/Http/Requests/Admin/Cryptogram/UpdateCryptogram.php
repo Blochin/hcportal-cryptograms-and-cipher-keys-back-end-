@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Cryptogram;
 
 use App\Models\Location;
+use App\Models\Person;
 use App\Models\State;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -28,20 +29,20 @@ class UpdateCryptogram extends FormRequest
     public function rules(): array
     {
         return [
-            'availability' => ['required', 'string'],
+            'availability' => ['nullable', 'string'],
             'category' => ['required', 'string'],
             'subcategory' => ['nullable', 'string'],
-            'day' => ['required', 'integer'],
-            'description' => ['required', 'string'],
+            'day' => ['nullable', 'integer'],
+            'description' => ['nullable', 'string'],
             'language' => ['required', 'string'],
             'location_name' => ['nullable', 'string'],
-            'month' => ['required', 'integer'],
+            'month' => ['nullable', 'integer'],
             'name' => ['required', 'string'],
-            'recipient' => ['required', 'string'],
-            'sender' => ['required', 'string'],
+            'recipient' => ['nullable', 'string'],
+            'sender' => ['nullable', 'string'],
             'solution' => ['required', 'string'],
             'state_id' => ['nullable', 'string'],
-            'year' => ['required', 'integer'],
+            'year' => ['nullable', 'integer'],
             'flag' => ['nullable'],
             'images' => ['nullable'],
             'image' => ['nullable'],
@@ -52,6 +53,7 @@ class UpdateCryptogram extends FormRequest
             'continent' => ['required'],
             'state' => ['required'],
             'note' => ['nullable'],
+            'note_new' => ['nullable'],
             'thumbnail' => ['nullable']
 
         ];
@@ -68,13 +70,20 @@ class UpdateCryptogram extends FormRequest
         $sanitized['image_url'] = 'sdsd';
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
         $sanitized['solution_id'] = $sanitized['solution'] ? json_decode($sanitized['solution'])->id : null;
-        $sanitized['recipient_id'] = $sanitized['recipient'] ? json_decode($sanitized['recipient'])->id : null;
-        $sanitized['sender_id'] = $sanitized['sender'] ? json_decode($sanitized['sender'])->id : null;
+        $sanitized['sender_id'] = $sanitized['sender'] ? Person::firstOrCreate(['name' => $sanitized['']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
+        $sanitized['recipient_id'] = $sanitized['recipient'] ? Person::firstOrCreate(['name' => $sanitized['recipient']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
+
         $sanitized['groups'] = $sanitized['groups'] ? json_decode($sanitized['groups']) : null;
 
         $sanitized['tags'] = $sanitized['tags'] ? json_decode($sanitized['tags']) : [];
         $sanitized['flag'] = $sanitized['flag'] == "false" ? false : true;
         $sanitized['cipher_keys'] = $sanitized['cipher_keys'] ? json_decode($sanitized['cipher_keys']) : null;
+
+        $sanitized['day'] = $sanitized['day'] ?: 0;
+        $sanitized['month'] = $sanitized['month'] ?: 0;
+        $sanitized['year'] = $sanitized['year'] ?: 0;
+
+        $sanitized['availability'] = $sanitized['availability'] ?: 'Unknown';
 
         $sanitized['continent'] = $sanitized['continent'] ? json_decode($sanitized['continent'])->name : [];
         $sanitized['state'] = $sanitized['state'] ? json_decode($sanitized['state'])->id : [];

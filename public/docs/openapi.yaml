@@ -262,11 +262,11 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code>, <code>name</code>, or <code>short_name</code>.'
-                  example: short_name
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: asc
+                  example: desc
   /api/login:
     post:
       summary: Login
@@ -329,7 +329,7 @@ paths:
                 password:
                   type: string
                   description: Password
-                  example: aut
+                  example: quasi
               required:
                 - email
                 - password
@@ -504,7 +504,7 @@ paths:
                 first_name:
                   type: string
                   description: Firstname
-                  example: voluptates
+                  example: perspiciatis
                 last_name:
                   type: string
                   description: Lastname
@@ -516,7 +516,7 @@ paths:
                 password:
                   type: string
                   description: Password
-                  example: quasi
+                  example: qui
               required:
                 - first_name
                 - last_name
@@ -587,11 +587,11 @@ paths:
                 code:
                   type: string
                   description: 'Password reset code'
-                  example: tempora
+                  example: sit
                 password:
                   type: string
                   description: 'New password'
-                  example: sed
+                  example: quo
               required:
                 - email
                 - code
@@ -774,7 +774,7 @@ paths:
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: asc
+                  example: desc
   /api/cipher-keys:
     get:
       summary: 'All approved cipher keys'
@@ -1029,7 +1029,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: signature
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -1037,11 +1037,11 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 8
                 per_page:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 11
                 detailed:
                   type: boolean
                   description: ''
@@ -1113,27 +1113,27 @@ paths:
                 description:
                   type: string
                   description: Description.
-                  example: amet
+                  example: distinctio
                 signature:
                   type: string
                   description: 'Date to be used as the publication date.'
-                  example: dignissimos
+                  example: aspernatur
                 complete_structure:
                   type: string
                   description: 'Complete structure.'
-                  example: tempora
+                  example: eligendi
                 used_chars:
                   type: string
                   description: 'Category the post belongs to.'
-                  example: hic
+                  example: adipisci
                 cipher_type:
                   type: integer
                   description: 'Cipher type.'
-                  example: 4
+                  example: 3
                 key_type:
                   type: integer
                   description: 'Key type.'
-                  example: 10
+                  example: 20
                 used_from:
                   type: string
                   description: 'Used from. Format: Y-m-d. Must be a valid date.'
@@ -1145,19 +1145,19 @@ paths:
                 new_folder:
                   type: string
                   description: 'New folder.'
-                  example: alias
+                  example: sit
                 new_fond:
                   type: string
                   description: 'New fond.'
-                  example: sint
+                  example: illo
                 new_archive:
                   type: string
                   description: 'New archive.'
-                  example: deleniti
+                  example: ipsam
                 used_around:
                   type: string
                   description: 'Used around.'
-                  example: quia
+                  example: soluta
                 folder_id:
                   type: integer
                   description: 'The ID of Folder. This field is required when <code>new_folder</code> is <code>null</code>.'
@@ -1174,10 +1174,10 @@ paths:
                   type: string
                   description: 'Specific name of the location.'
                   example: Bratislava
-                language:
-                  type: string
+                language_id:
+                  type: integer
                   description: 'The ID of Language.'
-                  example: German
+                  example: 2
                 users:
                   type: json
                   description: 'List of images data.'
@@ -1194,7 +1194,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - quia
+                    - deleniti
                   items:
                     type: string
                 continent:
@@ -1208,15 +1208,15 @@ paths:
                 'tags[]':
                   type: string
                   description: 'Tag names'
-                  example: et
+                  example: sit
               required:
                 - signature
+                - complete_structure
                 - cipher_type
                 - key_type
-                - language
+                - language_id
                 - users
                 - images
-                - continent
                 - 'files[]'
   /api/cipher-keys/my:
     get:
@@ -1479,23 +1479,23 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: signature
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: asc
+                  example: desc
                 page:
                   type: integer
                   description: ''
-                  example: 6
+                  example: 13
                 per_page:
                   type: integer
                   description: ''
-                  example: 10
+                  example: 9
                 detailed:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
   /api/key-types:
     get:
       summary: 'Show all key types'
@@ -1942,27 +1942,27 @@ paths:
                 description:
                   type: string
                   description: Description.
-                  example: blanditiis
+                  example: eius
                 signature:
                   type: string
                   description: 'Date to be used as the publication date.'
-                  example: tempore
+                  example: dicta
                 complete_structure:
                   type: string
                   description: 'Complete structure.'
-                  example: debitis
+                  example: vitae
                 used_chars:
                   type: string
                   description: 'Category the post belongs to.'
-                  example: quis
+                  example: non
                 cipher_type:
                   type: integer
                   description: 'Cipher type.'
-                  example: 2
+                  example: 12
                 key_type:
                   type: integer
                   description: 'Key type.'
-                  example: 7
+                  example: 19
                 used_from:
                   type: string
                   description: 'Used from. Format: Y-m-d. Must be a valid date.'
@@ -1974,19 +1974,19 @@ paths:
                 new_folder:
                   type: string
                   description: 'New folder.'
-                  example: laborum
+                  example: harum
                 new_fond:
                   type: string
                   description: 'New fond.'
-                  example: saepe
+                  example: est
                 new_archive:
                   type: string
                   description: 'New archive.'
-                  example: iste
+                  example: illo
                 used_around:
                   type: string
                   description: 'Used around.'
-                  example: est
+                  example: rerum
                 folder_id:
                   type: integer
                   description: 'The ID of Folder. This field is required when <code>new_folder</code> is <code>null</code>.'
@@ -2015,29 +2015,34 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - rerum
+                    - voluptatem
                   items:
                     type: string
                 continent:
                   type: string
                   description: Continent.
                   example: Europe
+                note:
+                  type: string
+                  description: ''
+                  example: null
                 'tags[]':
                   type: string
                   description: 'Tag names'
-                  example: vel
+                  example: nesciunt
               required:
+                - signature
+                - complete_structure
                 - cipher_type
                 - key_type
                 - language_id
                 - users
-                - continent
     parameters:
       -
         in: path
         name: cipherKey_id
         description: 'The ID of the cipherKey.'
-        example: 1
+        example: 24
         required: true
         schema:
           type: integer
@@ -2458,7 +2463,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: signature
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -2466,15 +2471,15 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 7
+                  example: 4
                 per_page:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 19
                 detailed:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
       security: []
     post:
       summary: 'Create cryptogram'
@@ -2534,7 +2539,7 @@ paths:
                 availability:
                   type: string
                   description: Availability.
-                  example: voluptatem
+                  example: maxime
                 category_id:
                   type: string
                   description: 'The ID of Category.'
@@ -2550,15 +2555,15 @@ paths:
                 description:
                   type: string
                   description: 'Cryptogram description.'
-                  example: rerum
-                language:
-                  type: string
-                  description: Language.
-                  example: German
+                  example: eveniet
+                language_id:
+                  type: integer
+                  description: 'The ID of Language.'
+                  example: 1
                 location_name:
                   type: string
                   description: 'Location name.'
-                  example: natus
+                  example: earum
                 month:
                   type: integer
                   description: Month.
@@ -2566,7 +2571,7 @@ paths:
                 name:
                   type: string
                   description: 'Cryptogram name.'
-                  example: earum
+                  example: ab
                 recipient:
                   type: string
                   description: Recipient.
@@ -2578,7 +2583,7 @@ paths:
                 solution_id:
                   type: integer
                   description: 'The ID of Solution.'
-                  example: 14
+                  example: 2
                 year:
                   type: integer
                   description: Year.
@@ -2604,7 +2609,7 @@ paths:
                   type: array
                   description: 'string Tag names'
                   example:
-                    - quod
+                    - quam
                   items:
                     type: ''
                 continent:
@@ -2622,7 +2627,7 @@ paths:
                 thumbnail_link:
                   type: string
                   description: 'Thumbnail link. Used if thumbnail is empty.'
-                  example: quae
+                  example: cumque
                 thumbnail_base64:
                   type: string
                   description: 'Thumbnail base64. Used if thumbnail and thumbnail_link are empty.'
@@ -2630,14 +2635,9 @@ paths:
               required:
                 - availability
                 - category_id
-                - day
-                - language
-                - month
+                - language_id
                 - name
-                - recipient
-                - sender
                 - solution_id
-                - year
                 - before_crist
                 - images
                 - groups
@@ -2873,7 +2873,7 @@ paths:
                 availability:
                   type: string
                   description: Availability.
-                  example: aut
+                  example: dicta
                 category_id:
                   type: string
                   description: 'The ID of Category.'
@@ -2889,15 +2889,15 @@ paths:
                 description:
                   type: string
                   description: 'Cryptogram description.'
-                  example: voluptatem
-                language:
-                  type: string
-                  description: Language.
-                  example: German
+                  example: quia
+                language_id:
+                  type: integer
+                  description: 'The ID of Language .'
+                  example: 1
                 location_name:
                   type: string
                   description: 'Location name.'
-                  example: dolorum
+                  example: qui
                 month:
                   type: integer
                   description: Month.
@@ -2905,7 +2905,7 @@ paths:
                 name:
                   type: string
                   description: 'Cryptogram name.'
-                  example: eos
+                  example: quos
                 recipient:
                   type: string
                   description: 'Recipient name.'
@@ -2917,7 +2917,7 @@ paths:
                 solution_id:
                   type: integer
                   description: 'The ID of Solution.'
-                  example: 6
+                  example: 8
                 year:
                   type: integer
                   description: Year.
@@ -2943,7 +2943,7 @@ paths:
                   type: array
                   description: 'string Tag names'
                   example:
-                    - eos
+                    - vitae
                   items:
                     type: ''
                 continent:
@@ -2961,22 +2961,16 @@ paths:
                 thumbnail_link:
                   type: string
                   description: 'Thumbnail link. Used if thumbnail is empty.'
-                  example: officiis
+                  example: dolor
                 thumbnail_base64:
                   type: string
                   description: 'Thumbnail base64. Used if thumbnail and thumbnail_link are empty.'
                   example: null
               required:
-                - availability
                 - category_id
-                - day
-                - language
-                - month
+                - language_id
                 - name
-                - recipient
-                - sender
                 - solution_id
-                - year
                 - before_crist
                 - images
                 - groups
@@ -3437,7 +3431,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: signature
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -3445,7 +3439,7 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 10
+                  example: 8
                 per_page:
                   type: integer
                   description: ''
@@ -3525,11 +3519,11 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>name</code>.'
-                  example: name
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: asc
+                  example: desc
   /api/locations:
     get:
       summary: 'Show all locations'
@@ -3875,7 +3869,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>name</code>.'
-                  example: name
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -4110,15 +4104,15 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code>, <code>name</code>, or <code>type</code>.'
-                  example: id
+                  example: name
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: asc
+                  example: desc
                 type:
                   type: string
                   description: 'Must be one of <code>cipher_key</code> or <code>cryptogram</code>.'
-                  example: cipher_key
+                  example: cryptogram
 tags:
   -
     name: Archives
