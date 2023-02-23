@@ -301,7 +301,7 @@ class CryptogramsController extends Controller
         }
 
         //Sync datagroups
-        $this->syncDatagroups($cryptogram, $sanitized);
+        $this->syncDatagroups($cryptogram, $sanitized, 'api');
 
         //Sync tags
         $this->syncTags($cryptogram, $sanitized, 'api');
