@@ -138,12 +138,12 @@ class UpdateCipherKey extends JsonFormRequest
         $sanitized['state'] = CipherKey::STATUS_AWAITING;
 
 
-        if ($sanitized['location_name'] && $sanitized['continent']) {
+        if (isset($sanitized['location_name']) && isset($sanitized['continent']) && $sanitized['continent']) {
             $location = Location::firstOrCreate([
                 'name' => $sanitized['location_name'],
                 'continent' => $sanitized['continent']
             ]);
-        } elseif ($sanitized['continent']) {
+        } elseif (isset($sanitized['continent']) && $sanitized['continent']) {
             $location = Location::firstOrCreate([
                 'continent' => $sanitized['continent']
             ]);

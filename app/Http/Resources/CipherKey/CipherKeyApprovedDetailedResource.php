@@ -4,7 +4,9 @@ namespace App\Http\Resources\CipherKey;
 
 use App\Http\Resources\CipherKeyImage\CipherKeyImageResource;
 use App\Http\Resources\CipherKeyPerson\CipherKeyPersonResource;
+use App\Http\Resources\CipherType\CipherTypeResource;
 use App\Http\Resources\DigitalizedTranscription\DigitalizedTranscriptionResource;
+use App\Http\Resources\KeyType\KeyTypeResource;
 use App\Http\Resources\Language\LanguageResource;
 use App\Http\Resources\Tag\TagResource;
 use App\Http\Resources\User\UserResource;
@@ -26,8 +28,8 @@ class CipherKeyApprovedDetailedResource extends JsonResource
             'description' => $this->description,
             'complete_structure' => $this->complete_structure,
             'used_chars' => $this->used_chars,
-            'cipher_type' => $this->whenLoaded('cipherType'),
-            'key_type' => $this->whenLoaded('keyType'),
+            'cipher_type' => new CipherTypeResource($this->whenLoaded('cipherType')),
+            'key_type' => new KeyTypeResource($this->whenLoaded('keyType')),
             'used_from' => $this->used_from,
             'used_to' => $this->used_to,
             'used_around' => $this->used_around,
