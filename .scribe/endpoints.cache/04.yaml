@@ -31,28 +31,28 @@ endpoints:
         name: orderDirection
         description: 'Must be one of <code>asc</code> or <code>desc</code>.'
         required: false
-        example: asc
+        example: desc
         type: string
         custom: []
       page:
         name: page
         description: ''
         required: false
-        example: 4
+        example: 7
         type: integer
         custom: []
       per_page:
         name: per_page
         description: ''
         required: false
-        example: 19
+        example: 7
         type: integer
         custom: []
       detailed:
         name: detailed
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         custom: []
     responses:
@@ -396,7 +396,7 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code> or <code>signature</code>.'
         required: false
-        example: id
+        example: signature
         type: string
         custom: []
       orderDirection:
@@ -410,21 +410,21 @@ endpoints:
         name: page
         description: ''
         required: false
-        example: 8
+        example: 7
         type: integer
         custom: []
       per_page:
         name: per_page
         description: ''
         required: false
-        example: 4
+        example: 12
         type: integer
         custom: []
       detailed:
         name: detailed
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         custom: []
     responses:
@@ -726,7 +726,7 @@ endpoints:
         name: availability
         description: Availability.
         required: true
-        example: maxime
+        example: non
         type: string
         custom: []
       category_id:
@@ -743,18 +743,11 @@ endpoints:
         example: 2
         type: string
         custom: []
-      day:
-        name: day
-        description: Day.
-        required: false
-        example: 1
-        type: integer
-        custom: []
       description:
         name: description
         description: 'Cryptogram description.'
         required: false
-        example: eveniet
+        example: dolorem
         type: string
         custom: []
       language_id:
@@ -768,21 +761,14 @@ endpoints:
         name: location_name
         description: 'Location name.'
         required: false
-        example: earum
+        example: eaque
         type: string
-        custom: []
-      month:
-        name: month
-        description: Month.
-        required: false
-        example: 10
-        type: integer
         custom: []
       name:
         name: name
         description: 'Cryptogram name.'
         required: true
-        example: ab
+        example: voluptatibus
         type: string
         custom: []
       recipient:
@@ -803,22 +789,22 @@ endpoints:
         name: solution_id
         description: 'The ID of Solution.'
         required: true
-        example: 2
+        example: 14
         type: integer
         custom: []
-      year:
-        name: year
-        description: Year.
+      date:
+        name: date
+        description: 'Date. Must be a valid date.'
         required: false
-        example: 1998
-        type: integer
+        example: '2022-02-28'
+        type: string
         custom: []
-      before_crist:
-        name: before_crist
-        description: 'Before crist.'
-        required: true
-        example: true
-        type: boolean
+      date_around:
+        name: date_around
+        description: 'Date around.'
+        required: false
+        example: '21. century'
+        type: string
         custom: []
       images:
         name: images
@@ -841,7 +827,7 @@ endpoints:
         description: 'string Tag names'
         required: false
         example:
-          - quam
+          - voluptatum
         type: '[]'
         custom: []
       continent:
@@ -869,7 +855,7 @@ endpoints:
         name: thumbnail_link
         description: 'Thumbnail link. Used if thumbnail is empty.'
         required: false
-        example: cumque
+        example: itaque
         type: string
         custom: []
       thumbnail_base64:
@@ -1035,7 +1021,7 @@ endpoints:
         name: availability
         description: Availability.
         required: false
-        example: dicta
+        example: qui
         type: string
         custom: []
       category_id:
@@ -1052,18 +1038,11 @@ endpoints:
         example: 2
         type: string
         custom: []
-      day:
-        name: day
-        description: Day.
-        required: false
-        example: 1
-        type: integer
-        custom: []
       description:
         name: description
         description: 'Cryptogram description.'
         required: false
-        example: quia
+        example: vel
         type: string
         custom: []
       language_id:
@@ -1080,18 +1059,11 @@ endpoints:
         example: qui
         type: string
         custom: []
-      month:
-        name: month
-        description: Month.
-        required: false
-        example: 10
-        type: integer
-        custom: []
       name:
         name: name
         description: 'Cryptogram name.'
         required: true
-        example: quos
+        example: nobis
         type: string
         custom: []
       recipient:
@@ -1112,22 +1084,22 @@ endpoints:
         name: solution_id
         description: 'The ID of Solution.'
         required: true
-        example: 8
+        example: 9
         type: integer
         custom: []
-      year:
-        name: year
-        description: Year.
+      date:
+        name: date
+        description: 'Date. Must be a valid date.'
         required: false
-        example: 1998
-        type: integer
+        example: 15.02.1789
+        type: string
         custom: []
-      before_crist:
-        name: before_crist
-        description: 'Before crist.'
-        required: true
-        example: true
-        type: boolean
+      date_around:
+        name: date_around
+        description: 'Date around.'
+        required: false
+        example: '21. century'
+        type: string
         custom: []
       images:
         name: images
@@ -1150,7 +1122,7 @@ endpoints:
         description: 'string Tag names'
         required: false
         example:
-          - vitae
+          - minus
         type: '[]'
         custom: []
       continent:
@@ -1178,7 +1150,7 @@ endpoints:
         name: thumbnail_link
         description: 'Thumbnail link. Used if thumbnail is empty.'
         required: false
-        example: dolor
+        example: eos
         type: string
         custom: []
       thumbnail_base64:

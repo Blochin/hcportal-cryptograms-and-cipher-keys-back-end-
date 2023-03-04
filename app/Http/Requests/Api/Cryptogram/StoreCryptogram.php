@@ -47,7 +47,6 @@ class StoreCryptogram extends FormRequest
             'date' => ['nullable', 'date'],
             'date_around' => ['nullable', 'string'],
 
-            'before_crist' => ['required', 'boolean'],
             'images' => ['nullable', 'array'],
             'groups' => ['nullable', 'json'],
             'tags' => ['nullable', 'array'],
@@ -80,7 +79,7 @@ class StoreCryptogram extends FormRequest
             ],
             'date' => [
                 'description' => 'Date',
-                'example' => "15.02.1789",
+                'example' => "2022-02-28",
             ],
             'date_around' => [
                 'description' => 'Date around',
@@ -109,10 +108,6 @@ class StoreCryptogram extends FormRequest
             ],
             'solution_id' => [
                 'description' => 'The ID of Solution',
-            ],
-            'before_crist' => [
-                'description' => 'Before crist',
-                'example' => 1,
             ],
             'continent' => [
                 'description' => 'Continent',
@@ -144,7 +139,7 @@ class StoreCryptogram extends FormRequest
 
         $sanitized['image_url'] = 'temporary value';
 
-        // $sanitized['language_id'] = $sanitized['language'] ? Language::firstOrCreate(['name' => $sanitized['language']])->id : null;
+        $sanitized['language_id'] = $sanitized['language_id'] ? $sanitized['language_id'] : null;
 
         $sanitized['sender_id'] = $sanitized['sender'] ? Person::firstOrCreate(['name' => $sanitized['sender']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
         $sanitized['recipient_id'] = $sanitized['recipient'] ? Person::firstOrCreate(['name' => $sanitized['recipient']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
