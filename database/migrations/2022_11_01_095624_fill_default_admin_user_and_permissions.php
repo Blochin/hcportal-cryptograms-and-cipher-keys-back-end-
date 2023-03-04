@@ -5,13 +5,14 @@ use Carbon\Carbon;
 use Illuminate\Config\Repository;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use App\Traits\Hashable;
 
 /**
  * Class FillDefaultAdminUserAndPermissions
  */
 class FillDefaultAdminUserAndPermissions extends Migration
 {
+    use Hashable;
     /**
      * @var Repository|mixed
      */
@@ -41,7 +42,7 @@ class FillDefaultAdminUserAndPermissions extends Migration
     /**
      * @var string
      */
-    protected $password = 'EPSNY3oE1t';
+    protected $password = 'secret123';
 
     /**
      * FillDefaultAdminUserAndPermissions constructor.
@@ -110,7 +111,7 @@ class FillDefaultAdminUserAndPermissions extends Migration
                 'first_name' => 'Administrator',
                 'last_name' => 'Administrator',
                 'email' => 'admin@hcportal.eu',
-                'password' => Hash::make($this->password),
+                'password' => $this->hash($this->password),
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

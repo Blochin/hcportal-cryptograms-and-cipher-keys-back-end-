@@ -32,18 +32,18 @@ class StoreCryptogram extends FormRequest
             'availability' => ['nullable', 'string'],
             'category' => ['required', 'string'],
             'subcategory' => ['nullable', 'string'],
-            'day' => ['nullable', 'integer'],
+
             'description' => ['nullable', 'string'],
             'language' => ['required', 'string'],
             'location_name' => ['nullable', 'string'],
-            'month' => ['nullable', 'integer'],
+
             'name' => ['required', 'string'],
             'recipient' => ['nullable', 'string'],
             'sender' => ['nullable', 'string'],
             'solution' => ['required', 'string'],
             'state_id' => ['nullable', 'string'],
-            'year' => ['nullable', 'integer'],
-            'flag' => ['nullable'],
+            'date' => ['nullable', 'date'],
+            'date_around' => ['nullable', 'string'],
             'images' => ['nullable'],
             'groups' => ['nullable'],
             'predefined_groups' => ['nullable'],
@@ -75,15 +75,10 @@ class StoreCryptogram extends FormRequest
 
         $sanitized['groups'] = $sanitized['groups'] ? json_decode($sanitized['groups']) : null;
         $sanitized['tags'] = $sanitized['tags'] ? json_decode($sanitized['tags']) : [];
-        $sanitized['flag'] = $sanitized['flag'] == "false" ? false : true;
         $sanitized['created_by'] = auth()->user()->id;
         $sanitized['cipher_keys'] = $sanitized['cipher_keys'] ? json_decode($sanitized['cipher_keys']) : null;
         $sanitized['continent'] = $sanitized['continent'] ? json_decode($sanitized['continent'])->name : [];
         $sanitized['state'] = $sanitized['state'] ? json_decode($sanitized['state'])->id : [];
-
-        $sanitized['day'] = $sanitized['day'] ?: 0;
-        $sanitized['month'] = $sanitized['month'] ?: 0;
-        $sanitized['year'] = $sanitized['year'] ?: 0;
 
         $sanitized['availability'] = $sanitized['availability'] ?: 'Unknown';
 

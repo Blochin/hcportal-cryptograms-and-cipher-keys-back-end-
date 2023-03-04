@@ -24,19 +24,17 @@ class Cryptogram extends Model implements HasMedia
     protected $fillable = [
         'availability',
         'category_id',
-        'day',
+        'date',
+        'date_around',
         'description',
-        'flag',
         'image_url',
         'language_id',
         'location_id',
-        'month',
         'name',
         'recipient_id',
         'sender_id',
         'solution_id',
         'state_id',
-        'year',
         'created_by',
         'state',
         'note'
@@ -55,7 +53,7 @@ class Cryptogram extends Model implements HasMedia
         $this->addMediaCollection('picture')
             ->accepts('image/*')
             ->singleFile()
-            ->maxFilesize(10 * 1024 * 1024); // Set the file size limit
+            ->maxFilesize(100 * 1024 * 1024); // Set the file size limit
 
     }
     public function registerMediaConversions(Media $media = null): void

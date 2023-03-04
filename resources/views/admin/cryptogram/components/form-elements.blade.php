@@ -94,61 +94,33 @@
 <div class="row d-flex align-items-center">
     <div class="col-12 col-lg-3">
         <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('day'), 'has-success': fields.day && fields.day.valid }">
-            <label for="day" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.day') }}</label>
+            :class="{'has-danger': errors.has('date'), 'has-success': fields.date && fields.date.valid }">
+            <label for="date" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.date') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <input type="text" v-model="form.day" v-validate="''" @input="validate($event)" class="form-control"
-                    :class="{'form-control-danger': errors.has('day'), 'form-control-success': fields.day && fields.day.valid}"
-                    id="day" name="day" placeholder="{{ trans('admin.cryptogram.columns.day') }}">
-                <div v-if="errors.has('day')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('day') }}
+                <datetime v-model="form.date" :config="datetimePickerConfig" v-validate="''" class="flatpickr"
+                    :class="{'form-control-danger': errors.has('date'), 'form-control-success': fields.date && fields.date.valid}"
+                    id="date" name="date"
+                    placeholder="{{ trans('brackets/admin-ui::admin.forms.select_date_and_time') }}"></datetime>
+                <div v-if="errors.has('date')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('date') }}
                 </div>
             </div>
         </div>
     </div>
     <div class="col-12 col-lg-3">
         <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('month'), 'has-success': fields.month && fields.month.valid }">
-            <label for="month" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.month') }}</label>
+            :class="{'has-danger': errors.has('date_around'), 'has-success': fields.date_around && fields.date_around.valid }">
+            <label for="date_around" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.date_around') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <input type="text" v-model="form.month" v-validate="''" @input="validate($event)" class="form-control"
-                    :class="{'form-control-danger': errors.has('month'), 'form-control-success': fields.month && fields.month.valid}"
-                    id="month" name="month" placeholder="{{ trans('admin.cryptogram.columns.month') }}">
-                <div v-if="errors.has('month')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('month') }}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-lg-3">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('year'), 'has-success': fields.year && fields.year.valid }">
-            <label for="year" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.year') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <input type="text" v-model="form.year" v-validate="''" @input="validate($event)" class="form-control"
-                    :class="{'form-control-danger': errors.has('year'), 'form-control-success': fields.year && fields.year.valid}"
-                    id="year" name="year" placeholder="{{ trans('admin.cryptogram.columns.year') }}">
-                <div v-if="errors.has('year')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('year') }}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-lg-3">
-        <div class="form-check row"
-            :class="{'has-danger': errors.has('flag'), 'has-success': fields.flag && fields.flag.valid }">
-            <div class="ml-md-auto" :class="isFormLocalized ? 'col-md-8' : 'col-md-10'">
-                <input class="form-check-input" id="flag" type="checkbox" v-model="form.flag" v-validate="''"
-                    data-vv-name="flag" name="flag_fake_element">
-                <label class="form-check-label" for="flag">
-                    {{ trans('admin.cryptogram.columns.flag') }}
-                </label>
-                <input type="hidden" name="flag" :value="form.flag">
-                <div v-if="errors.has('flag')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('flag') }}
+                <input type="text" v-model="form.date_around" v-validate="''" @input="validate($event)"
+                    class="form-control"
+                    :class="{'form-control-danger': errors.has('date_around'), 'form-control-success': fields.date_around && fields.date_around.valid}"
+                    id="date_around" name="date_around"
+                    placeholder="{{ trans('admin.cryptogram.columns.date_around') }}">
+                <div v-if="errors.has('date_around')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('date_around') }}
                 </div>
             </div>
         </div>

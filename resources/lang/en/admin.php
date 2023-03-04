@@ -238,6 +238,8 @@ return [
             'predefined_groups' => 'Predefined groups',
             'paired-keys' => 'Paired cipher keys',
             'thumbnail' => 'Thumbnail',
+            'date' => 'Date',
+            'date_around' => 'Date around'
 
         ],
     ],

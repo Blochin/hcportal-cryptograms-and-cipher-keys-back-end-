@@ -34,16 +34,19 @@ class StoreCryptogram extends FormRequest
             'availability' => ['required', 'string'],
             'category_id' => ['required', 'string', 'exists:categories,id'],
             'subcategory_id' => ['nullable', 'string', 'exists:categories,id'],
-            'day' => ['nullable', 'integer'],
+
             'description' => ['nullable', 'string'],
             'language_id' => ['required', 'integer', 'exists:languages,id'],
             'location_name' => ['nullable', 'string'],
-            'month' => ['nullable', 'integer'],
+
             'name' => ['required', 'string'],
             'recipient' => ['nullable', 'string'],
             'sender' => ['nullable', 'string'],
             'solution_id' => ['required', 'integer', 'exists:solutions,id'],
-            'year' => ['nullable', 'integer'],
+
+            'date' => ['nullable', 'date'],
+            'date_around' => ['nullable', 'string'],
+
             'before_crist' => ['required', 'boolean'],
             'images' => ['nullable', 'array'],
             'groups' => ['nullable', 'json'],
@@ -75,9 +78,13 @@ class StoreCryptogram extends FormRequest
                 'description' => 'The ID of Category children',
                 'example' => 2,
             ],
-            'day' => [
-                'description' => 'Day',
-                'example' => 1,
+            'date' => [
+                'description' => 'Date',
+                'example' => "15.02.1789",
+            ],
+            'date_around' => [
+                'description' => 'Date around',
+                'example' => "21. century",
             ],
             'description' => [
                 'description' => 'Cryptogram description',
@@ -88,10 +95,6 @@ class StoreCryptogram extends FormRequest
             ],
             'location_name' => [
                 'description' => 'Location name',
-            ],
-            'month' => [
-                'description' => 'Month',
-                'example' => 10,
             ],
             'name' => [
                 'description' => 'Cryptogram name',
@@ -106,10 +109,6 @@ class StoreCryptogram extends FormRequest
             ],
             'solution_id' => [
                 'description' => 'The ID of Solution',
-            ],
-            'year' => [
-                'description' => 'Year',
-                'example' => 1998,
             ],
             'before_crist' => [
                 'description' => 'Before crist',
@@ -151,15 +150,12 @@ class StoreCryptogram extends FormRequest
         $sanitized['recipient_id'] = $sanitized['recipient'] ? Person::firstOrCreate(['name' => $sanitized['recipient']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
 
         $sanitized['groups'] = isset($sanitized['groups']) && $sanitized['groups'] ? json_decode($sanitized['groups']) : null;
-        $sanitized['flag'] = $sanitized['before_crist'] == "false" || $sanitized['before_crist'] == "0" ? false : true;
+
         $sanitized['created_by'] = auth()->user()->id;
 
 
         $sanitized['state'] = CipherKey::STATUS_AWAITING;
 
-        $sanitized['day'] = $sanitized['day'] ?: 0;
-        $sanitized['month'] = $sanitized['month'] ?: 0;
-        $sanitized['year'] = $sanitized['year'] ?: 0;
 
         $sanitized['availability'] =  $sanitized['availability'] ?: 'Unknown';
 

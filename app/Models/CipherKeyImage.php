@@ -44,7 +44,7 @@ class CipherKeyImage extends Model implements HasMedia
         $this->addMediaCollection('picture')
             ->accepts('image/*')
             ->maxNumberOfFiles(1)
-            ->maxFilesize(10 * 1024 * 1024); // Set the file size limit
+            ->maxFilesize(100 * 1024 * 1024); // Set the file size limit
 
     }
     public function registerMediaConversions(Media $media = null): void

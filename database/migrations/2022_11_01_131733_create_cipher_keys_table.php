@@ -21,8 +21,8 @@ class CreateCipherKeysTable extends Migration
             $table->text('used_chars')->nullable();
             $table->string('cipher_type')->nullable();
             $table->string('key_type')->nullable();
-            $table->timestamp('used_from')->nullable();
-            $table->timestamp('used_to')->nullable();
+            $table->datetime('used_from')->nullable();
+            $table->datetime('used_to')->nullable();
             $table->string('used_around')->nullable();
 
             $table->unsignedBigInteger('folder_id')->index()->nullable();
