@@ -22,28 +22,28 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code> or <code>signature</code>.'
         required: false
-        example: id
+        example: signature
         type: string
         custom: []
       orderDirection:
         name: orderDirection
         description: 'Must be one of <code>asc</code> or <code>desc</code>.'
         required: false
-        example: desc
+        example: asc
         type: string
         custom: []
       page:
         name: page
         description: ''
         required: false
-        example: 7
+        example: 5
         type: integer
         custom: []
       per_page:
         name: per_page
         description: ''
         required: false
-        example: 7
+        example: 10
         type: integer
         custom: []
       detailed:
@@ -394,7 +394,7 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code> or <code>signature</code>.'
         required: false
-        example: signature
+        example: id
         type: string
         custom: []
       orderDirection:
@@ -408,14 +408,14 @@ endpoints:
         name: page
         description: ''
         required: false
-        example: 7
+        example: 11
         type: integer
         custom: []
       per_page:
         name: per_page
         description: ''
         required: false
-        example: 12
+        example: 19
         type: integer
         custom: []
       detailed:
@@ -724,7 +724,7 @@ endpoints:
         name: availability
         description: Availability.
         required: true
-        example: non
+        example: magnam
         type: string
         custom: []
       category_id:
@@ -745,7 +745,7 @@ endpoints:
         name: description
         description: 'Cryptogram description.'
         required: false
-        example: dolorem
+        example: suscipit
         type: string
         custom: []
       language_id:
@@ -759,14 +759,14 @@ endpoints:
         name: location_name
         description: 'Location name.'
         required: false
-        example: eaque
+        example: distinctio
         type: string
         custom: []
       name:
         name: name
         description: 'Cryptogram name.'
         required: true
-        example: voluptatibus
+        example: eum
         type: string
         custom: []
       recipient:
@@ -787,7 +787,7 @@ endpoints:
         name: solution_id
         description: 'The ID of Solution.'
         required: true
-        example: 14
+        example: 7
         type: integer
         custom: []
       date:
@@ -825,7 +825,7 @@ endpoints:
         description: 'string Tag names'
         required: false
         example:
-          - voluptatum
+          - ut
         type: '[]'
         custom: []
       continent:
@@ -853,7 +853,7 @@ endpoints:
         name: thumbnail_link
         description: 'Thumbnail link. Used if thumbnail is empty.'
         required: false
-        example: itaque
+        example: eos
         type: string
         custom: []
       thumbnail_base64:
@@ -1019,7 +1019,7 @@ endpoints:
         name: availability
         description: Availability.
         required: false
-        example: qui
+        example: voluptatem
         type: string
         custom: []
       category_id:
@@ -1040,7 +1040,7 @@ endpoints:
         name: description
         description: 'Cryptogram description.'
         required: false
-        example: vel
+        example: corrupti
         type: string
         custom: []
       language_id:
@@ -1054,14 +1054,14 @@ endpoints:
         name: location_name
         description: 'Location name.'
         required: false
-        example: qui
+        example: blanditiis
         type: string
         custom: []
       name:
         name: name
         description: 'Cryptogram name.'
         required: true
-        example: nobis
+        example: culpa
         type: string
         custom: []
       recipient:
@@ -1082,7 +1082,7 @@ endpoints:
         name: solution_id
         description: 'The ID of Solution.'
         required: true
-        example: 9
+        example: 5
         type: integer
         custom: []
       date:
@@ -1120,7 +1120,7 @@ endpoints:
         description: 'string Tag names'
         required: false
         example:
-          - minus
+          - optio
         type: '[]'
         custom: []
       continent:
@@ -1148,7 +1148,7 @@ endpoints:
         name: thumbnail_link
         description: 'Thumbnail link. Used if thumbnail is empty.'
         required: false
-        example: eos
+        example: non
         type: string
         custom: []
       thumbnail_base64:

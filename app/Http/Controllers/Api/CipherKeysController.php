@@ -244,8 +244,8 @@ class CipherKeysController extends Controller
      * @bodyParam tags[] string Tag names
      * 
      * 
-     * @responseFile responses/cipher_keys/create.200.json
-     * @responseFile responses/cipher_keys/create.422.json
+     * @responseFile responses/cipher_keys/update.200.json
+     * @responseFile responses/cipher_keys/update.422.json
      * 
      */
     public function update(UpdateCipherKey $request, CipherKey $cipherKey)
@@ -298,7 +298,7 @@ class CipherKeysController extends Controller
         $this->syncCipherKeyUsers($cipherKey, $sanitized, 'update', 'api');
 
         //Store archives,fonds,folders
-        $this->syncArchive($cipherKey, $sanitized);
+        $this->syncArchive($cipherKey, $sanitized, true);
 
         //Sync tags
         $this->syncTags($cipherKey, $sanitized, 'api', 'cipher_key');

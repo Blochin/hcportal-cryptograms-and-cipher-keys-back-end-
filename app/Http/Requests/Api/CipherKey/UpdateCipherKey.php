@@ -35,13 +35,13 @@ class UpdateCipherKey extends JsonFormRequest
             'key_type' => ['required', 'integer', 'exists:key_types,id'],
             'used_from' => ['nullable', 'date'],
             'used_to' => ['nullable', 'date'],
-            'new_folder' => ['nullable', 'string'],
-            'new_fond' => ['nullable', 'string'],
-            'new_archive' => ['nullable', 'string'],
+            // 'new_folder' => ['nullable', 'string'],
+            // 'new_fond' => ['nullable', 'string'],
+            // 'new_archive' => ['nullable', 'string'],
             'used_around' => ['nullable', 'string'],
-            'folder_id' => 'nullable|required_if:new_folder,null|integer|exists:folders,id',
-            'archive_id' => 'nullable|required_if:new_archive,null|integer|exists:archives,id',
-            'fond_id' => 'nullable|required_if:new_fond,null|integer|exists:fonds,id',
+            'folder' => 'required',
+            'archive' => 'required',
+            'fond' => 'required',
             'location_name' => ['nullable', 'string'],
             'language_id' => ['required', 'integer', 'exists:languages,id'],
             'users' => ['nullable', 'json'],
@@ -86,29 +86,29 @@ class UpdateCipherKey extends JsonFormRequest
                 'description' => 'Used from. Format: Y-m-d',
                 'example' => '2022-02-28',
             ],
-            'new_folder' => [
-                'description' => 'New folder.',
-            ],
-            'new_fond' => [
-                'description' => 'New fond',
-            ],
-            'new_archive' => [
-                'description' => 'New archive.',
-            ],
+            // 'new_folder' => [
+            //     'description' => 'New folder.',
+            // ],
+            // 'new_fond' => [
+            //     'description' => 'New fond',
+            // ],
+            // 'new_archive' => [
+            //     'description' => 'New archive.',
+            // ],
             'used_around' => [
                 'description' => 'Used around.',
             ],
-            'folder_id' => [
-                'description' => 'The ID of Folder',
-                'example' => 1,
+            'folder' => [
+                'description' => 'The Folder name',
+                'example' => 'Folder name',
             ],
-            'archive_id' => [
-                'description' => 'The ID of Archive',
-                'example' => 1,
+            'archive' => [
+                'description' => 'The Archive name',
+                'example' => 'Archive name',
             ],
-            'fond_id' => [
-                'description' => 'The ID of Fond',
-                'example' => 1,
+            'fond' => [
+                'description' => 'The Fond name',
+                'example' => 'Fond name',
             ],
             'language_id' => [
                 'description' => 'The ID of Language',

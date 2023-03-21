@@ -25,12 +25,19 @@ trait CipherKeySyncable
 	 *
 	 * @param CipherKey $cipherKey
 	 * @param array $sanitized
+	 * @param boolean $updateApi
 	 * @return void
 	 */
-	public function syncArchive(CipherKey $cipherKey, $sanitized)
+	public function syncArchive(CipherKey $cipherKey, $sanitized, $updateApi = false)
 	{
 
-		$archive_id = $sanitized['archive_id'];
+		$archive_id = (isset($sanitized['archive_id'])) ? $sanitized['archive_id'] : null;
+
+		if ($updateApi) {
+			$sanitized['new_archive'] = $sanitized['archive'];
+			$sanitized['new_folder'] = $sanitized['folder'];
+			$sanitized['new_fond'] = $sanitized['fond'];
+		}
 
 		if (
 			isset($sanitized['new_archive']) &&
@@ -44,7 +51,7 @@ trait CipherKeySyncable
 			$archive_id = $archive->id;
 		}
 
-		$fond_id = $sanitized['fond_id'];
+		$fond_id = (isset($sanitized['fond_id'])) ? $sanitized['fond_id'] : null;
 
 		if (
 			isset($sanitized['new_fond']) &&
@@ -58,7 +65,7 @@ trait CipherKeySyncable
 			$fond_id = $fond->id;
 		}
 
-		$folder_id = $sanitized['folder_id'];
+		$folder_id = (isset($sanitized['folder_id'])) ? $sanitized['folder_id'] : null;;
 
 		if (
 			isset($sanitized['new_folder']) &&
