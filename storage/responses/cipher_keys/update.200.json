@@ -3,119 +3,77 @@
     "status_code": 200,
     "message": "Successfully updated cipher key.",
     "data": {
-        "id": 22,
-        "signature": "atosportos22",
+        "id": 2,
+        "signature": "kluc na schvalenie2",
         "description": "skuska popisuww",
         "complete_structure": "dfdfdfdfdf",
         "used_chars": "sasasasa",
         "cipher_type": {
             "id": 2,
-            "name": "Nomenclator",
-            "resource_url": "http://dp.test/admin/cipher-types/2"
+            "name": "Nomenclator"
         },
         "key_type": {
             "id": 2,
-            "name": "ed",
-            "resource_url": "http://dp.test/admin/key-types/2"
+            "name": "ed"
         },
-        "used_from": "2000-01-21T00:00:00.000000Z",
+        "used_from": null,
         "used_to": "2023-01-22T00:00:00.000000Z",
         "used_around": null,
         "folder": {
-            "id": 4,
-            "name": "hahaha",
-            "fond_id": 5,
+            "id": 2,
+            "name": "folder 1",
+            "fond_id": 2,
             "start_date": null,
             "end_date": null,
             "fond": {
-                "id": 5,
-                "name": "hahaha2",
+                "id": 2,
+                "name": "fond 1",
                 "archive_id": 2,
                 "archive": {
                     "id": 2,
-                    "short_name": "haha3",
-                    "name": "haha3",
+                    "short_name": "archive 2",
+                    "name": "archive 2",
                     "country": null
                 }
             }
         },
         "location": {
-            "id": 17,
+            "id": 11,
             "name": "Amazon",
             "continent": "Europe"
         },
         "language": {
             "id": 1,
-            "name": "english"
+            "name": "Englkish"
         },
         "state": {
-            "id": "revise",
-            "title": "Revise",
+            "id": "awaiting",
+            "title": "Awaiting",
             "show": true
         },
-        "note": "sdfsdfsdfsdf",
+        "note": "\napi komentar",
         "created_by": {
-            "id": 2,
-            "first_name": "Attila",
-            "last_name": "Mucska"
+            "id": 1,
+            "first_name": "Administrator",
+            "last_name": "Administrator"
         },
         "images": [
             {
                 "url": {
-                    "thumb": "http://dp.test/media/87/conversions/test1-thumb.jpg",
-                    "big": "http://dp.test/media/87/conversions/test1-big.jpg",
-                    "large": "http://dp.test/media/87/conversions/test1-large.jpg",
-                    "original": "http://dp.test/media/87/test1.png"
+                    "thumb": "http://dp.test/media/9/conversions/test1-thumb.jpg",
+                    "big": "http://dp.test/media/9/conversions/test1-big.jpg",
+                    "large": "http://dp.test/media/9/conversions/test1-large.jpg",
+                    "original": "http://dp.test/media/9/test1.png"
                 },
                 "structure": "",
                 "has_instructions": 1
             },
             {
                 "url": {
-                    "thumb": "http://dp.test/media/88/conversions/schema-thumb.jpg",
-                    "big": "http://dp.test/media/88/conversions/schema-big.jpg",
-                    "large": "http://dp.test/media/88/conversions/schema-large.jpg",
-                    "original": "http://dp.test/media/88/schema.png"
-                },
-                "structure": "example",
-                "has_instructions": 0
-            },
-            {
-                "url": {
-                    "thumb": "http://dp.test/media/89/conversions/test1-thumb.jpg",
-                    "big": "http://dp.test/media/89/conversions/test1-big.jpg",
-                    "large": "http://dp.test/media/89/conversions/test1-large.jpg",
-                    "original": "http://dp.test/media/89/test1.png"
-                },
-                "structure": "",
-                "has_instructions": 1
-            },
-            {
-                "url": {
-                    "thumb": "http://dp.test/media/90/conversions/schema-thumb.jpg",
-                    "big": "http://dp.test/media/90/conversions/schema-big.jpg",
-                    "large": "http://dp.test/media/90/conversions/schema-large.jpg",
-                    "original": "http://dp.test/media/90/schema.png"
-                },
-                "structure": "example",
-                "has_instructions": 0
-            },
-            {
-                "url": {
-                    "thumb": "http://dp.test/media/91/conversions/test1-thumb.jpg",
-                    "big": "http://dp.test/media/91/conversions/test1-big.jpg",
-                    "large": "http://dp.test/media/91/conversions/test1-large.jpg",
-                    "original": "http://dp.test/media/91/test1.png"
-                },
-                "structure": "",
-                "has_instructions": 1
-            },
-            {
-                "url": {
-                    "thumb": "http://dp.test/media/92/conversions/schema-thumb.jpg",
-                    "big": "http://dp.test/media/92/conversions/schema-big.jpg",
-                    "large": "http://dp.test/media/92/conversions/schema-large.jpg",
-                    "original": "http://dp.test/media/92/schema.png"
+                    "thumb": "http://dp.test/media/10/conversions/schema-thumb.jpg",
+                    "big": "http://dp.test/media/10/conversions/schema-big.jpg",
+                    "large": "http://dp.test/media/10/conversions/schema-large.jpg",
+                    "original": "http://dp.test/media/10/schema.png"
                 },
                 "structure": "example",
                 "has_instructions": 0
@@ -124,14 +82,14 @@
         "users": [
             {
                 "person": {
-                    "id": 17,
+                    "id": 6,
                     "name": "new user name"
                 },
                 "is_main_user": 0
             },
             {
                 "person": {
-                    "id": 18,
+                    "id": 7,
                     "name": "new user name 2"
                 },
                 "is_main_user": 1
@@ -139,37 +97,17 @@
         ],
         "tags": [
             {
-                "id": 6,
+                "id": 1,
                 "name": "ja",
                 "type": "cipher_key"
             },
             {
-                "id": 7,
+                "id": 2,
                 "name": "ko",
                 "type": "cipher_key"
             }
         ],
-        "digitalized_transcriptions": [
-            {
-                "id": 3,
-                "digitalized_version": null,
-                "note": null,
-                "digitalized_date": null,
-                "encryption_pairs": [
-                    {
-                        "id": 14,
-                        "plain_text_unit": "ahoj",
-                        "cipher_text_unit": "cau"
-                    },
-                    {
-                        "id": 15,
-                        "plain_text_unit": "hello",
-                        "cipher_text_unit": "bye"
-                    }
-                ]
-            }
-        ],
-        "created_at": "2023-02-17 18:20:36",
-        "updated_at": "2023-02-17 18:59:13"
+        "created_at": "2023-03-23 15:03:12",
+        "updated_at": "2023-03-23 15:03:49"
     }
 }
