@@ -262,11 +262,11 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code>, <code>name</code>, or <code>short_name</code>.'
-                  example: short_name
+                  example: name
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: desc
+                  example: asc
   /api/login:
     post:
       summary: Login
@@ -329,7 +329,7 @@ paths:
                 password:
                   type: string
                   description: Password
-                  example: eligendi
+                  example: quia
               required:
                 - email
                 - password
@@ -504,11 +504,11 @@ paths:
                 first_name:
                   type: string
                   description: Firstname
-                  example: molestiae
+                  example: iste
                 last_name:
                   type: string
                   description: Lastname
-                  example: error
+                  example: perferendis
                 email:
                   type: string
                   description: 'Login e-mail'
@@ -516,7 +516,7 @@ paths:
                 password:
                   type: string
                   description: Password
-                  example: dolor
+                  example: qui
               required:
                 - first_name
                 - last_name
@@ -587,11 +587,11 @@ paths:
                 code:
                   type: string
                   description: 'Password reset code'
-                  example: cumque
+                  example: similique
                 password:
                   type: string
                   description: 'New password'
-                  example: soluta
+                  example: a
               required:
                 - email
                 - code
@@ -770,7 +770,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>name</code>.'
-                  example: name
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -1029,15 +1029,15 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: id
+                  example: signature
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: desc
+                  example: asc
                 page:
                   type: integer
                   description: ''
-                  example: 8
+                  example: 14
                 per_page:
                   type: integer
                   description: ''
@@ -1113,27 +1113,27 @@ paths:
                 description:
                   type: string
                   description: Description.
-                  example: ut
+                  example: eligendi
                 signature:
                   type: string
                   description: 'Date to be used as the publication date.'
-                  example: illum
+                  example: sint
                 complete_structure:
                   type: string
                   description: 'Complete structure.'
-                  example: maxime
+                  example: voluptatem
                 used_chars:
                   type: string
                   description: 'Category the post belongs to.'
-                  example: quod
+                  example: tenetur
                 cipher_type:
                   type: integer
                   description: 'Cipher type.'
-                  example: 12
+                  example: 4
                 key_type:
                   type: integer
                   description: 'Key type.'
-                  example: 20
+                  example: 15
                 used_from:
                   type: string
                   description: 'Used from. Format: Y-m-d. Must be a valid date.'
@@ -1142,34 +1142,22 @@ paths:
                   type: string
                   description: 'Used to. Format: Y-m-d. Must be a valid date.'
                   example: '2022-02-28'
-                new_folder:
-                  type: string
-                  description: 'New folder.'
-                  example: eum
-                new_fond:
-                  type: string
-                  description: 'New fond.'
-                  example: itaque
-                new_archive:
-                  type: string
-                  description: 'New archive.'
-                  example: rerum
                 used_around:
                   type: string
                   description: 'Used around.'
-                  example: laudantium
-                folder_id:
-                  type: integer
-                  description: 'The ID of Folder. This field is required when <code>new_folder</code> is <code>null</code>.'
-                  example: 1
-                archive_id:
-                  type: integer
-                  description: 'The ID of Archive. This field is required when <code>new_archive</code> is <code>null</code>.'
-                  example: 1
-                fond_id:
-                  type: integer
-                  description: 'The ID of Fond. This field is required when <code>new_fond</code> is <code>null</code>.'
-                  example: 1
+                  example: inventore
+                folder:
+                  type: string
+                  description: 'The Folder name.'
+                  example: 'Folder name'
+                archive:
+                  type: string
+                  description: 'The Archive name.'
+                  example: 'Archive name'
+                fond:
+                  type: string
+                  description: 'The Fond name.'
+                  example: 'Fond name'
                 location_name:
                   type: string
                   description: 'Specific name of the location.'
@@ -1194,7 +1182,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - officiis
+                    - aut
                   items:
                     type: string
                 continent:
@@ -1208,12 +1196,15 @@ paths:
                 'tags[]':
                   type: string
                   description: 'Tag names'
-                  example: et
+                  example: consectetur
               required:
                 - signature
                 - complete_structure
                 - cipher_type
                 - key_type
+                - folder
+                - archive
+                - fond
                 - language_id
                 - users
                 - images
@@ -1479,7 +1470,7 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>signature</code>.'
-                  example: signature
+                  example: id
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
@@ -1487,15 +1478,15 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 17
+                  example: 9
                 per_page:
                   type: integer
                   description: ''
-                  example: 5
+                  example: 4
                 detailed:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
   /api/key-types:
     get:
       summary: 'Show all key types'
@@ -1942,27 +1933,27 @@ paths:
                 description:
                   type: string
                   description: Description.
-                  example: ea
+                  example: voluptas
                 signature:
                   type: string
                   description: 'Date to be used as the publication date.'
-                  example: nihil
+                  example: aut
                 complete_structure:
                   type: string
                   description: 'Complete structure.'
-                  example: pariatur
+                  example: voluptatem
                 used_chars:
                   type: string
                   description: 'Category the post belongs to.'
-                  example: voluptas
+                  example: sed
                 cipher_type:
                   type: integer
                   description: 'Cipher type.'
-                  example: 12
+                  example: 13
                 key_type:
                   type: integer
                   description: 'Key type.'
-                  example: 7
+                  example: 6
                 used_from:
                   type: string
                   description: 'Used from. Format: Y-m-d. Must be a valid date.'
@@ -1974,7 +1965,7 @@ paths:
                 used_around:
                   type: string
                   description: 'Used around.'
-                  example: dolorem
+                  example: consequatur
                 folder:
                   type: string
                   description: 'The Folder name.'
@@ -2003,7 +1994,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - consequatur
+                    - earum
                   items:
                     type: string
                 continent:
@@ -2017,7 +2008,7 @@ paths:
                 'tags[]':
                   type: string
                   description: 'Tag names'
-                  example: ab
+                  example: atque
               required:
                 - signature
                 - complete_structure
@@ -2462,15 +2453,15 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 5
+                  example: 13
                 per_page:
                   type: integer
                   description: ''
-                  example: 10
+                  example: 7
                 detailed:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
       security: []
     post:
       summary: 'Create cryptogram'
@@ -2530,7 +2521,7 @@ paths:
                 availability:
                   type: string
                   description: Availability.
-                  example: magnam
+                  example: voluptatem
                 category_id:
                   type: string
                   description: 'The ID of Category.'
@@ -2542,7 +2533,7 @@ paths:
                 description:
                   type: string
                   description: 'Cryptogram description.'
-                  example: suscipit
+                  example: cupiditate
                 language_id:
                   type: integer
                   description: 'The ID of Language.'
@@ -2550,11 +2541,11 @@ paths:
                 location_name:
                   type: string
                   description: 'Location name.'
-                  example: distinctio
+                  example: sit
                 name:
                   type: string
                   description: 'Cryptogram name.'
-                  example: eum
+                  example: dolor
                 recipient:
                   type: string
                   description: Recipient.
@@ -2566,7 +2557,7 @@ paths:
                 solution_id:
                   type: integer
                   description: 'The ID of Solution.'
-                  example: 7
+                  example: 16
                 date:
                   type: string
                   description: 'Date. Must be a valid date.'
@@ -2575,6 +2566,18 @@ paths:
                   type: string
                   description: 'Date around.'
                   example: '21. century'
+                folder:
+                  type: string
+                  description: 'The Folder name.'
+                  example: 'Folder name'
+                archive:
+                  type: string
+                  description: 'The Archive name.'
+                  example: 'Archive name'
+                fond:
+                  type: string
+                  description: 'The Fond name.'
+                  example: 'Fond name'
                 images:
                   type: array
                   description: 'Data image files [datagroup_index][data_index].'
@@ -2592,7 +2595,7 @@ paths:
                   type: array
                   description: 'string Tag names'
                   example:
-                    - ut
+                    - distinctio
                   items:
                     type: ''
                 continent:
@@ -2610,7 +2613,7 @@ paths:
                 thumbnail_link:
                   type: string
                   description: 'Thumbnail link. Used if thumbnail is empty.'
-                  example: eos
+                  example: id
                 thumbnail_base64:
                   type: string
                   description: 'Thumbnail base64. Used if thumbnail and thumbnail_link are empty.'
@@ -2621,6 +2624,9 @@ paths:
                 - language_id
                 - name
                 - solution_id
+                - folder
+                - archive
+                - fond
                 - images
                 - groups
                 - continent
@@ -2855,7 +2861,7 @@ paths:
                 availability:
                   type: string
                   description: Availability.
-                  example: voluptatem
+                  example: 'Private collection'
                 category_id:
                   type: string
                   description: 'The ID of Category.'
@@ -2867,7 +2873,7 @@ paths:
                 description:
                   type: string
                   description: 'Cryptogram description.'
-                  example: corrupti
+                  example: accusantium
                 language_id:
                   type: integer
                   description: 'The ID of Language .'
@@ -2875,11 +2881,11 @@ paths:
                 location_name:
                   type: string
                   description: 'Location name.'
-                  example: blanditiis
+                  example: voluptatum
                 name:
                   type: string
                   description: 'Cryptogram name.'
-                  example: culpa
+                  example: ex
                 recipient:
                   type: string
                   description: 'Recipient name.'
@@ -2891,7 +2897,7 @@ paths:
                 solution_id:
                   type: integer
                   description: 'The ID of Solution.'
-                  example: 5
+                  example: 2
                 date:
                   type: string
                   description: 'Date. Must be a valid date.'
@@ -2917,7 +2923,7 @@ paths:
                   type: array
                   description: 'string Tag names'
                   example:
-                    - optio
+                    - excepturi
                   items:
                     type: ''
                 continent:
@@ -2935,12 +2941,25 @@ paths:
                 thumbnail_link:
                   type: string
                   description: 'Thumbnail link. Used if thumbnail is empty.'
-                  example: non
+                  example: dolores
                 thumbnail_base64:
                   type: string
                   description: 'Thumbnail base64. Used if thumbnail and thumbnail_link are empty.'
                   example: null
+                folder:
+                  type: string
+                  description: 'The Folder name.'
+                  example: 'Folder name'
+                archive:
+                  type: string
+                  description: 'The Archive name.'
+                  example: 'Archive name'
+                fond:
+                  type: string
+                  description: 'The Fond name.'
+                  example: 'Fond name'
               required:
+                - availability
                 - category_id
                 - language_id
                 - name
@@ -2948,6 +2967,9 @@ paths:
                 - images
                 - groups
                 - continent
+                - folder
+                - archive
+                - fond
     parameters:
       -
         in: path
@@ -3412,15 +3434,15 @@ paths:
                 page:
                   type: integer
                   description: ''
-                  example: 11
+                  example: 10
                 per_page:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 6
                 detailed:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
   /api/languages:
     get:
       summary: 'Show all languages'
@@ -3492,11 +3514,11 @@ paths:
                 orderBy:
                   type: string
                   description: 'Must be one of <code>id</code> or <code>name</code>.'
-                  example: id
+                  example: name
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: asc
+                  example: desc
   /api/locations:
     get:
       summary: 'Show all locations'
@@ -4081,11 +4103,11 @@ paths:
                 orderDirection:
                   type: string
                   description: 'Must be one of <code>asc</code> or <code>desc</code>.'
-                  example: desc
+                  example: asc
                 type:
                   type: string
                   description: 'Must be one of <code>cipher_key</code> or <code>cryptogram</code>.'
-                  example: cipher_key
+                  example: cryptogram
 tags:
   -
     name: Archives

@@ -3,40 +3,59 @@
     "status_code": 200,
     "message": "Successfully added cryptogram.",
     "data": {
-        "id": 10,
-        "name": "Cryptogram API 3",
+        "id": 9,
+        "name": "Cryptogram API 333333",
         "description": "sdf sdf sdf sdf sdfsd sdfsdf",
-        "availability": "available",
+        "availability_type": "archive",
+        "availability": null,
         "category": {
-            "id": 3,
-            "name": "Podkategoria 2",
+            "id": 1,
+            "name": "Category 1",
             "children": []
         },
-        "day": "12",
-        "month": "1",
-        "year": "1997",
-        "before_crist": false,
-        "thumb": "http://dp.test/media/110/conversions/1423-1_liska-large.jpg",
+        "day": null,
+        "month": null,
+        "year": null,
+        "before_crist": null,
+        "thumb": "http://dp.test/media/37/conversions/1423-1_liska-large.jpg",
         "language": {
-            "id": 2,
-            "name": "Hahaha"
+            "id": 1,
+            "name": "Englkish"
         },
         "location": {
-            "id": 18,
+            "id": 10,
             "continent": "Europe",
             "name": "lokacia meno"
         },
         "recipient": {
-            "id": 21,
+            "id": 4,
             "name": "Johny Troska"
         },
         "sender": {
-            "id": 20,
-            "name": "Hahaha"
+            "id": 3,
+            "name": "Lala"
         },
         "solution": {
             "id": 1,
             "name": "Solved"
+        },
+        "folder": {
+            "id": 5,
+            "name": "Folder",
+            "fond_id": 5,
+            "start_date": null,
+            "end_date": null,
+            "fond": {
+                "id": 5,
+                "name": "Folder",
+                "archive_id": 4,
+                "archive": {
+                    "id": 4,
+                    "short_name": "API Archive",
+                    "name": "API Archive",
+                    "country": null
+                }
+            }
         },
         "state": {
             "id": "awaiting",
@@ -49,20 +68,68 @@
             "last_name": "Administrator"
         },
         "note": null,
-        "tags": [
+        "tags": [],
+        "datagroups": [
             {
-                "id": 10,
-                "name": "Tag 1 Api",
-                "type": "cryptogram"
+                "id": 41,
+                "description": "Links and references 22",
+                "data": [
+                    {
+                        "id": 39,
+                        "title": "Source",
+                        "type": "link",
+                        "link": "https://test.sk"
+                    }
+                ]
             },
             {
-                "id": 11,
-                "name": "Tag 2 Api",
-                "type": "cryptogram"
+                "id": 42,
+                "description": "Transcription",
+                "data": [
+                    {
+                        "id": 40,
+                        "title": "Transcription",
+                        "type": "text",
+                        "text": "text text text"
+                    }
+                ]
+            },
+            {
+                "id": 43,
+                "description": "Cryptogram",
+                "data": [
+                    {
+                        "id": 41,
+                        "title": "Cryptogram image",
+                        "type": "image",
+                        "image": {
+                            "thumb": "http://dp.test/media/38/conversions/test1-thumb.jpg",
+                            "big": "http://dp.test/media/38/conversions/test1-big.jpg",
+                            "large": "http://dp.test/media/38/conversions/test1-large.jpg",
+                            "original": "http://dp.test/media/38/test1.png"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 44,
+                "description": "Cryptogram 2",
+                "data": [
+                    {
+                        "id": 42,
+                        "title": "Cryptogram 2",
+                        "type": "image",
+                        "image": {
+                            "thumb": "http://dp.test/media/39/conversions/20211220_110554-thumb.jpg",
+                            "big": "http://dp.test/media/39/conversions/20211220_110554-big.jpg",
+                            "large": "http://dp.test/media/39/conversions/20211220_110554-large.jpg",
+                            "original": "http://dp.test/media/39/20211220_110554.jpeg"
+                        }
+                    }
+                ]
             }
         ],
-        "datagroups": [],
-        "created_at": "2023-02-18 14:52:20",
-        "updated_at": "2023-02-18 14:52:20"
+        "created_at": "2023-03-24 16:01:01",
+        "updated_at": "2023-03-24 16:01:05"
     }
 }

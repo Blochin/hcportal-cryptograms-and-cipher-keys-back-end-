@@ -1,0 +1,135 @@
+{
+    "status": "Success",
+    "status_code": 200,
+    "message": "Successfully updated cryptogram.",
+    "data": {
+        "id": 2,
+        "name": "Cryptogram API 333333",
+        "description": "sdf sdf sdf sdf sdfsd sdfsdf",
+        "availability_type": "other",
+        "availability": "Unknown",
+        "category": {
+            "id": 1,
+            "name": "Category 1",
+            "children": []
+        },
+        "day": null,
+        "month": null,
+        "year": null,
+        "before_crist": null,
+        "thumb": "http://dp.test/media/40/conversions/1423-1_liska-large.jpg",
+        "language": {
+            "id": 1,
+            "name": "Englkish"
+        },
+        "location": {
+            "id": 10,
+            "continent": "Europe",
+            "name": "lokacia meno"
+        },
+        "recipient": {
+            "id": 4,
+            "name": "Johny Troska"
+        },
+        "sender": {
+            "id": 3,
+            "name": "Lala"
+        },
+        "solution": {
+            "id": 1,
+            "name": "Solved"
+        },
+        "folder": {
+            "id": 5,
+            "name": "Folder",
+            "fond_id": 5,
+            "start_date": null,
+            "end_date": null,
+            "fond": {
+                "id": 5,
+                "name": "Folder",
+                "archive_id": 4,
+                "archive": {
+                    "id": 4,
+                    "short_name": "API Archive",
+                    "name": "API Archive",
+                    "country": null
+                }
+            }
+        },
+        "state": {
+            "id": "awaiting",
+            "title": "Awaiting",
+            "show": true
+        },
+        "created_by": {
+            "id": 1,
+            "first_name": "Administrator",
+            "last_name": "Administrator"
+        },
+        "note": null,
+        "tags": [],
+        "datagroups": [
+            {
+                "id": 45,
+                "description": "Links and references 22",
+                "data": [
+                    {
+                        "id": 43,
+                        "title": "Source",
+                        "type": "link",
+                        "link": "https://test.sk"
+                    }
+                ]
+            },
+            {
+                "id": 46,
+                "description": "Transcription",
+                "data": [
+                    {
+                        "id": 44,
+                        "title": "Transcription",
+                        "type": "text",
+                        "text": "text text text"
+                    }
+                ]
+            },
+            {
+                "id": 47,
+                "description": "Cryptogram",
+                "data": [
+                    {
+                        "id": 45,
+                        "title": "Cryptogram image",
+                        "type": "image",
+                        "image": {
+                            "thumb": "http://dp.test/media/41/conversions/test1-thumb.jpg",
+                            "big": "http://dp.test/media/41/conversions/test1-big.jpg",
+                            "large": "http://dp.test/media/41/conversions/test1-large.jpg",
+                            "original": "http://dp.test/media/41/test1.png"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 48,
+                "description": "Cryptogram 2",
+                "data": [
+                    {
+                        "id": 46,
+                        "title": "Cryptogram 2",
+                        "type": "image",
+                        "image": {
+                            "thumb": "http://dp.test/media/42/conversions/20211220_110554-thumb.jpg",
+                            "big": "http://dp.test/media/42/conversions/20211220_110554-big.jpg",
+                            "large": "http://dp.test/media/42/conversions/20211220_110554-large.jpg",
+                            "original": "http://dp.test/media/42/20211220_110554.jpeg"
+                        }
+                    }
+                ]
+            }
+        ],
+        "created_at": "2023-03-03 13:03:20",
+        "updated_at": "2023-03-24 16:01:36"
+    }
+}

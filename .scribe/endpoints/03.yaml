@@ -22,21 +22,21 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code> or <code>signature</code>.'
         required: false
-        example: id
+        example: signature
         type: string
         custom: []
       orderDirection:
         name: orderDirection
         description: 'Must be one of <code>asc</code> or <code>desc</code>.'
         required: false
-        example: desc
+        example: asc
         type: string
         custom: []
       page:
         name: page
         description: ''
         required: false
-        example: 8
+        example: 14
         type: integer
         custom: []
       per_page:
@@ -247,7 +247,7 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code> or <code>signature</code>.'
         required: false
-        example: signature
+        example: id
         type: string
         custom: []
       orderDirection:
@@ -261,21 +261,21 @@ endpoints:
         name: page
         description: ''
         required: false
-        example: 17
+        example: 9
         type: integer
         custom: []
       per_page:
         name: per_page
         description: ''
         required: false
-        example: 5
+        example: 4
         type: integer
         custom: []
       detailed:
         name: detailed
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         custom: []
     responses:
@@ -760,42 +760,42 @@ endpoints:
         name: description
         description: Description.
         required: false
-        example: ut
+        example: eligendi
         type: string
         custom: []
       signature:
         name: signature
         description: 'Date to be used as the publication date.'
         required: true
-        example: illum
+        example: sint
         type: string
         custom: []
       complete_structure:
         name: complete_structure
         description: 'Complete structure.'
         required: true
-        example: maxime
+        example: voluptatem
         type: string
         custom: []
       used_chars:
         name: used_chars
         description: 'Category the post belongs to.'
         required: false
-        example: quod
+        example: tenetur
         type: string
         custom: []
       cipher_type:
         name: cipher_type
         description: 'Cipher type.'
         required: true
-        example: 12
+        example: 4
         type: integer
         custom: []
       key_type:
         name: key_type
         description: 'Key type.'
         required: true
-        example: 20
+        example: 15
         type: integer
         custom: []
       used_from:
@@ -812,54 +812,33 @@ endpoints:
         example: '2022-02-28'
         type: string
         custom: []
-      new_folder:
-        name: new_folder
-        description: 'New folder.'
-        required: false
-        example: eum
-        type: string
-        custom: []
-      new_fond:
-        name: new_fond
-        description: 'New fond.'
-        required: false
-        example: itaque
-        type: string
-        custom: []
-      new_archive:
-        name: new_archive
-        description: 'New archive.'
-        required: false
-        example: rerum
-        type: string
-        custom: []
       used_around:
         name: used_around
         description: 'Used around.'
         required: false
-        example: laudantium
+        example: inventore
         type: string
         custom: []
-      folder_id:
-        name: folder_id
-        description: 'The ID of Folder. This field is required when <code>new_folder</code> is <code>null</code>.'
-        required: false
-        example: 1
-        type: integer
+      folder:
+        name: folder
+        description: 'The Folder name.'
+        required: true
+        example: 'Folder name'
+        type: string
         custom: []
-      archive_id:
-        name: archive_id
-        description: 'The ID of Archive. This field is required when <code>new_archive</code> is <code>null</code>.'
-        required: false
-        example: 1
-        type: integer
+      archive:
+        name: archive
+        description: 'The Archive name.'
+        required: true
+        example: 'Archive name'
+        type: string
         custom: []
-      fond_id:
-        name: fond_id
-        description: 'The ID of Fond. This field is required when <code>new_fond</code> is <code>null</code>.'
-        required: false
-        example: 1
-        type: integer
+      fond:
+        name: fond
+        description: 'The Fond name.'
+        required: true
+        example: 'Fond name'
+        type: string
         custom: []
       location_name:
         name: location_name
@@ -901,7 +880,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - officiis
+          - aut
         type: 'string[]'
         custom: []
       continent:
@@ -950,7 +929,7 @@ endpoints:
         name: 'tags[]'
         description: 'Tag names'
         required: false
-        example: et
+        example: consectetur
         type: string
         custom: []
     responses:
@@ -962,36 +941,34 @@ endpoints:
               "status_code": 200,
               "message": "Successfully added cipher key.",
               "data": {
-                  "id": 23,
-                  "signature": "atosportos",
+                  "id": 2,
+                  "signature": "kluc na schvalenie2",
                   "description": "skuska popisuww",
-                  "complete_structure": null,
+                  "complete_structure": "dfdfdfdfdf",
                   "used_chars": "sasasasa",
                   "cipher_type": {
                       "id": 2,
-                      "name": "Nomenclator",
-                      "resource_url": "http://dp.test/admin/cipher-types/2"
+                      "name": "Nomenclator"
                   },
                   "key_type": {
                       "id": 2,
-                      "name": "ed",
-                      "resource_url": "http://dp.test/admin/key-types/2"
+                      "name": "ed"
                   },
                   "used_from": null,
                   "used_to": "2023-01-22T00:00:00.000000Z",
                   "used_around": null,
                   "folder": {
-                      "id": 4,
+                      "id": 3,
                       "name": "hahaha",
-                      "fond_id": 5,
+                      "fond_id": 3,
                       "start_date": null,
                       "end_date": null,
                       "fond": {
-                          "id": 5,
+                          "id": 3,
                           "name": "hahaha2",
-                          "archive_id": 2,
+                          "archive_id": 3,
                           "archive": {
-                              "id": 2,
+                              "id": 3,
                               "short_name": "haha3",
                               "name": "haha3",
                               "country": null
@@ -999,13 +976,13 @@ endpoints:
                       }
                   },
                   "location": {
-                      "id": 17,
+                      "id": 11,
                       "name": "Amazon",
                       "continent": "Europe"
                   },
                   "language": {
                       "id": 1,
-                      "name": "english"
+                      "name": "Englkish"
                   },
                   "state": {
                       "id": "awaiting",
@@ -1014,27 +991,27 @@ endpoints:
                   },
                   "note": null,
                   "created_by": {
-                      "id": 2,
-                      "first_name": "Attila",
-                      "last_name": "Mucska"
+                      "id": 1,
+                      "first_name": "Administrator",
+                      "last_name": "Administrator"
                   },
                   "images": [
                       {
                           "url": {
-                              "thumb": "http://dp.test/media/93/conversions/test1-thumb.jpg",
-                              "big": "http://dp.test/media/93/conversions/test1-big.jpg",
-                              "large": "http://dp.test/media/93/conversions/test1-large.jpg",
-                              "original": "http://dp.test/media/93/test1.png"
+                              "thumb": "http://dp.test/media/9/conversions/test1-thumb.jpg",
+                              "big": "http://dp.test/media/9/conversions/test1-big.jpg",
+                              "large": "http://dp.test/media/9/conversions/test1-large.jpg",
+                              "original": "http://dp.test/media/9/test1.png"
                           },
                           "structure": "",
                           "has_instructions": 1
                       },
                       {
                           "url": {
-                              "thumb": "http://dp.test/media/94/conversions/schema-thumb.jpg",
-                              "big": "http://dp.test/media/94/conversions/schema-big.jpg",
-                              "large": "http://dp.test/media/94/conversions/schema-large.jpg",
-                              "original": "http://dp.test/media/94/schema.png"
+                              "thumb": "http://dp.test/media/10/conversions/schema-thumb.jpg",
+                              "big": "http://dp.test/media/10/conversions/schema-big.jpg",
+                              "large": "http://dp.test/media/10/conversions/schema-large.jpg",
+                              "original": "http://dp.test/media/10/schema.png"
                           },
                           "structure": "example",
                           "has_instructions": 0
@@ -1043,14 +1020,14 @@ endpoints:
                   "users": [
                       {
                           "person": {
-                              "id": 17,
+                              "id": 6,
                               "name": "new user name"
                           },
                           "is_main_user": 0
                       },
                       {
                           "person": {
-                              "id": 18,
+                              "id": 7,
                               "name": "new user name 2"
                           },
                           "is_main_user": 1
@@ -1058,38 +1035,19 @@ endpoints:
                   ],
                   "tags": [
                       {
-                          "id": 6,
+                          "id": 1,
                           "name": "ja",
                           "type": "cipher_key"
                       },
                       {
-                          "id": 7,
+                          "id": 2,
                           "name": "ko",
                           "type": "cipher_key"
                       }
                   ],
-                  "digitalized_transcriptions": [
-                      {
-                          "id": 3,
-                          "digitalized_version": null,
-                          "note": null,
-                          "digitalized_date": null,
-                          "encryption_pairs": [
-                              {
-                                  "id": 14,
-                                  "plain_text_unit": "ahoj",
-                                  "cipher_text_unit": "cau"
-                              },
-                              {
-                                  "id": 15,
-                                  "plain_text_unit": "hello",
-                                  "cipher_text_unit": "bye"
-                              }
-                          ]
-                      }
-                  ],
-                  "created_at": "2023-02-17 18:56:22",
-                  "updated_at": "2023-02-17 18:56:23"
+                  "digitalized_transcriptions": [],
+                  "created_at": "2023-03-23 15:03:12",
+                  "updated_at": "2023-03-23 15:03:13"
               }
           }
         headers: []
@@ -1135,42 +1093,42 @@ endpoints:
         name: description
         description: Description.
         required: false
-        example: ea
+        example: voluptas
         type: string
         custom: []
       signature:
         name: signature
         description: 'Date to be used as the publication date.'
         required: true
-        example: nihil
+        example: aut
         type: string
         custom: []
       complete_structure:
         name: complete_structure
         description: 'Complete structure.'
         required: true
-        example: pariatur
+        example: voluptatem
         type: string
         custom: []
       used_chars:
         name: used_chars
         description: 'Category the post belongs to.'
         required: false
-        example: voluptas
+        example: sed
         type: string
         custom: []
       cipher_type:
         name: cipher_type
         description: 'Cipher type.'
         required: true
-        example: 12
+        example: 13
         type: integer
         custom: []
       key_type:
         name: key_type
         description: 'Key type.'
         required: true
-        example: 7
+        example: 6
         type: integer
         custom: []
       used_from:
@@ -1191,7 +1149,7 @@ endpoints:
         name: used_around
         description: 'Used around.'
         required: false
-        example: dolorem
+        example: consequatur
         type: string
         custom: []
       folder:
@@ -1241,7 +1199,7 @@ endpoints:
         description: ''
         required: false
         example:
-          - consequatur
+          - earum
         type: 'string[]'
         custom: []
       continent:
@@ -1276,7 +1234,7 @@ endpoints:
         name: 'tags[]'
         description: 'Tag names'
         required: false
-        example: ab
+        example: atque
         type: string
         custom: []
     responses:
@@ -1288,119 +1246,77 @@ endpoints:
               "status_code": 200,
               "message": "Successfully updated cipher key.",
               "data": {
-                  "id": 22,
-                  "signature": "atosportos22",
+                  "id": 2,
+                  "signature": "kluc na schvalenie2",
                   "description": "skuska popisuww",
                   "complete_structure": "dfdfdfdfdf",
                   "used_chars": "sasasasa",
                   "cipher_type": {
                       "id": 2,
-                      "name": "Nomenclator",
-                      "resource_url": "http://dp.test/admin/cipher-types/2"
+                      "name": "Nomenclator"
                   },
                   "key_type": {
                       "id": 2,
-                      "name": "ed",
-                      "resource_url": "http://dp.test/admin/key-types/2"
+                      "name": "ed"
                   },
-                  "used_from": "2000-01-21T00:00:00.000000Z",
+                  "used_from": null,
                   "used_to": "2023-01-22T00:00:00.000000Z",
                   "used_around": null,
                   "folder": {
-                      "id": 4,
-                      "name": "hahaha",
-                      "fond_id": 5,
+                      "id": 2,
+                      "name": "folder 1",
+                      "fond_id": 2,
                       "start_date": null,
                       "end_date": null,
                       "fond": {
-                          "id": 5,
-                          "name": "hahaha2",
+                          "id": 2,
+                          "name": "fond 1",
                           "archive_id": 2,
                           "archive": {
                               "id": 2,
-                              "short_name": "haha3",
-                              "name": "haha3",
+                              "short_name": "archive 2",
+                              "name": "archive 2",
                               "country": null
                           }
                       }
                   },
                   "location": {
-                      "id": 17,
+                      "id": 11,
                       "name": "Amazon",
                       "continent": "Europe"
                   },
                   "language": {
                       "id": 1,
-                      "name": "english"
+                      "name": "Englkish"
                   },
                   "state": {
-                      "id": "revise",
-                      "title": "Revise",
+                      "id": "awaiting",
+                      "title": "Awaiting",
                       "show": true
                   },
-                  "note": "sdfsdfsdfsdf",
+                  "note": "\napi komentar",
                   "created_by": {
-                      "id": 2,
-                      "first_name": "Attila",
-                      "last_name": "Mucska"
+                      "id": 1,
+                      "first_name": "Administrator",
+                      "last_name": "Administrator"
                   },
                   "images": [
                       {
                           "url": {
-                              "thumb": "http://dp.test/media/87/conversions/test1-thumb.jpg",
-                              "big": "http://dp.test/media/87/conversions/test1-big.jpg",
-                              "large": "http://dp.test/media/87/conversions/test1-large.jpg",
-                              "original": "http://dp.test/media/87/test1.png"
+                              "thumb": "http://dp.test/media/9/conversions/test1-thumb.jpg",
+                              "big": "http://dp.test/media/9/conversions/test1-big.jpg",
+                              "large": "http://dp.test/media/9/conversions/test1-large.jpg",
+                              "original": "http://dp.test/media/9/test1.png"
                           },
                           "structure": "",
                           "has_instructions": 1
                       },
                       {
                           "url": {
-                              "thumb": "http://dp.test/media/88/conversions/schema-thumb.jpg",
-                              "big": "http://dp.test/media/88/conversions/schema-big.jpg",
-                              "large": "http://dp.test/media/88/conversions/schema-large.jpg",
-                              "original": "http://dp.test/media/88/schema.png"
-                          },
-                          "structure": "example",
-                          "has_instructions": 0
-                      },
-                      {
-                          "url": {
-                              "thumb": "http://dp.test/media/89/conversions/test1-thumb.jpg",
-                              "big": "http://dp.test/media/89/conversions/test1-big.jpg",
-                              "large": "http://dp.test/media/89/conversions/test1-large.jpg",
-                              "original": "http://dp.test/media/89/test1.png"
-                          },
-                          "structure": "",
-                          "has_instructions": 1
-                      },
-                      {
-                          "url": {
-                              "thumb": "http://dp.test/media/90/conversions/schema-thumb.jpg",
-                              "big": "http://dp.test/media/90/conversions/schema-big.jpg",
-                              "large": "http://dp.test/media/90/conversions/schema-large.jpg",
-                              "original": "http://dp.test/media/90/schema.png"
-                          },
-                          "structure": "example",
-                          "has_instructions": 0
-                      },
-                      {
-                          "url": {
-                              "thumb": "http://dp.test/media/91/conversions/test1-thumb.jpg",
-                              "big": "http://dp.test/media/91/conversions/test1-big.jpg",
-                              "large": "http://dp.test/media/91/conversions/test1-large.jpg",
-                              "original": "http://dp.test/media/91/test1.png"
-                          },
-                          "structure": "",
-                          "has_instructions": 1
-                      },
-                      {
-                          "url": {
-                              "thumb": "http://dp.test/media/92/conversions/schema-thumb.jpg",
-                              "big": "http://dp.test/media/92/conversions/schema-big.jpg",
-                              "large": "http://dp.test/media/92/conversions/schema-large.jpg",
-                              "original": "http://dp.test/media/92/schema.png"
+                              "thumb": "http://dp.test/media/10/conversions/schema-thumb.jpg",
+                              "big": "http://dp.test/media/10/conversions/schema-big.jpg",
+                              "large": "http://dp.test/media/10/conversions/schema-large.jpg",
+                              "original": "http://dp.test/media/10/schema.png"
                           },
                           "structure": "example",
                           "has_instructions": 0
@@ -1409,14 +1325,14 @@ endpoints:
                   "users": [
                       {
                           "person": {
-                              "id": 17,
+                              "id": 6,
                               "name": "new user name"
                           },
                           "is_main_user": 0
                       },
                       {
                           "person": {
-                              "id": 18,
+                              "id": 7,
                               "name": "new user name 2"
                           },
                           "is_main_user": 1
@@ -1424,38 +1340,18 @@ endpoints:
                   ],
                   "tags": [
                       {
-                          "id": 6,
+                          "id": 1,
                           "name": "ja",
                           "type": "cipher_key"
                       },
                       {
-                          "id": 7,
+                          "id": 2,
                           "name": "ko",
                           "type": "cipher_key"
                       }
                   ],
-                  "digitalized_transcriptions": [
-                      {
-                          "id": 3,
-                          "digitalized_version": null,
-                          "note": null,
-                          "digitalized_date": null,
-                          "encryption_pairs": [
-                              {
-                                  "id": 14,
-                                  "plain_text_unit": "ahoj",
-                                  "cipher_text_unit": "cau"
-                              },
-                              {
-                                  "id": 15,
-                                  "plain_text_unit": "hello",
-                                  "cipher_text_unit": "bye"
-                              }
-                          ]
-                      }
-                  ],
-                  "created_at": "2023-02-17 18:20:36",
-                  "updated_at": "2023-02-17 18:59:13"
+                  "created_at": "2023-03-23 15:03:12",
+                  "updated_at": "2023-03-23 15:03:49"
               }
           }
         headers: []

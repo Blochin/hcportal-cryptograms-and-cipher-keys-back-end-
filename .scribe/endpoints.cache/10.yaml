@@ -32,14 +32,14 @@ endpoints:
         name: orderDirection
         description: 'Must be one of <code>asc</code> or <code>desc</code>.'
         required: false
-        example: desc
+        example: asc
         type: string
         custom: []
       type:
         name: type
         description: 'Must be one of <code>cipher_key</code> or <code>cryptogram</code>.'
         required: false
-        example: cipher_key
+        example: cryptogram
         type: string
         custom: []
     responses:

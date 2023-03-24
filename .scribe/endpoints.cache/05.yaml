@@ -25,14 +25,14 @@ endpoints:
         name: orderBy
         description: 'Must be one of <code>id</code> or <code>name</code>.'
         required: false
-        example: id
+        example: name
         type: string
         custom: []
       orderDirection:
         name: orderDirection
         description: 'Must be one of <code>asc</code> or <code>desc</code>.'
         required: false
-        example: asc
+        example: desc
         type: string
         custom: []
     responses:

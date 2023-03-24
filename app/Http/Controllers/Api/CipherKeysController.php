@@ -200,7 +200,7 @@ class CipherKeysController extends Controller
         $this->syncCipherKeyUsers($cipherKey, $sanitized, 'create', 'api');
 
         //Store archives,fonds,folders
-        $this->syncArchive($cipherKey, $sanitized);
+        $this->syncArchive($cipherKey, $sanitized, true);
 
         //Sync tags
         $this->syncTags($cipherKey, $sanitized, 'api', 'cipher_key');
