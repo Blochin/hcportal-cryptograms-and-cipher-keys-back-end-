@@ -34,17 +34,20 @@ class Cryptogram extends Model implements HasMedia
         'recipient_id',
         'sender_id',
         'solution_id',
+        'folder_id',
         'state_id',
         'created_by',
         'state',
         'note'
     ];
 
+    public const AVAILABILITY_TYPE = "other";
+    public const ARCHIVE_TYPE = "archive";
 
     protected $dates = [];
 
 
-    protected $appends = ['resource_url', 'state_badge', 'continent', 'location_name', 'picture'];
+    protected $appends = ['resource_url', 'state_badge', 'continent', 'location_name', 'picture', 'fond', 'archive', 'availability_type'];
 
     /* ************************ Media ************************* */
 
@@ -82,6 +85,21 @@ class Cryptogram extends Model implements HasMedia
     }
 
     /* ************************ ACCESSOR ************************* */
+
+    public function getFondAttribute()
+    {
+        return isset($this->folder->fond) ? $this->folder->fond : null;
+    }
+
+    public function getAvailabilityTypeAttribute()
+    {
+        return $this->availability ? self::AVAILABILITY_TYPE : self::ARCHIVE_TYPE;
+    }
+
+    public function getArchiveAttribute()
+    {
+        return isset($this->folder->fond) ? $this->folder->fond->archive : null;
+    }
 
     public function getResourceUrlAttribute()
     {
@@ -157,6 +175,11 @@ class Cryptogram extends Model implements HasMedia
     public function solution()
     {
         return $this->belongsTo(Solution::class);
+    }
+
+    public function folder()
+    {
+        return $this->belongsTo(Folder::class);
     }
 
     public function category()

@@ -83,7 +83,7 @@ trait CryptogramSyncable
 	 * @param array $sanitized
 	 * @return void
 	 */
-	public function syncTags(Cryptogram $cryptogram, $sanitized, $origin = 'web', $type = 'cryptogram')
+	public function syncTagsCryptogram(Cryptogram $cryptogram, $sanitized, $origin = 'web', $type = 'cryptogram')
 	{
 		if (!isset($sanitized['tags'])) return;
 

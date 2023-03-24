@@ -31,7 +31,9 @@ class StoreCryptogram extends FormRequest
     public function rules(): array
     {
         return [
-            'availability' => ['required', 'string'],
+            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+                return $this->input('archive') == null;
+            })],
             'category_id' => ['required', 'string', 'exists:categories,id'],
             'subcategory_id' => ['nullable', 'string', 'exists:categories,id'],
 
@@ -46,6 +48,16 @@ class StoreCryptogram extends FormRequest
 
             'date' => ['nullable', 'date'],
             'date_around' => ['nullable', 'string'],
+
+            'folder' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'archive' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'fond' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
 
             'images' => ['nullable', 'array'],
             'groups' => ['nullable', 'json'],
@@ -125,6 +137,18 @@ class StoreCryptogram extends FormRequest
             'thumbnail_base64' => [
                 'description' => 'Thumbnail base64. Used if thumbnail and thumbnail_link are empty',
             ],
+            'folder' => [
+                'description' => 'The Folder name',
+                'example' => 'Folder name',
+            ],
+            'archive' => [
+                'description' => 'The Archive name',
+                'example' => 'Archive name',
+            ],
+            'fond' => [
+                'description' => 'The Fond name',
+                'example' => 'Fond name',
+            ],
         ];
     }
 
@@ -152,7 +176,7 @@ class StoreCryptogram extends FormRequest
         $sanitized['state'] = CipherKey::STATUS_AWAITING;
 
 
-        $sanitized['availability'] =  $sanitized['availability'] ?: 'Unknown';
+        $sanitized['availability'] =  isset($sanitized['availability']) && $sanitized['availability'] ? $sanitized['availability'] : null;
 
         if (isset($sanitized['location_name']) && $sanitized['location_name'] && isset($sanitized['continent']) && $sanitized['continent']) {
             $location = Location::firstOrCreate([

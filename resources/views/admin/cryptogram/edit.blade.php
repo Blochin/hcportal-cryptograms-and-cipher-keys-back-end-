@@ -7,8 +7,10 @@
     <div class="container-xl">
         <div class="card">
 
-            <cryptogram-form :action="'{{ $cryptogram->resource_url }}'" :persons="{{ $persons->toJSON() }}"
-                :data="{{ $cryptogram->toJson() }}" :tags="{{ $tags->toJSON() }}" v-cloak inline-template>
+            <cryptogram-form :action="'{{ $cryptogram->resource_url }}'" :archives="{{ $archives->toJSON() }}"
+                :fonds="{{ $fonds->toJSON() }}" :folders="{{ $folders->toJSON() }}"
+                :persons="{{ $persons->toJSON() }}" :data="{{ $cryptogram->toJson() }}" :tags="{{ $tags->toJSON() }}"
+                v-cloak inline-template>
                 <div>
                     <form class="form-horizontal form-edit" method="post" @submit.prevent="onSubmit" :action="action"
                         novalidate>

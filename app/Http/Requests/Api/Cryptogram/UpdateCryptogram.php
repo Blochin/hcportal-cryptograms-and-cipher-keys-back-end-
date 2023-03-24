@@ -31,7 +31,9 @@ class UpdateCryptogram extends FormRequest
     public function rules(): array
     {
         return [
-            'availability' => ['nullable', 'string'],
+            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+                return $this->input('archive') == null;
+            })],
             'category_id' => ['required', 'string', 'exists:categories,id'],
             'subcategory_id' => ['nullable', 'string', 'exists:categories,id'],
 
@@ -53,6 +55,16 @@ class UpdateCryptogram extends FormRequest
             'thumbnail' => ['nullable', 'image'],
             'thumbnail_link' => ['nullable', 'string'],
             'thumbnail_base64' => ['nullable', 'text'],
+
+            'folder' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'archive' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'fond' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
         ];
     }
 
@@ -66,6 +78,7 @@ class UpdateCryptogram extends FormRequest
         return [
             'availability' => [
                 'description' => 'Availability',
+                'example' => 'Private collection'
             ],
             'category_id' => [
                 'description' => 'The ID of Category',
@@ -95,6 +108,18 @@ class UpdateCryptogram extends FormRequest
             ],
             'name' => [
                 'description' => 'Cryptogram name',
+            ],
+            'folder' => [
+                'description' => 'The Folder name',
+                'example' => 'Folder name',
+            ],
+            'archive' => [
+                'description' => 'The Archive name',
+                'example' => 'Archive name',
+            ],
+            'fond' => [
+                'description' => 'The Fond name',
+                'example' => 'Fond name',
             ],
             'recipient' => [
                 'description' => 'Recipient name',

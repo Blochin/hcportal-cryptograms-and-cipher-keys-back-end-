@@ -8,8 +8,9 @@
 
         <div class="card">
 
-            <cryptogram-form :action="'{{ url('admin/cryptograms') }}'" :persons="{{ $persons->toJSON() }}"
-                :tags="{{ $tags->toJSON() }}" v-cloak inline-template>
+            <cryptogram-form :action="'{{ url('admin/cryptograms') }}'" :archives="{{ $archives->toJSON() }}"
+                :fonds="{{ $fonds->toJSON() }}" :folders="{{ $folders->toJSON() }}"
+                :persons="{{ $persons->toJSON() }}" :tags="{{ $tags->toJSON() }}" v-cloak inline-template>
 
                 <form class="form-horizontal form-create" method="post" @submit.prevent="onSubmit" :action="action"
                     novalidate>

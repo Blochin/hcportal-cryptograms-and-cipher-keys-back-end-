@@ -264,40 +264,6 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('availability'), 'has-success': fields.availability && fields.availability.valid }">
-            <label for="availability" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.availability') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <input type="text" v-model="form.availability" v-validate="''" @input="validate($event)"
-                    class="form-control"
-                    :class="{'form-control-danger': errors.has('availability'), 'form-control-success': fields.availability && fields.availability.valid}"
-                    id="availability" name="availability"
-                    placeholder="{{ trans('admin.cryptogram.columns.availability') }}">
-                <div v-if="errors.has('availability')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('availability') }}</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('cipher_keys'), 'has-success': fields.cipher_keys && fields.cipher_keys.valid }">
-            <label for="cipher_keys" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-12' : 'col-md-12'">{{ trans('admin.cryptogram.columns.paired-keys') }}</label>
-            <div :class="isFormLocalized ? 'col-md-12' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.cipher_keys" :close-on-select="false" placeholder="Search cipher key"
-                    :multiple="true" label="signature" :loading="isLoading" :internal-search="false"
-                    @search-change="filterKeys" :options="filteredKeys" :option-height="280"
-                    placeholder="{{ trans('admin.cryptogram.columns.paired-keys') }}" track-by="id">
-                </multiselect>
-                <div v-if="errors.has('cipher_keys')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('cipher_keys') }}</div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="form-group row align-items-center"
     :class="{'has-danger': errors.has('description'), 'has-success': fields.description && fields.description.valid }">
@@ -432,6 +398,137 @@
         <a v-on:click.prevent="addPredefinedGroups" class="btn btn-primary" style="color: white">
             <i class="fa fa-plus"></i> {{ trans('admin.cryptogram.columns.add_predefined') }}
         </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-lg-2">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('availability'), 'has-success': fields.availability_type && fields.availability_type.valid }">
+            <label for="availability_type" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.availability_type') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <div class="d-inline-block mr-5">
+
+                    <input type="radio" v-model="form.availability_type" value="archive" v-validate="'required'"
+                        @input="validate($event)" class="form-control"
+                        :class="{'': errors.has('availability_type'), '': fields.availability_type && fields.availability_type.valid}"
+                        id="archive" name="archive">
+                    <label for="archive" class="mt-2">Archive</label>
+                </div>
+                <div class="d-inline-block">
+                    <input type="radio" v-model="form.availability_type" value="other" v-validate="'required'"
+                        @input="validate($event)" class="form-control"
+                        :class="{'': errors.has('availability_type'), '': fields.availability_type && fields.availability_type.valid}"
+                        id="other" name="other">
+                    <label for="other" class="mt-2">Other</label>
+                </div>
+                <div v-if="errors.has('availability_type')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('availability_type') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4" v-if="form.availability_type == 'other'">
+        <div class=" form-group row align-items-center"
+            :class="{'has-danger': errors.has('availability'), 'has-success': fields.availability && fields.availability.valid }">
+            <label for="availability" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.availability') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <input type="text" v-model="form.availability"
+                    v-validate="form.availability_type == 'other' ? 'required' : ''" @input="validate($event)"
+                    class="form-control"
+                    :class="{'form-control-danger': errors.has('availability'), 'form-control-success': fields.availability && fields.availability.valid}"
+                    id="availability" name="availability"
+                    placeholder="{{ trans('admin.cryptogram.columns.availability') }}">
+                <div v-if="errors.has('availability')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('availability') }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" v-if="form.availability_type == 'archive'">
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('archive'), 'has-success': fields.archive && fields.archive.valid }">
+            <label for="archive" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.archive') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.archive" @input="filterFonds" label="name" :options="{{ $archives }}"
+                    :option-height="104" placeholder="{{ trans('admin.cipher-key.columns.archive') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('archive')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('archive') }}</div>
+            </div>
+        </div>
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('new_archive'), 'has-success': fields.new_archive && fields.new_archive.valid }">
+            <label for="new_archive" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.new_archive') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <input type="text" v-model="form.new_archive" v-validate="''" @input="validate($event)"
+                    class="form-control"
+                    :class="{'form-control-danger': errors.has('new_archive'), 'form-control-success': fields.new_archive && fields.new_archive.valid}"
+                    id="new_archive" name="new_archive"
+                    placeholder="{{ trans('admin.cipher-key.columns.new_archive') }}">
+                <div v-if="errors.has('new_archive')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('new_archive') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('fond'), 'has-success': fields.fond && fields.fond.valid }">
+            <label for="fond" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.folder') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.fond" label="name" @input="filterFolders" :options="filteredFonds"
+                    :option-height="104" placeholder="{{ trans('admin.cipher-key.columns.fond') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('fond')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('fond') }}</div>
+            </div>
+        </div>
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('new_fond'), 'has-success': fields.new_fond && fields.new_fond.valid }">
+            <label for="new_fond" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.new_fond') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <input type="text" v-model="form.new_fond" v-validate="''" @input="validate($event)"
+                    class="form-control"
+                    :class="{'form-control-danger': errors.has('new_fond'), 'form-control-success': fields.new_fond && fields.new_fond.valid}"
+                    id="new_fond" name="new_fond" placeholder="{{ trans('admin.cipher-key.columns.new_fond') }}">
+                <div v-if="errors.has('new_fond')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('new_fond') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('folder'), 'has-success': fields.folder && fields.folder.valid }">
+            <label for="folder" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.folder') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.folder" label="name" :options="filteredFolders" :option-height="104"
+                    placeholder="{{ trans('admin.cipher-key.columns.folder') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('folder')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('folder') }}</div>
+            </div>
+        </div>
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('new_folder'), 'has-success': fields.new_folder && fields.new_folder.valid }">
+            <label for="new_folder" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.new_folder') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <input type="text" v-model="form.new_folder" v-validate="''" @input="validate($event)"
+                    class="form-control"
+                    :class="{'form-control-danger': errors.has('new_folder'), 'form-control-success': fields.new_folder && fields.new_folder.valid}"
+                    id="new_folder" name="new_folder"
+                    placeholder="{{ trans('admin.cipher-key.columns.new_folder') }}">
+                <div v-if="errors.has('new_folder')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('new_folder') }}</div>
+            </div>
+        </div>
     </div>
 </div>
 {{-- <div class="row">

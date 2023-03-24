@@ -206,7 +206,7 @@ return [
 
         'columns' => [
             'id' => 'ID',
-            'availability' => 'Availability',
+            'availability' => 'Other availability',
             'category_id' => 'Category',
             'subcategory_id' => 'Subcategory',
             'day' => 'Day',
@@ -239,7 +239,8 @@ return [
             'paired-keys' => 'Paired cipher keys',
             'thumbnail' => 'Thumbnail',
             'date' => 'Date',
-            'date_around' => 'Date around'
+            'date_around' => 'Date around',
+            'availability_type' => 'Availability'
 
         ],
     ],

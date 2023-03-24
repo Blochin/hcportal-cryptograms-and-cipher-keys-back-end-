@@ -23,12 +23,12 @@ trait CipherKeySyncable
 	/**
 	 * Sync archive
 	 *
-	 * @param CipherKey $cipherKey
+	 * @param $model
 	 * @param array $sanitized
 	 * @param boolean $updateApi
 	 * @return void
 	 */
-	public function syncArchive(CipherKey $cipherKey, $sanitized, $updateApi = false)
+	public function syncArchive($model, $sanitized, $updateApi = false)
 	{
 
 		$archive_id = (isset($sanitized['archive_id'])) ? $sanitized['archive_id'] : null;
@@ -80,7 +80,7 @@ trait CipherKeySyncable
 		}
 
 		if ($folder_id) {
-			$cipherKey->update(['folder_id' => $folder_id]);
+			$model->update(['folder_id' => $folder_id]);
 		}
 	}
 

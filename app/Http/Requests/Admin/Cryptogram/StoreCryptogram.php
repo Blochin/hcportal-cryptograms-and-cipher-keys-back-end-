@@ -29,13 +29,36 @@ class StoreCryptogram extends FormRequest
     public function rules(): array
     {
         return [
-            'availability' => ['nullable', 'string'],
+            'availability_type' => ['required', 'string'],
+            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+                return $this->input('availability_type') == "availability";
+            })],
             'category' => ['required', 'string'],
             'subcategory' => ['nullable', 'string'],
 
             'description' => ['nullable', 'string'],
             'language' => ['required', 'string'],
             'location_name' => ['nullable', 'string'],
+
+            'folder' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('new_folder') == null && $this->input('availability_type') == "archive";
+            })],
+            'archive' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('new_archive') == null && $this->input('availability_type') == "archive";
+            })],
+            'fond' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('new_fond') == null && $this->input('availability_type') == "archive";
+            })],
+
+            'new_folder' => ['nullable', 'string', Rule::requiredIf(function () {
+                return $this->input('folder') == null && $this->input('availability_type') == "archive";
+            })],
+            'new_fond' => ['nullable', 'string', Rule::requiredIf(function () {
+                return $this->input('fond') == null && $this->input('availability_type') == "archive";
+            })],
+            'new_archive' => ['nullable', 'string', Rule::requiredIf(function () {
+                return $this->input('archive') == null && $this->input('availability_type') == "archive";
+            })],
 
             'name' => ['required', 'string'],
             'recipient' => ['nullable', 'string'],
@@ -53,6 +76,7 @@ class StoreCryptogram extends FormRequest
             'state' => ['required'],
             'note' => ['nullable'],
             'thumbnail' => ['nullable'],
+
         ];
     }
 
@@ -65,6 +89,7 @@ class StoreCryptogram extends FormRequest
     {
         $sanitized = $this->validated();
 
+
         $sanitized['image_url'] = 'sdsd';
 
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
@@ -73,6 +98,10 @@ class StoreCryptogram extends FormRequest
         $sanitized['sender_id'] = $sanitized['sender'] ? json_decode($sanitized['recipient'])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
         $sanitized['recipient_id'] = $sanitized['recipient'] ? json_decode($sanitized['recipient'])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
 
+        $sanitized['folder_id'] = $sanitized['folder'] ? json_decode($sanitized['folder'])->id : null;
+        $sanitized['fond_id'] = $sanitized['fond'] ? json_decode($sanitized['fond'])->id : null;
+        $sanitized['archive_id'] = $sanitized['archive'] ? json_decode($sanitized['archive'])->id : null;
+
         $sanitized['groups'] = $sanitized['groups'] ? json_decode($sanitized['groups']) : null;
         $sanitized['tags'] = $sanitized['tags'] ? json_decode($sanitized['tags']) : [];
         $sanitized['created_by'] = auth()->user()->id;
@@ -80,7 +109,7 @@ class StoreCryptogram extends FormRequest
         $sanitized['continent'] = $sanitized['continent'] ? json_decode($sanitized['continent'])->name : [];
         $sanitized['state'] = $sanitized['state'] ? json_decode($sanitized['state'])->id : [];
 
-        $sanitized['availability'] = $sanitized['availability'] ?: 'Unknown';
+        $sanitized['availability'] = $sanitized['availability'] ?: null;
 
         if (isset($sanitized['location_name']) && isset($sanitized['continent'])) {
             $location = Location::firstOrCreate([

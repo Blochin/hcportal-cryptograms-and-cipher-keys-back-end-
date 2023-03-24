@@ -17,6 +17,7 @@ use App\Mail\UpdateCryptogramMail;
 use App\Models\CipherKey;
 use App\Models\Cryptogram;
 use App\Traits\ApiResponser;
+use App\Traits\CipherKey\CipherKeySyncable;
 use App\Traits\Cryptogram\CryptogramSyncable;
 use App\Traits\Paginable;
 use Illuminate\Support\Facades\Mail;
@@ -31,6 +32,7 @@ class CryptogramsController extends Controller
     use ApiResponser;
     use Paginable;
     use CryptogramSyncable;
+    use CipherKeySyncable;
 
     /**
      * All approved cryptograms
@@ -57,6 +59,9 @@ class CryptogramsController extends Controller
             'solution',
             'category',
             'category.children',
+            'folder',
+            'folder.fond',
+            'folder.fond.archive',
             'tags',
             'groups',
             'groups.data',
@@ -100,6 +105,9 @@ class CryptogramsController extends Controller
             'solution',
             'category',
             'category.children',
+            'folder',
+            'folder.fond',
+            'folder.fond.archive',
             'tags',
             'groups',
             'groups.data',
@@ -142,6 +150,9 @@ class CryptogramsController extends Controller
             'solution',
             'category',
             'category.children',
+            'folder',
+            'folder.fond',
+            'folder.fond.archive',
             'tags',
             'groups',
             'groups.data',
@@ -199,10 +210,13 @@ class CryptogramsController extends Controller
         }
 
         //Sync datagroups
-        $this->syncDatagroups($cryptogram, $sanitized);
+        $this->syncDatagroups($cryptogram, $sanitized, 'api');
 
         //Sync tags
-        $this->syncTags($cryptogram, $sanitized, 'api');
+        $this->syncTagsCryptogram($cryptogram, $sanitized, 'api');
+
+        //Store archives,fonds,folders
+        $this->syncArchive($cryptogram, $sanitized, true);
 
 
         //Load relationships
@@ -214,6 +228,9 @@ class CryptogramsController extends Controller
             'solution',
             'category',
             'category.children',
+            'folder',
+            'folder.fond',
+            'folder.fond.archive',
             'tags',
             'groups',
             'groups.data',
@@ -261,6 +278,9 @@ class CryptogramsController extends Controller
             'solution',
             'category',
             'category.children',
+            'folder',
+            'folder.fond',
+            'folder.fond.archive',
             'tags',
             'groups',
             'groups.data',
@@ -308,7 +328,10 @@ class CryptogramsController extends Controller
         $this->syncDatagroups($cryptogram, $sanitized, 'api');
 
         //Sync tags
-        $this->syncTags($cryptogram, $sanitized, 'api');
+        $this->syncTagsCryptogram($cryptogram, $sanitized, 'api');
+
+        //Store archives,fonds,folders
+        $this->syncArchive($cryptogram, $sanitized, true);
 
 
         Mail::to(config('mail.to.email'))->send(new UpdateCryptogramMail($cryptogram));
@@ -321,6 +344,9 @@ class CryptogramsController extends Controller
             'solution',
             'category',
             'category.children',
+            'folder',
+            'folder.fond',
+            'folder.fond.archive',
             'tags',
             'groups',
             'groups.data',

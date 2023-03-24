@@ -10,17 +10,21 @@ use App\Http\Requests\Admin\Cryptogram\StoreCryptogram;
 use App\Http\Requests\Admin\Cryptogram\UpdateCryptogram;
 use App\Http\Requests\Admin\General\UpdateState;
 use App\Mail\UpdateCryptogramStateMail;
+use App\Models\Archive;
 use App\Models\Category;
 use App\Models\CipherKey;
 use App\Models\Cryptogram;
 use App\Models\Data;
 use App\Models\Datagroup;
+use App\Models\Folder;
+use App\Models\Fond;
 use App\Models\Language;
 use App\Models\Location;
 use App\Models\Person;
 use App\Models\Solution;
 use App\Models\State;
 use App\Models\Tag;
+use App\Traits\CipherKey\CipherKeySyncable;
 use App\Traits\Cryptogram\CryptogramSyncable;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
@@ -39,6 +43,7 @@ use Illuminate\View\View;
 class CryptogramsController extends Controller
 {
     use CryptogramSyncable;
+    use CipherKeySyncable;
 
     /**
      * Display a listing of the resource.
@@ -98,6 +103,10 @@ class CryptogramsController extends Controller
         $continents = collect(Location::CONTINENTS)->toJSON();
         $states = collect(CipherKey::STATUSES)->toJSON();
 
+        $archives = Archive::all();
+        $folders = Folder::all();
+        $fonds = Fond::all();
+
         return view('admin.cryptogram.create', compact(
             'locations',
             'languages',
@@ -107,7 +116,10 @@ class CryptogramsController extends Controller
             'categories',
             'groups',
             'states',
-            'continents'
+            'continents',
+            'archives',
+            'fonds',
+            'folders',
         ));
     }
 
@@ -137,10 +149,13 @@ class CryptogramsController extends Controller
         $this->syncDatagroups($cryptogram, $sanitized);
 
         //Sync tags
-        $this->syncTags($cryptogram, $sanitized);
+        $this->syncTagsCryptogram($cryptogram, $sanitized);
 
         //Sync cipher keys
         $this->syncCipherKeys($cryptogram, $sanitized);
+
+        //Sync Archives
+        $this->syncArchive($cryptogram, $sanitized);
 
         alert()->success('Success', 'Sucessfully added cryptogram.');
 
@@ -187,7 +202,11 @@ class CryptogramsController extends Controller
         $states = collect(CipherKey::STATUSES)->toJSON();
         $continents = collect(Location::CONTINENTS)->toJSON();
 
-        $cryptogram->load(['category', 'recipient', 'sender', 'tags', 'solution', 'language', 'groups', 'groups.data', 'cipherKeys']);
+        $archives = Archive::all();
+        $folders = Folder::all();
+        $fonds = Fond::all();
+
+        $cryptogram->load(['category', 'recipient', 'sender', 'tags', 'solution', 'language', 'groups', 'groups.data', 'cipherKeys', 'folder', 'folder.fond',]);
 
         //Category transformation
         if ($cryptogram->category->parent) {
@@ -211,7 +230,10 @@ class CryptogramsController extends Controller
             'solutions' => $solutions,
             'categories' => $categories,
             'states' => $states,
-            'continents' => $continents
+            'continents' => $continents,
+            'archives' => $archives,
+            'fonds' => $fonds,
+            'folders' => $folders
         ]);
     }
 
@@ -252,7 +274,7 @@ class CryptogramsController extends Controller
         $this->syncDatagroups($cryptogram, $sanitized);
 
         //Sync tags
-        $this->syncTags($cryptogram, $sanitized);
+        $this->syncTagsCryptogram($cryptogram, $sanitized);
 
         //Sync cipher keys
         $this->syncCipherKeys($cryptogram, $sanitized);

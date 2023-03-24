@@ -92,7 +92,7 @@ class StoreCipherKey extends JsonFormRequest
                 'description' => 'New folder.',
             ],
             'new_fond' => [
-                'description' => 'New fond',
+                'description' => 'New fond.',
             ],
             'new_archive' => [
                 'description' => 'New archive.',

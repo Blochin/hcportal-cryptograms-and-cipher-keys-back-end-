@@ -28,7 +28,7 @@ function getMimeType(file, fallback = null) {
 
 Vue.component("cryptogram-form", {
     mixins: [AppForm],
-    props: ["tags", "categories", "persons"],
+    props: ["tags", "categories", "persons", "archives", "fonds", "folders"],
     components: {
         Cropper,
         Preview,
@@ -58,12 +58,23 @@ Vue.component("cryptogram-form", {
                 state: { id: "approved", title: "Approved" },
                 note: "",
                 thumbnail: "",
+                availability_type: "archive",
+
+                new_folder: "",
+                new_fond: "",
+                new_archive: "",
+
+                folder: "",
+                fond: "",
+                archive: "",
             },
             filteredTags: [],
             filteredKeys: [],
             filteredCategories: [],
             filteredSubcategories: [],
             filteredUsers: [],
+            filteredFonds: [],
+            filteredFolders: [],
 
             state: "",
             note: "",
@@ -123,6 +134,21 @@ Vue.component("cryptogram-form", {
         this.filteredUsers = this.persons;
     },
     methods: {
+        filterFonds() {
+            this.form.fond = "";
+            this.form.folder = "";
+            this.filteredFonds = collect(this.fonds)
+                .where("archive_id", this.form.archive.id)
+                .toArray();
+        },
+
+        filterFolders() {
+            this.form.folder = "";
+            this.filteredFolders = collect(this.folders)
+                .where("fond_id", this.form.fond.id)
+                .toArray();
+        },
+
         getPostData: function getPostData() {
             var _this3 = this;
 
