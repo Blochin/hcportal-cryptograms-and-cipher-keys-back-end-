@@ -9,7 +9,8 @@
                 "id": 1,
                 "name": "huhuhuuu",
                 "description": "<p>ddfdgdfg</p>",
-                "availability": "avvvv",
+                "availability_type": "other",
+                "availability": "Unknown",
                 "category": {
                     "id": 3,
                     "name": "Podkategoria 2",

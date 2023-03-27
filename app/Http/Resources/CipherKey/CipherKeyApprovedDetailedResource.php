@@ -25,6 +25,8 @@ class CipherKeyApprovedDetailedResource extends JsonResource
         return [
             'id' => $this->id,
             'signature' => $this->signature,
+            'availability_type' => $this->availability_type,
+            'availability' => $this->availability,
             'description' => $this->description,
             'complete_structure' => $this->complete_structure,
             'used_chars' => $this->used_chars,

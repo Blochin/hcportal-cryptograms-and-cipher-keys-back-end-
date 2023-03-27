@@ -8,6 +8,8 @@
             {
                 "id": 2,
                 "signature": "sdf sdfsdfsdf sdfsdf",
+                "availability_type": "archive",
+                "availability": null,
                 "description": "<p>sdf sd fsd fs df sdf sdf sdf sdf sdfsdf sdfsdf sdfsdf</p>",
                 "complete_structure": "sxcvxc v xcvxcv xcvxcv",
                 "used_chars": "sdfsd fsdf",
