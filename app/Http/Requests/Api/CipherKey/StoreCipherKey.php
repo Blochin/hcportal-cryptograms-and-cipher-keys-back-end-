@@ -68,6 +68,9 @@ class StoreCipherKey extends JsonFormRequest
     public function bodyParameters()
     {
         return [
+            'availability' => [
+                'description' => 'Availability',
+            ],
             'complete_structure' => [
                 'description' => 'Complete structure',
             ],
