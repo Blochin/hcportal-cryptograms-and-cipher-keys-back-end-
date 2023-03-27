@@ -27,6 +27,9 @@ class UpdateCipherKey extends JsonFormRequest
     public function rules(): array
     {
         return [
+            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+                return $this->input('archive') == null;
+            })],
             'description' => ['nullable', 'string'],
             'signature' => ['required', 'string', Rule::unique('cipher_keys', 'signature')->ignore($this->signature, 'signature')],
             'complete_structure' => ['required', 'string'],
@@ -39,9 +42,15 @@ class UpdateCipherKey extends JsonFormRequest
             // 'new_fond' => ['nullable', 'string'],
             // 'new_archive' => ['nullable', 'string'],
             'used_around' => ['nullable', 'string'],
-            'folder' => 'required',
-            'archive' => 'required',
-            'fond' => 'required',
+            'archive' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'fond' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'folder' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
             'location_name' => ['nullable', 'string'],
             'language_id' => ['required', 'integer', 'exists:languages,id'],
             'users' => ['nullable', 'json'],

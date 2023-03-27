@@ -56,13 +56,13 @@ class UpdateCryptogram extends FormRequest
             'thumbnail_link' => ['nullable', 'string'],
             'thumbnail_base64' => ['nullable', 'text'],
 
-            'folder' => ['nullable', Rule::requiredIf(function () {
-                return $this->input('availability') == null;
-            })],
             'archive' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null;
             })],
             'fond' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'folder' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null;
             })],
         ];

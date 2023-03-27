@@ -22,8 +22,8 @@ class CipherKey extends Model
         'group_id',
         'state',
         'note',
-        'created_by'
-
+        'created_by',
+        'availability'
     ];
 
 
@@ -58,7 +58,7 @@ class CipherKey extends Model
         ['id' => self::STATUS_REJECTED, 'title' => 'Rejected', 'show' => true],
     ];
 
-    protected $appends = ['resource_url', 'fond', 'archive', 'state_badge', 'used_to_formatted', 'used_from_formatted', 'continent', 'location_name'];
+    protected $appends = ['resource_url', 'fond', 'archive', 'state_badge', 'used_to_formatted', 'used_from_formatted', 'continent', 'location_name', 'availability_type'];
 
     /* ************************ ACCESSOR ************************* */
 
@@ -67,6 +67,11 @@ class CipherKey extends Model
         return url('/admin/cipher-keys/' . $this->getKey());
     }
 
+
+    public function getAvailabilityTypeAttribute()
+    {
+        return $this->availability ? Cryptogram::AVAILABILITY_TYPE : Cryptogram::ARCHIVE_TYPE;
+    }
 
     public function getFondAttribute()
     {

@@ -27,6 +27,9 @@ class UpdateCipherKey extends FormRequest
     public function rules(): array
     {
         return [
+            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+                return $this->input('archive') == null;
+            })],
             'description' => ['nullable', 'string'],
             'signature' => ['nullable', 'string', Rule::unique('cipher_keys', 'signature')->ignore($this->signature, 'signature')],
             'complete_structure' => ['required', 'string'],
@@ -35,13 +38,24 @@ class UpdateCipherKey extends FormRequest
             'key_type' => ['nullable',],
             'used_from' => ['nullable', 'date'],
             'used_to' => ['nullable', 'date'],
-            'new_folder' => ['nullable', 'string'],
-            'new_fond' => ['nullable', 'string'],
-            'new_archive' => ['nullable', 'string'],
-            'used_around' => ['nullable', 'string'],
-            'folder' => 'nullable|required_if:new_folder,null',
-            'archive' => 'nullable|required_if:new_archive,null',
-            'fond' => 'nullable|required_if:new_fond,null',
+            'new_folder' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null && $this->input('folder') == null;
+            })],
+            'new_fond' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null && $this->input('fond') == null;
+            })],
+            'new_archive' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null && $this->input('archive') == null;
+            })],
+            'archive' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null && $this->input('new_archive') == null;
+            })],
+            'fond' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null && $this->input('new_fond') == null;
+            })],
+            'folder' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null && $this->input('new_folder') == null;
+            })],
             'location_name' => ['nullable',],
             'language' => ['required',],
             'group' => ['nullable',],

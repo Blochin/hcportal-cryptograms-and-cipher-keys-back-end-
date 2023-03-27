@@ -49,13 +49,13 @@ class StoreCryptogram extends FormRequest
             'date' => ['nullable', 'date'],
             'date_around' => ['nullable', 'string'],
 
-            'folder' => ['nullable', Rule::requiredIf(function () {
-                return $this->input('availability') == null;
-            })],
             'archive' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null;
             })],
             'fond' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'folder' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null;
             })],
 

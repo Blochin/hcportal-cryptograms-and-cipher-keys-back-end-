@@ -247,21 +247,52 @@
     </div>
 </div>
 
-<div class="form-group row align-items-center"
-    :class="{'has-danger': errors.has('description'), 'has-success': fields.description && fields.description.valid }">
-    <label for="description" class="col-form-label"
-        :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.description') }}</label>
-    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-        <div>
-            <wysiwyg v-model="form.description" v-validate="''" id="description" name="description"
-                :config="mediaWysiwygConfig"></wysiwyg>
+<div class="row">
+    <div class="col-12 col-lg-2">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('availability'), 'has-success': fields.availability_type && fields.availability_type.valid }">
+            <label for="availability_type" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.availability_type') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <div class="d-inline-block mr-5">
+
+                    <input type="radio" v-model="form.availability_type" value="archive" v-validate="'required'"
+                        @input="validate($event)" class="form-control"
+                        :class="{'': errors.has('availability_type'), '': fields.availability_type && fields.availability_type.valid}"
+                        id="archive" name="archive">
+                    <label for="archive" class="mt-2">Archive</label>
+                </div>
+                <div class="d-inline-block">
+                    <input type="radio" v-model="form.availability_type" value="other" v-validate="'required'"
+                        @input="validate($event)" class="form-control"
+                        :class="{'': errors.has('availability_type'), '': fields.availability_type && fields.availability_type.valid}"
+                        id="other" name="other">
+                    <label for="other" class="mt-2">Other</label>
+                </div>
+                <div v-if="errors.has('availability_type')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('availability_type') }}</div>
+            </div>
         </div>
-        <div v-if="errors.has('description')" class="form-control-feedback form-text" v-cloak>
-            @{{ errors . first('description') }}</div>
+    </div>
+    <div class="col-12 col-lg-4" v-if="form.availability_type == 'other'">
+        <div class=" form-group row align-items-center"
+            :class="{'has-danger': errors.has('availability'), 'has-success': fields.availability && fields.availability.valid }">
+            <label for="availability" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.availability') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <input type="text" v-model="form.availability"
+                    v-validate="form.availability_type == 'other' ? 'required' : ''" @input="validate($event)"
+                    class="form-control"
+                    :class="{'form-control-danger': errors.has('availability'), 'form-control-success': fields.availability && fields.availability.valid}"
+                    id="availability" name="availability"
+                    placeholder="{{ trans('admin.cryptogram.columns.availability') }}">
+                <div v-if="errors.has('availability')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('availability') }}</div>
+            </div>
+        </div>
     </div>
 </div>
-
-<div class="row">
+<div class="row" v-if="form.availability_type == 'archive'">
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
             :class="{'has-danger': errors.has('archive'), 'has-success': fields.archive && fields.archive.valid }">
@@ -294,7 +325,7 @@
         <div class="form-group row align-items-center"
             :class="{'has-danger': errors.has('fond'), 'has-success': fields.fond && fields.fond.valid }">
             <label for="fond" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.folder') }}</label>
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.fond') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
                 <multiselect v-model="form.fond" label="name" @input="filterFolders" :options="filteredFonds"
                     :option-height="104" placeholder="{{ trans('admin.cipher-key.columns.fond') }}" track-by="id">
@@ -346,6 +377,21 @@
         </div>
     </div>
 </div>
+
+<div class="form-group row align-items-center"
+    :class="{'has-danger': errors.has('description'), 'has-success': fields.description && fields.description.valid }">
+    <label for="description" class="col-form-label"
+        :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.description') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+        <div>
+            <wysiwyg v-model="form.description" v-validate="''" id="description" name="description"
+                :config="mediaWysiwygConfig"></wysiwyg>
+        </div>
+        <div v-if="errors.has('description')" class="form-control-feedback form-text" v-cloak>
+            @{{ errors . first('description') }}</div>
+    </div>
+</div>
+
 
 <div class="row">
     <div :class="form.users.length > 0 ? 'col-md-12' : 'col-md-4'">

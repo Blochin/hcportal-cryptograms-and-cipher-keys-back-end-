@@ -26,6 +26,8 @@ Vue.component("cipher-key-form", {
                 new_folder: "",
                 new_fond: "",
                 new_archive: "",
+                availability: "",
+                availability_type: "archive",
                 users: [],
                 images: [],
                 files: [],

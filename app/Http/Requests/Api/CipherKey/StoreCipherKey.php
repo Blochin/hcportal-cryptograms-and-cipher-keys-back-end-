@@ -28,6 +28,9 @@ class StoreCipherKey extends JsonFormRequest
     public function rules(): array
     {
         return [
+            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+                return $this->input('archive') == null;
+            })],
             'description' => ['nullable', 'string'],
             'signature' => ['required', 'string', Rule::unique('cipher_keys', 'signature')],
             'complete_structure' => ['required', 'string'],
@@ -37,9 +40,15 @@ class StoreCipherKey extends JsonFormRequest
             'used_from' => ['nullable', 'date'],
             'used_to' => ['nullable', 'date'],
             'used_around' => ['nullable', 'string'],
-            'folder' => 'required',
-            'archive' => 'required',
-            'fond' => 'required',
+            'archive' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'fond' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
+            'folder' => ['nullable', Rule::requiredIf(function () {
+                return $this->input('availability') == null;
+            })],
             'location_name' => ['nullable', 'string'],
             'language_id' => ['required', 'integer'],
             'users' => ['nullable', 'json'],
