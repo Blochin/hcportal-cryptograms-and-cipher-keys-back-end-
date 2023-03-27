@@ -5,6 +5,8 @@
     "data": {
         "id": 22,
         "signature": "atosportos22",
+        "availability_type": "other",
+        "availability": "Unknown",
         "description": "skuska popisuww",
         "complete_structure": "dfdfdfdfdf",
         "used_chars": "sasasasa",
