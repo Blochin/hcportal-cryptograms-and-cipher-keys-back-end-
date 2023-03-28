@@ -107,7 +107,7 @@ $factory->define(App\Models\Cryptogram::class, static function (Faker\Generator 
         'day' => $faker->randomNumber(5),
         'description' => $faker->text(),
         'flag' => $faker->boolean(),
-        'image_url' => $faker->sentence,
+        'thumbnail_url' => $faker->sentence,
         'language_id' => $faker->sentence,
         'location_id' => $faker->sentence,
         'month' => $faker->randomNumber(5),
@@ -164,7 +164,7 @@ $factory->define(App\Models\DigitalizedTranscription::class, static function (Fa
         'note' => $faker->text(),
         'digitalization_date' => $faker->dateTime,
         'created_by' => $faker->sentence,
-        
-        
+
+
     ];
 });

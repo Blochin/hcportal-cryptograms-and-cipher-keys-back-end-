@@ -25,7 +25,7 @@ class IndexCryptogram extends FormRequest
     public function rules(): array
     {
         return [
-            'orderBy' => 'in:availability,category_id,day,flag,id,image_url,language_id,location_id,month,name,recipient_id,sender_id,solution_id,state_id,year|nullable',
+            'orderBy' => 'in:availability,category_id,day,flag,id,thumbnail_url,language_id,location_id,month,name,recipient_id,sender_id,solution_id,state_id,year|nullable',
             'orderDirection' => 'in:asc,desc|nullable',
             'search' => 'string|nullable',
             'page' => 'integer|nullable',

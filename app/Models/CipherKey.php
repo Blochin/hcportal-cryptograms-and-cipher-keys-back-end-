@@ -8,10 +8,10 @@ class CipherKey extends Model
 {
     protected $fillable = [
         'description',
-        'signature',
+        'name',
         'complete_structure',
         'used_chars',
-        'cipher_type',
+        'category_id',
         'key_type',
         'used_from',
         'used_to',
@@ -150,9 +150,9 @@ class CipherKey extends Model
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
-    public function cipherType()
+    public function category()
     {
-        return $this->belongsTo(CipherType::class, 'cipher_type');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function keyType()

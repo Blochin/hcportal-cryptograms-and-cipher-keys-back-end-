@@ -90,6 +90,21 @@
             </div>
         </div>
     </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('used_chars'), 'has-success': fields.used_chars && fields.used_chars.valid }">
+            <label for="used_chars" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.used_chars') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <div>
+                    <textarea class="form-control" v-model="form.used_chars" v-validate="''" id="used_chars"
+                        name="used_chars"></textarea>
+                </div>
+                <div v-if="errors.has('used_chars')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('used_chars') }}</div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="row d-flex align-items-center">
     <div class="col-12 col-lg-3">
@@ -171,36 +186,9 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('recipient_id'), 'has-success': fields.recipient_id && fields.recipient_id.valid }">
-            <label for="recipient_id" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.recipient_id') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.recipient" :multiple="false" :taggable="true" :options="filteredUsers"
-                    @tag="addUserPost($event, 'recipient')" label="name" :option-height="104"
-                    placeholder="{{ trans('admin.cryptogram.columns.recipient_id') }}" track-by="id">
-                </multiselect>
-                <div v-if="errors.has('recipient_id')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('recipient_id') }}</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('sender_id'), 'has-success': fields.sender_id && fields.sender_id.valid }">
-            <label for="sender_id" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.sender_id') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.sender" :multiple="false" :taggable="true" :options="filteredUsers"
-                    @tag="addUserPost($event,'sender')" label="name" :option-height="104"
-                    placeholder="{{ trans('admin.cryptogram.columns.sender_id') }}" track-by="id">
-                </multiselect>
-                <div v-if="errors.has('sender_id')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('sender_id') }}</div>
-            </div>
-        </div>
-    </div>
+
+</div>
+<div class="row">
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
             :class="{'has-danger': errors.has('tags'), 'has-success': fields.tags && fields.tags.valid }">
@@ -214,24 +202,6 @@
                 </multiselect>
                 <div v-if="errors.has('tags')" class="form-control-feedback form-text" v-cloak>
                     @{{ errors . first('tags') }}</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('solution'), 'has-success': fields.solution && fields.solution.valid }">
-            <label for="solution_id" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.solution_id') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.solution" label="name" :options="{{ $solutions->toJSON() }}"
-                    :option-height="104" placeholder="{{ trans('admin.cryptogram.columns.solution_id') }}"
-                    track-by="id">
-                </multiselect>
-                <div v-if="errors.has('solution')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('solution') }}</div>
             </div>
         </div>
     </div>
@@ -262,142 +232,6 @@
                     @{{ errors . first('note') }}</div>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="form-group row align-items-center"
-    :class="{'has-danger': errors.has('description'), 'has-success': fields.description && fields.description.valid }">
-    <label for="description" class="col-form-label"
-        :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.description') }}</label>
-    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-        <div>
-            <wysiwyg v-model="form.description" v-validate="''" id="description" name="description"
-                :config="mediaWysiwygConfig"></wysiwyg>
-        </div>
-        <div v-if="errors.has('description')" class="form-control-feedback form-text" v-cloak>
-            @{{ errors . first('description') }}</div>
-    </div>
-</div>
-
-
-<div class="row">
-    <div :class="form.groups.length > 0 ? 'col-md-4' : 'col-md-4'" v-for="(input, index) in form.groups" :key="index">
-        <div class="card">
-            <div class="card-header">
-                <div class="form-group row align-items-end">
-                    <div class="col-10">
-                        <label for="groups" class="col-form-label">{{ trans('admin.cryptogram.columns.group.name') }}
-                        </label>
-                        <input type="text" v-model="form.groups[index].description" v-validate="''"
-                            @input="validate($event)" class="form-control"
-                            :class="{'form-control-danger': errors.has('name'), 'form-control-success': fields.name && fields.name}"
-                            :id="'name' + index" :name="'name' + index"
-                            placeholder="{{ trans('admin.cryptogram.columns.group.name') }}">
-                    </div>
-                    <div class="col-2">
-                        <a v-on:click.stop="deleteDatagroup(index)" class="btn btn-danger" style="color: white">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div v-for="(input, indexData) in form.groups[index].data" :key="'data'+indexData" class="row">
-                    <div :class="form.groups[index].data.length > 0 ? 'col-md-12 card' : 'col-md-4'">
-                        <div class="form-group row align-items-end">
-                            <div class="col-10">
-                                <label :for="'title'+ index + indexData+''"
-                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.title') }}
-                                </label>
-                                <input type="text" v-model="form.groups[index].data[indexData].title" v-validate="''"
-                                    @input="validate($event)" class="form-control"
-                                    :class="{'form-control-danger': errors.has('title'+ index + indexData), 'form-control-success': fields.title+index+indexData && fields.title+index+indexData}"
-                                    :id="'title'+ index + indexData" :name="'title'+ index + indexData"
-                                    placeholder="{{ trans('admin.cryptogram.columns.data.title') }}">
-                            </div>
-                            <div class="col-2">
-                                <a v-on:click.stop="deleteData(index, indexData)" class="btn btn-danger"
-                                    style="color: white">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-end">
-                            <div class="col-md-12">
-                                <label for="groups"
-                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.types') }}
-                                </label>
-                                <multiselect v-model="form.groups[index].data[indexData].type" label="name"
-                                    :options="{{ collect(App\Models\Data::TYPES)->toJSON() }}" :option-height="104"
-                                    placeholder="{{ trans('admin.cryptogram.columns.data.types') }}" track-by="id">
-                                </multiselect>
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-end"
-                            v-if="form.groups[index].data[indexData].type?.id == 'text'">
-                            <div class="col-md-12">
-                                <label :for="'text'+ index + indexData"
-                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.text') }}
-                                </label>
-                                <textarea v-model="form.groups[index].data[indexData].text" v-validate="''"
-                                    @input="validate($event)" class="form-control"
-                                    :class="{'form-control-danger': errors.has('text'+ index + indexData), 'form-control-success': fields.text+index+indexData && fields.text+index+indexData}"
-                                    :id="'text'+ index + indexData" :name="'text'+ index + indexData"> </textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row align-items-end"
-                            v-if="form.groups[index].data[indexData].type?.id == 'link'">
-                            <div class="col-md-12">
-                                <label :for="'link'+ index + indexData"
-                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.link') }}
-                                </label>
-                                <input type="text" v-model="form.groups[index].data[indexData].link" v-validate="''"
-                                    @input="validate($event)" class="form-control"
-                                    :class="{'form-control-danger': errors.has('link'+ index + indexData), 'form-control-success': fields.link+index+indexData && fields.link+index+indexData}"
-                                    :id="'title'+ index + indexData" :name="'title'+ index + indexData"
-                                    placeholder="{{ trans('admin.cryptogram.columns.data.link') }}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row align-items-end"
-                            v-if="form.groups[index].data[indexData].type?.id == 'image'">
-                            <div class="col-md-10">
-                                <label :for="'link'+ index + indexData+''"
-                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.image') }}
-                                </label>
-                                <input type="file" class="form-control" :id="'images['+index+']['+ indexData+']'"
-                                    v-validate="''" :name="'images['+index+']['+ indexData+']'" :ref="'files'" />
-                            </div>
-                            <div class="col-md-2" v-if="form.groups[index].data[indexData].image">
-                                <a :href="form.groups[index].data[indexData].image"><img
-                                        :src="form.groups[index].data[indexData].image"
-                                        :alt="form.groups[index].data[indexData].title" width="30px">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div
-                    :class="isFormLocalized ? 'col-md-12 text-center mt-3 mb-3' : 'col-md-12 col-xl-12 text-center mt-3 mb-3'">
-                    <a v-on:click.prevent="addData(index)" class="btn btn-primary" style="color: white">
-                        <i class="fa fa-plus"></i> {{ trans('admin.cryptogram.columns.add_data') }}
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div :class="isFormLocalized ? 'col-md-12 text-center mt-3 mb-3' : 'col-md-12 col-xl-12 text-center mt-3 mb-3'">
-        <a v-on:click.prevent="addDatagroup" class="btn btn-primary" style="color: white">
-            <i class="fa fa-plus"></i> {{ trans('admin.cryptogram.columns.add_datagroup') }}
-        </a>
-
-    </div>
-    <div :class="isFormLocalized ? 'col-md-12 text-center mt-3 mb-3' : 'col-md-12 col-xl-12 text-center mt-3 mb-3'">
-        <a v-on:click.prevent="addPredefinedGroups" class="btn btn-primary" style="color: white">
-            <i class="fa fa-plus"></i> {{ trans('admin.cryptogram.columns.add_predefined') }}
-        </a>
     </div>
 </div>
 <div class="row">
@@ -529,6 +363,187 @@
                     @{{ errors . first('new_folder') }}</div>
             </div>
         </div>
+    </div>
+</div>
+<div class="form-group row align-items-center"
+    :class="{'has-danger': errors.has('description'), 'has-success': fields.description && fields.description.valid }">
+    <label for="description" class="col-form-label"
+        :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.description') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+        <div>
+            <wysiwyg v-model="form.description" v-validate="''" id="description" name="description"
+                :config="mediaWysiwygConfig"></wysiwyg>
+        </div>
+        <div v-if="errors.has('description')" class="form-control-feedback form-text" v-cloak>
+            @{{ errors . first('description') }}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('solution'), 'has-success': fields.solution && fields.solution.valid }">
+            <label for="solution_id" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.solution_id') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.solution" label="name" :options="{{ $solutions->toJSON() }}"
+                    :option-height="104" placeholder="{{ trans('admin.cryptogram.columns.solution_id') }}"
+                    track-by="id">
+                </multiselect>
+                <div v-if="errors.has('solution')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('solution') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('sender_id'), 'has-success': fields.sender_id && fields.sender_id.valid }">
+            <label for="sender_id" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.sender_id') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.sender" :multiple="false" :taggable="true" :options="filteredUsers"
+                    @tag="addUserPost($event,'sender')" label="name" :option-height="104"
+                    placeholder="{{ trans('admin.cryptogram.columns.sender_id') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('sender_id')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('sender_id') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('recipient_id'), 'has-success': fields.recipient_id && fields.recipient_id.valid }">
+            <label for="recipient_id" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.recipient_id') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.recipient" :multiple="false" :taggable="true" :options="filteredUsers"
+                    @tag="addUserPost($event, 'recipient')" label="name" :option-height="104"
+                    placeholder="{{ trans('admin.cryptogram.columns.recipient_id') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('recipient_id')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('recipient_id') }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div :class="form.groups.length > 0 ? 'col-md-4' : 'col-md-4'" v-for="(input, index) in form.groups" :key="index">
+        <div class="card">
+            <div class="card-header">
+                <div class="form-group row align-items-end">
+                    <div class="col-10">
+                        <label for="groups" class="col-form-label">{{ trans('admin.cryptogram.columns.group.name') }}
+                        </label>
+                        <input type="text" v-model="form.groups[index].description" v-validate="''"
+                            @input="validate($event)" class="form-control"
+                            :class="{'form-control-danger': errors.has('name'), 'form-control-success': fields.name && fields.name}"
+                            :id="'name' + index" :name="'name' + index"
+                            placeholder="{{ trans('admin.cryptogram.columns.group.name') }}">
+                    </div>
+                    <div class="col-2">
+                        <a v-on:click.stop="deleteDatagroup(index)" class="btn btn-danger" style="color: white">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div v-for="(input, indexData) in form.groups[index].data" :key="'data'+indexData" class="row">
+                    <div :class="form.groups[index].data.length > 0 ? 'col-md-12 card' : 'col-md-4'">
+                        <div class="form-group row align-items-end">
+                            <div class="col-10">
+                                <label :for="'title'+ index + indexData+''"
+                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.title') }}
+                                </label>
+                                <input type="text" v-model="form.groups[index].data[indexData].title" v-validate="''"
+                                    @input="validate($event)" class="form-control"
+                                    :class="{'form-control-danger': errors.has('title'+ index + indexData), 'form-control-success': fields.title+index+indexData && fields.title+index+indexData}"
+                                    :id="'title'+ index + indexData" :name="'title'+ index + indexData"
+                                    placeholder="{{ trans('admin.cryptogram.columns.data.title') }}">
+                            </div>
+                            <div class="col-2">
+                                <a v-on:click.stop="deleteData(index, indexData)" class="btn btn-danger"
+                                    style="color: white">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-end">
+                            <div class="col-md-12">
+                                <label for="groups"
+                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.types') }}
+                                </label>
+                                <multiselect v-model="form.groups[index].data[indexData].type" label="name"
+                                    :options="{{ collect(App\Models\Data::TYPES)->toJSON() }}" :option-height="104"
+                                    placeholder="{{ trans('admin.cryptogram.columns.data.types') }}" track-by="id">
+                                </multiselect>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-end"
+                            v-if="form.groups[index].data[indexData].type?.id == 'text'">
+                            <div class="col-md-12">
+                                <label :for="'text'+ index + indexData"
+                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.text') }}
+                                </label>
+                                <textarea v-model="form.groups[index].data[indexData].text" v-validate="''"
+                                    @input="validate($event)" class="form-control"
+                                    :class="{'form-control-danger': errors.has('text'+ index + indexData), 'form-control-success': fields.text+index+indexData && fields.text+index+indexData}"
+                                    :id="'text'+ index + indexData" :name="'text'+ index + indexData"> </textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-end"
+                            v-if="form.groups[index].data[indexData].type?.id == 'link'">
+                            <div class="col-md-12">
+                                <label :for="'link'+ index + indexData"
+                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.link') }}
+                                </label>
+                                <input type="text" v-model="form.groups[index].data[indexData].link" v-validate="''"
+                                    @input="validate($event)" class="form-control"
+                                    :class="{'form-control-danger': errors.has('link'+ index + indexData), 'form-control-success': fields.link+index+indexData && fields.link+index+indexData}"
+                                    :id="'title'+ index + indexData" :name="'title'+ index + indexData"
+                                    placeholder="{{ trans('admin.cryptogram.columns.data.link') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row align-items-end"
+                            v-if="form.groups[index].data[indexData].type?.id == 'image'">
+                            <div class="col-md-10">
+                                <label :for="'link'+ index + indexData+''"
+                                    class="col-form-label">{{ trans('admin.cryptogram.columns.data.image') }}
+                                </label>
+                                <input type="file" class="form-control" :id="'images['+index+']['+ indexData+']'"
+                                    v-validate="''" :name="'images['+index+']['+ indexData+']'" :ref="'files'" />
+                            </div>
+                            <div class="col-md-2" v-if="form.groups[index].data[indexData].image">
+                                <a :href="form.groups[index].data[indexData].image"><img
+                                        :src="form.groups[index].data[indexData].image"
+                                        :alt="form.groups[index].data[indexData].title" width="30px">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div
+                    :class="isFormLocalized ? 'col-md-12 text-center mt-3 mb-3' : 'col-md-12 col-xl-12 text-center mt-3 mb-3'">
+                    <a v-on:click.prevent="addData(index)" class="btn btn-primary" style="color: white">
+                        <i class="fa fa-plus"></i> {{ trans('admin.cryptogram.columns.add_data') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div :class="isFormLocalized ? 'col-md-12 text-center mt-3 mb-3' : 'col-md-12 col-xl-12 text-center mt-3 mb-3'">
+        <a v-on:click.prevent="addDatagroup" class="btn btn-primary" style="color: white">
+            <i class="fa fa-plus"></i> {{ trans('admin.cryptogram.columns.add_datagroup') }}
+        </a>
+
+    </div>
+    <div :class="isFormLocalized ? 'col-md-12 text-center mt-3 mb-3' : 'col-md-12 col-xl-12 text-center mt-3 mb-3'">
+        <a v-on:click.prevent="addPredefinedGroups" class="btn btn-primary" style="color: white">
+            <i class="fa fa-plus"></i> {{ trans('admin.cryptogram.columns.add_predefined') }}
+        </a>
     </div>
 </div>
 {{-- <div class="row">

@@ -12,6 +12,7 @@ use App\Http\Requests\Admin\CipherKey\UpdateStateCipherKey;
 use App\Http\Requests\Admin\General\UpdateState;
 use App\Mail\UpdateCipherKeyStateMail;
 use App\Models\Archive;
+use App\Models\Category;
 use App\Models\CipherKey;
 use App\Models\CipherType;
 use App\Models\Folder;
@@ -55,10 +56,10 @@ class CipherKeysController extends Controller
             $request,
 
             // set columns to query
-            ['id', 'cipher_type', 'complete_structure', 'signature', 'created_by', 'key_type', 'used_from', 'used_to', 'used_around', 'folder_id', 'location_id', 'language_id', 'group_id', 'state'],
+            ['id', 'category_id', 'complete_structure', 'name', 'created_by', 'key_type', 'used_from', 'used_to', 'used_around', 'folder_id', 'location_id', 'language_id', 'group_id', 'state'],
 
             // set columns to searchIn
-            ['id', 'description', 'signature', 'complete_structure', 'used_chars', 'cipher_type', 'key_type', 'used_around'],
+            ['id', 'description', 'name', 'complete_structure', 'used_chars', 'category_id', 'key_type', 'used_around'],
 
             function (Builder $query) {
                 $query->with(['language', 'submitter']);
@@ -88,7 +89,7 @@ class CipherKeysController extends Controller
         $this->authorize('admin.cipher-key.create');
 
         $keyTypes = KeyType::all();
-        $cipherTypes = CipherType::all();
+        $categories = Category::with('children')->whereNull('parent_id')->orderBy('name', 'asc')->get();
         $locations = Location::all();
         $languages = Language::all();
         $groups = CipherKey::all();
@@ -105,7 +106,7 @@ class CipherKeysController extends Controller
 
         return view('admin.cipher-key.create', compact(
             'keyTypes',
-            'cipherTypes',
+            'categories',
             'locations',
             'languages',
             'groups',
@@ -182,7 +183,7 @@ class CipherKeysController extends Controller
 
 
         $keyTypes = KeyType::all();
-        $cipherTypes = CipherType::all();
+        $categories = Category::with('children')->whereNull('parent_id')->orderBy('name', 'asc')->get();
         $locations = Location::all();
         $languages = Language::all();
         $groups = CipherKey::all();
@@ -198,7 +199,6 @@ class CipherKeysController extends Controller
         $continents = collect(Location::CONTINENTS)->toJSON();
 
 
-
         //Load relationships
         $cipherKey->load([
             'images',
@@ -210,14 +210,25 @@ class CipherKeysController extends Controller
             'tags',
             'folder.fond',
             'submitter',
-            'cipherType',
+            'category',
             'keyType',
             'cryptograms',
         ]);
 
+        //Category transformation
+        if ($cipherKey->category->parent) {
+            $categoryParent = $cipherKey->category->parent()->with('children')->first();
+            $cipherKey->subcategory = $cipherKey->category;
+            $cipherKey->category = $categoryParent;
+        } else {
+            $cipherKey->category = $cipherKey->category;
+            $cipherKey->subcategory = "";
+        }
+
+        $cipherKey->unsetRelation('category');
+
         return view('admin.cipher-key.edit', compact(
             'keyTypes',
-            'cipherTypes',
             'locations',
             'languages',
             'groups',
@@ -228,7 +239,8 @@ class CipherKeysController extends Controller
             'tags',
             'cipherKey',
             'states',
-            'continents'
+            'continents',
+            'categories'
         ));
     }
 

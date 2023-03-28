@@ -49,6 +49,8 @@ class StoreCryptogram extends FormRequest
             'date' => ['nullable', 'date'],
             'date_around' => ['nullable', 'string'],
 
+            'used_chars' => ['nullable', 'string'],
+
             'archive' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null;
             })],
@@ -109,6 +111,10 @@ class StoreCryptogram extends FormRequest
             ],
             'name' => [
                 'description' => 'Cryptogram name',
+            ],
+            'used_chars' => [
+                'description' => 'Used chars',
+                'example' => "Used characters",
             ],
             'recipient' => [
                 'description' => 'Recipient',

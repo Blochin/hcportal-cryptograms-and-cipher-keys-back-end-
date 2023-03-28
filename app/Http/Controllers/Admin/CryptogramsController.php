@@ -59,10 +59,10 @@ class CryptogramsController extends Controller
             $request,
 
             // set columns to query
-            ['availability', 'category_id', 'id', 'date', 'date_around', 'image_url', 'language_id', 'location_id', 'name', 'recipient_id', 'sender_id', 'solution_id', 'state', 'created_by'],
+            ['availability', 'category_id', 'id', 'date', 'date_around', 'thumbnail_url', 'language_id', 'location_id', 'name', 'recipient_id', 'sender_id', 'solution_id', 'state', 'created_by'],
 
             // set columns to searchIn
-            ['availability', 'description', 'id', 'image_url', 'name'],
+            ['availability', 'description', 'id', 'thumbnail_url', 'name'],
 
             function (Builder $query) {
                 $query->with(['language', 'submitter']);

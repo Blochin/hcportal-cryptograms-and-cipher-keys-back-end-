@@ -35,6 +35,7 @@ class UpdateCryptogram extends FormRequest
             })],
             'category' => ['required', 'string'],
             'subcategory' => ['nullable', 'string'],
+            'used_chars' => ['nullable', 'string'],
 
             'description' => ['nullable', 'string'],
             'language' => ['required', 'string'],
@@ -92,7 +93,7 @@ class UpdateCryptogram extends FormRequest
     {
         $sanitized = $this->validated();
 
-        $sanitized['image_url'] = 'sdsd';
+        $sanitized['thumbnail_url'] = 'sdsd';
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
         $sanitized['solution_id'] = $sanitized['solution'] ? json_decode($sanitized['solution'])->id : null;
         $sanitized['sender_id'] = $sanitized['sender'] ? json_decode($sanitized['sender'])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;

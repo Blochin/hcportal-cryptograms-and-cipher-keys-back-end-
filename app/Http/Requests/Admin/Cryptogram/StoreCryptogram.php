@@ -40,6 +40,8 @@ class StoreCryptogram extends FormRequest
             'language' => ['required', 'string'],
             'location_name' => ['nullable', 'string'],
 
+            'used_chars' => ['nullable', 'string'],
+
             'folder' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('new_folder') == null && $this->input('availability_type') == "archive";
             })],
@@ -90,7 +92,7 @@ class StoreCryptogram extends FormRequest
         $sanitized = $this->validated();
 
 
-        $sanitized['image_url'] = 'sdsd';
+        $sanitized['thumbnail_url'] = 'sdsd';
 
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
         $sanitized['solution_id'] = $sanitized['solution'] ? json_decode($sanitized['solution'])->id : null;

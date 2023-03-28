@@ -27,7 +27,7 @@ class Cryptogram extends Model implements HasMedia
         'date',
         'date_around',
         'description',
-        'image_url',
+        'thumbnail_url',
         'language_id',
         'location_id',
         'name',
@@ -38,7 +38,8 @@ class Cryptogram extends Model implements HasMedia
         'state_id',
         'created_by',
         'state',
-        'note'
+        'note',
+        'used_chars'
     ];
 
     public const AVAILABILITY_TYPE = "other";

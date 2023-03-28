@@ -62,7 +62,7 @@
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.cipher-key.columns.id') }}</th>
                                         <th is='sortable' :column="'signature'">
-                                            {{ trans('admin.cipher-key.columns.signature') }}</th>
+                                            {{ trans('admin.cipher-key.columns.name') }}</th>
                                         <th is='sortable' :column="'language_id'">
                                             {{ trans('admin.cipher-key.columns.language') }}</th>
 
@@ -113,7 +113,7 @@
                                         </td>
 
                                         <td>@{{ item . id }}</td>
-                                        <td>@{{ item . signature }}</td>
+                                        <td>@{{ item . name }}</td>
                                         <td>@{{ item . language . name }}</td>
                                         <td v-if="item . used_from || item . used_to">from
                                             @{{ item . used_from_formatted }} to

@@ -32,10 +32,11 @@ class StoreCipherKey extends JsonFormRequest
                 return $this->input('archive') == null;
             })],
             'description' => ['nullable', 'string'],
-            'signature' => ['required', 'string', Rule::unique('cipher_keys', 'signature')],
+            'name' => ['required', 'string', Rule::unique('cipher_keys', 'name')],
             'complete_structure' => ['required', 'string'],
             'used_chars' => ['nullable', 'string'],
-            'cipher_type' => ['required', 'integer', 'exists:cipher_types,id'],
+            'category_id' => ['required', 'string', 'exists:categories,id'],
+            'subcategory_id' => ['nullable', 'string', 'exists:categories,id'],
             'key_type' => ['required', 'integer', 'exists:key_types,id'],
             'used_from' => ['nullable', 'date'],
             'used_to' => ['nullable', 'date'],
@@ -77,14 +78,19 @@ class StoreCipherKey extends JsonFormRequest
             'description' => [
                 'description' => 'Description',
             ],
-            'signature' => [
-                'description' => 'Date to be used as the publication date.',
+            'name' => [
+                'description' => 'Cipher key name',
             ],
             'used_chars' => [
                 'description' => 'Category the post belongs to.',
             ],
-            'cipher_type' => [
-                'description' => 'Cipher type',
+            'category_id' => [
+                'description' => 'The ID of Category',
+                'example' => 1,
+            ],
+            'subcategory_id' => [
+                'description' => 'The ID of Category children',
+                'example' => 2,
             ],
             'key_type' => [
                 'description' => 'Key type',
@@ -156,6 +162,10 @@ class StoreCipherKey extends JsonFormRequest
             $location = Location::firstOrCreate([
                 'continent' => 'Unknown'
             ]);
+        }
+
+        if (isset($sanitized['subcategory_id']) && $sanitized['subcategory_id']) {
+            $sanitized['category_id'] = $sanitized['subcategory_id'] ? $sanitized['subcategory_id'] : null;
         }
 
         $sanitized['location_id'] = $location->id;

@@ -41,6 +41,8 @@ class UpdateCryptogram extends FormRequest
             'language_id' => ['required', 'integer', 'exists:languages,id'],
             'location_name' => ['nullable', 'string'],
 
+            'used_chars' => ['nullable', 'string'],
+
             'name' => ['required', 'string'],
             'recipient' => ['nullable', 'string'],
             'sender' => ['nullable', 'string'],
@@ -98,6 +100,10 @@ class UpdateCryptogram extends FormRequest
             ],
             'description' => [
                 'description' => 'Cryptogram description',
+            ],
+            'used_chars' => [
+                'description' => 'Used characters',
+                'example' => "Used characters",
             ],
             'language_id' => [
                 'description' => 'The ID of Language ',
@@ -160,7 +166,7 @@ class UpdateCryptogram extends FormRequest
     {
         $sanitized = $this->validated();
 
-        $sanitized['image_url'] = 'temporary value';
+        $sanitized['thumbnail_url'] = 'temporary value';
 
         $sanitized['language_id'] = $sanitized['language_id'] ? $sanitized['language_id'] : null;
 

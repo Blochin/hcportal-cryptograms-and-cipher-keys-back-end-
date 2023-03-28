@@ -42,7 +42,7 @@ Vue.component("cryptogram-form", {
                 description: "",
                 date: "",
                 date_around: "",
-                image_url: "",
+                thumbnail_url: "",
                 language: "",
                 location: "",
 
@@ -51,6 +51,7 @@ Vue.component("cryptogram-form", {
                 sender: "",
                 solution: "",
                 state: "",
+                used_chars: "",
                 groups: [],
                 files: [],
                 tags: [],

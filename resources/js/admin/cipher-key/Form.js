@@ -4,15 +4,16 @@ import "trumbowyg/dist/plugins/fontsize/trumbowyg.fontsize.min.js";
 
 Vue.component("cipher-key-form", {
     mixins: [AppForm],
-    props: ["archives", "fonds", "folders", "tags", "persons"],
+    props: ["archives", "fonds", "folders", "tags", "persons", "categories"],
     data: function () {
         return {
             form: {
                 description: "",
-                signature: "",
+                name: "",
                 complete_structure: "",
                 used_chars: "",
-                cipher_type: "",
+                category: "",
+                subcategory: "",
                 key_type: "",
                 used_from: "",
                 used_to: "",
@@ -43,6 +44,8 @@ Vue.component("cipher-key-form", {
             filteredTags: [],
             filteredUsers: [],
             filteredCryptograms: [],
+            filteredCategories: [],
+            filteredSubcategories: [],
             isLoading: false,
             note: "",
             mediaWysiwygConfig: {
@@ -84,6 +87,10 @@ Vue.component("cipher-key-form", {
         // this.filteredFonds = this.fonds;
         this.filteredTags = this.tags;
         this.filteredUsers = this.persons;
+        this.filteredCategories = this.categories;
+        this.filteredSubcategories = this.form.category
+            ? this.form.category.children
+            : [];
     },
     methods: {
         getPostData: function getPostData() {
@@ -267,6 +274,16 @@ Vue.component("cipher-key-form", {
         },
         hideUpdateState() {
             this.$modal.hide("update-state");
+        },
+
+        filterSubcategories(item) {
+            this.form.subcategory = "";
+
+            if (item.children.length > 0) {
+                this.filteredSubcategories = item.children;
+            } else {
+                this.filteredSubcategories = [];
+            }
         },
 
         filterCryptograms(query) {

@@ -10,9 +10,9 @@
         "description": "skuska popisuww",
         "complete_structure": "dfdfdfdfdf",
         "used_chars": "sasasasa",
-        "cipher_type": {
-            "id": 2,
-            "name": "Nomenclator"
+        "category": {
+            "id": 1,
+            "name": "Category 1"
         },
         "key_type": {
             "id": 2,

@@ -1,47 +1,66 @@
 <div class="row">
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('cipher_type'), 'has-success': fields.cipher_type && fields.cipher_type.valid }">
-            <label for="cipher_type" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.cipher_type') }}</label>
+            :class="{'has-danger': errors.has('name'), 'has-success': fields.name && fields.name.valid }">
+            <label for="name" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.name') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.cipher_type" label="name" :options="{{ $cipherTypes }}"
-                    :option-height="104" placeholder="{{ trans('admin.cipher-key.columns.cipher_type') }}"
+                <div>
+                    <textarea class="form-control" v-model="form.name" v-validate="'required'" id="name"
+                        name="name"></textarea>
+                </div>
+                <div v-if="errors.has('name')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('name') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('category_id'), 'has-success': fields.category_id && fields.category_id.valid }">
+            <label for="category_id" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.category_id') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.category" label="name" :options="{{ $categories->toJSON() }}"
+                    :option-height="104" @select="filterSubcategories"
+                    placeholder="{{ trans('admin.cryptogram.columns.category_id') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('category_id')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('category_id') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4" v-if="filteredSubcategories.length > 0 || form.subcategory">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('subcategory_id'), 'has-success': fields.subcategory_id && fields.subcategory_id.valid }">
+            <label for="subcategory_id" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.subcategory_id') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.subcategory" label="name" :options="filteredSubcategories"
+                    :option-height="104" placeholder="{{ trans('admin.cryptogram.columns.subcategory_id') }}"
                     track-by="id">
                 </multiselect>
-                <div v-if="errors.has('cipher_type')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('cipher_type') }}</div>
+                <div v-if="errors.has('subcategory_id')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('subcategory_id') }}</div>
             </div>
         </div>
     </div>
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('key_type'), 'has-success': fields.key_type && fields.key_type.valid }">
-            <label for="key_type" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.key_type') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">
-                <multiselect v-model="form.key_type" label="name" :options="{{ $keyTypes }}" :option-height="104"
-                    placeholder="{{ trans('admin.cipher-key.columns.key_type') }}" track-by="id">
-                </multiselect>
-                <div v-if="errors.has('key_type')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('key_type') }}</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('language'), 'has-success': fields.language && fields.language.valid }">
-            <label for="language" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.language') }}</label>
+            :class="{'has-danger': errors.has('used_chars'), 'has-success': fields.used_chars && fields.used_chars.valid }">
+            <label for="used_chars" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.used_chars') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.language" label="name" :options="{{ $languages }}" :option-height="104"
-                    placeholder="{{ trans('admin.cipher-key.columns.language') }}" track-by="id">
-                </multiselect>
-                <div v-if="errors.has('language')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('language') }}</div>
+                <div>
+                    <textarea class="form-control" v-model="form.used_chars" v-validate="''" id="used_chars"
+                        name="used_chars"></textarea>
+                </div>
+                <div v-if="errors.has('used_chars')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('used_chars') }}</div>
             </div>
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
             :class="{'has-danger': errors.has('used_from'), 'has-success': fields.used_from && fields.used_from.valid }">
@@ -96,16 +115,15 @@
     </div>
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('signature'), 'has-success': fields.signature && fields.signature.valid }">
-            <label for="signature" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.signature') }}</label>
+            :class="{'has-danger': errors.has('language'), 'has-success': fields.language && fields.language.valid }">
+            <label for="language" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.language') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <div>
-                    <textarea class="form-control" v-model="form.signature" v-validate="'required'" id="signature"
-                        name="signature"></textarea>
-                </div>
-                <div v-if="errors.has('signature')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('signature') }}</div>
+                <multiselect v-model="form.language" label="name" :options="{{ $languages }}" :option-height="104"
+                    placeholder="{{ trans('admin.cipher-key.columns.language') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('language')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('language') }}</div>
             </div>
         </div>
     </div>
@@ -155,16 +173,17 @@
     </div>
     <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('complete_structure'), 'has-success': fields.complete_structure && fields.complete_structure.valid }">
-            <label for="complete_structure" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.complete_structure') }}</label>
+            :class="{'has-danger': errors.has('tags'), 'has-success': fields.tags && fields.tags.valid }">
+            <label for="tags" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.tags') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <div>
-                    <textarea class="form-control" v-model="form.complete_structure" v-validate="'required'"
-                        id="complete_structure" name="complete_structure"></textarea>
-                </div>
-                <div v-if="errors.has('complete_structure')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('complete_structure') }}</div>
+                <multiselect v-model="form.tags" tag-placeholder="Add this as new tag" :close-on-select="false"
+                    placeholder="Search or add a tag" :multiple="true" :taggable="true" @tag="addTag" label="name"
+                    :options="filteredTags" :option-height="104"
+                    placeholder="{{ trans('admin.cipher-key.columns.tags') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('tags')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('tags') }}</div>
             </div>
         </div>
     </div>
@@ -196,57 +215,6 @@
         </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('tags'), 'has-success': fields.tags && fields.tags.valid }">
-            <label for="tags" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.tags') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.tags" tag-placeholder="Add this as new tag" :close-on-select="false"
-                    placeholder="Search or add a tag" :multiple="true" :taggable="true" @tag="addTag" label="name"
-                    :options="filteredTags" :option-height="104"
-                    placeholder="{{ trans('admin.cipher-key.columns.tags') }}" track-by="id">
-                </multiselect>
-                <div v-if="errors.has('tags')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('tags') }}</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('used_chars'), 'has-success': fields.used_chars && fields.used_chars.valid }">
-            <label for="used_chars" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.used_chars') }}</label>
-            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <div>
-                    <textarea class="form-control" v-model="form.used_chars" v-validate="''" id="used_chars"
-                        name="used_chars"></textarea>
-                </div>
-                <div v-if="errors.has('used_chars')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('used_chars') }}</div>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-lg-4">
-        <div class="form-group row align-items-center"
-            :class="{'has-danger': errors.has('cryptograms'), 'has-success': fields.cryptograms && fields.cryptograms.valid }">
-            <label for="cryptograms" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-12' : 'col-md-12'">{{ trans('admin.cipher-key.columns.similar-cryptograms') }}</label>
-            <div :class="isFormLocalized ? 'col-md-12' : 'col-md-12 col-xl-12'">
-                <multiselect v-model="form.cryptograms" :close-on-select="false" placeholder="Search cryptograms"
-                    :multiple="true" label="name" :loading="isLoading" :internal-search="false"
-                    @search-change="filterCryptograms" :options="filteredCryptograms" :option-height="280"
-                    placeholder="{{ trans('admin.cipher-key.columns.similar-cryptograms') }}" track-by="id">
-                </multiselect>
-                <div v-if="errors.has('cryptograms')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('cryptograms') }}</div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="row">
     <div class="col-12 col-lg-2">
         <div class="form-group row align-items-center"
@@ -392,6 +360,53 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('key_type'), 'has-success': fields.key_type && fields.key_type.valid }">
+            <label for="key_type" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.key_type') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">
+                <multiselect v-model="form.key_type" label="name" :options="{{ $keyTypes }}" :option-height="104"
+                    placeholder="{{ trans('admin.cipher-key.columns.key_type') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('key_type')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('key_type') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('complete_structure'), 'has-success': fields.complete_structure && fields.complete_structure.valid }">
+            <label for="complete_structure" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.complete_structure') }}</label>
+            <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
+                <div>
+                    <textarea class="form-control" v-model="form.complete_structure" v-validate="'required'"
+                        id="complete_structure" name="complete_structure"></textarea>
+                </div>
+                <div v-if="errors.has('complete_structure')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('complete_structure') }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="form-group row align-items-center"
+            :class="{'has-danger': errors.has('cryptograms'), 'has-success': fields.cryptograms && fields.cryptograms.valid }">
+            <label for="cryptograms" class="col-form-label"
+                :class="isFormLocalized ? 'col-md-12' : 'col-md-12'">{{ trans('admin.cipher-key.columns.similar-cryptograms') }}</label>
+            <div :class="isFormLocalized ? 'col-md-12' : 'col-md-12 col-xl-12'">
+                <multiselect v-model="form.cryptograms" :close-on-select="false" placeholder="Search cryptograms"
+                    :multiple="true" label="name" :loading="isLoading" :internal-search="false"
+                    @search-change="filterCryptograms" :options="filteredCryptograms" :option-height="280"
+                    placeholder="{{ trans('admin.cipher-key.columns.similar-cryptograms') }}" track-by="id">
+                </multiselect>
+                <div v-if="errors.has('cryptograms')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('cryptograms') }}</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div :class="form.users.length > 0 ? 'col-md-12' : 'col-md-4'">

@@ -32,10 +32,11 @@ class StoreCipherKey extends FormRequest
                 return $this->input('archive') == null;
             })],
             'description' => ['nullable', 'string'],
-            'signature' => ['required', 'string', Rule::unique('cipher_keys', 'signature')],
+            'name' => ['required', 'string', Rule::unique('cipher_keys', 'name')],
             'complete_structure' => ['required', 'string'],
             'used_chars' => ['nullable', 'string'],
-            'cipher_type' => ['nullable',],
+            'category' => ['required', 'string'],
+            'subcategory' => ['nullable', 'string'],
             'key_type' => ['nullable',],
             'used_from' => ['nullable', 'date'],
             'used_to' => ['nullable', 'date'],
@@ -87,7 +88,6 @@ class StoreCipherKey extends FormRequest
         $sanitized['tags'] = $sanitized['tags'] ? json_decode($sanitized['tags']) : [];
         $sanitized['group_id'] = $sanitized['group'] ? json_decode($sanitized['group'])->id : null;
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
-        $sanitized['cipher_type'] = $sanitized['cipher_type'] ? json_decode($sanitized['cipher_type'])->id : null;
         $sanitized['key_type'] = $sanitized['key_type'] ? json_decode($sanitized['key_type'])->id : null;
         $sanitized['folder_id'] = $sanitized['folder'] ? json_decode($sanitized['folder'])->id : null;
         $sanitized['fond_id'] = $sanitized['fond'] ? json_decode($sanitized['fond'])->id : null;
@@ -97,7 +97,11 @@ class StoreCipherKey extends FormRequest
         $sanitized['continent'] = $sanitized['continent'] ? json_decode($sanitized['continent'])->name : [];
         $sanitized['state'] = $sanitized['state'] ? json_decode($sanitized['state'])->id : [];
 
-
+        if ($sanitized['subcategory']) {
+            $sanitized['category_id'] = $sanitized['subcategory'] ? json_decode($sanitized['subcategory'])->id : null;
+        } elseif ($sanitized['category']) {
+            $sanitized['category_id'] = $sanitized['category'] ? json_decode($sanitized['category'])->id : null;
+        }
 
         if ($sanitized['location_name'] && $sanitized['continent']) {
             $location = Location::firstOrCreate([
