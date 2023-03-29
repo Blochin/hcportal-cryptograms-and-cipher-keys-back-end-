@@ -20,7 +20,7 @@ Vue.component("cipher-key-similarity-form", {
     methods: {
         setSimilarityName(e) {
             if (!this.form.name) {
-                this.form.name = e[0]?.signature || e[0]?.complete_structure;
+                this.form.name = e[0]?.name || e[0]?.complete_structure;
             }
         },
         filterCipherKeys(query) {

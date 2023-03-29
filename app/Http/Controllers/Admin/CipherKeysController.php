@@ -371,7 +371,7 @@ class CipherKeysController extends Controller
     {
         $results = CipherKey::latest('id')->get();
         if ($request->search) {
-            $results  = CipherKey::where('signature', 'LIKE', "%{$request->search}%")->orWhere('complete_structure', 'LIKE', "%{$request->search}%")->orderBy('id', 'desc')->get();
+            $results  = CipherKey::where('name', 'LIKE', "%{$request->search}%")->orWhere('complete_structure', 'LIKE', "%{$request->search}%")->orderBy('id', 'desc')->get();
         }
         return response()->json($results);
     }

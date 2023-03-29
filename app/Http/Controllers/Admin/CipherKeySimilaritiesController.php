@@ -71,7 +71,7 @@ class CipherKeySimilaritiesController extends Controller
     {
         $this->authorize('admin.cipher-key-similarity.create');
 
-        $cipherKeys = CipherKey::select('id', 'signature', 'complete_structure')->get();
+        $cipherKeys = CipherKey::select('id', 'name', 'complete_structure')->get();
 
         return view('admin.cipher-key-similarity.create', [
             'cipherKeys' =>  $cipherKeys
@@ -129,7 +129,7 @@ class CipherKeySimilaritiesController extends Controller
     {
         $this->authorize('admin.cipher-key-similarity.edit', $cipherKeySimilarity);
 
-        $cipherKeys = CipherKey::select('id', 'signature', 'complete_structure')->get();
+        $cipherKeys = CipherKey::select('id', 'name', 'complete_structure')->get();
 
         $cipherKeySimilarity->load('cipherKeys');
 

@@ -26,7 +26,7 @@
                                         :class="isFormLocalized ? 'col-md-12' : 'col-md-12'">{{ trans('admin.cipher-key.title') }}</label>
                                     <div :class="isFormLocalized ? 'col-md-12' : 'col-md-12 col-xl-12'">
                                         <multiselect v-model="form.keys" :close-on-select="false"
-                                            placeholder="Search cipher key" :multiple="true" label="signature"
+                                            placeholder="Search cipher key" :multiple="true" label="name"
                                             :loading="isLoading" :internal-search="false" @search-change="filterKeys"
                                             :options="filteredKeys" :option-height="280"
                                             placeholder="{{ trans('admin.cipher-key-similarity.columns.cipher_keys') }}"

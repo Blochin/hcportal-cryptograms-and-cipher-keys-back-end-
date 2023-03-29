@@ -445,15 +445,15 @@
                                         style="text-align: center;padding: 0 30px;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         <span class="subheading"
                                             style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;display: inline-block;font-size: 13px;text-transform: uppercase;letter-spacing: 2px;color: rgba(0,0,0,.4);position: relative;margin-bottom: 20px !important;">
-                                            New Cipher Key Signature - {{ $key->signature }}
+                                            New Cipher Key Name - {{ $key->name }}
                                         </span>
                                         <h2
                                             style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #000000;margin-top: 0;font-size: 28px;line-height: 1.4;">
                                             User <b> {{ $key->submitter->fullname }} (ID: {{ $key->submitter->id }})
                                             </b> added a new Cipher key.
                                         </h2>
-                                        <p style="color:#000;margin: 0"><b>Cipher Key Signature:</b>
-                                            {{ $key->signature }}</p>
+                                        <p style="color:#000;margin: 0"><b>Cipher Key Name:</b>
+                                            {{ $key->name }}</p>
                                         <br>
                                         <a href="{{ $key->resource_url }}/edit" class="btn btn-primary"
                                             style="margin-top:20px">Show Cipher

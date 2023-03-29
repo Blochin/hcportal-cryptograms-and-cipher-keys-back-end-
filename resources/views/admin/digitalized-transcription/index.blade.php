@@ -109,7 +109,7 @@
                                         </td>
 
                                         <td>@{{ item . id }}</td>
-                                        <td>@{{ item . cipher_key. signature }}</td>
+                                        <td>@{{ item . cipher_key. name }}</td>
                                         <td>@{{ item . submitter?. full_name }}</td>
                                         <td>@{{ item . digitalized_version }}</td>
                                         <td>@{{ (item . digitalization_date) | datetime }}</td>

@@ -4,7 +4,7 @@
     "message": "Successfully added cipher key.",
     "data": {
         "id": 2,
-        "signature": "kluc na schvalenie2",
+        "name": "kluc na schvalenie2",
         "availability_type": "archive",
         "availability": null,
         "description": "skuska popisuww",

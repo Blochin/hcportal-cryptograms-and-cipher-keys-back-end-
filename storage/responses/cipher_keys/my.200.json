@@ -5,27 +5,27 @@
     "data": [
         {
             "id": 8,
-            "signature": "cahac"
+            "name": "cahac"
         },
         {
             "id": 4,
-            "signature": "dsfsdfsdfsdf"
+            "name": "dsfsdfsdfsdf"
         },
         {
             "id": 6,
-            "signature": "dsfsdfsdfsdf222222"
+            "name": "dsfsdfsdfsdf222222"
         },
         {
             "id": 7,
-            "signature": "dsfsdfsdfsdf222222333333"
+            "name": "dsfsdfsdfsdf222222333333"
         },
         {
             "id": 2,
-            "signature": "sdf sdfsdfsdf sdfsdf"
+            "name": "sdf sdfsdfsdf sdfsdf"
         },
         {
             "id": 3,
-            "signature": "sdfsdfsdf"
+            "name": "sdfsdfsdf"
         }
     ]
 }

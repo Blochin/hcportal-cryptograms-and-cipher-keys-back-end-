@@ -67,11 +67,11 @@ class CipherKeysController extends Controller
         ])->approved();
 
         if ($request->detailed) {
-            $cipherKeys = $this->filterPagination($cipherKeys, $request, 'signature', 'asc', true);
+            $cipherKeys = $this->filterPagination($cipherKeys, $request, 'name', 'asc', true);
             return $this->success(new CipherKeyApprovedCollection($cipherKeys), 'List of all approved cipher keys with details.', 200);
         }
 
-        $cipherKeys = $this->filterPagination($cipherKeys, $request, 'signature', 'asc', false);
+        $cipherKeys = $this->filterPagination($cipherKeys, $request, 'name', 'asc', false);
 
         return $this->success(CipherKeyApprovedResource::collection($cipherKeys), 'List of all approved cipher keys.', 200);
     }
@@ -114,11 +114,11 @@ class CipherKeysController extends Controller
         ])->where('created_by', $user->id);
 
         if ($request->detailed) {
-            $cipherKeys = $this->filterPagination($cipherKeys, $request, 'signature', 'asc', true);
+            $cipherKeys = $this->filterPagination($cipherKeys, $request, 'name', 'asc', true);
             return $this->success(new CipherKeyApprovedCollection($cipherKeys), 'List of all my cipher keys with details.', 200);
         }
 
-        $cipherKeys = $this->filterPagination($cipherKeys, $request, 'signature', 'asc', false);
+        $cipherKeys = $this->filterPagination($cipherKeys, $request, 'name', 'asc', false);
 
         return $this->success(CipherKeyApprovedResource::collection($cipherKeys), 'List of all my cipher keys.', 200);
         //return $this->success(new LocationCollection($locations), 'List of all locations', 200);

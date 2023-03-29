@@ -1,6 +1,6 @@
 @extends('brackets/admin-ui::admin.layout.default')
 
-@section('title', trans('admin.cipher-key.actions.edit', ['name' => $cipherKey->signature ?:
+@section('title', trans('admin.cipher-key.actions.edit', ['name' => $cipherKey->name ?:
     $cipherKey->complete_structure]))
 
 @section('body')
@@ -19,7 +19,7 @@
 
                         <div class="card-header">
                             <i class="fa fa-pencil"></i>
-                            {{ trans('admin.cipher-key.actions.edit', ['name' => $cipherKey->signature ?: $cipherKey->complete_structure]) }}
+                            {{ trans('admin.cipher-key.actions.edit', ['name' => $cipherKey->name ?: $cipherKey->complete_structure]) }}
 
                         </div>
 

@@ -4,7 +4,7 @@
         :class="isFormLocalized ? 'col-md-12' : 'col-md-2'">{{ trans('admin.digitalized-transcription.columns.cipher-keys') }}</label>
     <div :class="isFormLocalized ? 'col-md-12' : 'col-md-9 col-xl-8'">
         <multiselect v-model="form.cipher_key" :close-on-select="true" placeholder="Search cipher key" :multiple="false"
-            label="signature" :loading="isLoading" :internal-search="false" @search-change="filterKeys"
+            label="name" :loading="isLoading" :internal-search="false" @search-change="filterKeys"
             :options="filteredKeys" :option-height="280"
             placeholder="{{ trans('admin.digitalized-transcription.columns.cipher-keys') }}" track-by="id">
         </multiselect>

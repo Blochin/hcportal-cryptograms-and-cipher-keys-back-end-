@@ -16,7 +16,7 @@ class CipherKeyApprovedResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'signature' => $this->signature,
+            'name' => $this->name,
         ];
     }
 }

@@ -40,7 +40,7 @@ $factory->define(App\Models\User::class, static function (Faker\Generator $faker
 $factory->define(App\Models\CipherKey::class, static function (Faker\Generator $faker) {
     return [
         'description' => $faker->text(),
-        'signature' => $faker->text(),
+        'name' => $faker->text(),
         'complete_structure' => $faker->text(),
         'used_chars' => $faker->text(),
         'cipher_type' => $faker->sentence,

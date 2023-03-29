@@ -24,7 +24,7 @@ class ApprovedRequest extends FormRequest
     public function rules()
     {
         return [
-            'orderBy' => 'in:id,signature|nullable',
+            'orderBy' => 'in:id,name|nullable',
             'orderDirection' => 'in:asc,desc|nullable',
             'page' => 'integer|nullable',
             'per_page' => 'integer|nullable',

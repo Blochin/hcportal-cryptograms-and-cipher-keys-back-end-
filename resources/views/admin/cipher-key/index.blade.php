@@ -61,7 +61,7 @@
                                         </th>
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.cipher-key.columns.id') }}</th>
-                                        <th is='sortable' :column="'signature'">
+                                        <th is='sortable' :column="'name'">
                                             {{ trans('admin.cipher-key.columns.name') }}</th>
                                         <th is='sortable' :column="'language_id'">
                                             {{ trans('admin.cipher-key.columns.language') }}</th>
