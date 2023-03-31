@@ -21,7 +21,7 @@ class Data extends Model implements HasMedia
     use HasMediaThumbsTrait;
 
     protected $fillable = [
-        'blobb',
+        'blob',
         'description',
         'datagroup_id',
         'filetype',

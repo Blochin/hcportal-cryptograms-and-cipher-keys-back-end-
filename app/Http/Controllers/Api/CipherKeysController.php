@@ -93,6 +93,7 @@ class CipherKeysController extends Controller
      */
     public function myKeys(ApprovedRequest $request)
     {
+
         $user = auth('sanctum')->user();
 
         $cipherKeys = CipherKey::with([

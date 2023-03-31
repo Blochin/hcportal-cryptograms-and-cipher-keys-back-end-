@@ -30,7 +30,7 @@ class StoreCryptogram extends FormRequest
     {
         return [
             'availability_type' => ['required', 'string'],
-            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+            'availability' => ['nullable', 'string', 'max:255', Rule::requiredIf(function () {
                 return $this->input('availability_type') == "availability";
             })],
             'category' => ['required', 'string'],
@@ -62,14 +62,15 @@ class StoreCryptogram extends FormRequest
                 return $this->input('archive') == null && $this->input('availability_type') == "archive";
             })],
 
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:255'],
             'recipient' => ['nullable', 'string'],
             'sender' => ['nullable', 'string'],
             'solution' => ['required', 'string'],
             'state_id' => ['nullable', 'string'],
             'date' => ['nullable', 'date'],
-            'date_around' => ['nullable', 'string'],
+            'date_around' => ['nullable', 'string', 'max:255'],
             'images' => ['nullable'],
+            'images.*.*' => ['image'],
             'groups' => ['nullable'],
             'predefined_groups' => ['nullable'],
             'tags' => ['nullable'],
@@ -77,7 +78,7 @@ class StoreCryptogram extends FormRequest
             'continent' => ['required'],
             'state' => ['required'],
             'note' => ['nullable'],
-            'thumbnail' => ['nullable'],
+            'thumbnail' => ['nullable', 'image'],
 
         ];
     }
@@ -92,7 +93,7 @@ class StoreCryptogram extends FormRequest
         $sanitized = $this->validated();
 
 
-        $sanitized['thumbnail_url'] = 'sdsd';
+        $sanitized['thumbnail_url'] = 'temporary';
 
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
         $sanitized['solution_id'] = $sanitized['solution'] ? json_decode($sanitized['solution'])->id : null;

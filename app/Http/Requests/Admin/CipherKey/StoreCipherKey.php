@@ -28,7 +28,7 @@ class StoreCipherKey extends FormRequest
     public function rules(): array
     {
         return [
-            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+            'availability' => ['nullable', 'string', 'max:255', Rule::requiredIf(function () {
                 return $this->input('archive') == null;
             })],
             'description' => ['nullable', 'string'],
@@ -40,13 +40,13 @@ class StoreCipherKey extends FormRequest
             'key_type' => ['nullable',],
             'used_from' => ['nullable', 'date'],
             'used_to' => ['nullable', 'date'],
-            'new_folder' => ['nullable', Rule::requiredIf(function () {
+            'new_folder' => ['nullable', 'max:255', Rule::requiredIf(function () {
                 return $this->input('availability') == null && $this->input('folder') == null;
             })],
-            'new_fond' => ['nullable', Rule::requiredIf(function () {
+            'new_fond' => ['nullable', 'max:255', Rule::requiredIf(function () {
                 return $this->input('availability') == null && $this->input('fond') == null;
             })],
-            'new_archive' => ['nullable', Rule::requiredIf(function () {
+            'new_archive' => ['nullable', 'max:255', Rule::requiredIf(function () {
                 return $this->input('availability') == null && $this->input('archive') == null;
             })],
             'archive' => ['nullable', Rule::requiredIf(function () {
@@ -58,13 +58,14 @@ class StoreCipherKey extends FormRequest
             'folder' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null && $this->input('new_folder') == null;
             })],
-            'used_around' => ['nullable', 'string'],
-            'location_name' => ['nullable'],
+            'used_around' => ['nullable', 'string', 'max:255'],
+            'location_name' => ['nullable', 'max:255'],
             'language' => ['required',],
             'group' => ['nullable',],
             'users' => ['nullable',],
             'images' => ['nullable',],
             'files' => ['nullable',],
+            'files.*' => ['image'],
             'tags' => ['nullable',],
             'cryptograms' => ['nullable'],
             'continent' => ['required'],

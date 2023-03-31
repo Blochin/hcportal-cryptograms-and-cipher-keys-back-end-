@@ -69,7 +69,7 @@
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
                 <div class="input-group input-group--custom">
                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                    <datetime v-model="form.used_from" :config="datetimePickerConfig" v-validate="''" class="flatpickr"
+                    <datetime v-model="form.used_from" :config="datePickerConfig" v-validate="''" class="flatpickr"
                         :class="{'form-control-danger': errors.has('used_from'), 'form-control-success': fields.used_from && fields.used_from.valid}"
                         id="used_from" name="used_from"
                         placeholder="{{ trans('brackets/admin-ui::admin.forms.select_date_and_time') }}"></datetime>
@@ -87,7 +87,7 @@
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
                 <div class="input-group input-group--custom">
                     <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                    <datetime v-model="form.used_to" :config="datetimePickerConfig" v-validate="''" class="flatpickr"
+                    <datetime v-model="form.used_to" :config="datePickerConfig" v-validate="''" class="flatpickr"
                         :class="{'form-control-danger': errors.has('used_to'), 'form-control-success': fields.used_to && fields.used_to.valid}"
                         id="used_to" name="used_to"
                         placeholder="{{ trans('brackets/admin-ui::admin.forms.select_date_and_time') }}"></datetime>

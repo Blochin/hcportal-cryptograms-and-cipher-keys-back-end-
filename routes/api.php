@@ -29,25 +29,6 @@ use App\Http\Controllers\Api\TagsController;
 */
 
 
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/register', [LoginController::class, 'register']);
-Route::get('/token/validation', [LoginController::class, 'tokenCheck']);
-Route::post('/password/reset/code', [ForgotPasswordController::class, 'changePassword']);
-Route::post('/password/reset', [ForgotPasswordController::class, 'sendCode']);
-
-
-//-------------------------------------------------Cipher keys--------------------------------------------
-Route::get('/cipher-keys', [CipherKeysController::class, 'approved']);
-Route::get('/cipher-keys/{cipherKey}', [CipherKeysController::class, 'show']);
-
-//-------------------------------------------------Cryptograms--------------------------------------------
-Route::get('/cryptograms', [CryptogramsController::class, 'approved']);
-Route::get('/cryptograms/{cryptogram}', [CryptogramsController::class, 'show']);
-
-//-------------------------------------------------Statistics--------------------------------------------
-Route::get('/statistics', [StatisticsController::class, 'index']);
-
-
 Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->group(static function () {
     Route::get('/logout', [LoginController::class, 'logout']);
 
@@ -75,8 +56,8 @@ Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->grou
 
     //-------------------------------------------------Cipher keys--------------------------------------------
     Route::post('/cipher-keys', [CipherKeysController::class, 'create']);
-    Route::get('/cipher-keys/my', [CipherKeysController::class, 'myKeys']);
     Route::post('/cipher-keys/{cipherKey}', [CipherKeysController::class, 'update']);
+    Route::get('/cipher-keys/my', [CipherKeysController::class, 'myKeys']);
 
     Route::get('/key-types', [KeyTypesController::class, 'index']);
     Route::get('/cipher-types', [CipherTypesController::class, 'index']);
@@ -86,3 +67,23 @@ Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->grou
     Route::post('/cryptograms', [CryptogramsController::class, 'create']);
     Route::post('/cryptograms/{cryptogram}', [CryptogramsController::class, 'update']);
 });
+
+
+//-------------------------------------Auth--------------------------------------------------------
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/register', [LoginController::class, 'register']);
+Route::get('/token/validation', [LoginController::class, 'tokenCheck']);
+Route::post('/password/reset/code', [ForgotPasswordController::class, 'changePassword']);
+Route::post('/password/reset', [ForgotPasswordController::class, 'sendCode']);
+
+
+//-------------------------------------------------Statistics--------------------------------------------
+Route::get('/statistics', [StatisticsController::class, 'index']);
+
+//-------------------------------------------------Cipher keys--------------------------------------------
+Route::get('/cipher-keys', [CipherKeysController::class, 'approved']);
+Route::get('/cipher-keys/{cipherKey}', [CipherKeysController::class, 'show']);
+
+//-------------------------------------------------Cryptograms--------------------------------------------
+Route::get('/cryptograms', [CryptogramsController::class, 'approved']);
+Route::get('/cryptograms/{cryptogram}', [CryptogramsController::class, 'show']);

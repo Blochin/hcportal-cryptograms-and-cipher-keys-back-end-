@@ -26,16 +26,16 @@ class StoreSolution extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            
+            'name' => ['required', 'string', 'max:255'],
+
         ];
     }
 
     /**
-    * Modify input data
-    *
-    * @return array
-    */
+     * Modify input data
+     *
+     * @return array
+     */
     public function getSanitized(): array
     {
         $sanitized = $this->validated();

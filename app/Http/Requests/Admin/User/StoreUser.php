@@ -29,10 +29,10 @@ class StoreUser extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => ['nullable', 'string'],
-            'last_name' => ['nullable', 'string'],
-            'email' => ['required', 'email', Rule::unique('users', 'email'), 'string'],
-            'password' => ['required', 'confirmed', 'min:7', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9]).*$/', 'string'],
+            'first_name' => ['nullable', 'string', 'max:255'],
+            'last_name' => ['nullable', 'string', 'max:255'],
+            'email' => ['required', 'email', Rule::unique('users', 'email'), 'string', 'max:255'],
+            'password' => ['required', 'confirmed', 'min:7', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9]).*$/', 'string', 'max:255'],
             'activated' => ['required', 'boolean'],
             'forbidden' => ['required', 'boolean'],
 

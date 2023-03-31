@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User\UserResource;
 use App\Mail\RegisterAdminMail;
 use App\Mail\RegisterMail;
 use App\Models\User;
@@ -71,7 +72,7 @@ class LoginController extends Controller
             'access_token' => $token,
             'token_type' => 'Bearer',
             'is_admin' => $client->hasRole('admin'),
-            'user' => $client,
+            'user' => new UserResource($client),
         ], 'Successfully logged in.', 200, 200);
     }
 
@@ -145,10 +146,10 @@ class LoginController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
+            'password' => 'required|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -168,6 +169,6 @@ class LoginController extends Controller
         Mail::to($client->email)->send(new RegisterMail($client));
         Mail::to(config('mail.to.email'))->send(new RegisterAdminMail($client));
 
-        return $this->success($client, 'Successfully registered.', 200, 200);
+        return $this->success(new UserResource($client), 'Successfully registered.', 200, 200);
     }
 }

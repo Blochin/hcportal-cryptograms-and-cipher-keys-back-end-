@@ -28,11 +28,11 @@ class StoreCipherKey extends JsonFormRequest
     public function rules(): array
     {
         return [
-            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+            'availability' => ['nullable', 'string', 'max:255', Rule::requiredIf(function () {
                 return $this->input('archive') == null;
             })],
             'description' => ['nullable', 'string'],
-            'name' => ['required', 'string', Rule::unique('cipher_keys', 'name')],
+            'name' => ['required', 'string', 'max:255', Rule::unique('cipher_keys', 'name')],
             'complete_structure' => ['required', 'string'],
             'used_chars' => ['nullable', 'string'],
             'category_id' => ['required', 'string', 'exists:categories,id'],
@@ -40,7 +40,7 @@ class StoreCipherKey extends JsonFormRequest
             'key_type' => ['required', 'integer', 'exists:key_types,id'],
             'used_from' => ['nullable', 'date'],
             'used_to' => ['nullable', 'date'],
-            'used_around' => ['nullable', 'string'],
+            'used_around' => ['nullable', 'string', 'max:255'],
             'archive' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null;
             })],
@@ -50,11 +50,12 @@ class StoreCipherKey extends JsonFormRequest
             'folder' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null;
             })],
-            'location_name' => ['nullable', 'string'],
+            'location_name' => ['nullable', 'string', 'max:255'],
             'language_id' => ['required', 'integer'],
             'users' => ['nullable', 'json'],
             'images' => ['nullable', 'json'],
             'files' => ['nullable',],
+            'files.*' => ['image'],
             'tags' => ['nullable', 'array'],
             'continent' => ['nullable', 'string', 'exists:locations,continent'],
 

@@ -26,7 +26,7 @@ class StoreCategory extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:255'],
             'parent' => ['nullable', 'array'],
 
         ];

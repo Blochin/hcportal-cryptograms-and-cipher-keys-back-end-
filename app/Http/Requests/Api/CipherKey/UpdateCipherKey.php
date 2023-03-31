@@ -27,11 +27,11 @@ class UpdateCipherKey extends JsonFormRequest
     public function rules(): array
     {
         return [
-            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+            'availability' => ['nullable', 'string', 'max:255', Rule::requiredIf(function () {
                 return $this->input('archive') == null;
             })],
             'description' => ['nullable', 'string'],
-            'name' => ['required', 'string', Rule::unique('cipher_keys', 'name')->ignore($this->name, 'name')],
+            'name' => ['required', 'string', 'max:255', Rule::unique('cipher_keys', 'name')->ignore($this->name, 'name')],
             'complete_structure' => ['required', 'string'],
             'used_chars' => ['nullable', 'string'],
             'category_id' => ['required', 'string', 'exists:categories,id'],
@@ -42,7 +42,7 @@ class UpdateCipherKey extends JsonFormRequest
             // 'new_folder' => ['nullable', 'string'],
             // 'new_fond' => ['nullable', 'string'],
             // 'new_archive' => ['nullable', 'string'],
-            'used_around' => ['nullable', 'string'],
+            'used_around' => ['nullable', 'string', 'max:255'],
             'archive' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null;
             })],
@@ -52,7 +52,7 @@ class UpdateCipherKey extends JsonFormRequest
             'folder' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('availability') == null;
             })],
-            'location_name' => ['nullable', 'string'],
+            'location_name' => ['nullable', 'string', 'max:255'],
             'language_id' => ['required', 'integer', 'exists:languages,id'],
             'users' => ['nullable', 'json'],
             'tags' => ['nullable', 'array'],

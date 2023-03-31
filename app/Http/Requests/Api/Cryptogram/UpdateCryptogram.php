@@ -50,6 +50,7 @@ class UpdateCryptogram extends FormRequest
             'date' => ['nullable', 'date'],
             'date_around' => ['nullable', 'string'],
             'images' => ['nullable', 'array'],
+            'images.*.*' => ['image'],
             'groups' => ['nullable', 'json'],
             'tags' => ['nullable', 'array'],
             'continent' => ['required'],

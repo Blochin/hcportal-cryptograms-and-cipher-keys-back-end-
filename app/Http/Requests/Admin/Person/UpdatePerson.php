@@ -26,8 +26,8 @@ class UpdatePerson extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['sometimes', 'string'],
-            
+            'name' => ['sometimes', 'string', 'max:255'],
+
         ];
     }
 

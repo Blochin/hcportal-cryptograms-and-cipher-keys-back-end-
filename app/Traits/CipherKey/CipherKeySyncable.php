@@ -46,7 +46,6 @@ trait CipherKeySyncable
 		) {
 			$archive = Archive::firstOrCreate([
 				'name' => $sanitized['new_archive'],
-				'short_name' => $sanitized['new_archive'],
 			]);
 			$archive_id = $archive->id;
 		}
@@ -177,6 +176,7 @@ trait CipherKeySyncable
 				'is_local' => true,
 				'ordering' => 1
 			]);
+
 
 			$img
 				->addMedia($sanitized['files'][$key])

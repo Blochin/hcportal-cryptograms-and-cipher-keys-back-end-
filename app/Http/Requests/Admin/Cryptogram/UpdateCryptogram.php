@@ -30,7 +30,7 @@ class UpdateCryptogram extends FormRequest
     {
         return [
             'availability_type' => ['required', 'string'],
-            'availability' => ['nullable', 'string', Rule::requiredIf(function () {
+            'availability' => ['nullable', 'string', 'max:255', Rule::requiredIf(function () {
                 return $this->input('availability_type') == "availability";
             })],
             'category' => ['required', 'string'],
@@ -40,13 +40,13 @@ class UpdateCryptogram extends FormRequest
             'description' => ['nullable', 'string'],
             'language' => ['required', 'string'],
             'location_name' => ['nullable', 'string'],
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:255'],
             'recipient' => ['nullable', 'string'],
             'sender' => ['nullable', 'string'],
             'solution' => ['required', 'string'],
             'state_id' => ['nullable', 'string'],
             'date' => ['nullable', 'date'],
-            'date_around' => ['nullable', 'string'],
+            'date_around' => ['nullable', 'string', 'max:255'],
 
             'folder' => ['nullable', Rule::requiredIf(function () {
                 return $this->input('new_folder') == null && $this->input('availability_type') == "archive";
@@ -70,6 +70,7 @@ class UpdateCryptogram extends FormRequest
 
 
             'images' => ['nullable'],
+            'images.*.*' => ['image'],
             'image' => ['nullable'],
             'groups' => ['nullable'],
             // 'predefined_groups' => ['nullable'],
@@ -79,7 +80,7 @@ class UpdateCryptogram extends FormRequest
             'state' => ['required'],
             'note' => ['nullable'],
             'note_new' => ['nullable'],
-            'thumbnail' => ['nullable']
+            'thumbnail' => ['nullable', 'image']
 
         ];
     }
@@ -93,7 +94,7 @@ class UpdateCryptogram extends FormRequest
     {
         $sanitized = $this->validated();
 
-        $sanitized['thumbnail_url'] = 'sdsd';
+        $sanitized['thumbnail_url'] = 'temporary';
         $sanitized['language_id'] = $sanitized['language'] ? json_decode($sanitized['language'])->id : null;
         $sanitized['solution_id'] = $sanitized['solution'] ? json_decode($sanitized['solution'])->id : null;
         $sanitized['sender_id'] = $sanitized['sender'] ? json_decode($sanitized['sender'])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
@@ -132,7 +133,7 @@ class UpdateCryptogram extends FormRequest
 
         $sanitized['location_id'] = $location->id;
 
-        //dd($sanitized);
+        dd($sanitized);
 
         return $sanitized;
     }

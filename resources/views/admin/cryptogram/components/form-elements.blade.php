@@ -107,19 +107,21 @@
     </div>
 </div>
 <div class="row d-flex align-items-center">
-    <div class="col-12 col-lg-3">
+    <div class="col-12 col-lg-4">
         <div class="form-group row align-items-center"
             :class="{'has-danger': errors.has('date'), 'has-success': fields.date && fields.date.valid }">
             <label for="date" class="col-form-label"
-                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cryptogram.columns.date') }}</label>
+                :class="isFormLocalized ? 'col-md-4' : 'col-md-12'">{{ trans('admin.cipher-key.columns.date') }}</label>
             <div :class="isFormLocalized ? 'col-md-4' : 'col-md-12 col-xl-12'">
-                <datetime v-model="form.date" :config="datetimePickerConfig" v-validate="''" class="flatpickr"
-                    :class="{'form-control-danger': errors.has('date'), 'form-control-success': fields.date && fields.date.valid}"
-                    id="date" name="date"
-                    placeholder="{{ trans('brackets/admin-ui::admin.forms.select_date_and_time') }}"></datetime>
-                <div v-if="errors.has('date')" class="form-control-feedback form-text" v-cloak>
-                    @{{ errors . first('date') }}
+                <div class="input-group input-group--custom">
+                    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                    <datetime v-model="form.date" :config="datePickerConfig" v-validate="''" class="flatpickr"
+                        :class="{'form-control-danger': errors.has('date'), 'form-control-success': fields.date && fields.date.valid}"
+                        id="date" name="date"
+                        placeholder="{{ trans('brackets/admin-ui::admin.forms.select_date_and_time') }}"></datetime>
                 </div>
+                <div v-if="errors.has('date')" class="form-control-feedback form-text" v-cloak>
+                    @{{ errors . first('date') }}</div>
             </div>
         </div>
     </div>

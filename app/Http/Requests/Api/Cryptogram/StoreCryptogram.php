@@ -41,7 +41,7 @@ class StoreCryptogram extends FormRequest
             'language_id' => ['required', 'integer', 'exists:languages,id'],
             'location_name' => ['nullable', 'string'],
 
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:255'],
             'recipient' => ['nullable', 'string'],
             'sender' => ['nullable', 'string'],
             'solution_id' => ['required', 'integer', 'exists:solutions,id'],
@@ -62,6 +62,7 @@ class StoreCryptogram extends FormRequest
             })],
 
             'images' => ['nullable', 'array'],
+            'images.*.*' => ['image'],
             'groups' => ['nullable', 'json'],
             'tags' => ['nullable', 'array'],
             'continent' => ['required'],
@@ -167,7 +168,7 @@ class StoreCryptogram extends FormRequest
     {
         $sanitized = $this->validated();
 
-        $sanitized['image_url'] = 'temporary value';
+        $sanitized['thumbnail_url'] = 'temporary value';
 
         $sanitized['language_id'] = $sanitized['language_id'] ? $sanitized['language_id'] : null;
 
@@ -205,6 +206,7 @@ class StoreCryptogram extends FormRequest
 
         $sanitized['location_id'] = $location->id;
 
+        dd($sanitized);
         return $sanitized;
     }
 }
