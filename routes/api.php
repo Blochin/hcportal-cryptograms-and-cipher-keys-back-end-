@@ -58,6 +58,7 @@ Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->grou
     Route::post('/cipher-keys', [CipherKeysController::class, 'create']);
     Route::post('/cipher-keys/{cipherKey}', [CipherKeysController::class, 'update']);
     Route::get('/cipher-keys/my', [CipherKeysController::class, 'myKeys']);
+    Route::get('/cipher-keys/{cipherKey}', [CipherKeysController::class, 'show']);
 
     Route::get('/key-types', [KeyTypesController::class, 'index']);
 

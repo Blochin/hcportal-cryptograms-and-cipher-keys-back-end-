@@ -160,7 +160,7 @@ class CryptogramsController extends Controller
         ]);
 
         if (
-            auth()->check() && $cryptogram->createdBy == auth()->user()->id ||
+            auth()->check() && $cryptogram->created_by == auth()->user()->id ||
             $cryptogram->state['id'] == CipherKey::STATUS_APPROVED
         ) {
             return $this->success(new CryptogramDetailedResource($cryptogram), 'Get a cryptogram.', 200);
@@ -170,9 +170,7 @@ class CryptogramsController extends Controller
             'status' => "Validation error",
             'status_code' => 422,
             'message' => "Validation error",
-            'data' => [
-                'created_by' => ['Cipher key is not approved or you are not a submitter.']
-            ]
+            'data' => 'Cryptogram is not approved or you are not a submitter.'
         ], 422);
     }
 

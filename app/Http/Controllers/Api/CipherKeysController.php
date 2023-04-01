@@ -142,6 +142,7 @@ class CipherKeysController extends Controller
     public function show(CipherKey $cipherKey)
     {
 
+
         $cipherKey->load([
             'images',
             'users',
@@ -161,7 +162,7 @@ class CipherKeysController extends Controller
         ]);
 
         if (
-            auth('sanctum')->check() && $cipherKey->createdBy == auth('sanctum')->user()->id ||
+            auth('sanctum')->check() && $cipherKey->created_by == auth('sanctum')->user()->id ||
             $cipherKey->state['id'] == CipherKey::STATUS_APPROVED
         ) {
             return $this->success(new CipherKeyApprovedDetailedResource($cipherKey), 'Get a cipher key.', 200);
@@ -171,9 +172,7 @@ class CipherKeysController extends Controller
             'status' => "Validation error",
             'status_code' => 422,
             'message' => "Validation error",
-            'data' => [
-                'created_by' => ['Cipher key is not approved or you are not a submitter.']
-            ]
+            'data' => 'Cipher key is not approved or you are not a submitter.'
         ], 422);
     }
 
