@@ -34,9 +34,9 @@ trait CipherKeySyncable
 		$archive_id = (isset($sanitized['archive_id'])) ? $sanitized['archive_id'] : null;
 
 		if ($updateApi) {
-			$sanitized['new_archive'] = $sanitized['archive'];
-			$sanitized['new_folder'] = $sanitized['folder'];
-			$sanitized['new_fond'] = $sanitized['fond'];
+			$sanitized['new_archive'] = (isset($sanitized['archive']) && $sanitized['archive']) ? $sanitized['archive'] : null;
+			$sanitized['new_folder'] = (isset($sanitized['folder']) && $sanitized['folder']) ? $sanitized['folder'] : null;
+			$sanitized['new_fond'] = (isset($sanitized['fond']) && $sanitized['fond']) ? $sanitized['fond'] : null;
 		}
 
 		if (

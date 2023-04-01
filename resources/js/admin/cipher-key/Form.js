@@ -121,7 +121,7 @@ Vue.component("cipher-key-form", {
 
             var files = this.$refs.files;
             if (files) {
-                var totalfiles = files.length;
+                var totalfiles = files?.length;
                 for (var index = 0; index < totalfiles; index++) {
                     formData.append("files[]", files[index].files[0]);
                     this.form.files.push(files[index].files[0]);
@@ -246,7 +246,7 @@ Vue.component("cipher-key-form", {
 
         addImage: function (event) {
             this.form.images.push({
-                id: this.form.images.length,
+                id: this.form.images?.length,
                 has_instructions: false,
                 structure: "",
             });
@@ -279,7 +279,7 @@ Vue.component("cipher-key-form", {
         filterSubcategories(item) {
             this.form.subcategory = "";
 
-            if (item.children.length > 0) {
+            if (item.children?.length > 0) {
                 this.filteredSubcategories = item.children;
             } else {
                 this.filteredSubcategories = [];

@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-lg-4" v-if="filteredSubcategories.length > 0 || form.subcategory">
+    <div class="col-12 col-lg-4" v-if="filteredSubcategories?.length > 0 || form.subcategory">
         <div class="form-group row align-items-center"
             :class="{'has-danger': errors.has('subcategory_id'), 'has-success': fields.subcategory_id && fields.subcategory_id.valid }">
             <label for="subcategory_id" class="col-form-label"
@@ -409,7 +409,7 @@
 </div>
 
 <div class="row">
-    <div :class="form.users.length > 0 ? 'col-md-12' : 'col-md-4'">
+    <div :class="form.users?.length > 0 ? 'col-md-12' : 'col-md-4'">
         <div v-for="(input, index) in form.users" :key="index">
             <div class="form-group row align-items-end">
                 <div class="col-md-8">

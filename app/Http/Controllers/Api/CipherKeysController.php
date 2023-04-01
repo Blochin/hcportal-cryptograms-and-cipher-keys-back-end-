@@ -160,8 +160,21 @@ class CipherKeysController extends Controller
             'tags'
         ]);
 
+        if (
+            auth()->check() && $cipherKey->createdBy == auth()->user()->id ||
+            $cipherKey->state['id'] == CipherKey::STATUS_APPROVED
+        ) {
+            return $this->success(new CipherKeyApprovedDetailedResource($cipherKey), 'Get a cipher key.', 200);
+        }
 
-        return $this->success(new CipherKeyApprovedDetailedResource($cipherKey), 'Get a cipher key.', 200);
+        return response()->json([
+            'status' => "Validation error",
+            'status_code' => 422,
+            'message' => "Validation error",
+            'data' => [
+                'created_by' => ['Cipher key is not approved or you are not a submitter.']
+            ]
+        ], 422);
     }
 
     /**
