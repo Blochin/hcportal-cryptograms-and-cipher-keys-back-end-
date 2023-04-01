@@ -161,7 +161,7 @@ class CipherKeysController extends Controller
         ]);
 
         if (
-            auth()->check() && $cipherKey->createdBy == auth()->user()->id ||
+            auth('sanctum')->check() && $cipherKey->createdBy == auth('sanctum')->user()->id ||
             $cipherKey->state['id'] == CipherKey::STATUS_APPROVED
         ) {
             return $this->success(new CipherKeyApprovedDetailedResource($cipherKey), 'Get a cipher key.', 200);

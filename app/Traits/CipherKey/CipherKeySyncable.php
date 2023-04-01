@@ -94,7 +94,7 @@ trait CipherKeySyncable
 	 */
 	public function syncTags(CipherKey $key, $sanitized, $origin = 'web', $type = 'cipher_key')
 	{
-		if (!isset($sanitized['tags']) && !$sanitized['tags']) return;
+		if (!isset($sanitized['tags'])) return;
 
 		$tags = collect($sanitized['tags'])->pluck('id');
 
