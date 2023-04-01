@@ -17,7 +17,7 @@ class StatisticsController extends Controller
     use ApiResponser;
 
     /**
-     * Show all solutions
+     * Show all statistics
      *
      * @unauthenticated
      * 

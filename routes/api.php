@@ -60,7 +60,6 @@ Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->grou
     Route::get('/cipher-keys/my', [CipherKeysController::class, 'myKeys']);
 
     Route::get('/key-types', [KeyTypesController::class, 'index']);
-    Route::get('/cipher-types', [CipherTypesController::class, 'index']);
 
     //-------------------------------------------------Cryptograms--------------------------------------------
     Route::get('/cryptograms/my', [CryptogramsController::class, 'myCryptograms']);
