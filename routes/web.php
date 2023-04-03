@@ -2,6 +2,8 @@
 
 use App\Mail\UpdateCipherKeyStateMail;
 use App\Models\CipherKey;
+use App\Models\Cryptogram;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +18,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
     //return new UpdateCipherKeyStateMail(CipherKey::first());
+
+    // foreach ($cipherKeyByCentury as $key) {
+    //     $date = $key->used_from ?: $key->used_to;
+    //     $century = (string) ceil($date->year / 100);
+    //     $centuries->push(['title' => $century . ". century", 'century_from' => $date->startOfCentury()->year, 'century_to' => $date->endOfCentury()->year]);
+    // }
+
+    // foreach ($cipherKeyByCentury as $key) {
+    //     $date = $key->used_from ?: $key->used_to;
+    //     $century = (string) ceil($date->year / 100);
+    //     $centuries->push(['title' => $century . ". century", 'century_from' => $date->startOfCentury()->year, 'century_to' => $date->endOfCentury()->year]);
+    // }
+
     return view('welcome');
 });
 
@@ -235,8 +249,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
-    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
-        Route::prefix('digitalized-transcriptions')->name('digitalized-transcriptions/')->group(static function() {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function () {
+        Route::prefix('digitalized-transcriptions')->name('digitalized-transcriptions/')->group(static function () {
             Route::get('/',                                             'DigitalizedTranscriptionsController@index')->name('index');
             Route::get('/create',                                       'DigitalizedTranscriptionsController@create')->name('create');
             Route::post('/',                                            'DigitalizedTranscriptionsController@store')->name('store');

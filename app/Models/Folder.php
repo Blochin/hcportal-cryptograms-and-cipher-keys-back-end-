@@ -24,4 +24,9 @@ class Folder extends Model
     {
         return $this->belongsTo(Fond::class);
     }
+
+    public function archives()
+    {
+        return $this->hasManyThrough(Archive::class, Fond::class);
+    }
 }

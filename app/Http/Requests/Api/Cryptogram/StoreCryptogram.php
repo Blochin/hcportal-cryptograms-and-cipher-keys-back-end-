@@ -206,7 +206,6 @@ class StoreCryptogram extends FormRequest
 
         $sanitized['location_id'] = $location->id;
 
-        dd($sanitized);
         return $sanitized;
     }
 }
