@@ -15,4 +15,19 @@ class Person extends Model
     protected $fillable = [
         'name',
     ];
+
+
+    /* ************************ Relationships ************************* */
+
+    public function cipherKeys()
+    {
+        return $this->hasManyThrough(
+            CipherKey::class,
+            CipherKeyPerson::class,
+            'person_id', // foreign key on CipherKeyPerson table
+            'id', // local key on CipherKey table
+            'id', // local key on CipherKeyPerson table
+            'cipher_key_id' // foreign key on Person table
+        );
+    }
 }

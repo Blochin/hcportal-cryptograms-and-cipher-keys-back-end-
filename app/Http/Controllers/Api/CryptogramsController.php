@@ -160,7 +160,7 @@ class CryptogramsController extends Controller
         ]);
 
         if (
-            auth()->check() && $cryptogram->created_by == auth()->user()->id ||
+            auth('sanctum')->check() && $cryptogram->created_by == auth('sanctum')->user()->id ||
             $cryptogram->state['id'] == CipherKey::STATUS_APPROVED
         ) {
             return $this->success(new CryptogramDetailedResource($cryptogram), 'Get a cryptogram.', 200);

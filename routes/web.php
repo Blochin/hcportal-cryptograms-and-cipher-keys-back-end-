@@ -2,8 +2,12 @@
 
 use App\Mail\UpdateCipherKeyStateMail;
 use App\Models\CipherKey;
+use App\Models\CipherKeyPerson;
 use App\Models\Cryptogram;
+use App\Models\Location;
+use App\Models\Person;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +30,12 @@ Route::get('/', function () {
     //     $centuries->push(['title' => $century . ". century", 'century_from' => $date->startOfCentury()->year, 'century_to' => $date->endOfCentury()->year]);
     // }
 
+    // $keysCount = CipherKeyPerson::whereHas('person')->whereHas('cipherKey', function (Builder $query) {
+    //     $query->approved();
+    // })->get();
+
+
+    //dd($centuryStats->toArray());
     // foreach ($cipherKeyByCentury as $key) {
     //     $date = $key->used_from ?: $key->used_to;
     //     $century = (string) ceil($date->year / 100);

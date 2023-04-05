@@ -34,4 +34,9 @@ class CipherKeyPerson extends Model
     {
         return $this->belongsTo(Person::class);
     }
+
+    public function cipherKey()
+    {
+        return $this->belongsTo(CipherKey::class);
+    }
 }
