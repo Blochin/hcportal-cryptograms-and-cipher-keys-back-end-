@@ -13,10 +13,8 @@
             "name": "Podkategoria 2",
             "children": []
         },
-        "day": 12,
-        "month": 1,
-        "year": 1876,
-        "before_crist": 1,
+        "date": "2022-02-19",
+        "date_around": null,
         "thumb": "http://dp.test/media/22/conversions/media-libraryl9NdAh-large.jpg",
         "language": {
             "id": 1,

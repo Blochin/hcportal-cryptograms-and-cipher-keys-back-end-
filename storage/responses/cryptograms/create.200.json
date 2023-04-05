@@ -13,10 +13,8 @@
             "name": "Category 1",
             "children": []
         },
-        "day": null,
-        "month": null,
-        "year": null,
-        "before_crist": null,
+        "date": "2022-02-19",
+        "date_around": null,
         "thumb": "http://dp.test/media/37/conversions/1423-1_liska-large.jpg",
         "language": {
             "id": 1,
