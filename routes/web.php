@@ -35,19 +35,6 @@ Route::get('/', function () {
     // })->get();
 
 
-    // $persons = Person::withCount(['cipherKeys' => function ($query) {
-    //     $query->approved();
-    // }])->get();
-
-    // $personsCount = $persons->count();
-
-    // $topPersons = $persons->sortByDesc('cipher_keys_count')->mapWithKeys(function ($item, $key) use ($i) {
-    //     return [['name' => $item['name'], 'count' => $item['cipher_keys_count']]];
-    // })->toArray();
-
-    // dd($topPersons);
-
-
     //dd($centuryStats->toArray());
     // foreach ($cipherKeyByCentury as $key) {
     //     $date = $key->used_from ?: $key->used_to;

@@ -69,7 +69,7 @@ class StoreCryptogram extends FormRequest
             'note' => ['nullable'],
             'thumbnail' => ['nullable', 'image'],
             'thumbnail_link' => ['nullable', 'string'],
-            'thumbnail_base64' => ['nullable', 'text'],
+            'thumbnail_base64' => ['nullable', 'string'],
         ];
     }
 

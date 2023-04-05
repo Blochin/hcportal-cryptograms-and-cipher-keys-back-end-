@@ -30,4 +30,14 @@ class Person extends Model
             'cipher_key_id' // foreign key on Person table
         );
     }
+
+    public function senderCryptograms()
+    {
+        return $this->hasMany(Cryptogram::class, 'sender_id', 'id');
+    }
+
+    public function recipientCryptograms()
+    {
+        return $this->hasMany(Cryptogram::class, 'recipient_id', 'id');
+    }
 }

@@ -45,19 +45,32 @@ class StatisticsController extends Controller
         $cipherAndCryptoByLanguage = $this->cipherAndCryptoByLanguage();
 
         //Cipher keys
-
         $persons = Person::withCount(['cipherKeys' => function ($query) {
             $query->approved();
         }])->get();
 
         $personsCount = $persons->count();
-        $i = 0;
-        $topPersons = $persons->sortByDesc('cipher_keys_count')->mapWithKeys(function ($item, $key) use ($i) {
-            return [$i++ => ['name' => $item['name'], 'count' => $item['cipher_keys_count']]];
-        })->toArray();
+        $topPersons = $persons->sortByDesc('cipher_keys_count')->mapWithKeys(function ($item, $key) {
+            return [$item['name'] => $item['cipher_keys_count']];
+        })->take(10)->toArray();
 
-        $oldest =  CipherKey::orderBy('used_from', 'asc')->orderBy('used_to', 'asc')->approved()->first()->pluck('used_from');
-        $newest =  CipherKey::orderBy('used_from', 'desc')->orderBy('used_to', 'desc')->approved()->first()->pluck('used_from');
+
+        $topPersons = collect($topPersons)
+            ->sortByDesc(function ($value, $key) {
+                return $value;
+            })
+            ->map(function ($value, $key) {
+                return [
+                    'id' => $value + 1,
+                    'title' => $key,
+                    'cipher_count' => $value,
+                ];
+            })
+            ->values()
+            ->toArray();
+
+        $oldest =  CipherKey::whereNotNull('used_from')->orderBy('used_from', 'asc')->orderBy('used_to', 'asc')->approved()->first();
+        $newest =  CipherKey::whereNotNull('used_from')->orderBy('used_from', 'desc')->orderBy('used_to', 'desc')->approved()->first();
         $usedChars = ['L', 'S', 'N', 'D', 'M', 'G'];
 
         foreach ($usedChars as $char) {
@@ -66,6 +79,41 @@ class StatisticsController extends Controller
 
         $cipherByCentury = $this->cipherSymbolByCentury();
 
+
+        //Cryptograms
+        $personsCryptograms = Person::withCount(['senderCryptograms' => function ($query) {
+            $query->approved();
+        }, 'recipientCryptograms' => function ($query) {
+            $query->approved();
+        }])->get();
+
+        $personsCryptogramsCount = $personsCryptograms->count();
+
+        $topPersonsCryptograms = $personsCryptograms->sortByDesc(function ($person) {
+            return $person->sender_cryptograms_count + $person->recipient_cryptograms_count;
+        })->mapWithKeys(function ($item, $key) {
+            return [$item['name'] => $item['sender_cryptograms_count'] + $item['recipient_cryptograms_count']];
+        })->take(10)->toArray();
+
+        $topPersonsCryptograms = collect($topPersonsCryptograms)
+            ->sortByDesc(function ($value, $key) {
+                return $value;
+            })
+            ->map(function ($value, $key) {
+                return [
+                    'title' => $key,
+                    'cipher_count' => $value,
+                ];
+            })
+            ->values()
+            ->toArray();
+
+
+        $personsCryptograms = Person::withCount(['senderCryptograms' => function ($query) {
+            $query->approved();
+        }, 'recipientCryptograms' => function ($query) {
+            $query->approved();
+        }])->get();
 
 
         return $this->success([
@@ -83,15 +131,18 @@ class StatisticsController extends Controller
             'cipher_keys' => [
                 'count' => [
                     'persons' => $personsCount,
-                    'archives' => $archivesCipherCount,
-                    'oldest' => $oldest,
-                    'newest' => $newest,
+                    'archives' => $archivesCipherCount->count(),
+                    'oldest' => $oldest && $oldest->used_from ? $oldest->used_from->format('d. m. Y') : null,
+                    'newest' => $newest && $newest->used_from ? $newest->used_from->format('d. m. Y') : null,
                 ],
                 'by_persons' => $topPersons,
                 'by_century' => $cipherByCentury
             ],
             'cryptograms' => [
-                'count' => $cryptogramsCount
+                'count' => [
+                    'persons' => $personsCryptogramsCount,
+                ],
+                'by_persons' => $topPersons
             ]
         ], 'Statsitics data.', 200);
     }
@@ -262,13 +313,14 @@ class StatisticsController extends Controller
 
 
     /**
-     * Get cipher and cryptograms stats by century
+     * Get cipher symbols stats by century
      *
      * @return array
      */
     private function cipherSymbolByCentury()
     {
         $centuries = collect([]);
+        $centuriesRows = [];
         $centuriesCipherDatasets = collect([]);
         $centuryStats = collect([]);
         $centuryTitles = collect([]);
@@ -290,6 +342,7 @@ class StatisticsController extends Controller
                 $centuriesCipherDatasets->push($cipherKeyByCentury);
 
                 $centuries[$char]->push($cipherKeyByCentury);
+                $centuriesRows[$i . ". century"][$char] = $cipherKeyByCentury;
             }
 
 
@@ -297,6 +350,7 @@ class StatisticsController extends Controller
             $centuriesCipherDatasets->push($cipherKeyByCentury);
 
             $centuries[$char]->push($cipherKeyByCentury);
+            $centuriesRows['Not recognized'][$char] = $cipherKeyByCentury;
 
             $centuries[$char] = $centuries[$char]->toArray();
 
@@ -315,11 +369,13 @@ class StatisticsController extends Controller
         for ($i = 15; $i <= $actualCentury; $i++) {
             $centuryTitles->push(['title' => $i . ". century"]);
         }
+        $centuryTitles->push(['title' => "Not recognized"]);
 
         return [
             'centuries_title' => $centuryTitles->pluck('title')->toArray(),
             'centuries' => $centuries,
-            'datasets' => $centuryStats->toArray()
+            'datasets' => $centuryStats->toArray(),
+            'centuriesRows' => $centuriesRows
         ];
     }
 }
