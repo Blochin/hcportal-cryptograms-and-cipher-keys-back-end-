@@ -18,8 +18,8 @@ class DataResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'type' => $this->filetype,
-            'link' => $this->when($this->filetype == 'link', $this->blobb),
-            'text' =>  $this->when($this->filetype == 'text', $this->blobb),
+            'link' => $this->when($this->filetype == 'link', $this->blob),
+            'text' =>  $this->when($this->filetype == 'text', $this->blob),
             'image' => $this->when($this->filetype == 'image', [
                 'thumb' => $this->getFirstMediaUrl('image', 'thumb'),
                 'big' => $this->getFirstMediaUrl('image', 'big'),
