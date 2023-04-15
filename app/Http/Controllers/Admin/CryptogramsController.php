@@ -339,33 +339,6 @@ class CryptogramsController extends Controller
 
 
     /**
-     * Update cryptograms state
-     *
-     * @param UpdateStateCipherKey $request
-     * @param Cryptogram $cryptogram
-     * @return void
-     */
-    public function changeState(UpdateState $request, Cryptogram $cryptogram)
-    {
-        $sanitized = $request->getSanitized();
-
-        $state = State::create([
-            'name' => $cryptogram->name,
-            'state' => $sanitized['state'],
-            'note' => $sanitized['note'],
-            'created_by' => auth()->user()->id
-        ]);
-
-        $cryptogram->update(['state_id' => $state->id]);
-
-        Mail::to($cryptogram->submitter->email)->send(new UpdateCryptogramStateMail($cryptogram));
-
-        alert()->success('Success', 'Sucessfully changed state of cryptogram.');
-
-        return response()->json('Successfully status changed.', 200);
-    }
-
-    /**
      * Search cryptograms
      *
      * @param Request $request

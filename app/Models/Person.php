@@ -17,6 +17,15 @@ class Person extends Model
     ];
 
 
+    protected $appends = ['resource_url'];
+
+    /* ************************ ACCESSOR ************************* */
+
+    public function getResourceUrlAttribute()
+    {
+        return url('/admin/people/' . $this->getKey());
+    }
+
     /* ************************ Relationships ************************* */
 
     public function cipherKeys()

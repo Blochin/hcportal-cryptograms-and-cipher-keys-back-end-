@@ -45,7 +45,7 @@ class Cryptogram extends Model implements HasMedia
     public const AVAILABILITY_TYPE = "other";
     public const ARCHIVE_TYPE = "archive";
 
-    protected $dates = [];
+    protected $dates = ['date'];
 
 
     protected $appends = ['resource_url', 'state_badge', 'continent', 'location_name', 'picture', 'fond', 'archive', 'availability_type'];

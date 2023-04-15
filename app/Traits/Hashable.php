@@ -17,7 +17,7 @@ trait Hashable
      * Hash password
      *
      * @param string $string
-     * @return void
+     * @return string
      */
     protected function hash($string)
     {

@@ -89,7 +89,7 @@ class LoginController extends AuthLoginController
      * Modified login with hash 256
      *
      * @param Request $request
-     * @return void
+     * @return boolean
      */
     protected function attemptLogin(Request $request)
     {
