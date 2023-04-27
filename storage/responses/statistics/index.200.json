@@ -3,7 +3,627 @@
     "status_code": 200,
     "message": "Statsitics data.",
     "data": {
-        "cipher_keys_count": 20,
-        "cryptograms": 3
+        "global": {
+            "count": {
+                "total": 8,
+                "cipher_keys": 4,
+                "cryptograms": 4,
+                "archives": 2
+            },
+            "by_century": {
+                "centuries_title": [
+                    "15. century",
+                    "16. century",
+                    "17. century",
+                    "18. century",
+                    "19. century",
+                    "20. century",
+                    "21. century",
+                    "Not recognized"
+                ],
+                "centuries": [
+                    {
+                        "title": "15. century",
+                        "century_from": "1401-01-01",
+                        "century_to": "1500-12-31",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "16. century",
+                        "century_from": "1501-01-01",
+                        "century_to": "1600-12-31",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "17. century",
+                        "century_from": "1601-01-01",
+                        "century_to": "1700-12-31",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "18. century",
+                        "century_from": "1701-01-01",
+                        "century_to": "1800-12-31",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "19. century",
+                        "century_from": "1801-01-01",
+                        "century_to": "1900-12-31",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "20. century",
+                        "century_from": "1901-01-01",
+                        "century_to": "2000-12-31",
+                        "cipher_count": 0,
+                        "cryptograms_count": 1
+                    },
+                    {
+                        "title": "21. century",
+                        "century_from": "2001-01-01",
+                        "century_to": "2100-12-31",
+                        "cipher_count": 4,
+                        "cryptograms_count": 2
+                    },
+                    {
+                        "title": "Not recognized",
+                        "century_from": null,
+                        "century_to": null,
+                        "cipher_count": 0,
+                        "cryptograms_count": 1
+                    }
+                ],
+                "datasets": [
+                    {
+                        "label": "Number of cipher keys",
+                        "backgroundColor": "#fa7315",
+                        "borderColor": "#fa7315",
+                        "data": [0, 0, 0, 0, 0, 0, 4, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "Number of cryptograms",
+                        "backgroundColor": "#344256",
+                        "borderColor": "#344256",
+                        "data": [0, 0, 0, 0, 0, 1, 2, 1],
+                        "fill": false,
+                        "barThickness": 8
+                    }
+                ]
+            },
+            "by_continent": {
+                "continents_title": [
+                    "Unknown",
+                    "North America",
+                    "South America",
+                    "Europe",
+                    "Asia",
+                    "Oceania",
+                    "Africa",
+                    "Antartica"
+                ],
+                "continents": [
+                    {
+                        "title": "Unknown",
+                        "cipher_count": 3,
+                        "cryptograms_count": 2
+                    },
+                    {
+                        "title": "North America",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "South America",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "Europe",
+                        "cipher_count": 1,
+                        "cryptograms_count": 2
+                    },
+                    {
+                        "title": "Asia",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "Oceania",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "Africa",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    },
+                    {
+                        "title": "Antartica",
+                        "cipher_count": 0,
+                        "cryptograms_count": 0
+                    }
+                ],
+                "datasets": [
+                    {
+                        "label": "Number of cipher keys",
+                        "backgroundColor": "#fa7315",
+                        "borderColor": "#fa7315",
+                        "data": [3, 0, 0, 1, 0, 0, 0, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "Number of cryptograms",
+                        "backgroundColor": "#344256",
+                        "borderColor": "#344256",
+                        "data": [2, 0, 0, 2, 0, 0, 0, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    }
+                ]
+            },
+            "by_language": {
+                "languages_title": ["Englkish"],
+                "languages": [
+                    {
+                        "title": "Englkish",
+                        "cipher_count": 4,
+                        "cryptograms_count": 4
+                    }
+                ],
+                "datasets": [
+                    {
+                        "label": "Number of cipher keys",
+                        "backgroundColor": "#fa7315",
+                        "borderColor": "#fa7315",
+                        "data": [4],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "Number of cryptograms",
+                        "backgroundColor": "#344256",
+                        "borderColor": "#344256",
+                        "data": [4],
+                        "fill": false,
+                        "barThickness": 8
+                    }
+                ]
+            }
+        },
+        "cipher_keys": {
+            "count": {
+                "persons": 3,
+                "archives": 1,
+                "oldest": "29. 03. 2023",
+                "newest": "30. 03. 2023"
+            },
+            "by_persons": [
+                {
+                    "id": 3,
+                    "title": "new user name",
+                    "cipher_count": 2
+                },
+                {
+                    "id": 2,
+                    "title": "Samaritan 22",
+                    "cipher_count": 1
+                },
+                {
+                    "id": 2,
+                    "title": "new user name 2",
+                    "cipher_count": 1
+                }
+            ],
+            "by_century": {
+                "centuries_title": [
+                    "15. century",
+                    "16. century",
+                    "17. century",
+                    "18. century",
+                    "19. century",
+                    "20. century",
+                    "21. century",
+                    "Not recognized"
+                ],
+                "centuries": {
+                    "L": [0, 0, 0, 0, 0, 0, 1, 0],
+                    "S": [0, 0, 0, 0, 0, 0, 3, 0],
+                    "N": [0, 0, 0, 0, 0, 0, 0, 0],
+                    "D": [0, 0, 0, 0, 0, 0, 1, 0],
+                    "M": [0, 0, 0, 0, 0, 0, 1, 0],
+                    "G": [0, 0, 0, 0, 0, 0, 0, 0]
+                },
+                "datasets": [
+                    {
+                        "label": "L",
+                        "backgroundColor": "#fa7315",
+                        "borderColor": "#fa7315",
+                        "data": [0, 0, 0, 0, 0, 0, 1, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "S",
+                        "backgroundColor": "#29B6F6",
+                        "borderColor": "#29B6F6",
+                        "data": [0, 0, 0, 0, 0, 0, 3, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "N",
+                        "backgroundColor": "#2E7D32",
+                        "borderColor": "#2E7D32",
+                        "data": [0, 0, 0, 0, 0, 0, 0, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "D",
+                        "backgroundColor": "#FDD835",
+                        "borderColor": "#FDD835",
+                        "data": [0, 0, 0, 0, 0, 0, 1, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "M",
+                        "backgroundColor": "#E91E63",
+                        "borderColor": "#E91E63",
+                        "data": [0, 0, 0, 0, 0, 0, 1, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "G",
+                        "backgroundColor": "#6A1B9A",
+                        "borderColor": "#6A1B9A",
+                        "data": [0, 0, 0, 0, 0, 0, 0, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    }
+                ],
+                "centuriesRows": {
+                    "15. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "16. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "17. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "18. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "19. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "20. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "21. century": {
+                        "L": 1,
+                        "S": 3,
+                        "N": 0,
+                        "D": 1,
+                        "M": 1,
+                        "G": 0
+                    },
+                    "Not recognized": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    }
+                }
+            }
+        },
+        "cryptograms": {
+            "count": {
+                "persons": 2,
+                "recipients": 1,
+                "senders": 2,
+                "archives": 1,
+                "oldest": "08. 02. 1956",
+                "newest": "24. 03. 2023"
+            },
+            "by_persons": [
+                {
+                    "id": 3,
+                    "title": "new user name",
+                    "cipher_count": 2
+                },
+                {
+                    "id": 2,
+                    "title": "Samaritan 22",
+                    "cipher_count": 1
+                },
+                {
+                    "id": 2,
+                    "title": "new user name 2",
+                    "cipher_count": 1
+                }
+            ],
+            "by_century": {
+                "centuries_title": [
+                    "15. century",
+                    "16. century",
+                    "17. century",
+                    "18. century",
+                    "19. century",
+                    "20. century",
+                    "21. century",
+                    "Not recognized"
+                ],
+                "centuries": {
+                    "Solved": [0, 0, 0, 0, 0, 1, 2, 1]
+                },
+                "datasets": [
+                    {
+                        "label": "Solved",
+                        "backgroundColor": "#29B6F6",
+                        "borderColor": "#29B6F6",
+                        "data": [0, 0, 0, 0, 0, 1, 2, 1],
+                        "fill": false,
+                        "barThickness": 8
+                    }
+                ],
+                "centuriesRows": {
+                    "15. century": {
+                        "Solved": 0
+                    },
+                    "16. century": {
+                        "Solved": 0
+                    },
+                    "17. century": {
+                        "Solved": 0
+                    },
+                    "18. century": {
+                        "Solved": 0
+                    },
+                    "19. century": {
+                        "Solved": 0
+                    },
+                    "20. century": {
+                        "Solved": 1
+                    },
+                    "21. century": {
+                        "Solved": 2
+                    },
+                    "Not recognized": {
+                        "Solved": 1
+                    }
+                }
+            },
+            "by_continent": {
+                "locations_title": [
+                    "Unknown",
+                    "North America",
+                    "South America",
+                    "Europe",
+                    "Asia",
+                    "Oceania",
+                    "Africa",
+                    "Antartica"
+                ],
+                "locations": {
+                    "Solved": [2, 0, 0, 2, 0, 0, 0, 0]
+                },
+                "datasets": [
+                    {
+                        "label": "Solved",
+                        "backgroundColor": "#FDD835",
+                        "borderColor": "#FDD835",
+                        "data": [2, 0, 0, 2, 0, 0, 0, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    }
+                ],
+                "locationsRows": {
+                    "Unknown": {
+                        "Solved": 2
+                    },
+                    "North America": {
+                        "Solved": 0
+                    },
+                    "South America": {
+                        "Solved": 0
+                    },
+                    "Europe": {
+                        "Solved": 2
+                    },
+                    "Asia": {
+                        "Solved": 0
+                    },
+                    "Oceania": {
+                        "Solved": 0
+                    },
+                    "Africa": {
+                        "Solved": 0
+                    },
+                    "Antartica": {
+                        "Solved": 0
+                    }
+                }
+            },
+            "by_symbols": {
+                "centuries_title": [
+                    "15. century",
+                    "16. century",
+                    "17. century",
+                    "18. century",
+                    "19. century",
+                    "20. century",
+                    "21. century",
+                    "Not recognized"
+                ],
+                "centuries": {
+                    "L": [0, 0, 0, 0, 0, 1, 0, 1],
+                    "S": [0, 0, 0, 0, 0, 1, 0, 1],
+                    "N": [0, 0, 0, 0, 0, 0, 0, 0],
+                    "D": [0, 0, 0, 0, 0, 0, 0, 0],
+                    "M": [0, 0, 0, 0, 0, 1, 0, 1],
+                    "G": [0, 0, 0, 0, 0, 0, 0, 0]
+                },
+                "datasets": [
+                    {
+                        "label": "L",
+                        "backgroundColor": "#fa7315",
+                        "borderColor": "#fa7315",
+                        "data": [0, 0, 0, 0, 0, 1, 0, 1],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "S",
+                        "backgroundColor": "#29B6F6",
+                        "borderColor": "#29B6F6",
+                        "data": [0, 0, 0, 0, 0, 1, 0, 1],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "N",
+                        "backgroundColor": "#2E7D32",
+                        "borderColor": "#2E7D32",
+                        "data": [0, 0, 0, 0, 0, 0, 0, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "D",
+                        "backgroundColor": "#FDD835",
+                        "borderColor": "#FDD835",
+                        "data": [0, 0, 0, 0, 0, 0, 0, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "M",
+                        "backgroundColor": "#E91E63",
+                        "borderColor": "#E91E63",
+                        "data": [0, 0, 0, 0, 0, 1, 0, 1],
+                        "fill": false,
+                        "barThickness": 8
+                    },
+                    {
+                        "label": "G",
+                        "backgroundColor": "#6A1B9A",
+                        "borderColor": "#6A1B9A",
+                        "data": [0, 0, 0, 0, 0, 0, 0, 0],
+                        "fill": false,
+                        "barThickness": 8
+                    }
+                ],
+                "centuriesRows": {
+                    "15. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "16. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "17. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "18. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "19. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "20. century": {
+                        "L": 1,
+                        "S": 1,
+                        "N": 0,
+                        "D": 0,
+                        "M": 1,
+                        "G": 0
+                    },
+                    "21. century": {
+                        "L": 0,
+                        "S": 0,
+                        "N": 0,
+                        "D": 0,
+                        "M": 0,
+                        "G": 0
+                    },
+                    "Not recognized": {
+                        "L": 1,
+                        "S": 1,
+                        "N": 0,
+                        "D": 0,
+                        "M": 1,
+                        "G": 0
+                    }
+                }
+            }
+        }
     }
 }
