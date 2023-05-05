@@ -149,6 +149,10 @@ class StoreCipherKey extends JsonFormRequest
         $sanitized['created_by'] = auth()->user()->id;
         $sanitized['state'] = CipherKey::STATUS_AWAITING;
 
+        if (auth()->user()->hasRole('admin')) {
+            $sanitized['state'] = CipherKey::STATUS_APPROVED;
+        }
+
 
         if (isset($sanitized['location_name']) && isset($sanitized['continent'])) {
             $location = Location::firstOrCreate([
