@@ -55,7 +55,7 @@ class StoreCipherKey extends JsonFormRequest
             'users' => ['nullable', 'json'],
             'images' => ['nullable', 'json'],
             'files' => ['nullable',],
-            'state' => ['nullable', 'string', 'max:255'],
+            'state' => ['nullable', 'string', 'max:255', Rule::in(collect(CipherKey::STATUSES)->pluck('id')->toArray())],
             'files.*' => ['image'],
             'tags' => ['nullable', 'array'],
             'continent' => ['nullable', 'string', 'exists:locations,continent'],

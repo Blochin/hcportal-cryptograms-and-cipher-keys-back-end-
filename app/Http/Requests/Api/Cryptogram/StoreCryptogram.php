@@ -64,7 +64,7 @@ class StoreCryptogram extends FormRequest
             'images' => ['nullable', 'array'],
             'images.*.*' => ['image'],
             'groups' => ['nullable', 'json'],
-            'state' => ['nullable', 'string', 'max:255'],
+            'state' => ['nullable', 'string', 'max:255', Rule::in(collect(CipherKey::STATUSES)->pluck('id')->toArray())],
             'tags' => ['nullable', 'array'],
             'continent' => ['required'],
             'note' => ['nullable'],
