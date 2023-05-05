@@ -64,6 +64,7 @@ class StoreCryptogram extends FormRequest
             'images' => ['nullable', 'array'],
             'images.*.*' => ['image'],
             'groups' => ['nullable', 'json'],
+            'state' => ['nullable', 'string', 'max:255'],
             'tags' => ['nullable', 'array'],
             'continent' => ['required'],
             'note' => ['nullable'],
@@ -156,6 +157,10 @@ class StoreCryptogram extends FormRequest
                 'description' => 'The Fond name',
                 'example' => 'Fond name',
             ],
+            'state' => [
+                'description' => 'State',
+                'example' => 'approved',
+            ],
         ];
     }
 
@@ -179,10 +184,10 @@ class StoreCryptogram extends FormRequest
 
         $sanitized['created_by'] = auth()->user()->id;
 
-        $sanitized['state'] = CipherKey::STATUS_AWAITING;
-
         if (auth()->user()->hasRole('admin')) {
-            $sanitized['state'] = CipherKey::STATUS_APPROVED;
+            $sanitized['state'] =  $sanitized['state'];
+        } else {
+            $sanitized['state'] = CipherKey::STATUS_AWAITING;
         }
 
 

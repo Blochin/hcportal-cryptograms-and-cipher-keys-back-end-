@@ -55,6 +55,7 @@ class StoreCipherKey extends JsonFormRequest
             'users' => ['nullable', 'json'],
             'images' => ['nullable', 'json'],
             'files' => ['nullable',],
+            'state' => ['nullable', 'string', 'max:255'],
             'files.*' => ['image'],
             'tags' => ['nullable', 'array'],
             'continent' => ['nullable', 'string', 'exists:locations,continent'],
@@ -131,6 +132,10 @@ class StoreCipherKey extends JsonFormRequest
                 'description' => 'Continent.',
                 'example' => 'Europe',
             ],
+            'state' => [
+                'description' => 'State',
+                'example' => 'approved',
+            ],
         ];
     }
 
@@ -147,10 +152,11 @@ class StoreCipherKey extends JsonFormRequest
         $sanitized['users'] = $sanitized['users'] ? json_decode($sanitized['users']) : null;
 
         $sanitized['created_by'] = auth()->user()->id;
-        $sanitized['state'] = CipherKey::STATUS_AWAITING;
 
         if (auth()->user()->hasRole('admin')) {
-            $sanitized['state'] = CipherKey::STATUS_APPROVED;
+            $sanitized['state'] =  $sanitized['state'];
+        } else {
+            $sanitized['state'] = CipherKey::STATUS_AWAITING;
         }
 
 
