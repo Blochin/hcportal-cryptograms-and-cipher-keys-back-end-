@@ -6,6 +6,7 @@ use App\Http\Requests\Api\JsonFormRequest;
 use App\Models\CipherKey;
 use App\Models\Language;
 use App\Models\Location;
+use App\Rules\SameLengthAsArray;
 use Illuminate\Validation\Rule;
 
 class StoreCipherKey extends JsonFormRequest
@@ -27,6 +28,7 @@ class StoreCipherKey extends JsonFormRequest
      */
     public function rules(): array
     {
+
         return [
             'availability' => ['nullable', 'string', 'max:255', Rule::requiredIf(function () {
                 return $this->input('archive') == null;
@@ -53,8 +55,8 @@ class StoreCipherKey extends JsonFormRequest
             'location_name' => ['nullable', 'string', 'max:255'],
             'language_id' => ['required', 'integer'],
             'users' => ['nullable', 'json'],
-            'images' => ['nullable', 'json'],
-            'files' => ['nullable',],
+            'images' => ['nullable', 'json', new SameLengthAsArray($this->file('files'), 'files')],
+            'files' => ['nullable', new SameLengthAsArray($this->input('images'), 'images')],
             'state' => ['nullable', 'string', 'max:255', Rule::in(collect(CipherKey::STATUSES)->pluck('id')->toArray())],
             'files.*' => ['image'],
             'tags' => ['nullable', 'array'],
@@ -154,7 +156,7 @@ class StoreCipherKey extends JsonFormRequest
         $sanitized['created_by'] = auth()->user()->id;
 
         if (auth()->user()->hasRole('admin')) {
-            $sanitized['state'] =  $sanitized['state'];
+            $sanitized['state'] =  isset($sanitized['state']) ? $sanitized['state'] : CipherKey::STATUS_AWAITING;
         } else {
             $sanitized['state'] = CipherKey::STATUS_AWAITING;
         }
