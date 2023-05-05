@@ -237,7 +237,7 @@ class CipherKeysController extends Controller
             'tags'
         ]);
 
-        Mail::to(config('mail.to.email'))->send(new NewCipherKeyMail($cipherKey));
+        //Mail::to(config('mail.to.email'))->send(new NewCipherKeyMail($cipherKey));
 
         return $this->success(new CipherKeyApprovedDetailedResource($cipherKey), 'Successfully added cipher key.', 200);
     }

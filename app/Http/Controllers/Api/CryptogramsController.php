@@ -248,7 +248,7 @@ class CryptogramsController extends Controller
             'submitter',
         ]);
 
-        Mail::to(config('mail.to.email'))->send(new NewCryptogramMail($cryptogram));
+        //Mail::to(config('mail.to.email'))->send(new NewCryptogramMail($cryptogram));
 
         return $this->success(new CryptogramDetailedResource($cryptogram), 'Successfully added cryptogram.', 200);
     }
