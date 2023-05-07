@@ -24,7 +24,8 @@ class StatisticsController extends Controller
     use ApiResponser;
 
     public const CENTURIES = 15;
-    public const COLORS = ['#fa7315', '#29B6F6', '#2E7D32', '#FDD835', '#E91E63',  '#6A1B9A'];
+    public const COLORS = ['#fa7315', '#29B6F6', '#2E7D32', '#FDD835', '#E91E63',  '#6A1B9A', '#CCCCFF', '#40E0D0', '#000000', '#808080', '#808000', '#008080'];
+    public const USED_CHARS_LABELS = ['L' => 'Letters', 'S' => 'Symbols', 'N' => 'Number', 'D' => 'Double', 'M' => 'Markup', 'G' => 'String'];
     /**
      * Show all statistics
      *
@@ -46,6 +47,7 @@ class StatisticsController extends Controller
         $cipherAndCryptoByCentury = $this->cipherAndCryptoByCentury();
         $cipherAndCryptoByContinent = $this->cipherAndCryptoByContinent();
         $cipherAndCryptoByLanguage = $this->cipherAndCryptoByLanguage();
+        $cipherAndCryptoBySymbols = $this->cipherAndCryptoBySymbols('all');
 
         //Cipher keys
         $persons = Person::withCount(['cipherKeys' => function ($query) {
@@ -83,6 +85,7 @@ class StatisticsController extends Controller
         }
 
         $cipherByCentury = $this->cipherSymbolByCentury();
+        $cipherBySymbols = $this->cipherAndCryptoBySymbols('cipher_keys');
 
 
         //Cryptograms
@@ -134,7 +137,8 @@ class StatisticsController extends Controller
 
         $cryptoByCentury = $this->cryptoBySolutions();
         $cryptoByContinent = $this->cryptoByContinent();
-        $cryptoBySymbol = $this->cryptoSymbolByCentury();
+        $cryptoBySymbols = $this->cipherAndCryptoBySymbols('cryptograms');
+
 
         return $this->success([
             'global' => [
@@ -147,30 +151,32 @@ class StatisticsController extends Controller
                 'by_century' => $cipherAndCryptoByCentury,
                 'by_continent' => $cipherAndCryptoByContinent,
                 'by_language' => $cipherAndCryptoByLanguage,
+                'by_symbols' => $cipherAndCryptoBySymbols
             ],
             'cipher_keys' => [
                 'count' => [
                     'persons' => $personsCount,
-                    'archives' => $archivesCipherCount->count(),
+                    'archives' => $archivesCipherCount->unique()->count(),
                     'oldest' => $oldest && $oldest->used_from ? $oldest->used_from->format('d. m. Y') : null,
                     'newest' => $newest && $newest->used_from ? $newest->used_from->format('d. m. Y') : null,
                 ],
                 'by_persons' => $topPersons,
-                'by_century' => $cipherByCentury
+                'by_century' => $cipherByCentury,
+                'by_symbols' => $cipherBySymbols
             ],
             'cryptograms' => [
                 'count' => [
                     'persons' => $total,
                     'recipients' => $recipients,
                     'senders' => $senders,
-                    'archives' => $archivesCryptoCount->count(),
+                    'archives' => $archivesCryptoCount->unique()->count(),
                     'oldest' => $oldestCrypto && $oldestCrypto->date ? $oldestCrypto->date->format('d. m. Y') : null,
                     'newest' => $newestCrypto && $newestCrypto->date ? $newestCrypto->date->format('d. m. Y') : null,
                 ],
-                'by_persons' => $topPersons,
+                'by_persons' => $topPersonsCryptograms,
                 'by_century' => $cryptoByCentury,
                 'by_continent' => $cryptoByContinent,
-                'by_symbols' => $cryptoBySymbol
+                'by_symbols' => $cryptoBySymbols
             ]
         ], 'Statsitics data.', 200);
     }
@@ -383,7 +389,7 @@ class StatisticsController extends Controller
             $centuries[$char] = $centuries[$char]->toArray();
 
             $centuryStats->push([
-                'label' => $char,
+                'label' => self::USED_CHARS_LABELS[$char],
                 'backgroundColor' => $color,
                 'borderColor' => $color,
                 'data' => $centuriesCipherDatasets->toArray(),
@@ -401,6 +407,7 @@ class StatisticsController extends Controller
 
         return [
             'centuries_title' => $centuryTitles->pluck('title')->toArray(),
+            'labels' => self::USED_CHARS_LABELS,
             'centuries' => $centuries,
             'datasets' => $centuryStats->toArray(),
             'centuriesRows' => $centuriesRows
@@ -421,6 +428,8 @@ class StatisticsController extends Controller
         $centuryStats = collect([]);
         $centuryTitles = collect([]);
         $solutions = Solution::all();
+
+        $selectedColors = [];
 
         $actualCentury = (int) ceil(now()->year / 100);
 
@@ -450,7 +459,12 @@ class StatisticsController extends Controller
 
             $centuries[$solution->name] = $centuries[$solution->name]->toArray();
 
-            $color = self::COLORS[array_rand(self::COLORS)];
+            do {
+                $color = self::COLORS[array_rand(self::COLORS)];
+            } while (in_array($color, $selectedColors));
+
+            $selectedColors[] = $color;
+
             $centuryStats->push([
                 'label' => $solution->name,
                 'backgroundColor' => $color,
@@ -490,6 +504,7 @@ class StatisticsController extends Controller
         $locationTitles = collect([]);
         $solutions = Solution::all();
         $continents = collect(Location::CONTINENTS);
+        $selectedColors = [];
 
         foreach ($solutions as $solution) {
 
@@ -507,7 +522,12 @@ class StatisticsController extends Controller
 
             $locations[$solution->name] = $locations[$solution->name]->toArray();
 
-            $color = self::COLORS[array_rand(self::COLORS)];
+            do {
+                $color = self::COLORS[array_rand(self::COLORS)];
+            } while (in_array($color, $selectedColors));
+
+            $selectedColors[] = $color;
+
             $locationStats->push([
                 'label' => $solution->name,
                 'backgroundColor' => $color,
@@ -576,7 +596,7 @@ class StatisticsController extends Controller
             $centuries[$char] = $centuries[$char]->toArray();
 
             $centuryStats->push([
-                'label' => $char,
+                'label' => self::USED_CHARS_LABELS[$char],
                 'backgroundColor' => $color,
                 'borderColor' => $color,
                 'data' => $centuriesCryptoDatasets->toArray(),
@@ -596,7 +616,68 @@ class StatisticsController extends Controller
             'centuries_title' => $centuryTitles->pluck('title')->toArray(),
             'centuries' => $centuries,
             'datasets' => $centuryStats->toArray(),
-            'centuriesRows' => $centuriesRows
+            'centuriesRows' => $centuriesRows,
+            'labels' => self::USED_CHARS_LABELS
+        ];
+    }
+
+    /**
+     * Get cipher and cryptograms stats by symbols
+     *
+     * @return array
+     */
+    private function cipherAndCryptoBySymbols($dataset = 'all')
+    {
+        $symbols = collect([]);
+        $symbolsCipherDatasets = collect([]);
+        $symbolsCryptoDatasets = collect([]);
+        $centuryStats = collect([]);
+        $usedChars = ['L' => '#fa7315', 'S' => '#29B6F6', 'N' => '#2E7D32', 'D' => '#FDD835', 'M' => '#E91E63', 'G' => '#6A1B9A'];
+
+
+        foreach ($usedChars as $char => $color) {
+
+            $cipherKeyBySymbol = CipherKey::approved()->where('used_chars', 'like', "%$char%")->count();
+            $symbolsCipherDatasets->push($cipherKeyBySymbol);
+
+            $cryptogramBySymbol = Cryptogram::approved()->where('used_chars', 'like', "%$char%")->count();
+            $symbolsCryptoDatasets->push($cryptogramBySymbol);
+
+            if ($dataset == 'all') {
+                $symbols->push(['title' => self::USED_CHARS_LABELS[$char], 'cipher_count' => $cipherKeyBySymbol, 'cryptograms_count' => $cryptogramBySymbol]);
+            } elseif ($dataset == 'cipher_keys') {
+                $symbols->push(['title' => self::USED_CHARS_LABELS[$char], 'cipher_count' => $cipherKeyBySymbol]);
+            } elseif ($dataset == 'cryptograms') {
+                $symbols->push(['title' => self::USED_CHARS_LABELS[$char], 'cryptograms_count' => $cryptogramBySymbol]);
+            }
+        }
+
+        if ($dataset == 'all' || $dataset == 'cipher_keys') {
+            $centuryStats->push([
+                'label' => 'Number of cipher keys',
+                'backgroundColor' => '#fa7315',
+                'borderColor' => '#fa7315',
+                'data' => $symbolsCipherDatasets->toArray(),
+                'fill' => false,
+                'barThickness' => 8,
+            ]);
+        }
+
+        if ($dataset == 'all' || $dataset == 'cryptograms') {
+            $centuryStats->push([
+                'label' => 'Number of cryptograms',
+                'backgroundColor' => '#344256',
+                'borderColor' => '#344256',
+                'data' => $symbolsCryptoDatasets->toArray(),
+                'fill' => false,
+                'barThickness' => 8,
+            ]);
+        }
+
+        return [
+            'symbols_title' => $symbols->pluck('title')->toArray(),
+            'symbols' => $symbols->toArray(),
+            'datasets' => $centuryStats->toArray()
         ];
     }
 }
