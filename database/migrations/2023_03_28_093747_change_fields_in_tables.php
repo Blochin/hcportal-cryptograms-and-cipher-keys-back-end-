@@ -22,8 +22,10 @@ class ChangeFieldsInTables extends Migration
             $table->dropColumn('updated_at');
         });
 
+
         Schema::table('cipher_keys', function (Blueprint $table) {
-            $table->dropForeign('cipher_keys_cipher_type_index');
+            $table->dropForeign(['cipher_type']);
+            $table->dropIndex(['cipher_type']);
             $table->dropColumn(['cipher_type']);
             $table->unsignedBigInteger('category_id')->index();
             $table->foreign('category_id')
