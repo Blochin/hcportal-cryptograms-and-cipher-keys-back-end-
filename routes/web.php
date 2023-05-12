@@ -42,7 +42,7 @@ Route::get('/', function () {
     //     $centuries->push(['title' => $century . ". century", 'century_from' => $date->startOfCentury()->year, 'century_to' => $date->endOfCentury()->year]);
     // }
 
-
+    abort(404);
 
     return view('welcome');
 });
