@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\CipherType;
-use App\Models\KeyType;
+use App\Models\Solution;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CipherAndKeyTypeSeeder extends Seeder
+class SolutionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,17 +16,17 @@ class CipherAndKeyTypeSeeder extends Seeder
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('key_types')->truncate();
+        DB::table('solutions')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $keyTypes = [
-            ['name' => 'e'],
-            ['name' => 'd'],
-            ['name' => 'ed'],
+        $solutions = [
+            ['name' => 'Not solved'],
+            ['name' => 'Solved'],
+            ['name' => 'Partially solved'],
         ];
 
-        foreach ($keyTypes as $type) {
-            KeyType::create($type);
+        foreach ($solutions as $solution) {
+            Solution::create($solution);
         }
     }
 }

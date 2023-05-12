@@ -3563,7 +3563,7 @@ paths:
                       name: null
                     -
                       id: 7
-                      continent: Antartica
+                      continent: Antarctica
                       name: null
                     -
                       id: 4
@@ -3636,7 +3636,7 @@ paths:
                         name: null
                       -
                         id: 7
-                        continent: Antartica
+                        continent: Antarctica
                         name: null
                       -
                         id: 4
@@ -3745,7 +3745,7 @@ paths:
                     -
                       name: Africa
                     -
-                      name: Antartica
+                      name: Antarctica
                     -
                       name: Unknown
                 properties:
@@ -3774,7 +3774,7 @@ paths:
                       -
                         name: Africa
                       -
-                        name: Antartica
+                        name: Antarctica
                       -
                         name: Unknown
                     items:

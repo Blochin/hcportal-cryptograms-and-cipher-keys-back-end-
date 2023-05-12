@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CipherAndKeyTypeSeeder::class,
             LocationsSeeder::class,
+            LanguagesSeeder::class,
+            SolutionsSeeder::class,
+            CategoriesSeeder::class,
         ]);
     }
 }

@@ -23,7 +23,7 @@ class CipherKey extends Model
         'state',
         'note',
         'created_by',
-        'availability'
+        'availability',
     ];
 
 

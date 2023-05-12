@@ -92,12 +92,12 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'info@hcportal.eu'),
+        'name' => env('MAIL_FROM_NAME', 'HCPortal team'),
     ],
 
     'to' => [
-        'email' => env('MAIL_ADMIN', 'info@hcportal.eu')
+        'email' => env('MAIL_ADMIN', 'admin@hcportal.eu')
     ],
 
     /*

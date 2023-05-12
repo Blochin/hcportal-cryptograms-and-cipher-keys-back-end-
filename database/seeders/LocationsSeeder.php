@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\CipherType;
-use App\Models\KeyType;
 use App\Models\Location;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -29,8 +27,8 @@ class LocationsSeeder extends Seeder
             ['continent' => 'Asia'],
             ['continent' => 'Oceania'],
             ['continent' => 'Africa'],
-            ['continent' => 'Antartica'],
-            ['continent' => 'Unknown']
+            ['continent' => 'Antarctica'],
+            ['continent' => 'Unknown'],
         ];
 
         foreach ($continents as $continent) {

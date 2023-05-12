@@ -17,7 +17,7 @@ class Location extends Model
         ['name' => 'Asia'],
         ['name' => 'Oceania'],
         ['name' => 'Africa'],
-        ['name' => 'Antartica'],
+        ['name' => 'Antarctica'],
     ];
 
     protected $fillable = [

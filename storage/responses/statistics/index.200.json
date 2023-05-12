@@ -107,7 +107,7 @@
                     "Asia",
                     "Oceania",
                     "Africa",
-                    "Antartica"
+                    "Antarctica"
                 ],
                 "continents": [
                     {
@@ -146,7 +146,7 @@
                         "cryptograms_count": 0
                     },
                     {
-                        "title": "Antartica",
+                        "title": "Antarctica",
                         "cipher_count": 0,
                         "cryptograms_count": 0
                     }
@@ -446,7 +446,7 @@
                     "Asia",
                     "Oceania",
                     "Africa",
-                    "Antartica"
+                    "Antarctica"
                 ],
                 "locations": {
                     "Solved": [2, 0, 0, 2, 0, 0, 0, 0]
@@ -483,7 +483,7 @@
                     "Africa": {
                         "Solved": 0
                     },
-                    "Antartica": {
+                    "Antarctica": {
                         "Solved": 0
                     }
                 }
