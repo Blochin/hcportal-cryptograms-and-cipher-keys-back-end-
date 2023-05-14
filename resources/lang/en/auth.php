@@ -20,6 +20,7 @@ return [
     'password' => [
         'not_found' => 'E-mail not found.',
         'not_found_code' => 'E-mail or password resed code not found.',
-    ]
+    ],
+    'blocked' => 'The account was blocked.'
 
 ];

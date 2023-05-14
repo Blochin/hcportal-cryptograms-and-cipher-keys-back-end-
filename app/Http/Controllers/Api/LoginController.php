@@ -55,14 +55,17 @@ class LoginController extends Controller
 
         $client = User::where('email', $request->email)->where('password', $this->hash($request->password))->first();
 
-
         if (!$client || !$client->activated) {
             return $this->success(['login' => trans('auth.failed')], 'Validation errors.', JsonResponse::HTTP_UNPROCESSABLE_ENTITY,  422);
         }
 
-        // if (config('app.env') == 'production') {
-        //     $client->tokens()->delete();
-        // }
+        if ($client->forbidden) {
+            return $this->success(['login' => trans('auth.blocked')], 'Validation errors.', JsonResponse::HTTP_UNPROCESSABLE_ENTITY,  422);
+        }
+
+        if (config('app.env') == 'production') {
+            $client->tokens()->delete();
+        }
 
 
         $token = $client->createToken('web')->plainTextToken;
