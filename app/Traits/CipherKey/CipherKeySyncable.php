@@ -78,9 +78,7 @@ trait CipherKeySyncable
 			$folder_id = $folder->id;
 		}
 
-		if ($folder_id) {
-			$model->update(['folder_id' => $folder_id]);
-		}
+        $model->update(['folder_id' => $folder_id]);
 	}
 
 	/**
@@ -121,6 +119,24 @@ trait CipherKeySyncable
 		$cryptograms = collect($sanitized['cryptograms'])->pluck('id')->toArray();
 		$key->cryptograms()->sync($cryptograms);
 	}
+
+    /**
+     * @throws \Exception
+     */
+    public function syncCryptogramsApi($key, $sanitized)
+    {
+        if(empty($sanitized['cryptograms_id'])) {
+            $key->cryptograms()->detach();
+            return;
+        }
+        try {
+            $cryptograms = collect($sanitized['cryptograms_id'])->toArray();
+            $key->cryptograms()->sync($cryptograms);
+        } catch (\Exception $e) {
+            throw new \Exception($e);
+        }
+
+    }
 
 	/**
 	 * Sync cipher key users
@@ -185,4 +201,34 @@ trait CipherKeySyncable
 			$img->update(['url' => $img->getFirstMediaPath('picture')]);
 		}
 	}
+
+    public function syncCipherKeyImagesApi($cipherKey, $sanitized)
+    {
+
+        foreach ($sanitized['images'] as $key => $image) {
+            $image = (array) $image;
+
+            $img = $cipherKey->images()->create([
+                'structure' => $image['structure'],
+                'has_instructions' => $image['has_instructions'],
+                'is_local' => true,
+                'ordering' => 1
+            ]);
+
+            //Sync image to data in datagroup
+            if (isset($image['image_base64'])) {
+                $img
+                    ->addMediaFromBase64($image['image_base64'])
+                    ->toMediaCollection('picture');
+                $img->update(['url' => $img->getFirstMediaPath('picture')]);
+            }
+            else if(isset($image['image_link'])){
+                $img
+                    ->addMediaFromUrl($image['image_link'])
+                    ->toMediaCollection('picture');
+                $img->update(['url' => $img->getFirstMediaPath('picture')]);
+            }
+
+        }
+    }
 }

@@ -34,8 +34,8 @@ class StoreCryptogram extends FormRequest
             'availability' => ['nullable', 'string', Rule::requiredIf(function () {
                 return $this->input('archive') == null;
             })],
-            'category_id' => ['required', 'string', 'exists:categories,id'],
-            'subcategory_id' => ['nullable', 'string', 'exists:categories,id'],
+            'category_id' => ['required', 'integer', 'exists:categories,id'],
+            'subcategory_id' => ['nullable', 'integer', 'exists:categories,id'],
 
             'description' => ['nullable', 'string'],
             'language_id' => ['required', 'integer', 'exists:languages,id'],
@@ -71,6 +71,7 @@ class StoreCryptogram extends FormRequest
             'thumbnail' => ['nullable', 'image'],
             'thumbnail_link' => ['nullable', 'string'],
             'thumbnail_base64' => ['nullable', 'string'],
+            'cipher_key_id' => ['nullable', 'integer'],
         ];
     }
 

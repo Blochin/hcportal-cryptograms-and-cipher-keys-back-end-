@@ -3,9 +3,8 @@
 use App\Http\Controllers\Api\ArchivesController;
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\CipherKeysController;
-use App\Http\Controllers\Api\CipherTypesController;
+use App\Http\Controllers\Api\ConfigurationController;
 use App\Http\Controllers\Api\CryptogramsController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\ForgotPasswordController;
@@ -54,6 +53,8 @@ Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->grou
     //-------------------------------------------------Solutions--------------------------------------------
     Route::get('/solutions', [SolutionsController::class, 'index']);
 
+    Route::get('/configuration',[ConfigurationController::class, 'index']);
+
     //-------------------------------------------------Cipher keys--------------------------------------------
     Route::post('/cipher-keys', [CipherKeysController::class, 'create']);
     Route::post('/cipher-keys/{cipherKey}', [CipherKeysController::class, 'update']);
@@ -83,7 +84,9 @@ Route::get('/statistics', [StatisticsController::class, 'index']);
 //-------------------------------------------------Cipher keys--------------------------------------------
 Route::get('/cipher-keys', [CipherKeysController::class, 'approved']);
 Route::get('/cipher-keys/{cipherKey}', [CipherKeysController::class, 'show']);
+Route::get('/cipher-keys/export/{cipherKey}', [CipherKeysController::class, 'exportCipherKey']);
 
 //-------------------------------------------------Cryptograms--------------------------------------------
 Route::get('/cryptograms', [CryptogramsController::class, 'approved']);
 Route::get('/cryptograms/{cryptogram}', [CryptogramsController::class, 'show']);
+Route::get('/cryptograms/export/{cryptogram}', [CryptogramsController::class, 'exportCryptogram']);

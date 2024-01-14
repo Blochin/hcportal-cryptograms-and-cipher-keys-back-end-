@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CipherKey\ApprovedRequest;
 use App\Http\Requests\Api\CipherKey\StoreCipherKey;
@@ -10,15 +9,15 @@ use App\Http\Requests\Api\CipherKey\UpdateCipherKey;
 use App\Http\Resources\CipherKey\CipherKeyApprovedCollection;
 use App\Http\Resources\CipherKey\CipherKeyApprovedDetailedResource;
 use App\Http\Resources\CipherKey\CipherKeyApprovedResource;
-use App\Http\Resources\Location\LocationResource;
-use App\Mail\NewCipherKeyMail;
 use App\Mail\UpdateCipherKeyMail;
 use App\Models\CipherKey;
-use App\Models\Location;
 use App\Traits\ApiResponser;
 use App\Traits\CipherKey\CipherKeySyncable;
 use App\Traits\Paginable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
+use Mpdf\Mpdf;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @group Cipher keys
@@ -35,22 +34,23 @@ class CipherKeysController extends Controller
      * All approved cipher keys
      *
      * @unauthenticated
-     * 
+     *
      * Approved cipher keys <br><br>
-     * 
+     *
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully given data<br>
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cipher_keys/approved.200.json
      * @responseFile responses/cipher_keys/approved_detailed.200.json
-     * 
+     *
      */
     public function approved(ApprovedRequest $request)
     {
         $cipherKeys = CipherKey::with([
             'images',
             'users',
+            'cryptograms',
             'users.person',
             'submitter',
             'category',
@@ -80,16 +80,16 @@ class CipherKeysController extends Controller
      * All my cipher keys
      *
      * @authenticated
-     * 
+     *
      * My cipher keys <br><br>
-     * 
+     *
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully given data<br>
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cipher_keys/my.200.json
      * @responseFile responses/cipher_keys/my_detailed.200.json
-     * 
+     *
      */
     public function myKeys(ApprovedRequest $request)
     {
@@ -99,6 +99,7 @@ class CipherKeysController extends Controller
         $cipherKeys = CipherKey::with([
             'images',
             'users',
+            'cryptograms',
             'users.person',
             'submitter',
             'category',
@@ -129,23 +130,22 @@ class CipherKeysController extends Controller
      * Show cipher key
      *
      * @unauthenticated
-     * 
+     *
      * Cipher key <br><br>
-     * 
+     *
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully given data<br>
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cipher_keys/show.200.json
-     * 
+     *
      */
     public function show(CipherKey $cipherKey)
     {
-
-
         $cipherKey->load([
             'images',
             'users',
+            'cryptograms',
             'users.person',
             'submitter',
             'category',
@@ -180,9 +180,9 @@ class CipherKeysController extends Controller
      * Create cipher key
      *
      * @authenticated
-     * 
+     *
      * @header Content-Type multipart/form-data
-     * 
+     *
      * @bodyParam images json required List of images data. Example: [{"has_instructions": true, "structure": "example structure"},{"has_instructions": false, "structure": ""}]
      * @bodyParam images.has_instructions boolean required Image has instructions. Example: 0
      * @bodyParam images.structure string optional Image structure string Image structure Example: lol
@@ -191,11 +191,11 @@ class CipherKeysController extends Controller
      * @bodyParam users.is_main_user boolean required Is main user Example: true
      * @bodyParam files[] file required Image files
      * @bodyParam tags[] string Tag names
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cipher_keys/create.200.json
      * @responseFile responses/cipher_keys/create.422.json
-     * 
+     *
      */
     public function create(StoreCipherKey $request)
     {
@@ -207,7 +207,7 @@ class CipherKeysController extends Controller
         $cipherKey = CipherKey::create($sanitized);
 
         //Store CipherKey Images
-        $this->syncCipherKeyImages($cipherKey, $sanitized);
+        $this->syncCipherKeyImagesApi($cipherKey, $sanitized);
 
         //Store CipherKey Users
         $this->syncCipherKeyUsers($cipherKey, $sanitized, 'create', 'api');
@@ -218,10 +218,13 @@ class CipherKeysController extends Controller
         //Sync tags
         $this->syncTags($cipherKey, $sanitized, 'api', 'cipher_key');
 
+        $this->syncCryptogramsApi($cipherKey, $sanitized);
+
         //Load relationships
         $cipherKey->load([
             'images',
             'users',
+            'cryptograms',
             'users.person',
             'submitter',
             'category',
@@ -246,20 +249,20 @@ class CipherKeysController extends Controller
      * Update cipher key
      *
      * Update a cipher key is possible when the cipher key has one of the states: APPROVED, AWAITING, REVISE
-     * 
+     *
      * @authenticated
-     * 
+     *
      * @header Content-Type multipart/form-data
-     * 
+     *
      * @bodyParam users json required List of images data. Example: [{"name":"new user name","is_main_user":false},{"name":"new user name 2","is_main_user":true}]
      * @bodyParam users.name string required User name. Example: Helen Wisley
      * @bodyParam users.is_main_user boolean required Is main user Example: true
      * @bodyParam tags[] string Tag names
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cipher_keys/update.200.json
      * @responseFile responses/cipher_keys/update.422.json
-     * 
+     *
      */
     public function update(UpdateCipherKey $request, CipherKey $cipherKey)
     {
@@ -270,6 +273,7 @@ class CipherKeysController extends Controller
         $cipherKey->load([
             'images',
             'users',
+            'cryptograms',
             'users.person',
             'submitter',
             'category',
@@ -316,12 +320,17 @@ class CipherKeysController extends Controller
         //Sync tags
         $this->syncTags($cipherKey, $sanitized, 'api', 'cipher_key');
 
+        $this->syncCryptogramsApi($cipherKey, $sanitized);
 
-        Mail::to(config('mail.to.email'))->send(new UpdateCipherKeyMail($cipherKey));
+
+        try {
+           Mail::to(config('mail.to.email'))->send(new UpdateCipherKeyMail($cipherKey));
+       } catch (\Exception $exception) {}
 
         $cipherKey = CipherKey::with([
             'images',
             'users',
+            'cryptograms',
             'users.person',
             'submitter',
             'category',
@@ -336,5 +345,52 @@ class CipherKeysController extends Controller
         ])->findOrFail($cipherKey->id);
 
         return $this->success(new CipherKeyApprovedDetailedResource($cipherKey), 'Successfully updated cipher key.', 200);
+    }
+
+    public function exportCipherKey(CipherKey $cipherKey)
+    {
+
+        $cipherKey->load([
+            'images',
+            'users',
+            'cryptograms',
+            'users.person',
+            'submitter',
+            'category',
+            'keyType',
+            'group',
+            'folder',
+            'folder.fond',
+            'folder.fond.archive',
+            'digitalizedTranscriptions',
+            'digitalizedTranscriptions.encryptionPairs',
+            'language',
+            'location',
+            'tags'
+        ]);
+
+        $data = [];
+        if (
+            auth('sanctum')->check() && $cipherKey->created_by == auth('sanctum')->user()->id ||
+            $cipherKey->state['id'] == CipherKey::STATUS_APPROVED
+        ) {
+            $data = CipherKeyApprovedDetailedResource::make($cipherKey)->toArray(request());
+        }
+
+        $html = View::make('exports.cipher-key', $data)->render();
+
+        $mpdf = new Mpdf();
+        $mpdf->WriteHTML($html);
+        $pdfContent = $mpdf->Output('cipher-key-export', 'S');
+
+        //$headers = [
+        //    'Content-Type' => 'application/pdf',
+        //    'Content-Disposition' => 'attachment; filename="sample.pdf"',
+        //    'Access-Control-Allow-Origin' => '*',
+        //    'Access-Control-Allow-Methods' => 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+        //    'Access-Control-Allow-Headers' => 'Content-Type, Authorization',
+        //];
+
+        return new Response($pdfContent, 200, /*$headers*/);
     }
 }

@@ -28,13 +28,13 @@ class CategoriesController extends Controller
      * Show all categories
      *
      * @authenticated
-     * 
+     *
      * @responseFile responses/categories/index.200.json
-     * 
+     *
      */
     public function index(IndexRequest $request)
     {
-        $categories = Category::with(['children'])->where('parent_id', null);
+        $categories = Category::with(['children', 'parent']);
 
         $categories = $this->filterPagination($categories, $request, 'name', 'asc', false);
 

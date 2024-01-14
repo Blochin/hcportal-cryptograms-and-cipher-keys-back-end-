@@ -19,9 +19,9 @@ use Illuminate\Support\Collection;
 trait Paginable
 {
 	/**
-	 * 
+	 *
 	 * Filter, order and paginate
-	 * 
+	 *
 	 */
 	private function filterPagination($query, $request, $orderBy = 'id', $orderDirection = 'asc', $paginate = true)
 	{

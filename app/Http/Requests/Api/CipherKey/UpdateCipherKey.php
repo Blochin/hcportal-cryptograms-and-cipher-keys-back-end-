@@ -34,8 +34,8 @@ class UpdateCipherKey extends JsonFormRequest
             'name' => ['required', 'string', 'max:255', Rule::unique('cipher_keys', 'name')->ignore($this->name, 'name')],
             'complete_structure' => ['required', 'string'],
             'used_chars' => ['nullable', 'string'],
-            'category_id' => ['required', 'string', 'exists:categories,id'],
-            'subcategory_id' => ['nullable', 'string', 'exists:categories,id'],
+            'category_id' => ['required', 'integer', 'exists:categories,id'],
+            'subcategory_id' => ['nullable', 'integer', 'exists:categories,id'],
             'key_type' => ['required', 'integer', 'exists:key_types,id'],
             'used_from' => ['nullable', 'date'],
             'used_to' => ['nullable', 'date'],
@@ -57,7 +57,10 @@ class UpdateCipherKey extends JsonFormRequest
             'users' => ['nullable', 'json'],
             'tags' => ['nullable', 'array'],
             'continent' => ['nullable', 'string', 'exists:locations,continent'],
-            'note' => ['nullable']
+            'note' => ['nullable'],
+            'images' => ['nullable', 'json'],
+            'files' => ['nullable'],
+            'cryptograms_id' => ['nullable', 'array']
 
         ];
     }
@@ -153,6 +156,7 @@ class UpdateCipherKey extends JsonFormRequest
         $sanitized = $this->validated();
 
         $sanitized['users'] = $sanitized['users'] ? json_decode($sanitized['users']) : null;
+        $sanitized['images'] = $sanitized['images'] ? json_decode($sanitized['images']) : null;
 
         $sanitized['state'] = CipherKey::STATUS_AWAITING;
 

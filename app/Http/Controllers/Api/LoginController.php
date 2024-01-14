@@ -29,18 +29,18 @@ class LoginController extends Controller
      * Login
      *
      * @unauthenticated
-     * 
+     *
      * Login to web application<br><br>
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully logged in<br>
      * <b>422</b> - Validation error<br>
-     * 
+     *
      * @bodyParam  email string required Login e-mail Example: login@login.sk
      * @bodyParam  password string required Password
-     * 
+     *
      * @responseFile responses/auth/login.200.json
      * @responseFile responses/auth/login.422.json
-     * 
+     *
      */
     public function login(Request $request)
     {
@@ -80,13 +80,13 @@ class LoginController extends Controller
     }
 
     /**
-     * 
+     *
      * Log out
      *
      * @authenticated
-     * 
-     * Log out 
-     * 
+     *
+     * Log out
+     *
      * @response  {
      *  "status": "Success",
      *  "status_code": 200,
@@ -105,16 +105,16 @@ class LoginController extends Controller
 
     /**
      * Check token
-     * 
+     *
      * @authenticated
      *
      * Check if the token is valid
-     * 
+     *
      * <b>Status codes:</b> <br>
      * <b>200</b> - Valid token <br>
      * <b>201</b> - Invalid token
-     * 
-     * 
+     *
+     *
      * @response {
      *   "status": "Success",
      *   "status_code": 201,
@@ -131,20 +131,20 @@ class LoginController extends Controller
      * Register
      *
      * @unauthenticated
-     * 
+     *
      * Register to web application<br><br>
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully registered<br>
      * <b>422</b> - Validation error<br>
-     * 
+     *
      * @bodyParam  first_name string required Firstname
      * @bodyParam  last_name string required Lastname
      * @bodyParam  email string required Login e-mail Example: login@login.sk
      * @bodyParam  password string required Password
-     * 
+     *
      * @responseFile responses/auth/register.200.json
      * @responseFile responses/auth/register.422.json
-     * 
+     *
      */
     public function register(Request $request)
     {
@@ -169,8 +169,12 @@ class LoginController extends Controller
             $client->roles()->sync([$roleUser->id]);
         }
 
-        Mail::to($client->email)->send(new RegisterMail($client));
-        Mail::to(config('mail.to.email'))->send(new RegisterAdminMail($client));
+        try {
+            Mail::to($client->email)->send(new RegisterMail($client));
+            Mail::to(config('mail.to.email'))->send(new RegisterAdminMail($client));
+        }catch (\Exception $e) {
+        }
+
 
         return $this->success(new UserResource($client), 'Successfully registered.', 200, 200);
     }

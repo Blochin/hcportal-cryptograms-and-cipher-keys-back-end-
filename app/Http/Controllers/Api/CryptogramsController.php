@@ -6,13 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Cryptogram\ApprovedRequest;
 use App\Http\Requests\Api\Cryptogram\StoreCryptogram;
 use App\Http\Requests\Api\Cryptogram\UpdateCryptogram;
-use App\Http\Resources\CipherKey\CipherKeyApprovedDetailedResource;
 use App\Http\Resources\Cryptogram\CryptogramApprovedCollection;
 use App\Http\Resources\Cryptogram\CryptogramApprovedResource;
 use App\Http\Resources\Cryptogram\CryptogramDetailedResource;
-use App\Mail\NewCipherKeyMail;
-use App\Mail\NewCryptogramMail;
-use App\Mail\UpdateCipherKeyMail;
 use App\Mail\UpdateCryptogramMail;
 use App\Models\CipherKey;
 use App\Models\Cryptogram;
@@ -21,6 +17,9 @@ use App\Traits\CipherKey\CipherKeySyncable;
 use App\Traits\Cryptogram\CryptogramSyncable;
 use App\Traits\Paginable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
+use Symfony\Component\HttpFoundation\Response;
+use Mpdf\Mpdf;
 
 /**
  * @group Cryptograms
@@ -38,21 +37,22 @@ class CryptogramsController extends Controller
      * All approved cryptograms
      *
      * @unauthenticated
-     * 
+     *
      * Approved cryptograms <br><br>
-     * 
+     *
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully given data<br>
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cryptograms/approved.200.json
      * @responseFile responses/cryptograms/approved_detailed.200.json
-     * 
+     *
      */
     public function approved(ApprovedRequest $request)
     {
         $cryptograms = Cryptogram::with([
             'sender',
+            'cipherKeys',
             'language',
             'location',
             'recipient',
@@ -82,16 +82,16 @@ class CryptogramsController extends Controller
      * All my cryptograms
      *
      * @authenticated
-     * 
+     *
      * My cryptograms <br><br>
-     * 
+     *
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully given data<br>
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cryptograms/my.200.json
      * @responseFile responses/cryptograms/my_detailed.200.json
-     * 
+     *
      */
     public function myCryptograms(ApprovedRequest $request)
     {
@@ -99,6 +99,7 @@ class CryptogramsController extends Controller
 
         $cryptograms = Cryptogram::with([
             'sender',
+            'cipherKeys',
             'language',
             'location',
             'recipient',
@@ -129,21 +130,22 @@ class CryptogramsController extends Controller
      * Show cryptogram
      *
      * @unauthenticated
-     * 
+     *
      * Cryptogram <br><br>
-     * 
+     *
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully given data<br>
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cryptograms/show.200.json
-     * 
+     *
      */
     public function show(Cryptogram $cryptogram)
     {
 
         $cryptogram->load([
             'sender',
+            'cipherKeys',
             'language',
             'location',
             'recipient',
@@ -178,9 +180,9 @@ class CryptogramsController extends Controller
      * Create cryptogram
      *
      * @authenticated
-     * 
+     *
      * @header Content-Type multipart/form-data
-     * 
+     *
      * @bodyParam groups json required List of datagroups. Example: [{"description":"Links and references","data":[{"type": "link","name":"Links and references","title":"Source","text":"","link":"https://test.sk"}]},{"description":"Transcription","data":[{"type":"text","name":"Transcription","title":"Transcription","text":"text text text","link":""}]},{"description":"Cryptogram","data":[{"type":"image","name":"Cryptogram","title":"Cryptogram image","text":"","link":""}]},{"description":"Cryptogram 2","data":[{"type":"image","name":"","title":"Cryptogram 2","text":"","link":""}]}]
      * @bodyParam groups[].description string required Group name. Example: 0
      * @bodyParam groups[].data object[] required Group data Example: lol
@@ -190,11 +192,11 @@ class CryptogramsController extends Controller
      * @bodyParam groups.data[].link string required Group data link Example: https://www.test.sk
      * @bodyParam images file[][] required Data image files [datagroup_index][data_index].
      * @bodyParam tags [] string Tag names
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cryptograms/create.200.json
      * @responseFile responses/cryptograms/create.422.json
-     * 
+     *
      */
     public function create(StoreCryptogram $request)
     {
@@ -221,7 +223,7 @@ class CryptogramsController extends Controller
         }
 
         //Sync datagroups
-        $this->syncDatagroups($cryptogram, $sanitized, 'api');
+        $this->syncDatagroupsApi($cryptogram, $sanitized, 'api');
 
         //Sync tags
         $this->syncTagsCryptogram($cryptogram, $sanitized, 'api');
@@ -229,10 +231,12 @@ class CryptogramsController extends Controller
         //Store archives,fonds,folders
         $this->syncArchive($cryptogram, $sanitized, true);
 
+        $this->syncCiperKeysApi($cryptogram, $sanitized);
 
         //Load relationships
         $cryptogram->load([
             'sender',
+            'cipherKeys',
             'language',
             'location',
             'recipient',
@@ -257,9 +261,9 @@ class CryptogramsController extends Controller
      * Update cryptogram
      *
      * @authenticated
-     * 
+     *
      * @header Content-Type multipart/form-data
-     * 
+     *
      * @bodyParam groups json required List of datagroups. Example: [{"description":"Links and references","data":[{"type": "link","name":"Links and references","title":"Source","text":"","link":"https://test.sk"}]},{"description":"Transcription","data":[{"type":"text","name":"Transcription","title":"Transcription","text":"text text text","link":""}]},{"description":"Cryptogram","data":[{"type":"image","name":"Cryptogram","title":"Cryptogram image","text":"","link":""}]},{"description":"Cryptogram 2","data":[{"type":"image","name":"","title":"Cryptogram 2","text":"","link":""}]}]
      * @bodyParam groups[].description string required Group name. Example: 0
      * @bodyParam groups[].data object[] required Group data Example: lol
@@ -269,11 +273,11 @@ class CryptogramsController extends Controller
      * @bodyParam groups.data[].link string required Group data link Example: https://www.test.sk
      * @bodyParam images file[][] required Data image files [datagroup_index][data_index].
      * @bodyParam tags [] string Tag names
-     * 
-     * 
+     *
+     *
      * @responseFile responses/cryptograms/update.200.json
      * @responseFile responses/cryptograms/update.422.json
-     * 
+     *
      */
     public function update(UpdateCryptogram $request, Cryptogram $cryptogram)
     {
@@ -336,7 +340,7 @@ class CryptogramsController extends Controller
         }
 
         //Sync datagroups
-        $this->syncDatagroups($cryptogram, $sanitized, 'api');
+        $this->syncDatagroupsApi($cryptogram, $sanitized, 'api');
 
         //Sync tags
         $this->syncTagsCryptogram($cryptogram, $sanitized, 'api');
@@ -344,8 +348,13 @@ class CryptogramsController extends Controller
         //Store archives,fonds,folders
         $this->syncArchive($cryptogram, $sanitized, true);
 
+        $this->syncCiperKeysApi($cryptogram, $sanitized);
 
-        Mail::to(config('mail.to.email'))->send(new UpdateCryptogramMail($cryptogram));
+        try{
+            Mail::to(config('mail.to.email'))->send(new UpdateCryptogramMail($cryptogram));
+        }catch (\Exception $e) {
+            //todo
+        }
 
         $cryptogram = Cryptogram::with([
             'sender',
@@ -365,5 +374,51 @@ class CryptogramsController extends Controller
         ])->findOrFail($cryptogram->id);
 
         return $this->success(new CryptogramDetailedResource($cryptogram), 'Successfully updated cryptogram.', 200);
+    }
+
+    public function exportCryptogram(Cryptogram $cryptogram)
+    {
+
+        $cryptogram->load([
+            'sender',
+            'cipherKeys',
+            'language',
+            'location',
+            'recipient',
+            'solution',
+            'category',
+            'category.children',
+            'folder',
+            'folder.fond',
+            'folder.fond.archive',
+            'tags',
+            'groups',
+            'groups.data',
+            'submitter',
+        ]);
+
+        $data = [];
+        if (
+            auth('sanctum')->check() && $cryptogram->created_by == auth('sanctum')->user()->id ||
+            $cryptogram->state['id'] == CipherKey::STATUS_APPROVED
+        ) {
+            $data = CryptogramDetailedResource::make($cryptogram)->toArray(request());
+        }
+
+        $html = View::make('exports.cryptogram', $data)->render();
+
+        $mpdf = new Mpdf();
+        $mpdf->WriteHTML($html);
+        $pdfContent = $mpdf->Output('cryptogram-export', 'S');
+
+        //$headers = [
+        //    'Content-Type' => 'application/pdf',
+        //    'Content-Disposition' => 'attachment; filename="sample.pdf"',
+        //    'Access-Control-Allow-Origin' => '*',
+        //    'Access-Control-Allow-Methods' => 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+        //    'Access-Control-Allow-Headers' => 'Content-Type, Authorization',
+        //];
+
+        return new Response($pdfContent, 200, /*$headers*/);
     }
 }

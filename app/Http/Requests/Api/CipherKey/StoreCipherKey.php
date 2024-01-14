@@ -37,8 +37,8 @@ class StoreCipherKey extends JsonFormRequest
             'name' => ['required', 'string', 'max:255', Rule::unique('cipher_keys', 'name')],
             'complete_structure' => ['required', 'string'],
             'used_chars' => ['nullable', 'string'],
-            'category_id' => ['required', 'string', 'exists:categories,id'],
-            'subcategory_id' => ['nullable', 'string', 'exists:categories,id'],
+            'category_id' => ['required', 'integer', 'exists:categories,id'],
+            'subcategory_id' => ['nullable', 'integer', 'exists:categories,id'],
             'key_type' => ['required', 'integer', 'exists:key_types,id'],
             'used_from' => ['nullable', 'date'],
             'used_to' => ['nullable', 'date'],
@@ -55,12 +55,13 @@ class StoreCipherKey extends JsonFormRequest
             'location_name' => ['nullable', 'string', 'max:255'],
             'language_id' => ['required', 'integer'],
             'users' => ['nullable', 'json'],
-            'images' => ['nullable', 'json', new SameLengthAsArray($this->file('files'), 'files')],
-            'files' => ['nullable', new SameLengthAsArray($this->input('images'), 'images')],
+            'images' => ['nullable', 'json'],
+            'files' => ['nullable'],
             'state' => ['nullable', 'string', 'max:255', Rule::in(collect(CipherKey::STATUSES)->pluck('id')->toArray())],
             'files.*' => ['image'],
             'tags' => ['nullable', 'array'],
             'continent' => ['nullable', 'string', 'exists:locations,continent'],
+            'cryptograms_id' => ['nullable', 'array']
 
         ];
     }

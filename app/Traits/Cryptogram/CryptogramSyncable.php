@@ -76,6 +76,59 @@ trait CryptogramSyncable
 		// $cryptogram->datagroups()->sync($predefinedGroups);
 	}
 
+
+    private function syncDatagroupsApi(Cryptogram $cryptogram, $sanitized, $origin = 'web')
+    {
+
+        if (!isset($sanitized['groups'])) return;
+
+        // 1. Delete groups
+        $cryptogram->groups()->delete();
+
+        // 2. Sync new groups
+        foreach ($sanitized['groups'] as $keyGroup => $group) {
+            $newGroup = Datagroup::create(['description' => $group->description, 'cryptogram_id' => $cryptogram->id]);
+            $data = collect($group->data)->toArray();
+            foreach ($data as $keyData => $item) {
+
+                $item = collect($item)->toArray();
+                if ($origin == 'web') {
+                    $type = collect($item['type'])->toArray();
+                } else {
+                    $type['id'] = $item['type'];
+                }
+
+                $dataBlobb = isset($item['link']) ? $item['link'] : (isset($item['text']) ? $item['text'] : null);
+                $newData = Data::create([
+                    'blob' => $type['id'] == 'image' ? 'image' : $dataBlobb,
+                    'description' => $item['title'],
+                    'filetype' => $type['id'],
+                    'datagroup_id' => $newGroup->id,
+                    'dl_protection' => 0
+                ]);
+
+                //Sync image to data in datagroup
+                if (isset($item['image_base64'])) {
+                    $newData
+                        ->addMediaFromBase64($item['image_base64'])
+                        ->toMediaCollection('image');
+                    $newData->update(['blobb' => $newData->getFirstMediaPath('image')]);
+                }
+                else if(isset($item['image_link'])){
+                    $newData
+                        ->addMediaFromUrl($item['image_link'])
+                        ->toMediaCollection('image');
+                    $newData->update(['blobb' => $newData->getFirstMediaPath('image')]);
+                }
+            }
+        }
+
+        // // 3. Sync predefined groups
+        // $predefinedGroups = collect($sanitized['predefined_groups'])->pluck('id')->toArray();
+        // $cryptogram->datagroups()->sync($predefinedGroups);
+    }
+
+
 	/**
 	 * Sync tags
 	 *
@@ -113,4 +166,21 @@ trait CryptogramSyncable
 		$keys = collect($sanitized['cipher_keys'])->pluck('id')->toArray();
 		$cryptogram->cipherKeys()->sync($keys);
 	}
+
+    /**
+     * @throws \Exception
+     */
+    public function syncCiperKeysApi($cryptogram, $sanitized)
+    {
+        if(empty($sanitized['cipher_key_id'])) {
+            $cryptogram->cipherKeys()->detach();
+            return;
+        }
+        try {
+            $keys = collect($sanitized['cipher_key_id'])->toArray();
+            $cryptogram->cipherKeys()->sync($keys);
+        } catch (\Exception $e) {
+            throw new \Exception($e);
+        }
+    }
 }
