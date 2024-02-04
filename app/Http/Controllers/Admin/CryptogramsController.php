@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Actions\Migrations\CryptogramsMigration;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Cryptogram\BulkDestroyCryptogram;
 use App\Http\Requests\Admin\Cryptogram\DestroyCryptogram;
@@ -311,6 +312,23 @@ class CryptogramsController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function bulkUpload()
+    {
+        return view('admin.cryptogram.bulk-upload');
+    }
+
+    public function processBulkUpload(Request $request) {
+        $request->validate([
+            'sql_dump' => 'required',
+        ]);
+
+        $file = $request->file('sql_dump');
+        $sqlDump = file_get_contents($file);
+        $cipherKeysMigration = new CryptogramsMigration($sqlDump);
+        $cipherKeysMigration->handle();
+        return redirect()->back()->with('success', 'SQL dump file uploaded successfully.');
     }
 
     /**

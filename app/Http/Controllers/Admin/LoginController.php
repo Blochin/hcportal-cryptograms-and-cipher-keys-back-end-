@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Traits\Hashable;
 use Brackets\AdminAuth\Http\Controllers\Auth\LoginController as AuthLoginController;
-use Brackets\AdminAuth\Models\AdminUser;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Validation\ValidationException;
 
 class LoginController extends AuthLoginController
 {
@@ -31,11 +31,11 @@ class LoginController extends AuthLoginController
     /**
      * The user has been authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
+     * @param \Illuminate\Http\Request $request
+     * @param mixed $user
      * @return mixed
      */
-    protected function authenticated(Request $request, $user)
+    protected function authenticated(Request $request, $user): void
     {
         if (Schema::hasColumn($user->getTable(), 'last_login_at')) {
             $user->last_login_at = now();
@@ -46,7 +46,7 @@ class LoginController extends AuthLoginController
     /**
      * Handle a login request to the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -91,7 +91,7 @@ class LoginController extends AuthLoginController
      * @param Request $request
      * @return boolean
      */
-    protected function attemptLogin(Request $request)
+    protected function attemptLogin(Request $request): bool
     {
         $data = $this->credentials($request);
         $email = $data['email'];
@@ -110,10 +110,10 @@ class LoginController extends AuthLoginController
     /**
      * Send the response after the user was authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    protected function sendLoginResponse(Request $request)
+    protected function sendLoginResponse(Request $request): Response|RedirectResponse
     {
         $request->session()->regenerate();
 

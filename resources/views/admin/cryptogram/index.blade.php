@@ -16,9 +16,12 @@
                             href="{{ url('admin/cryptograms/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp;
                             {{ trans('admin.cryptogram.actions.create') }}</a>
 
-                        <a class="btn btn-primary btn-sm pull-right m-b-0" href="{{ url('admin/pair-keys-cryptograms') }}"
+                        <a class="btn btn-primary btn-sm pull-right m-b-0 ml-2" href="{{ url('admin/pair-keys-cryptograms') }}"
                             role="button"><i class="fa fa-plus"></i>&nbsp;
                             {{ trans('admin.cryptogram.actions.bulk-pair') }}</a>
+
+                        <a class="btn btn-primary btn-sm pull-right m-b-0" href="{{ url('admin/cryptograms/bulk-upload') }}"
+                           role="button"><i class="fa fa-plus"></i> Bulk Upload</a>
 
                     </div>
                     <div class="card-body" v-cloak>
@@ -111,7 +114,7 @@
                                         <td>@{{ item . name }}</td>
                                         <td v-html="item . state_badge"></td>
                                         <td>@{{ item . submitter?. full_name }}</td>
-                                       
+
 
                                         <td>
                                             <div class="row no-gutters">

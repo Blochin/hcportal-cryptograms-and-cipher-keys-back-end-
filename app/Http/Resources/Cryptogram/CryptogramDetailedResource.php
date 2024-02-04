@@ -62,7 +62,7 @@ class CryptogramDetailedResource extends JsonResource
         if(empty($this->cipherKeys)){
             return [];
         }
-        $cipherKeysId = [];
+        $cipherKeysId = null;
         /** @var CipherKey $cipherKey */
         foreach ($this->cipherKeys as $cipherKey) {
             if($cipherKey->approved()){

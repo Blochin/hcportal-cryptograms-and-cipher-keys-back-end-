@@ -2,19 +2,21 @@
 
 use App\Http\Controllers\Api\ArchivesController;
 use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\CipherKeyMigrationController;
 use App\Http\Controllers\Api\CipherKeysController;
 use App\Http\Controllers\Api\ConfigurationController;
 use App\Http\Controllers\Api\CryptogramsController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\CryptogramsMigrationController;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\KeyTypesController;
 use App\Http\Controllers\Api\LanguagesController;
 use App\Http\Controllers\Api\LocationsController;
+use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PersonsController;
 use App\Http\Controllers\Api\SolutionsController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\TagsController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,3 +92,6 @@ Route::get('/cipher-keys/export/{cipherKey}', [CipherKeysController::class, 'exp
 Route::get('/cryptograms', [CryptogramsController::class, 'approved']);
 Route::get('/cryptograms/{cryptogram}', [CryptogramsController::class, 'show']);
 Route::get('/cryptograms/export/{cryptogram}', [CryptogramsController::class, 'exportCryptogram']);
+
+Route::post('/configuration/exec-worker',[ConfigurationController::class, 'execWorker']);
+Route::post('/configuration/kill-worker',[ConfigurationController::class, 'killWorker']);

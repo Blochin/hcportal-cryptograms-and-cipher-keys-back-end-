@@ -12,6 +12,7 @@ use App\Models\Location;
 use App\Models\Person;
 use App\Models\Solution;
 use App\Models\Tag;
+use Illuminate\Http\Request;
 
 class ConfigurationController extends Controller
 {
@@ -40,5 +41,19 @@ class ConfigurationController extends Controller
         ]);
 
         return response()->json($data);
+    }
+
+    public function execWorker(Request $request): \Illuminate\Http\JsonResponse
+    {
+        //use pwd command to find root directory
+        chdir(base_path());
+        exec("php artisan queue:work > /dev/null 2>&1 &");
+        return response()->json(['success' => true, 'message' => 'Worker successfully prepared to start.']);
+    }
+
+    public function killWorker(): \Illuminate\Http\JsonResponse
+    {
+        exec("pkill -f 'artisan queue:work'");
+        return response()->json(['success' => true, 'message' => 'Worker process killed successfully.']);
     }
 }

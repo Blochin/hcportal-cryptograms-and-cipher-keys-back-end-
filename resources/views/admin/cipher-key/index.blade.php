@@ -19,7 +19,10 @@
                         role="button"><i class="fa fa-plus"></i>&nbsp;
                         {{ trans('admin.cryptogram.actions.bulk-pair') }}</a>
 
-                    
+                        <a class="btn btn-primary btn-sm pull-right m-b-0" href="{{ url('admin/cipher-keys/bulk-upload') }}"
+                           role="button"><i class="fa fa-plus"></i> Bulk Upload</a>
+
+
                     </div>
                     <div class="card-body" v-cloak>
                         <div class="card-block">
