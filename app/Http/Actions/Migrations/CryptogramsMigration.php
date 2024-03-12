@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class CryptogramsMigration extends Migration
 {
-    private $sqlDump = null;
-
-    public function __construct($sqlDump)
-    {
-        $this->sqlDump = $sqlDump;
-    }
-
     protected function getData()
     {
         $records = DB::table('cipher')->get();
@@ -113,9 +106,9 @@ class CryptogramsMigration extends Migration
     }
     public function handle()
     {
-        //$cipherDumpContent = Storage::get('public/cryptograms_2.sql');
-        $allSanitized = self::processDatabase($this->sqlDump);
+        $allSanitized = self::processDatabase();
 
+        DB::setDefaultConnection('mysql');
         DB::purge();
         DB::reconnect();
 
@@ -317,5 +310,10 @@ class CryptogramsMigration extends Migration
         }
 
         return $availability;
+    }
+
+    static function prepareDatabase()
+    {
+        DB::setDefaultConnection('mysql_2');
     }
 }

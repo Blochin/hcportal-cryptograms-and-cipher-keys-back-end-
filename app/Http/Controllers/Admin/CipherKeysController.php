@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Actions\Migrations\CipherKeysMigration;
-use App\Http\Actions\Migrations\CryptogramsMigration;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CipherKey\BulkDestroyCipherKey;
 use App\Http\Requests\Admin\CipherKey\DestroyCipherKey;
@@ -348,15 +347,9 @@ class CipherKeysController extends Controller
     }
 
     public function processBulkUpload(Request $request) {
-        $request->validate([
-            'sql_dump' => 'required',
-        ]);
-
-        $file = $request->file('sql_dump');
-        $sqlDump = file_get_contents($file);
-        $cipherKeysMigration = new CipherKeysMigration($sqlDump);
+        $cipherKeysMigration = new CipherKeysMigration();
         $cipherKeysMigration->handle();
-        return redirect()->back()->with('success', 'SQL dump file uploaded successfully.');
+        return redirect()->back()->with('success', 'Jobs mapped successfully.');
     }
 
 

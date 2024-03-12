@@ -69,6 +69,10 @@ Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->grou
     Route::get('/cryptograms/my', [CryptogramsController::class, 'myCryptograms']);
     Route::post('/cryptograms', [CryptogramsController::class, 'create']);
     Route::post('/cryptograms/{cryptogram}', [CryptogramsController::class, 'update']);
+
+
+    Route::post('/configuration/exec-worker',[ConfigurationController::class, 'execWorker']);
+    Route::post('/configuration/kill-worker',[ConfigurationController::class, 'killWorker']);
 });
 
 
@@ -92,6 +96,3 @@ Route::get('/cipher-keys/export/{cipherKey}', [CipherKeysController::class, 'exp
 Route::get('/cryptograms', [CryptogramsController::class, 'approved']);
 Route::get('/cryptograms/{cryptogram}', [CryptogramsController::class, 'show']);
 Route::get('/cryptograms/export/{cryptogram}', [CryptogramsController::class, 'exportCryptogram']);
-
-Route::post('/configuration/exec-worker',[ConfigurationController::class, 'execWorker']);
-Route::post('/configuration/kill-worker',[ConfigurationController::class, 'killWorker']);

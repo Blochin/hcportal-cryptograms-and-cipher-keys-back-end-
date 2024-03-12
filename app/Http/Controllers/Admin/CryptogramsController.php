@@ -320,15 +320,9 @@ class CryptogramsController extends Controller
     }
 
     public function processBulkUpload(Request $request) {
-        $request->validate([
-            'sql_dump' => 'required',
-        ]);
-
-        $file = $request->file('sql_dump');
-        $sqlDump = file_get_contents($file);
-        $cipherKeysMigration = new CryptogramsMigration($sqlDump);
-        $cipherKeysMigration->handle();
-        return redirect()->back()->with('success', 'SQL dump file uploaded successfully.');
+        $cryptograms = new CryptogramsMigration();
+        $cryptograms->handle();
+        return redirect()->back()->with('success', 'Jobs mapped successfully.');
     }
 
     /**

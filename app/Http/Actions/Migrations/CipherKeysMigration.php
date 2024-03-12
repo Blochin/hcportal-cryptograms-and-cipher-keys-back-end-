@@ -8,13 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class CipherKeysMigration extends Migration
 {
-    private $sqlDump;
-
-
-    public function __construct($sqlDump)
-    {
-        $this->sqlDump = $sqlDump;
-    }
 
     protected function getData()
     {
@@ -25,9 +18,7 @@ class CipherKeysMigration extends Migration
         $images = DB::table('nomenclatorimages')->get();
         $users = $this->users();
 
-        return compact('records', 'locations', 'states', 'archives', 'images','users');
-
-
+        return compact('records', 'locations', 'states', 'archives', 'images', 'users');
     }
 
     protected function processRecord($record)
@@ -48,7 +39,7 @@ class CipherKeysMigration extends Migration
             }
             return $state->state;
         })->first();
-        if($sanitized['state'] != 'approved'){
+        if ($sanitized['state'] != 'approved') {
             return null;
         }
         $sanitized['old_id'] = $record->id;
@@ -101,8 +92,9 @@ class CipherKeysMigration extends Migration
     public function handle()
     {
 
-        $allSanitized = self::processDatabase($this->sqlDump);
+        $allSanitized = self::processDatabase();
 
+        DB::setDefaultConnection('mysql');
         DB::purge();
         DB::reconnect();
 
@@ -153,5 +145,10 @@ class CipherKeysMigration extends Migration
         } else {
             return 3;
         }
+    }
+
+    static function prepareDatabase()
+    {
+        DB::setDefaultConnection('mysql_3');
     }
 }
