@@ -53,7 +53,7 @@ class CipherKeysController extends Controller
     {
         // create and AdminListing instance for a specific model and
         $data = AdminListing::create(CipherKey::class)->processRequestAndGet(
-            // pass the request with params
+        // pass the request with params
             $request,
 
             // set columns to query
@@ -82,8 +82,8 @@ class CipherKeysController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @throws AuthorizationException
      * @return Factory|View
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -161,8 +161,8 @@ class CipherKeysController extends Controller
      * Display the specified resource.
      *
      * @param CipherKey $cipherKey
-     * @throws AuthorizationException
      * @return void
+     * @throws AuthorizationException
      */
     public function show(CipherKey $cipherKey)
     {
@@ -175,8 +175,8 @@ class CipherKeysController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param CipherKey $cipherKey
-     * @throws AuthorizationException
      * @return Factory|View
+     * @throws AuthorizationException
      */
     public function edit(CipherKey $cipherKey)
     {
@@ -300,8 +300,8 @@ class CipherKeysController extends Controller
      *
      * @param DestroyCipherKey $request
      * @param CipherKey $cipherKey
-     * @throws Exception
      * @return ResponseFactory|RedirectResponse|Response
+     * @throws Exception
      */
     public function destroy(DestroyCipherKey $request, CipherKey $cipherKey)
     {
@@ -321,8 +321,8 @@ class CipherKeysController extends Controller
      * Remove the specified resources from storage.
      *
      * @param BulkDestroyCipherKey $request
-     * @throws Exception
      * @return Response|bool
+     * @throws Exception
      */
     public function bulkDestroy(BulkDestroyCipherKey $request): Response
     {
@@ -346,12 +346,14 @@ class CipherKeysController extends Controller
         return view('admin.cipher-key.bulk-upload');
     }
 
-    public function processBulkUpload(Request $request) {
-        $cipherKeysMigration = new CipherKeysMigration();
+    public function processBulkUpload(Request $request)
+    {
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $cipherKeysMigration = new CipherKeysMigration($from, $to);
         $cipherKeysMigration->handle();
         return redirect()->back()->with('success', 'Jobs mapped successfully.');
     }
-
 
 
     /**
@@ -383,7 +385,7 @@ class CipherKeysController extends Controller
     {
         $results = CipherKey::latest('id')->get();
         if ($request->search) {
-            $results  = CipherKey::where('name', 'LIKE', "%{$request->search}%")->orWhere('complete_structure', 'LIKE', "%{$request->search}%")->orderBy('id', 'desc')->get();
+            $results = CipherKey::where('name', 'LIKE', "%{$request->search}%")->orWhere('complete_structure', 'LIKE', "%{$request->search}%")->orderBy('id', 'desc')->get();
         }
         return response()->json($results);
     }

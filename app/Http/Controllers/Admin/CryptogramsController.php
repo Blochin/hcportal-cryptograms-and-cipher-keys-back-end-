@@ -56,7 +56,7 @@ class CryptogramsController extends Controller
     {
         // create and AdminListing instance for a specific model and
         $data = AdminListing::create(Cryptogram::class)->processRequestAndGet(
-            // pass the request with params
+        // pass the request with params
             $request,
 
             // set columns to query
@@ -85,8 +85,8 @@ class CryptogramsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @throws AuthorizationException
      * @return Factory|View
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -171,8 +171,8 @@ class CryptogramsController extends Controller
      * Display the specified resource.
      *
      * @param Cryptogram $cryptogram
-     * @throws AuthorizationException
      * @return void
+     * @throws AuthorizationException
      */
     public function show(Cryptogram $cryptogram)
     {
@@ -185,8 +185,8 @@ class CryptogramsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Cryptogram $Cryptogram
-     * @throws AuthorizationException
      * @return Factory|View
+     * @throws AuthorizationException
      */
     public function edit(Cryptogram $cryptogram)
     {
@@ -298,8 +298,8 @@ class CryptogramsController extends Controller
      *
      * @param DestroyCryptogram $request
      * @param Cryptogram $Cryptogram
-     * @throws Exception
      * @return ResponseFactory|RedirectResponse|Response
+     * @throws Exception
      */
     public function destroy(DestroyCryptogram $request, Cryptogram $cryptogram)
     {
@@ -319,8 +319,11 @@ class CryptogramsController extends Controller
         return view('admin.cryptogram.bulk-upload');
     }
 
-    public function processBulkUpload(Request $request) {
-        $cryptograms = new CryptogramsMigration();
+    public function processBulkUpload(Request $request)
+    {
+        $from = $request->get('from');
+        $to = $request->get('to');
+        $cryptograms = new CryptogramsMigration($from, $to);
         $cryptograms->handle();
         return redirect()->back()->with('success', 'Jobs mapped successfully.');
     }
@@ -329,8 +332,8 @@ class CryptogramsController extends Controller
      * Remove the specified resources from storage.
      *
      * @param BulkDestroyCryptogram $request
-     * @throws Exception
      * @return Response|bool
+     * @throws Exception
      */
     public function bulkDestroy(BulkDestroyCryptogram $request): Response
     {
@@ -360,7 +363,7 @@ class CryptogramsController extends Controller
     {
         $results = Cryptogram::latest('id')->get();
         if ($request->search) {
-            $results  = Cryptogram::where('name', 'LIKE', "%{$request->search}%")->orderBy('id', 'desc')->get();
+            $results = Cryptogram::where('name', 'LIKE', "%{$request->search}%")->orderBy('id', 'desc')->get();
         }
         return response()->json($results);
     }

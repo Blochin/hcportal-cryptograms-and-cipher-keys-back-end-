@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Http\Actions\CreateCipherKey;
-use App\Http\Actions\CreateCryptogram;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -38,7 +37,6 @@ class ProcessCipherKeyMigration implements ShouldQueue
         try{
             $handler->handle($this->sanitized);
         }catch (Exception $e){
-
         }
     }
 

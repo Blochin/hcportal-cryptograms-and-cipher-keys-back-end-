@@ -60,6 +60,19 @@ class CipherKey extends Model
 
     protected $appends = ['resource_url', 'fond', 'archive', 'state_badge', 'used_to_formatted', 'used_from_formatted', 'continent', 'location_name', 'availability_type'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function (CipherKey $model) {
+            Log::create(['action' => Log::ACTION_CREATED,
+                'loggable_id' => $model->id,
+                'loggable_type' => CipherKey::class,
+                'causer_id' => auth()->user()->id
+            ]);
+        });
+    }
+
     /* ************************ ACCESSOR ************************* */
 
     public function getResourceUrlAttribute()
@@ -194,5 +207,9 @@ class CipherKey extends Model
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
+    }
+    public function logs()
+    {
+        return $this->morphMany(Log::class, 'loggable');
     }
 }

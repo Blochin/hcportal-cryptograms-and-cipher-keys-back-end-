@@ -4,6 +4,14 @@ namespace App\Http\Actions\Migrations;
 
 abstract class Migration
 {
+    private $from;
+    private $to;
+
+    public function __construct($from, $to)
+    {
+        $this->from = $from;
+        $this->to = $to;
+    }
     protected $allSanitized = [];
     protected $data = [];
     abstract protected function getData();
@@ -16,8 +24,10 @@ abstract class Migration
         $this->prepareDatabase();
         $this->data = $this->getData();
         foreach ($this->data['records'] as $record) {
-            $sanitized = $this->processRecord($record);
-            $this->allSanitized[] = $sanitized;
+            if($this->from <= $record->id && $this->to >= $record->id){
+                $sanitized = $this->processRecord($record);
+                $this->allSanitized[] = $sanitized;
+            }
         }
 
         return $this->allSanitized;

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class CipherKeysMigration extends Migration
 {
-
     protected function getData()
     {
         $records = DB::table('nomenclatorkeys')->get();
@@ -61,7 +60,7 @@ class CipherKeysMigration extends Migration
                 'fond' => $archive['fond'],
             ];
         })->first());
-        $sanitized['continent'] = $locations->filter(function ($location) use ($record) {
+        $sanitized['location_name'] = $locations->filter(function ($location) use ($record) {
             return $location->id == $record->placeOfCreation;
         })->map(function ($location) {
             if (!$location) {
@@ -69,6 +68,8 @@ class CipherKeysMigration extends Migration
             }
             return $location->name;
         })->first();
+        $sanitized['continent'] = 'Europe';
+
         $sanitized['users'] = json_encode($users->filter(function ($user) use ($record) {
             return $user['cipher_key_id'] == $record->id;
         })->map(function ($user) use ($record) {
@@ -91,8 +92,10 @@ class CipherKeysMigration extends Migration
 
     public function handle()
     {
-
         $allSanitized = self::processDatabase();
+        $allSanitized = array_filter($allSanitized, function ($value) {
+            return $value !== null;
+        });
 
         DB::setDefaultConnection('mysql');
         DB::purge();

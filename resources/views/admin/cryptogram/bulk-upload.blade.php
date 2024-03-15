@@ -12,8 +12,18 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <form method="POST" action="{{url('admin/cryptograms/bulk-upload') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('admin/cryptograms/bulk-upload') }}"
+                              enctype="multipart/form-data">
                             @csrf
+                            <div class="form-group">
+                                <label for="from">From:</label>
+                                <input type="number" id="from" name="from" class="form-control"
+                                       placeholder="From Value">
+                            </div>
+                            <div class="form-group">
+                                <label for="to">To:</label>
+                                <input type="number" id="to" name="to" class="form-control" placeholder="To Value">
+                            </div>
                             <button type="submit" class="btn btn-primary">Start</button>
                         </form>
                     </div>

@@ -72,8 +72,9 @@ class CreateCryptogram
     {
         $sanitized['thumbnail_url'] = 'temporary value';
 
+        $undefinedLanguage = Language::where('name', 'Unknown')->first()->id;
         $language = Language::where('name', $sanitized['language'])->first();
-        $sanitized['language_id'] = $language ? $language->id : null;
+        $sanitized['language_id'] = $language ? $language->id : $undefinedLanguage;
 
         $sanitized['sender_id'] = $sanitized['sender'] ? Person::firstOrCreate(['name' => $sanitized['sender']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
         $sanitized['recipient_id'] = $sanitized['recipient'] ? Person::firstOrCreate(['name' => $sanitized['recipient']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;

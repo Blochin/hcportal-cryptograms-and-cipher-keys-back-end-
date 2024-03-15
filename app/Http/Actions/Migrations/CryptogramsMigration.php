@@ -107,6 +107,9 @@ class CryptogramsMigration extends Migration
     public function handle()
     {
         $allSanitized = self::processDatabase();
+        $allSanitized = array_filter($allSanitized, function ($value) {
+            return $value !== null;
+        });
 
         DB::setDefaultConnection('mysql');
         DB::purge();
@@ -119,7 +122,7 @@ class CryptogramsMigration extends Migration
 
     private function tags()
     {
-        $tagsCiphers = DB::table('tagsCipher')->get();
+        $tagsCiphers = DB::table('tagsCipher')->get(); //tagcipher
         $tags = DB::table('tags')->get();
 
         return $tagsCiphers->map(function ($tagCipher) use ($tags) {

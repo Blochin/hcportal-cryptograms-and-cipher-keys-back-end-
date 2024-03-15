@@ -50,6 +50,20 @@ class Cryptogram extends Model implements HasMedia
 
     protected $appends = ['resource_url', 'state_badge', 'continent', 'location_name', 'picture', 'fond', 'archive', 'availability_type'];
 
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function (Cryptogram $model) {
+            Log::create(['action' => Log::ACTION_CREATED,
+                'loggable_id' => $model->id,
+                'loggable_type' => Cryptogram::class,
+                'causer_id' => auth()->user()->id
+            ]);
+        });
+    }
+
     /* ************************ Media ************************* */
 
     public function registerMediaCollections(Media $media = null): void
@@ -60,6 +74,7 @@ class Cryptogram extends Model implements HasMedia
             ->maxFilesize(100 * 1024 * 1024); // Set the file size limit
 
     }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->autoRegisterThumb200();
@@ -241,5 +256,10 @@ class Cryptogram extends Model implements HasMedia
                 });
             });
         }
+    }
+
+    public function logs()
+    {
+        return $this->morphToMany(Log::class, 'loggable');
     }
 }
