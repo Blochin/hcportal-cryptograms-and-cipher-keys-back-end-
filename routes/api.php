@@ -37,9 +37,6 @@ Route::middleware(['auth:sanctum'])->namespace('App\Http\Controllers\Api')->grou
     Route::get('/locations', [LocationsController::class, 'index']);
     Route::get('/locations/continents', [LocationsController::class, 'continents']);
 
-    //-------------------------------------------------Tags--------------------------------------------
-    Route::get('/tags', [TagsController::class, 'index']);
-
     //-------------------------------------------------Persons--------------------------------------------
     Route::get('/persons', [PersonsController::class, 'index']);
 
@@ -96,3 +93,6 @@ Route::get('/cipher-keys/export/{cipherKey}', [CipherKeysController::class, 'exp
 Route::get('/cryptograms', [CryptogramsController::class, 'approved']);
 Route::get('/cryptograms/{cryptogram}', [CryptogramsController::class, 'show']);
 Route::get('/cryptograms/export/{cryptogram}', [CryptogramsController::class, 'exportCryptogram']);
+
+//-------------------------------------------------Tags--------------------------------------------
+Route::get('/tags', [TagsController::class, 'index']);
