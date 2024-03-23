@@ -10,6 +10,7 @@ use App\Http\Resources\Cryptogram\CryptogramApprovedCollection;
 use App\Http\Resources\Cryptogram\CryptogramApprovedResource;
 use App\Http\Resources\Cryptogram\CryptogramDetailedResource;
 use App\Mail\UpdateCryptogramMail;
+use App\Mail\NewCryptogramMail;
 use App\Models\CipherKey;
 use App\Models\Cryptogram;
 use App\Traits\ApiResponser;
@@ -252,7 +253,7 @@ class CryptogramsController extends Controller
             'submitter',
         ]);
 
-        //Mail::to(config('mail.to.email'))->send(new NewCryptogramMail($cryptogram));
+        Mail::to(config('mail.to.email'))->send(new NewCryptogramMail($cryptogram));
 
         return $this->success(new CryptogramDetailedResource($cryptogram), 'Successfully added cryptogram.', 200);
     }

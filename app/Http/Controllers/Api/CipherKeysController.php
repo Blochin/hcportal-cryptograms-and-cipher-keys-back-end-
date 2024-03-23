@@ -10,6 +10,7 @@ use App\Http\Resources\CipherKey\CipherKeyApprovedCollection;
 use App\Http\Resources\CipherKey\CipherKeyApprovedDetailedResource;
 use App\Http\Resources\CipherKey\CipherKeyApprovedResource;
 use App\Mail\UpdateCipherKeyMail;
+use App\Mail\NewCipherKeyMail;
 use App\Models\CipherKey;
 use App\Traits\ApiResponser;
 use App\Traits\CipherKey\CipherKeySyncable;
@@ -240,7 +241,7 @@ class CipherKeysController extends Controller
             'tags'
         ]);
 
-        //Mail::to(config('mail.to.email'))->send(new NewCipherKeyMail($cipherKey));
+        Mail::to(config('mail.to.email'))->send(new NewCipherKeyMail($cipherKey));
 
         return $this->success(new CipherKeyApprovedDetailedResource($cipherKey), 'Successfully added cipher key.', 200);
     }
