@@ -93,6 +93,10 @@ class CreateCryptogram
             ]);
         }
 
+        if($sanitized['solution'] == 'Partially'){
+            $sanitized['solution'] = 'Partially solved';
+        }
+
         $solution = Solution::where('name', $sanitized['solution'])->first();
 
         $sanitized['solution_id'] = $solution ? $solution->id : 1;
