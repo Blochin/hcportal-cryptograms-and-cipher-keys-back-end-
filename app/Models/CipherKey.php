@@ -65,12 +65,14 @@ class CipherKey extends Model
         parent::boot();
 
         static::created(function (CipherKey $model) {
-            $causerId = auth()->check() ? auth()->user()->id : 1;
-            Log::create(['action' => Log::ACTION_CREATED,
-                'loggable_id' => $model->id,
-                'loggable_type' => CipherKey::class,
-                'causer_id' => $causerId
-            ]);
+            if(auth()->check()) {
+                Log::create(['action' => Log::ACTION_CREATED,
+                    'loggable_id' => $model->id,
+                    'loggable_type' => CipherKey::class,
+                    'causer_id' => auth()->user()->id
+                ]);
+            }
+
         });
     }
 

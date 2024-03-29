@@ -41,6 +41,8 @@ class CipherKeysMigration extends Migration
         if ($sanitized['state'] != 'approved') {
             return null;
         }
+
+        $sanitized['created_by'] = $this->user->id;
         $sanitized['old_id'] = $record->id;
         $sanitized['name'] = $record->signature;
         $sanitized['used_to'] = $record->usedTo;

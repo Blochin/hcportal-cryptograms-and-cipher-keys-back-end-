@@ -4,11 +4,13 @@ namespace App\Http\Actions\Migrations;
 
 abstract class Migration
 {
+    protected $user;
     private $from;
     private $to;
 
     public function __construct($from, $to)
     {
+        $this->user = auth()->user();
         $this->from = $from;
         $this->to = $to;
     }

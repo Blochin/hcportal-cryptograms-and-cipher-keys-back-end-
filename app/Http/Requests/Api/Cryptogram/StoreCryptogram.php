@@ -41,7 +41,7 @@ class StoreCryptogram extends FormRequest
             'language_id' => ['required', 'integer', 'exists:languages,id'],
             'location_name' => ['nullable', 'string'],
 
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', Rule::unique('cryptograms', 'name')],
             'recipient' => ['nullable', 'string'],
             'sender' => ['nullable', 'string'],
             'solution_id' => ['required', 'integer', 'exists:solutions,id'],
@@ -190,8 +190,6 @@ class StoreCryptogram extends FormRequest
         } else {
             $sanitized['state'] = CipherKey::STATUS_AWAITING;
         }
-
-
 
         $sanitized['availability'] =  isset($sanitized['availability']) && $sanitized['availability'] ? $sanitized['availability'] : null;
 

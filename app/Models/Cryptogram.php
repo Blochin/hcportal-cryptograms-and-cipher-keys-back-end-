@@ -56,12 +56,13 @@ class Cryptogram extends Model implements HasMedia
         parent::boot();
 
         static::created(function (Cryptogram $model) {
-            $causerId = auth()->check() ? auth()->user()->id : 1;
-            Log::create(['action' => Log::ACTION_CREATED,
-                'loggable_id' => $model->id,
-                'loggable_type' => Cryptogram::class,
-                'causer_id' => $causerId,
-            ]);
+            if(auth()->check()) {
+                Log::create(['action' => Log::ACTION_CREATED,
+                    'loggable_id' => $model->id,
+                    'loggable_type' => Cryptogram::class,
+                    'causer_id' => auth()->user()->id,
+                ]);
+            }
         });
     }
 

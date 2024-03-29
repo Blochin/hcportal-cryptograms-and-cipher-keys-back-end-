@@ -79,7 +79,7 @@ class CreateCryptogram
         $sanitized['sender_id'] = $sanitized['sender'] ? Person::firstOrCreate(['name' => $sanitized['sender']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
         $sanitized['recipient_id'] = $sanitized['recipient'] ? Person::firstOrCreate(['name' => $sanitized['recipient']])->id : Person::firstOrCreate(['name' => 'Unknown'])->id;
         $sanitized['groups'] = isset($sanitized['groups']) && $sanitized['groups'] ? json_decode($sanitized['groups']) : null;
-        $sanitized['created_by'] = 1;
+
         $sanitized['state'] = $sanitized['state'] ?? CipherKey::STATUS_AWAITING;
         $sanitized['availability'] = isset($sanitized['availability']) && $sanitized['availability'] ? $sanitized['availability'] : null;
 

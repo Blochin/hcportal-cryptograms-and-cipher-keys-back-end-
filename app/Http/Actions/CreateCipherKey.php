@@ -66,8 +66,6 @@ class CreateCipherKey
         $sanitized['images'] = $sanitized['images'] ? json_decode($sanitized['images']) : null;
         $sanitized['users'] = $sanitized['users'] ? json_decode($sanitized['users']) : null;
 
-        $sanitized['created_by'] = 1;
-
         $undefinedLanguage = Language::where('name', 'Unknown')->first()->id;
         $language = Language::where('name', $sanitized['language'])->first();
         $sanitized['language_id'] = $language ? $language->id : $undefinedLanguage;

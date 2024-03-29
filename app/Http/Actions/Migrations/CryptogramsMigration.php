@@ -47,6 +47,7 @@ class CryptogramsMigration extends Migration
         if ($sanitized['state'] !== 'approved') {
             return null;
         }
+        $sanitized['created_by'] = $this->user->id;
         $sanitized['old_id'] = $record->id;
         $sanitized['name'] = $record->name;
         $sanitized['thumbnail_link'] = str_replace(' ', '%20', $record->imageURL);

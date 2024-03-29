@@ -158,8 +158,11 @@ class UpdateCipherKey extends JsonFormRequest
         $sanitized['users'] = $sanitized['users'] ? json_decode($sanitized['users']) : null;
         $sanitized['images'] = $sanitized['images'] ? json_decode($sanitized['images']) : null;
 
-        $sanitized['state'] = CipherKey::STATUS_AWAITING;
-
+        if (auth()->user()->hasRole('admin')) {
+            $sanitized['state'] =  CipherKey::STATUS_APPROVED;
+        } else {
+            $sanitized['state'] = CipherKey::STATUS_AWAITING;
+        }
 
         if (isset($sanitized['location_name']) && isset($sanitized['continent']) && $sanitized['continent']) {
             $location = Location::firstOrCreate([

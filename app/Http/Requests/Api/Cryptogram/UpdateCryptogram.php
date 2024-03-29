@@ -179,7 +179,11 @@ class UpdateCryptogram extends FormRequest
         $sanitized['groups'] = isset($sanitized['groups']) && $sanitized['groups'] ? json_decode($sanitized['groups']) : null;
         $sanitized['created_by'] = auth()->user()->id;
 
-        $sanitized['state'] = CipherKey::STATUS_AWAITING;
+        if (auth()->user()->hasRole('admin')) {
+            $sanitized['state'] =  CipherKey::STATUS_APPROVED;
+        } else {
+            $sanitized['state'] = CipherKey::STATUS_AWAITING;
+        }
 
 
         if (isset($sanitized['location_name']) && $sanitized['location_name'] && isset($sanitized['continent']) && $sanitized['continent']) {
