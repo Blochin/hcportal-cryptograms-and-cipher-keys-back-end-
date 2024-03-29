@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Start Cipher Keys Migration') }}</div>
+                    <div class="card-header">{{ __('Cipher keys migration. Before pressing the Start button, please select the range of Cipher key ID values you want to migrate.') }}</div>
                     <div class="card-body">
                         @if (session('success'))
                             <div class="alert alert-success" role="alert">

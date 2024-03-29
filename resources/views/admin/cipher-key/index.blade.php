@@ -20,7 +20,7 @@
                         {{ trans('admin.cryptogram.actions.bulk-pair') }}</a>
 
                         <a class="btn btn-primary btn-sm pull-right m-b-0 mr-2" href="{{ url('admin/cipher-keys/bulk-upload') }}"
-                           role="button"><i class="fa fa-plus"></i> Bulk Upload</a>
+                           role="button"><i class="fa fa-plus mr-2"></i>Migration</a>
 
 
                     </div>
