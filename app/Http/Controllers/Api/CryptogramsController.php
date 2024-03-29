@@ -70,7 +70,7 @@ class CryptogramsController extends Controller
         ])->approved();
 
         if ($request->detailed) {
-            $cryptograms = $this->filterPagination($cryptograms, $request, 'name', 'asc', true);
+            $cryptograms = $this->filterPagination($cryptograms, $request, 'id', 'asc', true);
             return $this->success(new CryptogramApprovedCollection($cryptograms), 'List of all approved cryptograms with details.', 200);
         }
 
@@ -117,7 +117,7 @@ class CryptogramsController extends Controller
         ])->where('created_by', $user->id);
 
         if ($request->detailed) {
-            $cryptograms = $this->filterPagination($cryptograms, $request, 'name', 'asc', true);
+            $cryptograms = $this->filterPagination($cryptograms, $request, 'id', 'asc', true);
             return $this->success(new CryptogramApprovedCollection($cryptograms), 'List of all my cryptograms with details.', 200);
         }
 
@@ -253,7 +253,11 @@ class CryptogramsController extends Controller
             'submitter',
         ]);
 
-        Mail::to(config('mail.to.email'))->send(new NewCryptogramMail($cryptogram));
+        try {
+            Mail::to(config('mail.to.email'))->send(new NewCryptogramMail($cryptogram));
+        } catch (\Exception $e){
+
+        }
 
         return $this->success(new CryptogramDetailedResource($cryptogram), 'Successfully added cryptogram.', 200);
     }

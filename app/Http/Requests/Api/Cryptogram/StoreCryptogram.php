@@ -186,7 +186,7 @@ class StoreCryptogram extends FormRequest
         $sanitized['created_by'] = auth()->user()->id;
 
         if (auth()->user()->hasRole('admin')) {
-            $sanitized['state'] =  isset($sanitized['state']) ? $sanitized['state'] : CipherKey::STATUS_AWAITING;
+            $sanitized['state'] =  CipherKey::STATUS_APPROVED;
         } else {
             $sanitized['state'] = CipherKey::STATUS_AWAITING;
         }

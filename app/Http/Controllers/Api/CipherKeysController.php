@@ -68,7 +68,7 @@ class CipherKeysController extends Controller
         ])->approved();
 
         if ($request->detailed) {
-            $cipherKeys = $this->filterPagination($cipherKeys, $request, 'name', 'asc', true);
+            $cipherKeys = $this->filterPagination($cipherKeys, $request, 'id', 'asc', true);
             return $this->success(new CipherKeyApprovedCollection($cipherKeys), 'List of all approved cipher keys with details.', 200);
         }
 
@@ -117,7 +117,7 @@ class CipherKeysController extends Controller
         ])->where('created_by', $user->id);
 
         if ($request->detailed) {
-            $cipherKeys = $this->filterPagination($cipherKeys, $request, 'name', 'asc', true);
+            $cipherKeys = $this->filterPagination($cipherKeys, $request, 'id', 'asc', true);
             return $this->success(new CipherKeyApprovedCollection($cipherKeys), 'List of all my cipher keys with details.', 200);
         }
 
@@ -241,7 +241,11 @@ class CipherKeysController extends Controller
             'tags'
         ]);
 
-        Mail::to(config('mail.to.email'))->send(new NewCipherKeyMail($cipherKey));
+        try {
+            Mail::to(config('mail.to.email'))->send(new NewCipherKeyMail($cipherKey));
+        } catch (\Exception $e) {
+            // todo
+        }
 
         return $this->success(new CipherKeyApprovedDetailedResource($cipherKey), 'Successfully added cipher key.', 200);
     }
