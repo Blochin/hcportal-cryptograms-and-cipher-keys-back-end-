@@ -63,7 +63,7 @@ trait CryptogramSyncable
                         ->addMedia($sanitized['images'][$keyGroup][$keyData])
                         ->toMediaCollection('image');
 
-                    $newData->update(['blobb' => $newData->getFirstMediaPath('image')]);
+                    $newData->update(['blob' => $newData->getFirstMediaPath('image')]);
                 } elseif (isset($item['image']) && $item['image']) {
                     $newData
                         ->addMediaFromUrl($item['image'])
@@ -99,9 +99,8 @@ trait CryptogramSyncable
                     $type['id'] = $item['type'];
                 }
 
-                $dataBlobb = isset($item['link']) ? $item['link'] : (isset($item['text']) ? $item['text'] : null);
                 $newData = Data::create([
-                    'blob' => $type['id'] == 'image' ? 'image' : $dataBlobb,
+                    'blob' => $item['type'],
                     'description' => $item['title'],
                     'filetype' => $type['id'],
                     'datagroup_id' => $newGroup->id,
@@ -113,12 +112,12 @@ trait CryptogramSyncable
                     $newData
                         ->addMediaFromBase64($item['image_base64'])
                         ->toMediaCollection('image');
-                    $newData->update(['blobb' => $newData->getFirstMediaPath('image')]);
+                    $newData->update(['blob' => $newData->getFirstMediaPath('image')]);
                 } else if (isset($item['image_link'])) {
                     $newData
                         ->addMediaFromUrl($item['image_link'])
                         ->toMediaCollection('image');
-                    $newData->update(['blobb' => $newData->getFirstMediaPath('image')]);
+                    $newData->update(['blob' => $newData->getFirstMediaPath('image')]);
                 }
             }
         }
