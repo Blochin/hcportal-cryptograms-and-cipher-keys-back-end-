@@ -29,17 +29,17 @@ class ForgotPasswordController extends Controller
      * Send forgot password code
      *
      * @unauthenticated
-     * 
+     *
      * Send forgot password code<br><br>
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully logged in<br>
      * <b>422</b> - Validation error<br>
-     * 
+     *
      * @bodyParam  email string required Login e-mail Example: login@login.sk
-     * 
+     *
      * @responseFile responses/auth/reset_code.200.json
      * @responseFile responses/auth/reset_code.422.json
-     * 
+     *
      */
     public function sendCode(Request $request)
     {
@@ -68,7 +68,11 @@ class ForgotPasswordController extends Controller
         ]);
 
 
-        Mail::to($request->email)->send(new ResetCodeMail($client, $code));
+        try{
+            Mail::to($request->email)->send(new ResetCodeMail($client, $code));
+        }catch (\Exception $e){
+
+        }
 
         return $this->success([], 'Successfully password reset code sent.', 200, 200);
     }
@@ -78,19 +82,19 @@ class ForgotPasswordController extends Controller
      * Change password
      *
      * @unauthenticated
-     * 
+     *
      * Login to web application<br><br>
      * <b>Status codes:</b><br>
      * <b>200</b> - Successfully logged in<br>
      * <b>422</b> - Validation error<br>
-     * 
+     *
      * @bodyParam  email string required Login e-mail Example: login@login.sk
      * @bodyParam  password string required New password
      * @bodyParam  code string required Password reset code
-     * 
+     *
      * @responseFile responses/auth/reset_password.200.json
      * @responseFile responses/auth/reset_password.422.json
-     * 
+     *
      */
     public function changePassword(Request $request)
     {

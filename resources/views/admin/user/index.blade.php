@@ -136,6 +136,12 @@
                                                         title="{{ trans('brackets/admin-ui::admin.btn.edit') }}"
                                                         role="button"><i class="fa fa-edit"></i></a>
                                                 </div>
+                                                <form class="col-auto" @submit.prevent="logout(item.id)">
+                                                    <button class="btn btn-sm btn-spinner btn-warning"
+                                                       role="button">
+                                                        <i class="fa fa-sign-out"></i>
+                                                    </button>
+                                                </form>
                                                 <form class="col" @submit.prevent="deleteItem(item.resource_url)">
                                                     <button type="submit" class="btn btn-sm btn-danger"
                                                         title="{{ trans('brackets/admin-ui::admin.btn.delete') }}"><i

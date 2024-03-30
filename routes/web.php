@@ -82,6 +82,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::get('/{user}/edit', 'UsersController@edit')->name('edit');
             Route::post('/bulk-destroy', 'UsersController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{user}', 'UsersController@update')->name('update');
+            Route::post('/{user}/logout/','UsersController@logout')->name('logout');
             Route::delete('/{user}', 'UsersController@destroy')->name('destroy');
         });
     });

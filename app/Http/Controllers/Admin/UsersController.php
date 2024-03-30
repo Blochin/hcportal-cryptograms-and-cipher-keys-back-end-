@@ -19,6 +19,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
@@ -139,6 +140,11 @@ class UsersController extends Controller
         ]);
     }
 
+    public function logout(User $user)
+    {
+        $user->tokens()->delete();
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -152,7 +158,11 @@ class UsersController extends Controller
         $sanitized = $request->getSanitized();
 
         if ($user->activated != $sanitized['activated'] && $sanitized['activated']) {
-            Mail::to($user->email)->send(new UserActivatedMail($user));
+            try{
+                Mail::to($user->email)->send(new UserActivatedMail($user));
+            }catch (Exception $e){
+
+            }
         }
 
         // Update changed values User

@@ -60,7 +60,7 @@ class CipherKeysController extends Controller
             ['id', 'category_id', 'complete_structure', 'name', 'created_by', 'key_type', 'used_from', 'used_to', 'used_around', 'folder_id', 'location_id', 'language_id', 'group_id', 'state'],
 
             // set columns to searchIn
-            ['id', 'description', 'name', 'complete_structure', 'used_chars', 'category_id', 'key_type', 'used_around'],
+            ['id', 'description', 'name', 'complete_structure', 'used_chars', 'category_id', 'key_type', 'used_around', 'state'],
 
             function (Builder $query) {
                 $query->with(['language', 'submitter']);
@@ -259,7 +259,11 @@ class CipherKeysController extends Controller
 
         //Send mail to submitter if state changed
         if ($sanitized['state'] !== $cipherKey->state['id']) {
+            try{
             Mail::to($cipherKey->submitter->email)->send(new UpdateCipherKeyStateMail($cipherKey));
+            } catch (Exception $e){
+
+            }
         }
 
         if (isset($sanitized['note_new'])) {
@@ -370,7 +374,11 @@ class CipherKeysController extends Controller
 
         $cipherKey->update(['state' => $sanitized['state']]);
 
-        Mail::to($cipherKey->submitter->email)->send(new UpdateCipherKeyStateMail($cipherKey));
+        try {
+            Mail::to($cipherKey->submitter->email)->send(new UpdateCipherKeyStateMail($cipherKey));
+        } catch (Exception $e){
+
+        }
 
         return response()->json('Successfully status changed.', 200);
     }

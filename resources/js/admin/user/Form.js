@@ -12,7 +12,7 @@ Vue.component('user-form', {
                 activated:  false ,
                 forbidden:  false ,
                 language:  '' ,
-                
+
             }
         }
     }

@@ -63,7 +63,7 @@ class CryptogramsController extends Controller
             ['availability', 'category_id', 'id', 'date', 'date_around', 'thumbnail_url', 'language_id', 'location_id', 'name', 'recipient_id', 'sender_id', 'solution_id', 'state', 'created_by'],
 
             // set columns to searchIn
-            ['availability', 'description', 'id', 'thumbnail_url', 'name'],
+            ['availability', 'description', 'id', 'thumbnail_url', 'name', 'state'],
 
             function (Builder $query) {
                 $query->with(['language', 'submitter']);
@@ -253,7 +253,11 @@ class CryptogramsController extends Controller
 
         //Send mail to submitter if state changed
         if ($sanitized['state'] !== $cryptogram->state['id']) {
-            Mail::to($cryptogram->submitter->email)->send(new UpdateCryptogramStateMail($cryptogram));
+            try {
+                Mail::to($cryptogram->submitter->email)->send(new UpdateCryptogramStateMail($cryptogram));
+            }catch (Exception $e) {
+
+            }
         }
 
         if (isset($sanitized['note_new'])) {
