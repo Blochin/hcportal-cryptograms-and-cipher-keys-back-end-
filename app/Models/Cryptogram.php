@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Brackets\Media\HasMedia\ProcessMediaTrait;
 use Brackets\Media\HasMedia\AutoProcessMediaTrait;
 use Brackets\Media\HasMedia\HasMediaCollectionsTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Brackets\Media\HasMedia\HasMediaThumbsTrait;
@@ -16,6 +17,7 @@ use Spatie\Image\Manipulations;
 
 class Cryptogram extends Model implements HasMedia
 {
+    use SoftDeletes;
     use ProcessMediaTrait;
     use AutoProcessMediaTrait;
     use HasMediaCollectionsTrait;
@@ -45,7 +47,7 @@ class Cryptogram extends Model implements HasMedia
     public const AVAILABILITY_TYPE = "other";
     public const ARCHIVE_TYPE = "archive";
 
-    protected $dates = ['date'];
+    protected $dates = ['date', 'deleted_at'];
 
 
     protected $appends = ['resource_url', 'state_badge', 'continent', 'location_name', 'picture', 'fond', 'archive', 'availability_type'];
@@ -61,6 +63,26 @@ class Cryptogram extends Model implements HasMedia
                     'loggable_id' => $model->id,
                     'loggable_type' => Cryptogram::class,
                     'causer_id' => auth()->user()->id,
+                ]);
+            }
+        });
+        static::updated(function (Cryptogram $model) {
+            if (auth()->check()) {
+                Log::create([
+                    'action' => Log::ACTION_UPDATED,
+                    'loggable_id' => $model->id,
+                    'loggable_type' => Cryptogram::class,
+                    'causer_id' => auth()->user()->id
+                ]);
+            }
+        });
+        static::deleting(function (Cryptogram $model) {
+            if (auth()->check()) {
+                Log::create([
+                    'action' => Log::ACTION_DELETED,
+                    'loggable_id' => $model->id,
+                    'loggable_type' => Cryptogram::class,
+                    'causer_id' => auth()->user()->id
                 ]);
             }
         });

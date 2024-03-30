@@ -53,6 +53,21 @@ return [
         ],
     ],
 
+    'logs' => [
+        'title' => 'Logs',
+        'actions' => [
+            'index' => 'Logs',
+        ],
+        'columns' => [
+            'id' => 'ID',
+            'action' => 'Action',
+            'causer' => 'Causer',
+            'loggable_type' => 'Loggable Type',
+            'loggable' => 'Loggable Name',
+            'created_at' => 'Created At',
+        ]
+    ],
+
     'cipher-key' => [
         'title' => 'Cipher Keys',
 

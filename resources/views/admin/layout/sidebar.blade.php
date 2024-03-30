@@ -34,6 +34,8 @@
 
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/users') }}"><i
                         class="nav-icon icon-user"></i> {{ trans('admin.user.title') }}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url('admin/logs') }}"><i
+                        class="nav-icon icon-settings"></i> {{ trans('admin.logs.title') }}</a></li>
             {{-- Do not delete me :) I'm also used for auto-generation menu items --}}
             {{-- <li class="nav-item"><a class="nav-link" href="{{ url('admin/configuration') }}"><i class="nav-icon icon-settings"></i> {{ __('ConfigurationController') }}</a></li> --}}
         </ul>

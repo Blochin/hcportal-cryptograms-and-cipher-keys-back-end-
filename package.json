@@ -23,6 +23,8 @@
     "dependencies": {
         "collect.js": "^4.34.3",
         "sweetalert2": "^11.7.1",
-        "vue-advanced-cropper": "^1.11.6"
+        "vue": "^2.7.16",
+        "vue-advanced-cropper": "^1.11.6",
+        "vue-multiselect": "^2.1.9"
     }
 }

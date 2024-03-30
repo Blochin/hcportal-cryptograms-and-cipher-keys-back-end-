@@ -14,3 +14,4 @@ import "./person";
 import "./language";
 import "./category";
 import './digitalized-transcription';
+import './logs'

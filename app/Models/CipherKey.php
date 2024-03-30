@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CipherKey extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'description',
         'name',
@@ -72,8 +74,29 @@ class CipherKey extends Model
                     'causer_id' => auth()->user()->id
                 ]);
             }
-
         });
+        static::updated(function (CipherKey $model) {
+            if (auth()->check()) {
+                Log::create([
+                    'action' => Log::ACTION_UPDATED,
+                    'loggable_id' => $model->id,
+                    'loggable_type' => CipherKey::class,
+                    'causer_id' => auth()->user()->id
+                ]);
+            }
+        });
+
+        static::deleting(function (CipherKey $model) {
+            if (auth()->check()) {
+                Log::create([
+                    'action' => Log::ACTION_DELETED,
+                    'loggable_id' => $model->id,
+                    'loggable_type' => CipherKey::class,
+                    'causer_id' => auth()->user()->id
+                ]);
+            }
+        });
+
     }
 
     /* ************************ ACCESSOR ************************* */

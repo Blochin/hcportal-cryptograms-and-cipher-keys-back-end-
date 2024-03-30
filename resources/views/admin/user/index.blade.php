@@ -109,6 +109,7 @@
                                         <td>@{{ item . first_name }}</td>
                                         <td>@{{ item . last_name }}</td>
                                         <td>@{{ item . email }}</td>
+
                                         <td>
                                             <label class="switch switch-3d switch-success">
                                                 <input type="checkbox" class="switch-input"
@@ -138,6 +139,7 @@
                                                 </div>
                                                 <form class="col-auto" @submit.prevent="logout(item.id)">
                                                     <button class="btn btn-sm btn-spinner btn-warning"
+                                                            title="Logout"
                                                        role="button">
                                                         <i class="fa fa-sign-out"></i>
                                                     </button>

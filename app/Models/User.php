@@ -25,6 +25,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class User extends Authenticatable implements CanActivateContract, HasMedia
 {
+    use SoftDeletes;
     use Notifiable;
     use CanActivate;
     use SoftDeletes;
