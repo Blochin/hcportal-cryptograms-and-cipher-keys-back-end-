@@ -123,7 +123,7 @@ class CryptogramsMigration extends Migration
 
     private function tags()
     {
-        $tagsCiphers = DB::table('tagsCipher')->get();
+        $tagsCiphers = DB::table('tagscipher')->get();
         $tags = DB::table('tags')->get();
 
         return $tagsCiphers->map(function ($tagCipher) use ($tags) {
