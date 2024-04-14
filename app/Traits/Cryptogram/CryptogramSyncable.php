@@ -48,7 +48,7 @@ trait CryptogramSyncable
                 }
 
                 $newData = Data::create([
-                    'blob' => $item['blob'],
+                    'blob' => $type['id'] == 'image' ? 'image' : $item['blob'],
                     'description' => $item['title'],
                     'filetype' => $type['id'],
                     'datagroup_id' => $newGroup->id,
