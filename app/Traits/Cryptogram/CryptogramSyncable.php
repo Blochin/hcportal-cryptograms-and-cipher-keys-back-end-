@@ -47,9 +47,8 @@ trait CryptogramSyncable
                     $type['id'] = $item['type'];
                 }
 
-                $dataBlobb = $item['link'] ?: $item['text'];
                 $newData = Data::create([
-                    'blob' => $type['id'] == 'image' ? 'image' : $dataBlobb,
+                    'blob' => $type['id'] == 'image' ? 'image' : $item['blob'],
                     'description' => $item['title'],
                     'filetype' => $type['id'],
                     'datagroup_id' => $newGroup->id,
@@ -92,23 +91,22 @@ trait CryptogramSyncable
             $data = collect($group->data)->toArray();
             foreach ($data as $keyData => $item) {
                 $item = collect($item)->toArray();
-                $type['id'] = $item['type'];
 
                 $dataBlobb = isset($item['link']) ? $item['link'] : (isset($item['text']) ? $item['text'] : null);
                 $newData = Data::create([
-                    'blob' => $type['id'] == 'image' ? 'image' : $dataBlobb,
+                    'blob' => $item['type'] == 'image' ? 'image' : $dataBlobb,
                     'description' => $item['title'],
-                    'filetype' => $type['id'],
+                    'filetype' => $item['type'],
                     'datagroup_id' => $newGroup->id,
                     'dl_protection' => 0
                 ]);
 
-                if (isset($item['image_base64']) && $type['id'] === 'image') {
+                if (isset($item['image_base64']) && $item['type'] === 'image') {
                     $newData
                         ->addMediaFromBase64($item['image_base64'])
                         ->toMediaCollection('image');
                     $newData->update(['blob' => $newData->getFirstMediaPath('image')]);
-                } else if (isset($item['image_link']) && $type['id'] === 'image') {
+                } else if (isset($item['image_link']) && $item['type'] === 'image') {
                     $newData
                         ->addMediaFromUrl($item['image_link'])
                         ->toMediaCollection('image');

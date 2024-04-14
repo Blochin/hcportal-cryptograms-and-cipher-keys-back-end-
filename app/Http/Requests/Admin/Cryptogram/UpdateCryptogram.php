@@ -70,7 +70,7 @@ class UpdateCryptogram extends FormRequest
 
 
             'images' => ['nullable'],
-            'images.*.*' => ['image'],
+            //'images.*.*' => ['image'],
             'image' => ['nullable'],
             'groups' => ['nullable'],
             // 'predefined_groups' => ['nullable'],

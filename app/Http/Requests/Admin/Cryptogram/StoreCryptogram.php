@@ -70,7 +70,7 @@ class StoreCryptogram extends FormRequest
             'date' => ['nullable', 'date'],
             'date_around' => ['nullable', 'string', 'max:255'],
             'images' => ['nullable'],
-            'images.*.*' => ['image'],
+            //'images.*.*' => ['image'],
             'groups' => ['nullable'],
             'predefined_groups' => ['nullable'],
             'tags' => ['nullable'],

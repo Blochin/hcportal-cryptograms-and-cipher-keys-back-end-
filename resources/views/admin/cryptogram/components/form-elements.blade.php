@@ -487,7 +487,7 @@
                                 <label :for="'text'+ index + indexData"
                                     class="col-form-label">{{ trans('admin.cryptogram.columns.data.text') }}
                                 </label>
-                                <textarea v-model="form.groups[index].data[indexData].text" v-validate="''"
+                                <textarea v-model="form.groups[index].data[indexData].blob" v-validate="''"
                                     @input="validate($event)" class="form-control"
                                     :class="{'form-control-danger': errors.has('text'+ index + indexData), 'form-control-success': fields.text+index+indexData && fields.text+index+indexData}"
                                     :id="'text'+ index + indexData" :name="'text'+ index + indexData"> </textarea>
@@ -499,7 +499,7 @@
                                 <label :for="'link'+ index + indexData"
                                     class="col-form-label">{{ trans('admin.cryptogram.columns.data.link') }}
                                 </label>
-                                <input type="text" v-model="form.groups[index].data[indexData].link" v-validate="''"
+                                <input type="text" v-model="form.groups[index].data[indexData].blob" v-validate="''"
                                     @input="validate($event)" class="form-control"
                                     :class="{'form-control-danger': errors.has('link'+ index + indexData), 'form-control-success': fields.link+index+indexData && fields.link+index+indexData}"
                                     :id="'title'+ index + indexData" :name="'title'+ index + indexData"
