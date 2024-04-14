@@ -173,18 +173,20 @@ Vue.component("cryptogram-form", {
                     }
                 });
             }
+            const formData = new FormData();
+            const files = this.$refs.files;
 
-            let formData = new FormData();
-
-            var files = this.$refs.files;
-
-            //Data group files
-            if (files) {
-                var totalfiles = files.length;
-                for (var index = 0; index < totalfiles; index++) {
-                    formData.append(files[index].name, files[index].files[0]);
-                    //this.form.files.push(files[index].files[0]);
-                }
+            if (files && files.length > 0) {
+                files.forEach(fileInput => {
+                    const file = fileInput.files[0];
+                    if (file) {
+                        formData.append(file.name, file);
+                    } else {
+                        console.error("No file selected for input:", fileInput);
+                    }
+                });
+            } else {
+                console.warn("No files selected.");
             }
 
             //Other data
