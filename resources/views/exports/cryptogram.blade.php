@@ -59,7 +59,6 @@
         }
 
         .attachment-group {
-            border: 2px solid #334f5b;
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 8px;
@@ -98,9 +97,9 @@
             <div style="padding-left: 5px">
                 <h1>{{ $name }}</h1>
                 <p>Created At: {{$created_at}}</p>
-                {!! $description !!}
             </div>
         </div>
+        {!! $description !!}
         <div class="clear"></div>
     </div>
     <table border="1">

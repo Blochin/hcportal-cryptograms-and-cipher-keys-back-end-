@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\CipherKey;
 use App\Models\CipherKeyPerson;
 use App\Models\Cryptogram;
@@ -24,15 +25,16 @@ class StatisticsController extends Controller
     use ApiResponser;
 
     public const CENTURIES = 15;
-    public const COLORS = ['#fa7315', '#29B6F6', '#2E7D32', '#FDD835', '#E91E63',  '#6A1B9A', '#CCCCFF', '#40E0D0', '#000000', '#808080', '#808000', '#008080'];
+    public const COLORS = ['#fa7315', '#29B6F6', '#2E7D32', '#FDD835', '#E91E63', '#6A1B9A', '#CCCCFF', '#40E0D0', '#000000', '#808080', '#808000', '#008080'];
     public const USED_CHARS_LABELS = ['L' => 'Letters', 'S' => 'Symbols', 'N' => 'Number', 'D' => 'Double', 'M' => 'Markup', 'G' => 'String'];
+
     /**
      * Show all statistics
      *
      * @unauthenticated
-     * 
+     *
      * @responseFile responses/statistics/index.200.json
-     * 
+     *
      */
     public function index()
     {
@@ -40,8 +42,8 @@ class StatisticsController extends Controller
         $keysCount = CipherKey::approved()->count();
         $cryptogramsCount = Cryptogram::approved()->count();
 
-        $archivesCipherCount =  CipherKey::with('folder.fond.archive')->approved()->whereHas('folder.fond.archive')->get()->pluck('archive.name');
-        $archivesCryptoCount =  Cryptogram::with('folder.fond.archive')->approved()->whereHas('folder.fond.archive')->get()->pluck('archive.name');
+        $archivesCipherCount = CipherKey::with('folder.fond.archive')->approved()->whereHas('folder.fond.archive')->get()->pluck('archive.name');
+        $archivesCryptoCount = Cryptogram::with('folder.fond.archive')->approved()->whereHas('folder.fond.archive')->get()->pluck('archive.name');
         $archivesCount = $archivesCipherCount->merge($archivesCryptoCount)->unique()->count();
 
         $cipherAndCryptoByCentury = $this->cipherAndCryptoByCentury();
@@ -63,10 +65,16 @@ class StatisticsController extends Controller
 
 
         $topPersons = collect($topPersons)
-            ->sortByDesc(function ($value, $key) {
-                return $value;
+            ->sortBy(function ($value, $key) {
+                return strlen($key);
             })
             ->map(function ($value, $key) {
+                if (strlen($key) > 20) {
+                    $spacePosition = strpos($key, ' ', 20);
+                    if ($spacePosition !== false) {
+                        $key = substr($key, 0, $spacePosition) . "\n" . substr($key, $spacePosition + 1);
+                    }
+                }
                 return [
                     'id' => $value + 1,
                     'title' => $key,
@@ -76,8 +84,8 @@ class StatisticsController extends Controller
             ->values()
             ->toArray();
 
-        $oldest =  CipherKey::whereNotNull('used_from')->orderBy('used_from', 'asc')->orderBy('used_to', 'asc')->approved()->first();
-        $newest =  CipherKey::whereNotNull('used_from')->orderBy('used_from', 'desc')->orderBy('used_to', 'desc')->approved()->first();
+        $oldest = CipherKey::whereNotNull('used_from')->orderBy('used_from', 'asc')->orderBy('used_to', 'asc')->approved()->first();
+        $newest = CipherKey::whereNotNull('used_from')->orderBy('used_from', 'desc')->orderBy('used_to', 'desc')->approved()->first();
         $usedChars = ['L', 'S', 'N', 'D', 'M', 'G'];
 
         foreach ($usedChars as $char) {
@@ -94,8 +102,6 @@ class StatisticsController extends Controller
         }, 'recipientCryptograms' => function ($query) {
             $query->approved();
         }])->get();
-
-        $personsCryptogramsCount = $personsCryptograms->count();
 
         $topPersonsCryptograms = $personsCryptograms->sortByDesc(function ($person) {
             return $person->sender_cryptograms_count + $person->recipient_cryptograms_count;
@@ -131,13 +137,20 @@ class StatisticsController extends Controller
         })->count();
 
 
-        $oldestCrypto =  Cryptogram::whereNotNull('date')->orderBy('date', 'asc')->approved()->first();
-        $newestCrypto =  Cryptogram::whereNotNull('date')->orderBy('date', 'desc')->approved()->first();
+        $oldestCrypto = Cryptogram::whereNotNull('date')->orderBy('date', 'asc')->approved()->first();
+        $newestCrypto = Cryptogram::whereNotNull('date')->orderBy('date', 'desc')->approved()->first();
 
 
         $cryptoByCentury = $this->cryptoBySolutions();
         $cryptoByContinent = $this->cryptoByContinent();
         $cryptoBySymbols = $this->cipherAndCryptoBySymbols('cryptograms');
+        $bySolution = $this->bySolutions();
+
+        $cryptogramsByCategory = $this->cryptogramsByCategory();
+        $cipherKeysByCategory = $this->cipherKeysByCategory();
+        $cryptogramsByCentury = $this->cryptogramsByCentury();
+        $cipherKeysByCentury = $this->cipherKeysByCentury();
+        $cipherKeysByStructure  = $this->cipherKeyByStructure();
 
 
         return $this->success([
@@ -162,7 +175,10 @@ class StatisticsController extends Controller
                 ],
                 'by_persons' => $topPersons,
                 'by_century' => $cipherByCentury,
-                'by_symbols' => $cipherBySymbols
+                'by_symbols' => $cipherBySymbols,
+                'by_category' => $cipherKeysByCategory,
+                'century' => $cipherKeysByCentury,
+                'structure' => $cipherKeysByStructure,
             ],
             'cryptograms' => [
                 'count' => [
@@ -174,9 +190,12 @@ class StatisticsController extends Controller
                     'newest' => $newestCrypto && $newestCrypto->date ? $newestCrypto->date->format('d. m. Y') : null,
                 ],
                 'by_persons' => $topPersonsCryptograms,
-                'by_century' => $cryptoByCentury,
+                'by_century' => $cryptoByCentury, // idk what is it, but not make sense
                 'by_continent' => $cryptoByContinent,
-                'by_symbols' => $cryptoBySymbols
+                'by_symbols' => $cryptoBySymbols,
+                'by_solution' => $bySolution,
+                'by_category' => $cryptogramsByCategory,
+                'century' => $cryptogramsByCentury,
             ]
         ], 'Statsitics data.', 200);
     }
@@ -193,7 +212,7 @@ class StatisticsController extends Controller
         $centuriesCryptoDatasets = collect([]);
         $centuryStats = collect([]);
 
-        $actualCentury = (int) ceil(now()->year / 100);
+        $actualCentury = (int)ceil(now()->year / 100);
 
         for ($i = 15; $i <= $actualCentury; $i++) {
 
@@ -310,15 +329,14 @@ class StatisticsController extends Controller
             $cryptograms = Cryptogram::whereHas('language', function (Builder $query) use ($language) {
                 $query->where('name', $language->name);
             })->approved()->count();
-            $cryptoDatasets->push($cryptograms);
 
             $keys = CipherKey::whereHas('language', function (Builder $query) use ($language) {
                 $query->where('name', $language->name);
             })->approved()->count();
 
-            $keysDatasets->push($keys);
-
-            $languagesCount->push(['title' => $language->name, 'cipher_count' => $keys, 'cryptograms_count' => $cryptograms]);
+            if ($keys > 0 || $cryptograms > 0) {
+                $languagesCount->push(['title' => $language->name, 'cipher_count' => $keys, 'cryptograms_count' => $cryptograms]);
+            }
         }
 
         $stats->push([
@@ -360,7 +378,7 @@ class StatisticsController extends Controller
         $centuryTitles = collect([]);
         $usedChars = ['L' => '#fa7315', 'S' => '#29B6F6', 'N' => '#2E7D32', 'D' => '#FDD835', 'M' => '#E91E63', 'G' => '#6A1B9A'];
 
-        $actualCentury = (int) ceil(now()->year / 100);
+        $actualCentury = (int)ceil(now()->year / 100);
 
         foreach ($usedChars as $char => $color) {
 
@@ -431,7 +449,7 @@ class StatisticsController extends Controller
 
         $selectedColors = [];
 
-        $actualCentury = (int) ceil(now()->year / 100);
+        $actualCentury = (int)ceil(now()->year / 100);
 
         foreach ($solutions as $solution) {
 
@@ -567,7 +585,7 @@ class StatisticsController extends Controller
         $centuryTitles = collect([]);
         $usedChars = ['L' => '#fa7315', 'S' => '#29B6F6', 'N' => '#2E7D32', 'D' => '#FDD835', 'M' => '#E91E63', 'G' => '#6A1B9A'];
 
-        $actualCentury = (int) ceil(now()->year / 100);
+        $actualCentury = (int)ceil(now()->year / 100);
 
         foreach ($usedChars as $char => $color) {
 
@@ -679,5 +697,127 @@ class StatisticsController extends Controller
             'symbols' => $symbols->toArray(),
             'datasets' => $centuryStats->toArray()
         ];
+    }
+
+    private function bySolutions()
+    {
+        $solutions = Solution::all();
+
+        foreach ($solutions as $solution) {
+            $solutionsCount[$solution->name] = Cryptogram::where('solution_id', $solution->id)->count();
+        }
+
+        $data = null;
+        foreach ($solutions as $solution) {
+            $data[] = ['title' => $solution->name, 'cryptograms_count' => $solutionsCount[$solution->name]];
+        }
+
+        return [
+            'solutions' => $data,
+        ];
+    }
+
+    private function cryptogramsByCategory()
+    {
+        $categories = Category::all();
+
+        foreach ($categories as $category) {
+            $categoriesCount[$category->name] = Cryptogram::where('category_id', $category->id)->count();
+            $data[] = ['title' => $category->name, 'cryptograms_count' => $categoriesCount[$category->name]];
+        }
+
+        return [
+            'categories' => $data,
+        ];
+    }
+
+    private function cipherKeysByCategory()
+    {
+        $categories = Category::all();
+
+        foreach ($categories as $category) {
+            $categoriesCount[$category->name] = CipherKey::where('category_id', $category->id)->count();
+            $data[] = ['title' => $category->name, 'cipher_count' => $categoriesCount[$category->name]];
+        }
+
+        return [
+            'categories' => $data,
+        ];
+    }
+
+    private function cryptogramsByCentury()
+    {
+        $centuries = collect([]);
+        $centuriesCryptoDatasets = collect([]);
+
+        $actualCentury = (int)ceil(now()->year / 100);
+
+        for ($i = 15; $i <= $actualCentury; $i++) {
+            $year = $i * 100;
+            $from = Carbon::createFromFormat("Y", $year)->startOfCentury()->toDateString();
+            $to = Carbon::createFromFormat("Y", $year)->endOfCentury()->toDateString();
+
+            $cryptogramByCentury = Cryptogram::whereBetween('date', [$from, $to])->count();
+            $centuriesCryptoDatasets->push($cryptogramByCentury);
+
+            $centuries->push(['title' => $i . ". century", 'cryptograms_count' => $cryptogramByCentury]);
+        }
+
+        $cryptogramByCentury = Cryptogram::whereNull('date')->count();
+        $centuriesCryptoDatasets->push($cryptogramByCentury);
+
+        $centuries->push(['title' => "Not recognized", 'cryptograms_count' => $cryptogramByCentury]);
+
+
+        return [
+            'centuries' => $centuries->toArray(),
+        ];
+    }
+
+    private function cipherKeysByCentury()
+    {
+        $centuries = collect([]);
+        $actualCentury = (int)ceil(now()->year / 100);
+
+        for ($i = 15; $i <= $actualCentury; $i++) {
+            $year = $i * 100;
+            $from = Carbon::createFromFormat("Y", $year)->startOfCentury()->toDateString();
+            $to = Carbon::createFromFormat("Y", $year)->endOfCentury()->toDateString();
+
+            $cipherKeysByCentury = CipherKey::whereBetween('used_from', [$from, $to])->count();
+
+            $centuries->push(['title' => $i . ". century", 'cipher_count' => $cipherKeysByCentury]);
+        }
+
+        $cipherKeysByCentury = CipherKey::whereNull('used_from')
+            ->count();
+
+        $centuries->push(['title' => "Not recognized", 'cipher_count' => $cipherKeysByCentury]);
+
+        return [
+            'centuries' => $centuries->toArray(),
+        ];
+    }
+
+    private function cipherKeyByStructure()
+    {
+        $structure = [
+            "1" => "letters",
+            "2" => "bigrams",
+            "3" => "trigrams",
+            "V" => "codes (variable length)",
+            "0" => "nulls",
+            "N" => "numbers"
+        ];
+
+        foreach ($structure as $index => $item) {
+            $categoriesCount[$item] = CipherKey::where('complete_structure', 'like', '%' . $index . '%')->count();
+            $data[] = ['title' => $item, 'cipher_count' => $categoriesCount[$item]];
+        }
+
+        return [
+            'structure' => $data
+        ];
+
     }
 }

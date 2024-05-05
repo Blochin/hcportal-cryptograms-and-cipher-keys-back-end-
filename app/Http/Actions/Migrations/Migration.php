@@ -31,8 +31,6 @@ abstract class Migration
                 $this->allSanitized[] = $sanitized;
             }
         }
-
         return $this->allSanitized;
-
     }
 }

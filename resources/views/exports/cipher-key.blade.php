@@ -53,20 +53,12 @@
             padding-bottom: 5px;
         }
 
-        .image-container {
-            margin-bottom: 15px;
-        }
-
         .image-card {
             page-break-inside: avoid;
-            border: 2px solid #334f5b;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
         }
 
         .image {
-            max-width: 100%;
+            width: 75%;
             height: auto;
             border-radius: 5px;
         }
@@ -87,9 +79,9 @@
             <div style="padding-left: 5px">
                 <h1>{{ $name }}</h1>
                 <p>Created At: {{$created_at}}</p>
-                {!! $description !!}
             </div>
         </div>
+        {!! $description !!}
         <div class="clear"></div>
     </div>
     <table border="1">
@@ -187,17 +179,16 @@
     </table>
 
     <h1 class="attachments-header">Attachments</h1>
-
-    <div class="image-container">
-        @foreach($images->toArray(null) as $image)
-            <div class="image-card">
-                <div>
-                    <img src="{{ $image['url']['large'] }}" alt="" class="image">
-                    <p class="instructions">Has Instructions: {{ $image['has_instructions'] ? 'true' : 'false' }}</p>
+    <div class="image-card">
+        <div>
+            @foreach($images->toArray(null) as $image)
+                <img src="{{ $image['url']['large'] }}" alt="" class="image">
+                <div class="instructions">
+                    <p>Has Instructions: {{ $image['has_instructions'] ? 'true' : 'false' }}</p>
                     <p>Structure: {{ $image['structure'] }}</p>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
 </div>
 </body>

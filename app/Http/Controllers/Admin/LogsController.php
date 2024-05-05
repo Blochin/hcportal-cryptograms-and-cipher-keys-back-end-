@@ -15,10 +15,8 @@ class LogsController extends Controller
         $data = AdminListing::create(Log::class)->processRequestAndGet(
         // pass the request with params
             $request,
-
             // set columns to query
             ['id', 'action', 'causer_id', 'loggable_id', 'loggable_type', 'created_at'],
-
             // set columns to searchIn
             ['id', 'action', 'causer_id', 'loggable_id', 'loggable_type', 'created_at'],
 
@@ -26,11 +24,9 @@ class LogsController extends Controller
                 $query->with(['causer', 'loggable']);
             },
         );
-
         $data->load(['loggable' => function ($query) {
             $query->withTrashed();
         }]);
-
         $data->load(['causer' => function ($query) {
             $query->withTrashed();
         }]);
